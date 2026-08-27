@@ -1,0 +1,55 @@
+name: Build roundup
+
+# Tuesday 09:00 UK, after bonus points and standings have settled.
+on:
+  schedule:
+    - cron: "0 8 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+
+      # Cloudflare blocks cloud runners often enough that this must not be
+      # fatal. If the pull fails the build still runs on committed raw data.
+      - name: Fetch
+        id: fetch
+        continue-on-error: true
+        run: python fetch.py
+
+      - name: Compute and build
+        run: |
+          python kpis.py
+          python build.py
+
+      - name: Commit refreshed data
+        if: steps.fetch.outcome == 'success'
+        run: |
+          git config user.name "roundup-bot"
+          git config user.email "roundup-bot@users.noreply.github.com"
+          git add data/raw data/derived
+          git diff --staged --quiet || git commit -m "Refresh league data"
+          git push
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4

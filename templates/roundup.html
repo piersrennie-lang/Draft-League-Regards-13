@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GW{{ gw }} Matchweek Roundup &middot; {{ d.league.name }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__rule">
+    <span>{{ d.league.name }}</span>
+    <span>{{ d.league.season }} season</span>
+    <span>{{ d.managers|length }} managers &middot; head to head</span>
+  </div>
+  <h1>GW{{ gw }}<br><em>Matchweek Roundup</em></h1>
+  <p class="standfirst">
+    {% if prose.standfirst %}{{ prose.standfirst }}
+    {% else %}Five fixtures, ten compulsory releases, and one table that has barely started.{% endif %}
+  </p>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <a href="#card">The card</a>
+  <a href="#ledger">Release ledger</a>
+  <a href="#releases">Compulsory releases</a>
+  <a href="#moves">Transfers</a>
+  <a href="#summary">Awards</a>
+  <a href="#table">Standings</a>
+  <a href="#next">Next week</a>
+</nav>
+
+<main>
+
+{# ------------------------------------------------------------------ card #}
+<section id="card">
+  <h2 class="eyebrow">The card</h2>
+  {% for m in d.matches %}
+  <article class="match">
+    <div class="match__head">
+      <p class="match__no">Match {{ loop.index }}</p>
+      <div class="rating" role="img" aria-label="Entertainment {{ m.entertainment }} out of 10">
+        <span class="rating__label">Entertainment</span>
+        <span class="rating__meter">
+          {% for i in range(1, 11) %}<i class="{{ 'on' if i <= m.entertainment }}"></i>{% endfor %}
+        </span>
+        <span class="rating__num">{{ m.entertainment }}<small>/10</small></span>
+      </div>
+    </div>
+
+    <div class="scoreline">
+      <div class="side {{ 'side--won' if m.winner == m.home }}">
+        <p class="side__mgr">{{ m.home_name }}</p>
+        <p class="side__team">{{ m.home_team }}</p>
+      </div>
+      <p class="score">{{ m.home_points }}<span>&ndash;</span>{{ m.away_points }}</p>
+      <div class="side side--right {{ 'side--won' if m.winner == m.away }}">
+        <p class="side__mgr">{{ m.away_name }}</p>
+        <p class="side__team">{{ m.away_team }}</p>
+      </div>
+    </div>
+
+    <dl class="match__meta">
+      <div><dt>Margin</dt><dd>{{ m.margin }}</dd></div>
+      <div><dt>Combined</dt><dd>{{ m.combined }}</dd></div>
+      <div><dt>Week rank</dt><dd>{{ m.excitement_rank|ordinal }}</dd></div>
+    </dl>
+
+    {% if m.prose.thirty %}
+    <p class="thirty"><span class="kicker">The 30-second version</span> {{ m.prose.thirty }}</p>
+    {% endif %}
+    {% if m.prose.verdict %}
+    <p class="verdict"><span class="kicker">Verdict</span> {{ m.prose.verdict }}</p>
+    {% endif %}
+
+    {% if m.prose.assessment %}
+    <div class="assessment">
+      <h3 class="eyebrow eyebrow--sm">Assessment</h3>
+      <div class="assessment__cols">
+        {% for para in m.prose.assessment %}<p>{{ para }}</p>{% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% set home_rel = d.releases | selectattr('league_entry', 'equalto', m.home) | first %}
+    {% set away_rel = d.releases | selectattr('league_entry', 'equalto', m.away) | first %}
+    {% if home_rel or away_rel %}
+    <div class="releases-pair">
+      <h3 class="eyebrow eyebrow--sm">Mandatory releases</h3>
+      <div class="releases-pair__grid">
+        {% for r in [home_rel, away_rel] if r %}
+        <div>
+          <p class="rel__mgr">{{ r.manager }}</p>
+          <p class="rel__player">{{ r.release }} <span class="rel__pts">{{ r.release_points }} pts</span></p>
+          <p class="rel__cost">{{ r.cost_pct }}% of his score</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if m.prose.overall %}
+    <p class="overall"><span class="kicker">Overall</span> {{ m.prose.overall }}</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</section>
+
+{# ---------------------------------------------------------------- ledger #}
+<section id="ledger">
+  <h2 class="eyebrow">The release ledger</h2>
+  <p class="lede">What the Highest Scorer Rule actually cost, as a share of each
+  manager's score. Cheapest escape at the top. A short bar means either good
+  squad depth or nobody worth taking.</p>
+
+  {% if d.release_efficiency %}
+  <ol class="ledger">
+    {% for r in d.release_efficiency %}
+    <li class="ledger__row">
+      <span class="ledger__rank">{{ loop.index }}</span>
+      <span class="ledger__mgr">{{ r.manager }}</span>
+      <span class="ledger__bar">
+        <i style="width: {{ r.cost_pct }}%"></i>
+      </span>
+      <span class="ledger__pct">{{ r.cost_pct }}%</span>
+      <span class="ledger__player">{{ r.release }} {{ r.release_points }}</span>
+      <span class="ledger__h2h h2h--{{ r.h2h|lower if r.h2h }}">{{ r.h2h or '&ndash;' }}</span>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="pending">Awaiting squad picks. Run <code>fetch.py</code> to populate.</p>
+  {% endif %}
+
+  {% if prose.ledger_note %}<p class="note">{{ prose.ledger_note }}</p>{% endif %}
+</section>
+
+{# -------------------------------------------------------------- releases #}
+<section id="releases">
+  <h2 class="eyebrow">Compulsory releases</h2>
+  <p class="lede">Highest scorer from each active eleven. Bench points exempt.</p>
+
+  {% if d.releases %}
+  <table class="grid">
+    <thead>
+      <tr><th>#</th><th>Manager</th><th>Released</th><th class="num">Pts</th>
+      <th>Next in line</th><th class="num">Pts</th><th class="num">Cost</th><th>H2H</th></tr>
+    </thead>
+    <tbody>
+      {% for r in d.releases %}
+      <tr>
+        <td class="mute">{{ loop.index }}</td>
+        <td>{{ r.manager }}</td>
+        <td>{{ r.release }}{% if r.tie %}<span class="flag">tie</span>{% endif %}</td>
+        <td class="num">{{ r.release_points }}</td>
+        <td>{{ r.next or '&ndash;' }}{% if r.next_tie %}<span class="flag">tie</span>{% endif %}</td>
+        <td class="num">{{ r.next_points if r.next_points is not none else '&ndash;' }}</td>
+        <td class="num cost">{{ r.cost_pct }}%</td>
+        <td class="h2h--{{ r.h2h|lower if r.h2h }}">{{ r.h2h or '&ndash;' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="pending">Awaiting squad picks.</p>
+  {% endif %}
+
+  {% if d.breaches %}
+  <div class="breach">
+    <h3 class="eyebrow eyebrow--sm">Rule breach flagged</h3>
+    <ul>
+      {% for b in d.breaches %}
+      <li><strong>{{ b.manager }}</strong> still holds {{ b.player }} ({{ b.points }} pts).
+      {{ b.status }}. Fine &pound;{{ b.fine }}.</li>
+      {% endfor %}
+    </ul>
+    <p class="breach__pot">Fines this week &pound;{{ d.pot.fines }}
+      &middot; pot &pound;{{ d.pot.total }}
+      &middot; first prize &pound;{{ d.pot.first_prize }}</p>
+    <p class="note">Flagged, not levied. Check against the source before anyone pays.</p>
+  </div>
+  {% endif %}
+</section>
+
+{# ----------------------------------------------------------------- moves #}
+<section id="moves">
+  <h2 class="eyebrow">Transfers that happened</h2>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th>
+    <th>Owed to waivers</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for r in d.releases %}
+      {% set tx = d.transactions.get(r.league_entry|string, {'moves': [], 'count': 0}) %}
+      <tr>
+        <td>{{ r.manager }}</td>
+        <td>{% for mv in tx.moves %}{{ mv['in'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
+        <td>{% for mv in tx.moves %}{{ mv['out'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
+        <td class="num">{{ tx.count }}</td>
+        <td>{{ r.release }} {{ r.release_points }}</td>
+        <td>{% if d.breaches | selectattr('manager', 'equalto', r.manager) | first %}
+            <span class="cost">Not released</span>{% else %}Released{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" class="pending">Awaiting squad picks.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if prose.moves_note %}<p class="note">{{ prose.moves_note }}</p>{% endif %}
+</section>
+
+{# --------------------------------------------------------------- summary #}
+{% if prose.awards %}
+<section id="summary">
+  <h2 class="eyebrow">The week in summary</h2>
+  <div class="awards">
+    {% for a in prose.awards %}
+    <article class="award">
+      <h3 class="award__title">{{ a.title }}</h3>
+      <p class="award__who">{{ a.manager }}</p>
+      <p>{{ a.body }}</p>
+    </article>
+    {% endfor %}
+  </div>
+  {% if prose.overall %}<p class="closer"><span class="kicker">Overall</span> {{ prose.overall }}</p>{% endif %}
+</section>
+{% endif %}
+
+{# ----------------------------------------------------------------- table #}
+<section id="table">
+  <h2 class="eyebrow">Standings</h2>
+  <table class="grid grid--table">
+    <thead><tr><th>Pos</th><th>Manager</th><th>Team</th><th class="num">P</th>
+    <th class="num">W</th><th class="num">D</th><th class="num">L</th>
+    <th class="num">For</th><th class="num">Ag</th><th class="num">Diff</th>
+    <th class="num">Pts</th><th class="num">Move</th></tr></thead>
+    <tbody>
+      {% for r in d.standings %}
+      <tr>
+        <td class="mute">{{ r.pos }}</td>
+        <td class="strong">{{ r.manager }}</td>
+        <td class="mute">{{ r.team }}</td>
+        <td class="num">{{ r.played }}</td>
+        <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
+        <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>
+        <td class="num">{{ r.diff|signed or 0 }}</td>
+        <td class="num strong">{{ r.points }}</td>
+        <td class="num {{ 'move--up' if r.move and r.move > 0 }}{{ 'move--down' if r.move and r.move < 0 }}">
+          {{ r.move|signed if r.move else '&ndash;' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if prose.table_note %}<p class="note">{{ prose.table_note }}</p>{% endif %}
+</section>
+
+{# ------------------------------------------------------------------ next #}
+<section id="next">
+  <h2 class="eyebrow">Next week's fixtures</h2>
+  {% if d.next_fixtures %}
+  <table class="grid">
+    <thead><tr><th>Home</th><th>Away</th><th>Prediction</th><th>Conf.</th></tr></thead>
+    <tbody>
+      {% for f in d.next_fixtures %}
+      {% set p = prose.predictions.get(f.home ~ ' v ' ~ f.away, {}) if prose.predictions else {} %}
+      <tr>
+        <td class="strong">{{ f.home }}</td>
+        <td class="strong">{{ f.away }}</td>
+        <td>{{ p.pick or 'Not called' }}</td>
+        <td class="mute">{{ p.confidence or '&ndash;' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="pending">No fixtures found for gameweek {{ gw + 1 }}.</p>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------------------ gaps #}
+{% if d.gaps %}
+<section id="gaps">
+  <h2 class="eyebrow">Data gaps</h2>
+  <ul class="gaps">
+    {% for g in d.gaps %}<li>{{ g }}</li>{% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+</main>
+
+<footer>
+  <p>League {{ d.league.id }} &middot; built from the FPL Draft API &middot;
+  metrics computed in <code>kpis.py</code>, copy in <code>data/prose/gw{{ gw }}.json</code></p>
+</footer>
+
+</body>
+</html>
