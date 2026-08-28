@@ -1,9 +1,9 @@
 name: Build roundup
 
-# Tuesday 09:00 UK, after bonus points and standings have settled.
+# Every hour, so transfers and standings stay current through the week.
 on:
   schedule:
-    - cron: "0 8 * * 2"
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 permissions:
