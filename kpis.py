@@ -371,8 +371,14 @@ def build_next_fixtures(details, managers, gw):
 # Transactions
 # --------------------------------------------------------------------------
 
-def build_transactions(managers, raw, gw, players):
-    """Waiver and free agent moves for the gameweek, per manager."""
+def build_transactions(managers, raw, events, players):
+    """Waiver and free agent moves for the given gameweeks, per manager.
+
+    Waivers for the next gameweek are processed before it kicks off, so a
+    manager can have accepted moves sitting under next_event while the
+    league is still showing the last finished gameweek as current. Pass
+    both event numbers to catch those.
+    """
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
     out = {le: {"moves": [], "count": 0} for le in managers}
     if not raw:
@@ -382,9 +388,10 @@ def build_transactions(managers, raw, gw, players):
         if le is None:
             continue
         for t in payload.get("transactions", []):
-            if t.get("event") != gw or t.get("result") != "a":
+            if t.get("event") not in events or t.get("result") != "a":
                 continue
             out[le]["moves"].append({
+                "event": t.get("event"),
                 "in": players.get(t.get("element_in"), {}).get("name", t.get("element_in")),
                 "out": players.get(t.get("element_out"), {}).get("name", t.get("element_out")),
                 "kind": "Waiver" if t.get("kind") == "w" else "Free agent",
@@ -456,6 +463,7 @@ def main():
             "name": details["league"].get("name", config.LEAGUE_NAME),
             "season": config.SEASON,
             "gameweek": gw,
+            "next_gameweek": gw + 1,
             "transaction_mode": details["league"].get("transaction_mode"),
             "scoring": details["league"].get("scoring"),
         },
@@ -468,7 +476,7 @@ def main():
         "standings": build_standings(details, managers, gw),
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transactions": {str(k): v for k, v in
-                         build_transactions(managers, load("transactions"), gw, players).items()},
+                         build_transactions(managers, load("transactions"), [gw, gw + 1], players).items()},
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,

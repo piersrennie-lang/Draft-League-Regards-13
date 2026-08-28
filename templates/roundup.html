@@ -30,10 +30,27 @@
 {# ----------------------------------------------------------------- moves #}
 <section id="moves">
   <h2 class="eyebrow">Transfers</h2>
+
+  <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
   <table class="grid">
     <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
     <tbody>
-      {% for t in transfers %}
+      {% for t in transfers_current %}
+      <tr>
+        <td>{{ t.manager }}</td>
+        <td>{% for mv in t.moves %}{{ mv['in'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
+        <td>{% for mv in t.moves %}{{ mv['out'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
+        <td class="num">{{ t.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3 class="eyebrow eyebrow--sm">GW{{ next_gw }} &middot; upcoming</h3>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
+    <tbody>
+      {% for t in transfers_next %}
       <tr>
         <td>{{ t.manager }}</td>
         <td>{% for mv in t.moves %}{{ mv['in'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>

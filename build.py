@@ -35,12 +35,20 @@ def main():
     gw = args.gw or latest_gw()
 
     data = json.loads((DERIVED / f"gw{gw}.json").read_text())
+    next_gw = gw + 1
 
-    transfers = []
+    # Waivers for next_gw are often processed before it kicks off, so moves
+    # for it can exist while the rest of the page is still on gw. Split by
+    # event rather than hide them until the page itself advances.
+    transfers_current, transfers_next = [], []
     for le, m in data["managers"].items():
-        tx = data["transactions"].get(le, {"moves": [], "count": 0})
-        transfers.append({"manager": m["manager"], "team": m["team"], **tx})
-    transfers.sort(key=lambda t: t["manager"])
+        moves = data["transactions"].get(le, {"moves": []})["moves"]
+        cur = [mv for mv in moves if mv["event"] == gw]
+        nxt = [mv for mv in moves if mv["event"] == next_gw]
+        transfers_current.append({"manager": m["manager"], "team": m["team"], "moves": cur, "count": len(cur)})
+        transfers_next.append({"manager": m["manager"], "team": m["team"], "moves": nxt, "count": len(nxt)})
+    transfers_current.sort(key=lambda t: t["manager"])
+    transfers_next.sort(key=lambda t: t["manager"])
 
     env = Environment(
         loader=FileSystemLoader(ROOT / "templates"),
@@ -51,7 +59,8 @@ def main():
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
 
     html = env.get_template("roundup.html").render(
-        d=data, gw=gw, transfers=transfers,
+        d=data, gw=gw, next_gw=next_gw,
+        transfers_current=transfers_current, transfers_next=transfers_next,
     )
 
     DIST.mkdir(exist_ok=True)
