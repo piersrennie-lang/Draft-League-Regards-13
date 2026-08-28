@@ -23,9 +23,12 @@ jobs:
 
       # Cloudflare blocks cloud runners often enough that this must not be
       # fatal. If the pull fails the build still runs on committed raw data.
+      # A blocked request can also just hang instead of failing cleanly, so
+      # cap it: continue-on-error only helps once the step actually ends.
       - name: Fetch
         id: fetch
         continue-on-error: true
+        timeout-minutes: 3
         run: python fetch.py
 
       - name: Compute and build
