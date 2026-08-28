@@ -69,13 +69,21 @@ def main():
     save(f"live_gw{gw}", get(f"{d}/event/{gw}/live", s))
 
     entries = [e["entry_id"] for e in details["league_entries"]]
-    print(f"Squads and transactions for {len(entries)} managers")
-    squads, transactions = {}, {}
+    print(f"Squads for {len(entries)} managers")
+    squads = {}
     for entry in entries:
         squads[str(entry)] = get(f"{d}/entry/{entry}/event/{gw}", s)
-        transactions[str(entry)] = get(f"{d}/entry/{entry}/transactions", s)
         time.sleep(0.4)  # be a good citizen
     save(f"squads_gw{gw}", squads)
+
+    print(f"Transactions for {len(entries)} managers (optional, may not be readable for all)")
+    transactions = {}
+    for entry in entries:
+        try:
+            transactions[str(entry)] = get(f"{d}/draft/entry/{entry}/transactions", s)
+        except Exception as exc:
+            print(f"  skipping transactions for {entry}: {exc}", file=sys.stderr)
+        time.sleep(0.4)  # be a good citizen
     save("transactions", transactions)
 
     # Draft picks, so the season ledger can separate drafters from operators.
