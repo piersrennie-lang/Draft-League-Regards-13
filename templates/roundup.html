@@ -163,10 +163,11 @@
   </h3>
   {% if d.team_of_week.players %}
   <div class="pitch">
-    {% for row in [totw_by_pos.FWD, totw_by_pos.MID, totw_by_pos.DEF, totw_by_pos.GKP] %}
+    {% for row in [totw_by_pos.GKP, totw_by_pos.DEF, totw_by_pos.MID, totw_by_pos.FWD] %}
     <div class="pitch__row">
       {% for p in row %}
       <div class="pitch__player">
+        {% if p.photo %}<img class="pitch__photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>

@@ -64,6 +64,8 @@ def player_index(bootstrap):
             "name": p.get("web_name", str(p["id"])),
             "pos": types.get(p.get("element_type"), ""),
             "club": teams.get(p.get("team"), ""),
+            "photo": (f"https://resources.premierleague.com/premierleague/"
+                      f"photos/players/110x140/p{p['code']}.png") if p.get("code") else "",
         }
         for p in bootstrap.get("elements", [])
     }
@@ -98,12 +100,13 @@ def build_squads(managers, squads_raw, live, players):
         xi, bench = [], []
         for pick in payload.get("picks", []):
             eid = pick["element"]
-            meta = players.get(eid, {"name": str(eid), "pos": "", "club": ""})
+            meta = players.get(eid, {"name": str(eid), "pos": "", "club": "", "photo": ""})
             row = {
                 "element": eid,
                 "name": meta["name"],
                 "pos": meta["pos"],
                 "club": meta["club"],
+                "photo": meta.get("photo", ""),
                 "points": pts.get(eid, 0),
             }
             (xi if pick.get("position", 99) <= 11 else bench).append(row)
@@ -502,7 +505,8 @@ def build_team_of_week(managers, totw_squads):
         str(sum(1 for p in selected if p["pos"] == pos)) for pos in ("DEF", "MID", "FWD"))
     return {
         "players": [{"name": p["name"], "pos": p["pos"], "club": p["club"],
-                     "points": p["points"], "manager": p["manager"]} for p in selected],
+                     "photo": p["photo"], "points": p["points"], "manager": p["manager"]}
+                    for p in selected],
         "formation": formation,
         "total_points": sum(p["points"] for p in selected),
     }

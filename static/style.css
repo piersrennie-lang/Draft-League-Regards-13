@@ -348,6 +348,16 @@ code { font: 400 0.9em var(--data); }
 }
 .pitch__row + .pitch__row { padding-top: 1.6rem; border-top: 1px dashed var(--hair); }
 .pitch__player { width: 7rem; text-align: center; }
+.pitch__photo {
+  display: block;
+  width: 3.75rem;
+  height: 4.75rem;
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: top;
+  background: var(--hair);
+  border-radius: 6px;
+}
 .pitch__club {
   margin: 0;
   font: 400 0.625rem/1 var(--data);
@@ -385,6 +395,7 @@ footer p { margin: 0; }
   .pitch__row { gap: 1rem 0.4rem; }
   .pitch__row + .pitch__row { padding-top: 1.1rem; }
   .pitch__player { width: 5.5rem; }
+  .pitch__photo { width: 3rem; height: 3.8rem; }
   .pitch__name { font-size: 0.9375rem; }
   .assessment__cols { columns: 1; }
   .ledger__row {
