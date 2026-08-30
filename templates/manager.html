@@ -48,11 +48,25 @@
       <p class="strong">Biggest win</p>
       {% if profile.biggest_win %}
       <p>{{ profile.biggest_win.points }}&ndash;{{ profile.biggest_win.against }} vs
-      {{ macros.manager(profile.biggest_win.opponent, avatars) }} &middot; GW{{ profile.biggest_win.gameweek }}</p>
+      {{ macros.manager(profile.biggest_win.opponent, avatars) }} &middot; GW{{ profile.biggest_win.gameweek }}
+      &middot; won by {{ profile.biggest_win.margin }}</p>
       {% else %}
       <p class="pending">No wins yet.</p>
       {% endif %}
     </div>
+    <div class="profile-panel">
+      <p class="strong">Biggest loss</p>
+      {% if profile.biggest_loss %}
+      <p>{{ profile.biggest_loss.points }}&ndash;{{ profile.biggest_loss.against }} vs
+      {{ macros.manager(profile.biggest_loss.opponent, avatars) }} &middot; GW{{ profile.biggest_loss.gameweek }}
+      &middot; lost by {{ -profile.biggest_loss.margin }}</p>
+      {% else %}
+      <p class="pending">No losses yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
     <div class="profile-panel">
       <p class="strong">Best individual performance</p>
       {% if profile.best_player %}
