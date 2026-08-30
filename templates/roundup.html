@@ -76,8 +76,6 @@
 {# -------------------------------------------------------------- releases #}
 <section id="releases">
   <h2 class="eyebrow">Releases</h2>
-  <p class="lede">The Highest Scorer Rule dictates one release for every
-  manager, decided the moment GW{{ gw }}'s scores are in.</p>
   <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
   <table class="grid">
     <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th>
@@ -86,7 +84,7 @@
       {% for r in d.releases %}
       <tr>
         <td>{{ r.manager }}</td>
-        <td>{{ r.tie | join(' & ') if r.tie else r.release }}</td>
+        <td>{{ r.tie | join(' or ') if r.tie else r.release }}</td>
         <td class="num">{{ r.release_points }}</td>
         <td class="num cost">{{ r.cost_pct }}%</td>
       </tr>
