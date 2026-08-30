@@ -304,8 +304,8 @@ code { font: 400 0.9em var(--data); }
 }
 .transfer-player:last-child { margin-bottom: 0; }
 .transfer-photo {
-  width: 1.8rem;
-  height: 2.25rem;
+  width: 1.6rem;
+  height: 1.6rem;
   flex-shrink: 0;
   object-fit: cover;
   object-position: top;
@@ -517,6 +517,7 @@ footer p { margin: 0; }
   .grid--table { font-size: 0.6875rem; }
   .grid--table td, .grid--table th { padding-inline: 0.1rem; }
   .grid--table .avatar { width: 1.15rem; height: 1.15rem; margin: -0.15rem 0.3rem -0.15rem 0; }
+  .grid--table .transfer-photo { width: 1.15rem; height: 1.15rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
