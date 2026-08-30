@@ -165,8 +165,9 @@ def build_releases(managers, squads, results_by_entry):
             "manager": managers[le]["manager"],
             "team": managers[le]["team"],
             "release": top["name"],
+            "release_photo": top["photo"],
             "release_points": top["points"],
-            "tie": [r["name"] for r in tied] if len(tied) > 1 else [],
+            "tie": [{"name": r["name"], "photo": r["photo"]} for r in tied] if len(tied) > 1 else [],
             "next": nxt["name"] if nxt else None,
             "next_points": nxt["points"] if nxt else None,
             "next_tie": [r["name"] for r in nxt_tied] if len(nxt_tied) > 1 else [],
@@ -178,7 +179,7 @@ def build_releases(managers, squads, results_by_entry):
     return rows
 
 
-def manual_releases(gw, managers, results_by_entry):
+def manual_releases(gw, managers, results_by_entry, players):
     """Fallback for weeks where you have the releases but not the picks.
 
     Drop a list of {manager, release, release_points, next, next_points, score}
@@ -189,6 +190,7 @@ def manual_releases(gw, managers, results_by_entry):
     if not path.exists():
         return []
     by_name = {m["manager"]: le for le, m in managers.items()}
+    photo_by_name = {p["name"]: p.get("photo", "") for p in players.values()}
     rows = []
     for r in json.loads(path.read_text()):
         le = by_name.get(r["manager"])
@@ -201,8 +203,9 @@ def manual_releases(gw, managers, results_by_entry):
             "manager": r["manager"],
             "team": managers[le]["team"],
             "release": r["release"],
+            "release_photo": photo_by_name.get(r["release"], ""),
             "release_points": r["release_points"],
-            "tie": r.get("tie", []),
+            "tie": [{"name": n, "photo": photo_by_name.get(n, "")} for n in r.get("tie", [])],
             "next": r.get("next"),
             "next_points": r.get("next_points"),
             "next_tie": r.get("next_tie", []),
@@ -845,7 +848,7 @@ def main():
     releases = build_releases(managers, squads, results_by_entry)
     source = "computed"
     if not releases:
-        releases = manual_releases(gw, managers, results_by_entry)
+        releases = manual_releases(gw, managers, results_by_entry, players)
         source = "manual" if releases else "none"
 
     prev_path = DERIVED / f"gw{gw - 1}_releases.json"

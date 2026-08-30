@@ -5,3 +5,7 @@
 {% macro player_list(items) -%}
 {% if items %}{% for p in items %}<div class="transfer-player">{% if p.photo %}<img class="transfer-photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
 {%- endmacro %}
+
+{% macro release_cell(r) -%}
+{% if r.tie %}{% for p in r.tie %}<div class="transfer-player">{% if p.photo %}<img class="transfer-photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}<span>{{ p.name }}</span></div>{% if not loop.last %}<div class="tie-or">or</div>{% endif %}{% endfor %}{% else %}<div class="transfer-player">{% if r.release_photo %}<img class="transfer-photo" src="{{ r.release_photo }}" alt="" loading="lazy">{% endif %}<span>{{ r.release }}</span></div>{% endif %}
+{%- endmacro %}
