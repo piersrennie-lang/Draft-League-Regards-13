@@ -109,6 +109,7 @@ a { color: inherit; }
 .standfirst + .standfirst {
   margin-top: 0.3rem;
 }
+.standfirst--oneline { max-width: none; white-space: nowrap; }
 
 .masthead__schedule { margin: 0.6rem 0 0; max-width: 48ch; font-size: 0.875rem; line-height: 1.5; color: var(--mute); }
 @media (min-width: 640px) { .masthead__schedule { max-width: none; } }
