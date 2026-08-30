@@ -505,7 +505,7 @@ p.strong { margin: 0 0 0.7rem; font-weight: 600; }
 
 /* -------------------------------------------------------------- cols-2 */
 
-.cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.8rem 2.5rem; }
+.cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.8rem 2.5rem; margin-bottom: 2rem; }
 .cols-2 table.grid { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------- gaps */
