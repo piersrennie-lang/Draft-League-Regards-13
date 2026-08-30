@@ -13,6 +13,7 @@ import json
 import pathlib
 
 import config
+from autosub import calculate_effective_lineup
 
 ROOT = pathlib.Path(__file__).parent
 RAW = ROOT / "data" / "raw"
@@ -86,13 +87,36 @@ def live_points(live):
     }
 
 
+def live_stats(live):
+    """Per-player minutes + points this gameweek, for the autosub engine --
+    live_points() above only carries points, but calculate_effective_lineup()
+    also needs minutes to tell "played" from "hasn't played yet"."""
+    if not live:
+        return {}
+    out = {}
+    for pid, data in (live.get("elements") or {}).items():
+        s = data.get("stats") or {}
+        out[int(pid)] = {"minutes": s.get("minutes", 0), "points": s.get("total_points", 0)}
+    return out
+
+
 def build_squads(managers, squads_raw, live, players):
     """Split each squad into XI and bench and attach points.
 
     Draft uses picks position 1-11 for the active eleven and 12-15 for the
     bench, so the Highest Scorer Rule only ever looks at positions 1-11.
+
+    Also projects the *effective* (post-autosub) lineup via
+    calculate_effective_lineup() -- FPL Draft itself doesn't apply
+    automatic substitutions until a gameweek is fully over, so "xi"/
+    "xi_points" here stay the manager's literal submitted selection
+    (what the Highest Scorer Rule and breach detection care about), while
+    "effective_xi"/"effective_xi_points"/"autosubs" are the live-scoring
+    projection of what FPL will eventually settle on.
     """
     pts = live_points(live)
+    gw_stats = live_stats(live)
+    fixtures = (live or {}).get("fixtures") or []
     out = {}
     if not squads_raw:
         return out
@@ -104,6 +128,7 @@ def build_squads(managers, squads_raw, live, players):
         if le is None:
             continue
         xi, bench = [], []
+        bench_priority = []  # (pick_position, row) -- the manager's own bench order
         for pick in payload.get("picks", []):
             eid = pick["element"]
             meta = players.get(eid, {"name": str(eid), "pos": "", "club": "", "photo": ""})
@@ -116,11 +141,39 @@ def build_squads(managers, squads_raw, live, players):
                 "photo": meta.get("photo", ""),
                 "points": pts.get(eid, 0),
             }
-            (xi if pick.get("position", 99) <= 11 else bench).append(row)
+            position = pick.get("position", 99)
+            if position <= 11:
+                xi.append(row)
+            else:
+                bench.append(row)
+                bench_priority.append((position, row))
+
+        bench_priority.sort(key=lambda pr: pr[0])
+        ordered_bench = [row for _, row in bench_priority]
+
+        if any(r["pos"] == "GKP" for r in xi):
+            effective = calculate_effective_lineup(xi, ordered_bench, gw_stats, fixtures)
+        else:
+            # No goalkeeper found in the starting XI -- almost certainly
+            # missing player/position data (e.g. bootstrap_static not
+            # fetched yet) rather than a real squad, so fall back to the
+            # submitted lineup rather than crash the whole build.
+            effective = {
+                "effective_players": [r["element"] for r in xi],
+                "autosubs": [], "unresolved_players": [],
+                "points": sum(r["points"] for r in xi), "is_final": False,
+            }
+        effective_ids = set(effective["effective_players"])
+        effective_xi = [r for r in xi + bench if r["element"] in effective_ids]
 
         xi.sort(key=lambda r: -r["points"])
         bench.sort(key=lambda r: -r["points"])
         out[le] = {
+            "effective_xi": effective_xi,
+            "effective_xi_points": effective["points"],
+            "autosubs": effective["autosubs"],
+            "unresolved_players": effective["unresolved_players"],
+            "is_final": effective["is_final"],
             "xi": xi,
             "bench": bench,
             "xi_points": sum(r["points"] for r in xi),
@@ -525,7 +578,7 @@ def build_team_of_week(managers, totw_squads):
 
     pool = {}
     for le, squad in totw_squads.items():
-        for row in squad["xi"]:
+        for row in squad.get("effective_xi", squad["xi"]):
             pool[row["element"]] = {**row, "manager": managers[le]["manager"]}
     if not pool:
         return None
@@ -663,7 +716,7 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
     swing = {}
     for s in swaps:
         swing[s["manager"]] = swing.get(s["manager"], 0) + s["diff"]
-    return {managers[le]["manager"]: squad["xi_points"] + swing.get(managers[le]["manager"], 0)
+    return {managers[le]["manager"]: squad["effective_xi_points"] + swing.get(managers[le]["manager"], 0)
             for le, squad in squads.items()}
 
 
@@ -834,7 +887,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             continue
         squads = build_squads(managers, g_squads_raw, g_live, players)
         for le, squad in squads.items():
-            for row in squad["xi"]:
+            for row in squad.get("effective_xi", squad["xi"]):
                 cur = best_player[le]
                 if cur is None or row["points"] > cur["points"]:
                     best_player[le] = {"gameweek": g, "name": row["name"],
