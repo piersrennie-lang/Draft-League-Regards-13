@@ -17,7 +17,7 @@
     <tbody>
       {% for m in d.manager_of_month.leaderboard %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
       </tr>
       {% endfor %}
@@ -37,7 +37,7 @@
     <tbody>
       {% for m in block.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}

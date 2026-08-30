@@ -37,6 +37,25 @@ def friendly_time(iso):
     return dt.strftime("%d %b, %H:%M UTC")
 
 
+def manager_slug(name):
+    return name.lower().replace("'", "").replace(".", "").strip().replace(" ", "-")
+
+
+def build_avatars(manager_names):
+    """Manager name -> static path, for whichever managers have a photo
+    dropped in static/managers/{slug}.{jpg,jpeg,png,webp}. No mapping to
+    maintain in code -- add a correctly-named file and it just appears.
+    """
+    avatars = {}
+    for name in manager_names:
+        slug = manager_slug(name)
+        for ext in ("jpg", "jpeg", "png", "webp"):
+            if (ROOT / "static" / "managers" / f"{slug}.{ext}").exists():
+                avatars[name] = f"static/managers/{slug}.{ext}"
+                break
+    return avatars
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gw", type=int)
@@ -73,8 +92,10 @@ def main():
     css_bytes = (ROOT / "static" / "style.css").read_bytes()
     css_version = hashlib.md5(css_bytes).hexdigest()[:8]
 
+    avatars = build_avatars(m["manager"] for m in data["managers"].values())
+
     render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
-                          totw_by_pos=totw_by_pos, css_version=css_version)
+                          totw_by_pos=totw_by_pos, css_version=css_version, avatars=avatars)
 
     DIST.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "static", DIST / "static", dirs_exist_ok=True)
