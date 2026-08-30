@@ -14,10 +14,9 @@
 <header class="masthead">
   <div class="masthead__rule">
     <span>{{ d.league.season }} season</span>
-    <span>{{ d.managers|length }} managers &middot; head to head</span>
   </div>
   <h1>{{ d.league.name }}</h1>
-  <p class="standfirst">Numbers go live once a gameweek finishes &mdash; as of GW{{ gw }}.</p>
+  <p class="standfirst">Numbers as of GW{{ gw }} &middot; updated {{ d.league.fetched_at | friendly_time }}</p>
 </header>
 
 <nav class="tabs" aria-label="Sections">

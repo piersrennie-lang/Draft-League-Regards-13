@@ -516,6 +516,7 @@ def main():
             "season": config.SEASON,
             "gameweek": gw,
             "next_gameweek": gw + 1,
+            "fetched_at": meta.get("fetched_at"),
             "transaction_mode": details["league"].get("transaction_mode"),
             "scoring": details["league"].get("scoring"),
         },

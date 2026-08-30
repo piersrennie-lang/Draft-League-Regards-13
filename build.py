@@ -12,6 +12,7 @@ import argparse
 import json
 import pathlib
 import shutil
+from datetime import datetime
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -26,6 +27,13 @@ def latest_gw():
     if not weeks:
         raise SystemExit("Nothing in data/derived. Run kpis.py first.")
     return max(weeks)
+
+
+def friendly_time(iso):
+    if not iso:
+        return ""
+    dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+    return dt.strftime("%d %b, %H:%M UTC")
 
 
 def main():
@@ -50,6 +58,7 @@ def main():
         lstrip_blocks=True,
     )
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
+    env.filters["friendly_time"] = friendly_time
 
     render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current)
 
