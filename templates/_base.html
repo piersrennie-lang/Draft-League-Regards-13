@@ -16,7 +16,8 @@
     <span>{{ d.league.season }} season</span>
   </div>
   <h1>{{ d.league.name }}</h1>
-  <p class="standfirst">Numbers as of GW{{ gw }} &middot; updated {{ d.league.fetched_at | friendly_time }}</p>
+  <p class="standfirst">Updated {{ d.league.fetched_at | friendly_time }}</p>
+  <p class="standfirst">Gameweek {{ gw }}</p>
 </header>
 
 <nav class="tabs" aria-label="Sections">
