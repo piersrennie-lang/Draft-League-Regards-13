@@ -21,54 +21,12 @@
 </header>
 
 <nav class="tabs" aria-label="Sections">
-  <a href="#moves">Transfers</a>
   <a href="#table">Standings</a>
+  <a href="#moves">Transfers</a>
+  <a href="#releases">Releases</a>
 </nav>
 
 <main>
-
-{# ----------------------------------------------------------------- moves #}
-<section id="moves">
-  <h2 class="eyebrow">Transfers</h2>
-  <p class="lede">FPL's transfer log isn't reachable from this build, so moves
-  are inferred by comparing each manager's squad to the previous gameweek.</p>
-
-  <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
-  <table class="grid">
-    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
-    <tbody>
-      {% for t in transfers_current %}
-      <tr>
-        <td>{{ t.manager }}{% if t.source == 'inferred' %}<span class="flag">inferred</span>{% endif %}</td>
-        <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
-        <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
-        <td class="num">{{ t.count }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
-  <p class="lede">The Highest Scorer Rule already dictates one release for
-  every manager, decided the moment GW{{ gw }}'s scores are in. This isn't a
-  transfer guess &mdash; it's who's mandated out, whoever they trade for instead.</p>
-  <table class="grid">
-    <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th>
-    <th class="num">% of score</th></tr></thead>
-    <tbody>
-      {% for r in d.releases %}
-      <tr>
-        <td>{{ r.manager }}</td>
-        <td>{{ r.release }}{% if r.tie %}<span class="flag">tie</span>{% endif %}</td>
-        <td class="num">{{ r.release_points }}</td>
-        <td class="num cost">{{ r.cost_pct }}%</td>
-      </tr>
-      {% else %}
-      <tr><td colspan="4" class="pending">Awaiting squad picks.</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</section>
 
 {# ----------------------------------------------------------------- table #}
 <section id="table">
@@ -92,6 +50,49 @@
         <td class="num {{ 'move--up' if r.move and r.move > 0 }}{{ 'move--down' if r.move and r.move < 0 }}">
           {{ r.move|signed if r.move else '–' }}</td>
       </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{# ----------------------------------------------------------------- moves #}
+<section id="moves">
+  <h2 class="eyebrow">Transfers</h2>
+  <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
+    <tbody>
+      {% for t in transfers_current %}
+      <tr>
+        <td>{{ t.manager }}</td>
+        <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
+        <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
+        <td class="num">{{ t.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{# -------------------------------------------------------------- releases #}
+<section id="releases">
+  <h2 class="eyebrow">Releases</h2>
+  <p class="lede">The Highest Scorer Rule dictates one release for every
+  manager, decided the moment GW{{ gw }}'s scores are in.</p>
+  <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th>
+    <th class="num">% of score</th></tr></thead>
+    <tbody>
+      {% for r in d.releases %}
+      <tr>
+        <td>{{ r.manager }}</td>
+        <td>{{ r.tie | join(' & ') if r.tie else r.release }}</td>
+        <td class="num">{{ r.release_points }}</td>
+        <td class="num cost">{{ r.cost_pct }}%</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" class="pending">Awaiting squad picks.</td></tr>
       {% endfor %}
     </tbody>
   </table>
