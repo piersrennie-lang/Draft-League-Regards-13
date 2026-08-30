@@ -90,14 +90,14 @@
       <p class="strong">Biggest win</p>
       {% if d.leaders.biggest_win %}
       <div class="table-scroll">
-      <table class="grid grid--table">
+      <table class="grid grid--table grid--table--tight">
         <thead><tr><th>#</th><th>Manager</th><th>Score</th><th class="num">Won by</th></tr></thead>
         <tbody>
           {% for row in d.leaders.biggest_win %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ row.points }}&ndash;{{ row.against }} vs {{ macros.manager(row.opponent, avatars) }} &middot; GW{{ row.gameweek }}</td>
+            <td>{{ row.points }}&ndash;{{ row.against }} <a class="manager-link" href="manager-{{ row.opponent|slug }}.html">{{ row.opponent|dname }}</a> <span class="mute">GW{{ row.gameweek }}</span></td>
             <td class="num gain">{{ row.margin }}</td>
           </tr>
           {% endfor %}
