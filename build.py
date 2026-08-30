@@ -37,14 +37,11 @@ def main():
     data = json.loads((DERIVED / f"gw{gw}.json").read_text())
     next_gw = gw + 1
 
-    transfers_current, transfers_next = [], []
+    transfers_current = []
     for le, m in data["managers"].items():
-        cur = data["transfers"]["current"].get(le, {"in": [], "out": [], "count": 0, "source": "none"})
-        nxt = data["transfers"]["next"].get(le, {"in": [], "out": [], "count": 0, "source": "none"})
+        cur = data["transfers"].get(le, {"in": [], "out": [], "count": 0, "source": "none"})
         transfers_current.append({"manager": m["manager"], "team": m["team"], **cur})
-        transfers_next.append({"manager": m["manager"], "team": m["team"], **nxt})
     transfers_current.sort(key=lambda t: t["manager"])
-    transfers_next.sort(key=lambda t: t["manager"])
 
     env = Environment(
         loader=FileSystemLoader(ROOT / "templates"),
@@ -55,8 +52,7 @@ def main():
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
 
     html = env.get_template("roundup.html").render(
-        d=data, gw=gw, next_gw=next_gw,
-        transfers_current=transfers_current, transfers_next=transfers_next,
+        d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
     )
 
     DIST.mkdir(exist_ok=True)

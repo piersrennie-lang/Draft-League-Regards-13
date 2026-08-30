@@ -76,28 +76,6 @@ def main():
         time.sleep(0.4)  # be a good citizen
     save(f"squads_gw{gw}", squads)
 
-    # Speculative: a manager's team for next gameweek is sometimes lockable
-    # (waivers processed) before it kicks off. If the API doesn't have it
-    # yet, some or all of these come back thin; only save a complete set,
-    # so kpis.py never mistakes "not set yet" for "everyone released".
-    next_gw = gw + 1
-    print(f"Squads for {len(entries)} managers, gameweek {next_gw} (optional, may not be set yet)")
-    next_squads, complete = {}, True
-    for entry in entries:
-        try:
-            payload = get(f"{d}/entry/{entry}/event/{next_gw}", s)
-            if len(payload.get("picks", [])) < 11:
-                complete = False
-            next_squads[str(entry)] = payload
-        except Exception as exc:
-            print(f"  skipping gw{next_gw} squad for {entry}: {exc}", file=sys.stderr)
-            complete = False
-        time.sleep(0.4)  # be a good citizen
-    if complete and next_squads:
-        save(f"squads_gw{next_gw}", next_squads)
-    else:
-        print(f"  gw{next_gw} squads not fully available yet, skipped")
-
     print(f"Transactions for {len(entries)} managers (optional, may not be readable for all)")
     transactions = {}
     for entry in entries:

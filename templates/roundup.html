@@ -48,17 +48,23 @@
     </tbody>
   </table>
 
-  <h3 class="eyebrow eyebrow--sm">GW{{ next_gw }} &middot; upcoming</h3>
+  <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
+  <p class="lede">The Highest Scorer Rule already dictates one release for
+  every manager, decided the moment GW{{ gw }}'s scores are in. This isn't a
+  transfer guess &mdash; it's who's mandated out, whoever they trade for instead.</p>
   <table class="grid">
-    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
+    <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th>
+    <th class="num">% of score</th></tr></thead>
     <tbody>
-      {% for t in transfers_next %}
+      {% for r in d.releases %}
       <tr>
-        <td>{{ t.manager }}{% if t.source == 'inferred' %}<span class="flag">inferred</span>{% endif %}</td>
-        <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
-        <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
-        <td class="num">{{ t.count }}</td>
+        <td>{{ r.manager }}</td>
+        <td>{{ r.release }}{% if r.tie %}<span class="flag">tie</span>{% endif %}</td>
+        <td class="num">{{ r.release_points }}</td>
+        <td class="num cost">{{ r.cost_pct }}%</td>
       </tr>
+      {% else %}
+      <tr><td colspan="4" class="pending">Awaiting squad picks.</td></tr>
       {% endfor %}
     </tbody>
   </table>

@@ -472,7 +472,6 @@ def main():
     live = load(f"live_gw{gw}")
     squads_raw = load(f"squads_gw{gw}")
     prev_squads_raw = load(f"squads_gw{gw - 1}")
-    next_squads_raw = load(f"squads_gw{gw + 1}")
     raw_transactions = load("transactions")
 
     managers = build_managers(details)
@@ -528,12 +527,8 @@ def main():
         "breaches": detect_breaches(prev_releases, squads),
         "standings": build_standings(details, managers, gw),
         "next_fixtures": build_next_fixtures(details, managers, gw),
-        "transfers": {
-            "current": {str(k): v for k, v in build_transfers(
-                managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
-            "next": {str(k): v for k, v in build_transfers(
-                managers, players, raw_transactions, gw + 1, squads_raw, next_squads_raw).items()},
-        },
+        "transfers": {str(k): v for k, v in build_transfers(
+            managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,
