@@ -19,6 +19,11 @@
     </tbody>
   </table>
 
+  {% if d.team_of_week.gameweek == 1 %}
+  <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers</h3>
+  <p class="pending">Needs a prior gameweek's squads to compare against,
+  so this will start appearing once GW{{ gw }} concludes.</p>
+  {% else %}
   <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers of GW{{ d.team_of_week.gameweek }}</h3>
   <p class="lede">Every swap where both the released and incoming player
   started their gameweek, ranked by the points swing it produced &mdash;
@@ -67,6 +72,7 @@
   </table>
   {% else %}
   <p class="pending">No losses to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+  {% endif %}
   {% endif %}
 </section>
 
