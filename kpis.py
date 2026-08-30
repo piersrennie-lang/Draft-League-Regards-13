@@ -451,16 +451,19 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
 
 
 def build_team_of_week(managers, players, totw_squads_raw, totw_live):
-    """Best possible XI pooled from every manager's full squad that week.
+    """Best possible XI pooled from every manager's active XI that week.
 
-    Not a per-manager metric: every player drafted anywhere in the league
-    is eligible, whichever squad or bench they sat on. Formation minimums
-    (1 GK, 3 DEF, 2 MID, 1 FWD) are filled with the best at each position;
-    the four remaining slots go to whoever scored highest among what's
-    left, regardless of position. That greedy fill is optimal here --
-    there's no upper bound on any outfield position, only lower bounds, so
-    nothing is ever gained by holding back a high scorer to satisfy a
-    minimum a lower scorer could have met instead.
+    Not a per-manager metric: every player started anywhere in the league
+    is eligible. Bench players don't qualify -- same convention as the
+    Highest Scorer Rule elsewhere in this file, where bench points are
+    exempt: a manager didn't play a benched player, whatever that player
+    did in their real match. Formation minimums (1 GK, 3 DEF, 2 MID, 1
+    FWD) are filled with the best at each position; the four remaining
+    slots go to whoever scored highest among what's left, regardless of
+    position. That greedy fill is optimal here -- there's no upper bound
+    on any outfield position, only lower bounds, so nothing is ever
+    gained by holding back a high scorer to satisfy a minimum a lower
+    scorer could have met instead.
     """
     if not totw_squads_raw or not totw_live:
         return None
@@ -468,7 +471,7 @@ def build_team_of_week(managers, players, totw_squads_raw, totw_live):
     squads = build_squads(managers, totw_squads_raw, totw_live, players)
     pool = {}
     for le, squad in squads.items():
-        for row in squad["xi"] + squad["bench"]:
+        for row in squad["xi"]:
             pool[row["element"]] = {**row, "manager": managers[le]["manager"]}
     if not pool:
         return None
