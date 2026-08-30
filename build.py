@@ -51,25 +51,29 @@ def main():
     )
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
 
-    html = env.get_template("roundup.html").render(
-        d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
-    )
+    render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current)
 
     DIST.mkdir(exist_ok=True)
-    (DIST / "index.html").write_text(html)
     shutil.copytree(ROOT / "static", DIST / "static", dirs_exist_ok=True)
-    (DIST / f"gw{gw}.html").write_text(html)
 
-    # Single file with the CSS inlined, for sending round the league the way
-    # the PDF used to go round.
+    # Three real pages, each its own file, so navigating between them is a
+    # normal page load rather than jumping to an anchor on one big page.
+    pages = {"index": "standings", "transfers": "transfers", "releases": "releases"}
+    for filename, template_name in pages.items():
+        html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
+        (DIST / f"{filename}.html").write_text(html)
+
+    # Single file combining everything, CSS inlined, for sending round the
+    # league the way the PDF used to go round -- not part of the site nav.
+    combined = env.get_template("roundup.html").render(**render_kwargs)
     css = (ROOT / "static" / "style.css").read_text()
-    standalone = html.replace(
+    standalone = combined.replace(
         '<link rel="stylesheet" href="static/style.css">',
         f"<style>\n{css}\n</style>",
     )
     (DIST / f"gw{gw}-standalone.html").write_text(standalone)
 
-    print(f"Built dist/index.html for gameweek {gw}")
+    print(f"Built dist/index.html, transfers.html, releases.html for gameweek {gw}")
     print(f"       dist/gw{gw}-standalone.html (single file, CSS inlined)")
 
 

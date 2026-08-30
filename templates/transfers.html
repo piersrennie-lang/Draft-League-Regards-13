@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block title %}Transfers &middot; {{ d.league.name }}{% endblock %}
+{% block content %}
+
+<section id="moves">
+  <h2 class="eyebrow">Transfers</h2>
+  <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
+    <tbody>
+      {% for t in transfers_current %}
+      <tr>
+        <td>{{ t.manager }}</td>
+        <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
+        <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
+        <td class="num">{{ t.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% endblock %}
