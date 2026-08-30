@@ -592,6 +592,70 @@ def best_and_worst_transfers(swaps, limit=5):
             [{**s, "loss": -s["diff"]} for s in worst])
 
 
+def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_raw):
+    """Each manager's score for one gameweek: active-XI points scored,
+    plus the full point swing (see build_transfer_swaps) from any
+    qualifying transfer that week -- deliberately double-weighting the
+    transfer decision, since the incoming player's points already count
+    once toward the raw score and the swing is added again on top as a
+    bonus for the call itself.
+    """
+    if not gw_squads_raw or not gw_live:
+        return {}
+    squads = build_squads(managers, gw_squads_raw, gw_live, players)
+    swaps = build_transfer_swaps(managers, players, squads, prev_squads_raw, gw_live) if prev_squads_raw else []
+    swing = {}
+    for s in swaps:
+        swing[s["manager"]] = swing.get(s["manager"], 0) + s["diff"]
+    return {managers[le]["manager"]: squad["xi_points"] + swing.get(managers[le]["manager"], 0)
+            for le, squad in squads.items()}
+
+
+def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw):
+    """Top 3 and worst 3 managers for the team-of-week gameweek."""
+    scores = manager_week_scores(managers, players, totw_squads_raw, totw_live, prev_totw_squads_raw)
+    if not scores:
+        return None
+    ranked = sorted(scores.items(), key=lambda kv: -kv[1])
+    worst = ranked[-3:][::-1] if len(ranked) >= 3 else []
+    return {
+        "gameweek": totw_gw,
+        "top": [{"manager": n, "points": p} for n, p in ranked[:3]],
+        "worst": [{"manager": n, "points": p} for n, p in worst],
+    }
+
+
+def build_manager_of_month(managers, players, totw_gw, load_fn):
+    """Winner of the most recently completed 4-gameweek block (1-4, 5-8,
+    ...), by the same per-week score summed across the block. Nothing to
+    show until the first block (GW1-4) is fully settled -- i.e. until
+    totw_gw reaches 4 -- and the winner then holds the title for the
+    following four gameweeks, updating only once the next block closes.
+    """
+    block_end = (totw_gw // 4) * 4
+    if block_end < 4:
+        return None
+
+    block_start = block_end - 3
+    totals = {}
+    for g in range(block_start, block_end + 1):
+        g_squads_raw = load_fn(f"squads_gw{g}")
+        g_live = load_fn(f"live_gw{g}")
+        g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
+        for manager_name, score in manager_week_scores(
+                managers, players, g_squads_raw, g_live, g_prev_squads_raw).items():
+            totals[manager_name] = totals.get(manager_name, 0) + score
+    if not totals:
+        return None
+
+    ranked = sorted(totals.items(), key=lambda kv: -kv[1])
+    return {
+        "block_start": block_start, "block_end": block_end,
+        "manager": ranked[0][0], "points": ranked[0][1],
+        "standings": [{"manager": n, "points": p} for n, p in ranked],
+    }
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -653,6 +717,10 @@ def main():
     transfer_swaps = build_transfer_swaps(managers, players, totw_squads, prev_totw_squads_raw, totw_live)
     best_transfers, worst_transfers = best_and_worst_transfers(transfer_swaps)
 
+    manager_of_week = build_manager_of_week(
+        managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw)
+    manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
+
     gaps = []
     if not squads_raw:
         gaps.append(
@@ -697,6 +765,8 @@ def main():
             "best_transfers": best_transfers,
             "worst_transfers": worst_transfers,
         },
+        "manager_of_week": manager_of_week,
+        "manager_of_month": manager_of_month,
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,

@@ -25,6 +25,7 @@
   <a href="#releases">Releases</a>
   <a href="#totw">Team of the Week</a>
   <a href="#best-worst-transfers">Best &amp; Worst Transfers of the week</a>
+  <a href="#best-manager">Best Manager</a>
 </nav>
 
 <main>
@@ -174,6 +175,71 @@
   </table>
   {% else %}
   <p class="pending">No losses to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+  {% endif %}
+</section>
+
+{# ------------------------------------------------------------ manager-of #}
+<section id="best-manager">
+  <h2 class="eyebrow">Best Manager</h2>
+  <p class="lede">Each manager's score for the gameweek is their active-XI
+  points plus the full swing from any transfer that played that week &mdash;
+  released player's score against their replacement's &mdash; so a good
+  transfer call counts twice: once in the score it produced, once as a
+  decision in its own right.</p>
+
+  <h3 class="eyebrow eyebrow--sm">Manager of the Week &middot; GW{{ d.team_of_week.gameweek }}</h3>
+  {% if d.manager_of_week %}
+  <div class="cols-2">
+    <div>
+      <p class="strong">Top 3</p>
+      <table class="grid">
+        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <tbody>
+          {% for m in d.manager_of_week.top %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+            <td class="num gain">{{ m.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="strong">Bottom 3</p>
+      <table class="grid">
+        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <tbody>
+          {% for m in d.manager_of_week.worst %}
+          <tr>
+            <td{% if loop.last %} class="strong"{% endif %}>{{ m.manager }}</td>
+            <td class="num cost">{{ m.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <p class="pending">Not enough squad data yet for GW{{ d.team_of_week.gameweek }}.</p>
+  {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>
+  {% if d.manager_of_month %}
+  <p class="lede">GW{{ d.manager_of_month.block_start }}&ndash;GW{{ d.manager_of_month.block_end }},
+  holding the title until GW{{ d.manager_of_month.block_end + 4 }}.</p>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+    <tbody>
+      {% for m in d.manager_of_month.standings %}
+      <tr>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="pending">Manager of the Month starts once GW4 is settled.</p>
   {% endif %}
 </section>
 

@@ -75,7 +75,7 @@ def main():
     # Three real pages, each its own file, so navigating between them is a
     # normal page load rather than jumping to an anchor on one big page.
     pages = {"index": "standings", "transfers": "transfers", "releases": "releases", "totw": "totw",
-              "best-worst-transfers": "best-worst-transfers"}
+              "best-worst-transfers": "best-worst-transfers", "best-manager": "best-manager"}
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
         (DIST / f"{filename}.html").write_text(html)

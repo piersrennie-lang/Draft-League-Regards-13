@@ -363,6 +363,10 @@ code { font: 400 0.9em var(--data); }
   color: var(--mute);
 }
 
+/* -------------------------------------------------------------- cols-2 */
+
+.cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.8rem 2.5rem; }
+
 /* ----------------------------------------------------------------- gaps */
 
 .gaps { margin: 0; padding-left: 1.1rem; color: var(--mute); font-size: 0.9375rem; }
