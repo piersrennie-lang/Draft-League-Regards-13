@@ -36,6 +36,12 @@ jobs:
           python kpis.py
           python build.py
 
+      # A manual trigger and the hourly schedule can land close enough
+      # together that both build from the same starting commit; whichever
+      # pushes second gets rejected as non-fast-forward. That's not a
+      # conflict worth resolving -- the other run's push already carries
+      # equally fresh data -- so just drop this run's commit and move on.
+      # dist/ for the deploy step below is already built and unaffected.
       - name: Commit refreshed data
         if: steps.fetch.outcome == 'success'
         run: |
@@ -43,7 +49,7 @@ jobs:
           git config user.email "roundup-bot@users.noreply.github.com"
           git add data/raw data/derived
           git diff --staged --quiet || git commit -m "Refresh league data"
-          git push
+          git push || { git fetch origin main && git reset --hard origin/main; }
 
       - uses: actions/upload-pages-artifact@v3
         with:
