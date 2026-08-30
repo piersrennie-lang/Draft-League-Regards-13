@@ -37,16 +37,12 @@ def main():
     data = json.loads((DERIVED / f"gw{gw}.json").read_text())
     next_gw = gw + 1
 
-    # Waivers for next_gw are often processed before it kicks off, so moves
-    # for it can exist while the rest of the page is still on gw. Split by
-    # event rather than hide them until the page itself advances.
     transfers_current, transfers_next = [], []
     for le, m in data["managers"].items():
-        moves = data["transactions"].get(le, {"moves": []})["moves"]
-        cur = [mv for mv in moves if mv["event"] == gw]
-        nxt = [mv for mv in moves if mv["event"] == next_gw]
-        transfers_current.append({"manager": m["manager"], "team": m["team"], "moves": cur, "count": len(cur)})
-        transfers_next.append({"manager": m["manager"], "team": m["team"], "moves": nxt, "count": len(nxt)})
+        cur = data["transfers"]["current"].get(le, {"in": [], "out": [], "count": 0, "source": "none"})
+        nxt = data["transfers"]["next"].get(le, {"in": [], "out": [], "count": 0, "source": "none"})
+        transfers_current.append({"manager": m["manager"], "team": m["team"], **cur})
+        transfers_next.append({"manager": m["manager"], "team": m["team"], **nxt})
     transfers_current.sort(key=lambda t: t["manager"])
     transfers_next.sort(key=lambda t: t["manager"])
 

@@ -371,16 +371,16 @@ def build_next_fixtures(details, managers, gw):
 # Transactions
 # --------------------------------------------------------------------------
 
-def build_transactions(managers, raw, events, players):
-    """Waiver and free agent moves for the given gameweeks, per manager.
+def build_transactions(managers, raw, event, players):
+    """Waiver and free agent moves FPL recorded for one gameweek, per manager.
 
-    Waivers for the next gameweek are processed before it kicks off, so a
-    manager can have accepted moves sitting under next_event while the
-    league is still showing the last finished gameweek as current. Pass
-    both event numbers to catch those.
+    Reliably empty: draft/entry/{id}/transactions 403s for every manager
+    from a cloud runner, every run. Kept as the preferred source in case
+    that ever stops being true; infer_transfers below is what actually
+    populates the site today.
     """
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
-    out = {le: {"moves": [], "count": 0} for le in managers}
+    out = {le: {"in": [], "out": [], "count": 0} for le in managers}
     if not raw:
         return out
     for entry_str, payload in raw.items():
@@ -388,15 +388,65 @@ def build_transactions(managers, raw, events, players):
         if le is None:
             continue
         for t in payload.get("transactions", []):
-            if t.get("event") not in events or t.get("result") != "a":
+            if t.get("event") != event or t.get("result") != "a":
                 continue
-            out[le]["moves"].append({
-                "event": t.get("event"),
-                "in": players.get(t.get("element_in"), {}).get("name", t.get("element_in")),
-                "out": players.get(t.get("element_out"), {}).get("name", t.get("element_out")),
-                "kind": "Waiver" if t.get("kind") == "w" else "Free agent",
-            })
+            out[le]["in"].append(players.get(t.get("element_in"), {}).get("name", t.get("element_in")))
+            out[le]["out"].append(players.get(t.get("element_out"), {}).get("name", t.get("element_out")))
             out[le]["count"] += 1
+    return out
+
+
+def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw):
+    """Approximate transfers by diffing two gameweeks' full squads.
+
+    The transactions endpoint is unreachable from a cloud runner, but the
+    picks endpoint isn't, so a squad change between one deadline and the
+    next is read as a transfer -- waiver, free agent or trade, all
+    indistinguishable here, but real, unlike the empty transactions feed.
+    Requires a complete squad (>=11 picks) on both sides; a partial or
+    missing snapshot is skipped rather than read as mass releases.
+    """
+    by_entry = {m["entry_id"]: le for le, m in managers.items()}
+    out = {le: {"in": [], "out": [], "count": 0} for le in managers}
+    if not prev_squads_raw or not curr_squads_raw:
+        return out
+    for entry_str, payload in curr_squads_raw.items():
+        le = by_entry.get(int(entry_str))
+        if le is None:
+            continue
+        prev_payload = prev_squads_raw.get(entry_str)
+        if prev_payload is None:
+            continue
+        prev_picks = prev_payload.get("picks", [])
+        curr_picks = payload.get("picks", [])
+        if len(prev_picks) < 11 or len(curr_picks) < 11:
+            continue
+        prev_ids = {p["element"] for p in prev_picks}
+        curr_ids = {p["element"] for p in curr_picks}
+        ins = curr_ids - prev_ids
+        outs = prev_ids - curr_ids
+        name = lambda eid: players.get(eid, {}).get("name", str(eid))
+        out[le] = {
+            "in": sorted(name(e) for e in ins),
+            "out": sorted(name(e) for e in outs),
+            "count": max(len(ins), len(outs)),
+        }
+    return out
+
+
+def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw):
+    """Prefer FPL's own transaction record; fall back to the squad diff."""
+    real = build_transactions(managers, raw_transactions, event, players)
+    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw)
+    out = {}
+    for le in managers:
+        r, i = real[le], inferred[le]
+        if r["count"]:
+            out[le] = {**r, "source": "recorded"}
+        elif i["count"]:
+            out[le] = {**i, "source": "inferred"}
+        else:
+            out[le] = {"in": [], "out": [], "count": 0, "source": "none"}
     return out
 
 
@@ -421,6 +471,9 @@ def main():
     players = player_index(bootstrap)
     live = load(f"live_gw{gw}")
     squads_raw = load(f"squads_gw{gw}")
+    prev_squads_raw = load(f"squads_gw{gw - 1}")
+    next_squads_raw = load(f"squads_gw{gw + 1}")
+    raw_transactions = load("transactions")
 
     managers = build_managers(details)
     matches = build_matches(details, gw, managers)
@@ -475,8 +528,12 @@ def main():
         "breaches": detect_breaches(prev_releases, squads),
         "standings": build_standings(details, managers, gw),
         "next_fixtures": build_next_fixtures(details, managers, gw),
-        "transactions": {str(k): v for k, v in
-                         build_transactions(managers, load("transactions"), [gw, gw + 1], players).items()},
+        "transfers": {
+            "current": {str(k): v for k, v in build_transfers(
+                managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
+            "next": {str(k): v for k, v in build_transfers(
+                managers, players, raw_transactions, gw + 1, squads_raw, next_squads_raw).items()},
+        },
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,

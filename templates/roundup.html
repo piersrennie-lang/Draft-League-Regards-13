@@ -30,6 +30,8 @@
 {# ----------------------------------------------------------------- moves #}
 <section id="moves">
   <h2 class="eyebrow">Transfers</h2>
+  <p class="lede">FPL's transfer log isn't reachable from this build, so moves
+  are inferred by comparing each manager's squad to the previous gameweek.</p>
 
   <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
   <table class="grid">
@@ -37,9 +39,9 @@
     <tbody>
       {% for t in transfers_current %}
       <tr>
-        <td>{{ t.manager }}</td>
-        <td>{% for mv in t.moves %}{{ mv['in'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
-        <td>{% for mv in t.moves %}{{ mv['out'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
+        <td>{{ t.manager }}{% if t.source == 'inferred' %}<span class="flag">inferred</span>{% endif %}</td>
+        <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
+        <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
         <td class="num">{{ t.count }}</td>
       </tr>
       {% endfor %}
@@ -52,9 +54,9 @@
     <tbody>
       {% for t in transfers_next %}
       <tr>
-        <td>{{ t.manager }}</td>
-        <td>{% for mv in t.moves %}{{ mv['in'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
-        <td>{% for mv in t.moves %}{{ mv['out'] }}{% if not loop.last %}, {% endif %}{% else %}None{% endfor %}</td>
+        <td>{{ t.manager }}{% if t.source == 'inferred' %}<span class="flag">inferred</span>{% endif %}</td>
+        <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
+        <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
         <td class="num">{{ t.count }}</td>
       </tr>
       {% endfor %}
