@@ -4,28 +4,47 @@
 {% block content %}
 
 <section id="manager-profile">
-  <h2 class="eyebrow">
-    {% if avatars.get(profile_name) %}<img class="avatar" src="{{ avatars[profile_name] }}" alt="" style="width:2rem;height:2rem;margin:-0.4rem 0.6rem -0.4rem 0;">{% endif %}
-    {{ profile_name }}
-  </h2>
-
-  <div class="cols-2">
+  <div class="profile-hero">
+    {% if avatars.get(profile_name) %}<img class="profile-hero__photo" src="{{ avatars[profile_name] }}" alt="">{% endif %}
     <div>
-      <p class="strong">Manager of the Week wins</p>
-      <p>{{ profile.motw_wins }}</p>
-    </div>
-    <div>
-      <p class="strong">Manager of the Month wins</p>
-      <p>{{ profile.mom_wins }}</p>
-    </div>
-    <div>
-      <p class="strong">Team of the Week appearances</p>
-      <p>{{ profile.totw_appearances }}</p>
+      <p class="profile-hero__eyebrow">Manager</p>
+      <h2 class="profile-hero__name">{{ profile_name }}</h2>
     </div>
   </div>
 
-  <div class="cols-2">
-    <div>
+  <div class="profile-grid">
+    <div class="profile-panel stat-card">
+      <p class="stat-card__label">Manager of the Week wins</p>
+      <p class="stat-card__value">{{ profile.motw_wins }}</p>
+    </div>
+    <div class="profile-panel stat-card">
+      <p class="stat-card__label">Manager of the Month wins</p>
+      <p class="stat-card__value">{{ profile.mom_wins }}</p>
+    </div>
+    <div class="profile-panel stat-card">
+      <p class="stat-card__label">Team of the Week appearances</p>
+      <p class="stat-card__value">{{ profile.totw_appearances }}</p>
+    </div>
+  </div>
+
+  <h3 class="eyebrow eyebrow--sm">GW{{ gw }} fixture</h3>
+  {% if profile.current_fixture %}
+  <div class="profile-panel" style="margin-bottom:2rem;">
+    <p class="strong">
+      {% if profile.current_fixture.started %}{{ profile.current_fixture.points }}&ndash;{{ profile.current_fixture.against }}{% else %}Not started{% endif %}
+      vs {{ macros.manager(profile.current_fixture.opponent, avatars) }}
+      {% if profile.current_fixture.started %}<span class="live-tag">Live</span>{% endif %}
+    </p>
+    {% if profile.current_fixture.started %}
+    <p class="mute" style="margin:0.4rem 0 0;">Not final until GW{{ gw }} concludes.</p>
+    {% endif %}
+  </div>
+  {% else %}
+  <p class="pending">No fixture scheduled for GW{{ gw }}.</p>
+  {% endif %}
+
+  <div class="profile-grid">
+    <div class="profile-panel">
       <p class="strong">Biggest win</p>
       {% if profile.biggest_win %}
       <p>{{ profile.biggest_win.points }}&ndash;{{ profile.biggest_win.against }} vs
@@ -34,7 +53,7 @@
       <p class="pending">No wins yet.</p>
       {% endif %}
     </div>
-    <div>
+    <div class="profile-panel">
       <p class="strong">Best individual performance</p>
       {% if profile.best_player %}
       <p>{{ profile.best_player.name }} ({{ profile.best_player.club }}) &mdash;
@@ -45,8 +64,8 @@
     </div>
   </div>
 
-  <div class="cols-2">
-    <div>
+  <div class="profile-grid">
+    <div class="profile-panel">
       <p class="strong">Beaten most</p>
       {% if profile.most_beaten %}
       <p>{{ macros.manager(profile.most_beaten.manager, avatars) }} &mdash;
@@ -55,7 +74,7 @@
       <p class="pending">No wins yet.</p>
       {% endif %}
     </div>
-    <div>
+    <div class="profile-panel">
       <p class="strong">Lost to most</p>
       {% if profile.most_lost_to %}
       <p>{{ macros.manager(profile.most_lost_to.manager, avatars) }} &mdash;
@@ -67,8 +86,8 @@
   </div>
 
   <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers</h3>
-  <div class="cols-2">
-    <div>
+  <div class="profile-grid">
+    <div class="profile-panel">
       <p class="strong">Best</p>
       {% if profile.best_transfer %}
       <table class="grid grid--table">
@@ -86,7 +105,7 @@
       <p class="pending">None yet.</p>
       {% endif %}
     </div>
-    <div>
+    <div class="profile-panel">
       <p class="strong">Worst</p>
       {% if profile.worst_transfer %}
       <table class="grid grid--table">
@@ -106,26 +125,50 @@
     </div>
   </div>
 
-  <h3 class="eyebrow eyebrow--sm">Fixtures &amp; results</h3>
-  {% if profile.fixtures %}
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>GW</th><th>Opponent</th><th class="num">Score</th><th>Result</th></tr></thead>
-    <tbody>
-      {% for f in profile.fixtures %}
-      <tr>
-        <td class="mute">{{ f.gameweek }}</td>
-        <td>{{ macros.manager(f.opponent, avatars) }}</td>
-        <td class="num">{{ f.points }}&ndash;{{ f.against }}</td>
-        <td class="strong {{ 'gain' if f.result == 'W' else 'cost' if f.result == 'L' else '' }}">{{ f.result }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Results so far</p>
+      {% if profile.fixtures %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>GW</th><th>Opponent</th><th class="num">Score</th><th>Result</th></tr></thead>
+        <tbody>
+          {% for f in profile.fixtures %}
+          <tr>
+            <td class="mute">{{ f.gameweek }}</td>
+            <td>{{ macros.manager(f.opponent, avatars) }}</td>
+            <td class="num">{{ f.points }}&ndash;{{ f.against }}</td>
+            <td class="strong {{ 'gain' if f.result == 'W' else 'cost' if f.result == 'L' else '' }}">{{ f.result }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">No completed fixtures yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Upcoming fixtures</p>
+      {% if profile.future_fixtures %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>GW</th><th>Opponent</th></tr></thead>
+        <tbody>
+          {% for f in profile.future_fixtures %}
+          <tr>
+            <td class="mute">{{ f.gameweek }}</td>
+            <td>{{ macros.manager(f.opponent, avatars) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">No fixtures left this season.</p>
+      {% endif %}
+    </div>
   </div>
-  {% else %}
-  <p class="pending">No completed fixtures yet.</p>
-  {% endif %}
 </section>
 
 {% endblock %}

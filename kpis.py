@@ -711,7 +711,7 @@ def build_manager_of_month(managers, players, totw_gw, load_fn):
     }
 
 
-def build_manager_profiles(details, managers, players, totw_gw, load_fn, manager_of_month_history):
+def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history):
     """Everything a manager's own page needs: their fixture history and
     head-to-head record (from the full season schedule, so this only gets
     more interesting as more rounds are played), their biggest single-match
@@ -746,6 +746,24 @@ def build_manager_profiles(details, managers, players, totw_gw, load_fn, manager
             })
             rec = h2h[me].setdefault(opp, {"w": 0, "d": 0, "l": 0})
             rec[result.lower()] += 1
+
+    current_fixture = {le: None for le in managers}
+    future_fixtures = {le: [] for le in managers}
+    for m in details["matches"]:
+        h, a = m["league_entry_1"], m["league_entry_2"]
+        hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
+            if me not in managers or opp not in managers:
+                continue
+            if m["event"] == gw:
+                current_fixture[me] = {
+                    "gameweek": gw, "opponent": managers[opp]["manager"],
+                    "points": mine, "against": theirs, "started": m.get("started", False),
+                }
+            elif m["event"] > gw:
+                future_fixtures[me].append({"gameweek": m["event"], "opponent": managers[opp]["manager"]})
+    for le in future_fixtures:
+        future_fixtures[le].sort(key=lambda f: f["gameweek"])
 
     best_player = {le: None for le in managers}
     best_transfer = {le: None for le in managers}
@@ -811,6 +829,8 @@ def build_manager_profiles(details, managers, players, totw_gw, load_fn, manager
         biggest_win = max(wins, key=lambda f: f["margin"], default=None)
         profiles[m["manager"]] = {
             "fixtures": sorted(fixtures[le], key=lambda f: -f["gameweek"]),
+            "current_fixture": current_fixture[le],
+            "future_fixtures": future_fixtures[le],
             "biggest_win": biggest_win,
             "best_player": best_player[le],
             "most_beaten": {"manager": managers[most_beaten[0]]["manager"], "wins": most_beaten[1]["w"]}
@@ -891,7 +911,7 @@ def main():
         managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw)
     manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
     manager_profiles = build_manager_profiles(
-        details, managers, players, totw_gw, load, manager_of_month["history"])
+        details, managers, players, gw, totw_gw, load, manager_of_month["history"])
 
     gaps = []
     if not squads_raw:
