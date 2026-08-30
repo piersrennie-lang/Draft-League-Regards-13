@@ -450,7 +450,7 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
     return out
 
 
-def build_team_of_week(managers, players, totw_squads_raw, totw_live):
+def build_team_of_week(managers, totw_squads):
     """Best possible XI pooled from every manager's active XI that week.
 
     Not a per-manager metric: every player started anywhere in the league
@@ -465,12 +465,11 @@ def build_team_of_week(managers, players, totw_squads_raw, totw_live):
     gained by holding back a high scorer to satisfy a minimum a lower
     scorer could have met instead.
     """
-    if not totw_squads_raw or not totw_live:
+    if not totw_squads:
         return None
 
-    squads = build_squads(managers, totw_squads_raw, totw_live, players)
     pool = {}
-    for le, squad in squads.items():
+    for le, squad in totw_squads.items():
         for row in squad["xi"]:
             pool[row["element"]] = {**row, "manager": managers[le]["manager"]}
     if not pool:
@@ -509,6 +508,33 @@ def build_team_of_week(managers, players, totw_squads_raw, totw_live):
     }
 
 
+def build_best_transfers(managers, totw_squads, prev_squads_raw, limit=5):
+    """Top incoming pickups for the team-of-week gameweek, by points scored
+    while starting for their new manager.
+
+    Needs the previous gameweek's squad to diff against, so there's
+    nothing to rank for gameweek 1. A pickup that got benched rather than
+    started doesn't count -- same "bench isn't played" rule as Team of
+    the Week above.
+    """
+    if not prev_squads_raw or not totw_squads:
+        return []
+    by_entry = {m["entry_id"]: le for le, m in managers.items()}
+    picked_up = []
+    for entry_str, payload in prev_squads_raw.items():
+        le = by_entry.get(int(entry_str))
+        squad = totw_squads.get(le)
+        if squad is None:
+            continue
+        prev_ids = {p["element"] for p in payload.get("picks", [])}
+        for row in squad["xi"]:
+            if row["element"] not in prev_ids:
+                picked_up.append({**row, "manager": managers[le]["manager"]})
+    picked_up.sort(key=lambda p: (-p["points"], p["name"]))
+    return [{"name": p["name"], "pos": p["pos"], "club": p["club"],
+              "points": p["points"], "manager": p["manager"]} for p in picked_up[:limit]]
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -540,6 +566,7 @@ def main():
     totw_gw = max(1, gw - 1)
     totw_squads_raw = load(f"squads_gw{totw_gw}")
     totw_live = load(f"live_gw{totw_gw}")
+    prev_totw_squads_raw = load(f"squads_gw{totw_gw - 1}")
 
     managers = build_managers(details)
     matches = build_matches(details, gw, managers)
@@ -564,7 +591,9 @@ def main():
     prev_path = DERIVED / f"gw{gw - 1}_releases.json"
     prev_releases = json.loads(prev_path.read_text()) if prev_path.exists() else None
 
-    team_of_week = build_team_of_week(managers, players, totw_squads_raw, totw_live)
+    totw_squads = build_squads(managers, totw_squads_raw, totw_live, players) if totw_squads_raw and totw_live else {}
+    team_of_week = build_team_of_week(managers, totw_squads)
+    best_transfers = build_best_transfers(managers, totw_squads, prev_totw_squads_raw)
 
     gaps = []
     if not squads_raw:
@@ -607,6 +636,7 @@ def main():
             "players": (team_of_week or {}).get("players", []),
             "formation": (team_of_week or {}).get("formation"),
             "total_points": (team_of_week or {}).get("total_points", 0),
+            "best_transfers": best_transfers,
         },
         "pot": {
             "base": config.BASE_POT,
