@@ -922,6 +922,31 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
                 worst_transfer[le] = tagged
 
+    # Best individual performance is a running record, not a once-a-week
+    # competition like Team of the Week or Manager of the Week (which
+    # genuinely need every manager to have played before crowning a
+    # winner) -- so unlike the loop above, this also scans the current,
+    # still-live gameweek, counting a player the moment their own
+    # real-world fixture is finished rather than waiting for every other
+    # fixture in the gameweek to catch up too.
+    live_squads_raw = load_fn(f"squads_gw{gw}")
+    live_gw_data = load_fn(f"live_gw{gw}")
+    if live_squads_raw and live_gw_data:
+        finished_clubs = {
+            team_id
+            for f in (live_gw_data.get("fixtures") or []) if f.get("finished")
+            for team_id in (f.get("team_h"), f.get("team_a"))
+        }
+        live_squads = build_squads(managers, live_squads_raw, live_gw_data, players)
+        for le, squad in live_squads.items():
+            for row in squad.get("effective_xi", squad["xi"]):
+                if row.get("team_id") not in finished_clubs:
+                    continue
+                cur = best_player[le]
+                if cur is None or row["points"] > cur["points"]:
+                    best_player[le] = {"gameweek": gw, "name": row["name"],
+                                        "club": row["club"], "points": row["points"]}
+
     mom_wins = {le: 0 for le in managers}
     for block in manager_of_month_history:
         le = by_manager.get(block["manager"])
