@@ -23,7 +23,8 @@
   <a href="#table">Standings</a>
   <a href="#moves">Transfers</a>
   <a href="#releases">Releases</a>
-  <a href="#totw">Team &amp; Transfers of the week</a>
+  <a href="#totw">Team of the Week</a>
+  <a href="#best-worst-transfers">Best &amp; Worst Transfers of the week</a>
 </nav>
 
 <main>
@@ -98,7 +99,7 @@
 
 {# ------------------------------------------------------------------ totw #}
 <section id="totw">
-  <h2 class="eyebrow">Team &amp; Transfers of the week</h2>
+  <h2 class="eyebrow">Team of the Week</h2>
   <h3 class="eyebrow eyebrow--sm">
     GW{{ d.team_of_week.gameweek }}
     {% if d.team_of_week.formation %}&middot; {{ d.team_of_week.formation }} &middot; {{ d.team_of_week.total_points }} pts{% endif %}
@@ -121,6 +122,11 @@
   {% else %}
   <p class="pending">Not enough squad data yet for GW{{ d.team_of_week.gameweek }}.</p>
   {% endif %}
+</section>
+
+{# --------------------------------------------------- best-worst-transfers #}
+<section id="best-worst-transfers">
+  <h2 class="eyebrow">Best &amp; Worst Transfers of the week</h2>
 
   <h3 class="eyebrow eyebrow--sm">Best transfers of GW{{ d.team_of_week.gameweek }}</h3>
   {% if d.team_of_week.best_transfers %}
@@ -140,6 +146,31 @@
   </table>
   {% else %}
   <p class="pending">No transfers to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+  {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Worst transfers of GW{{ d.team_of_week.gameweek }}</h3>
+  <p class="lede">Only non-essential drops count -- releasing the player the
+  Highest Scorer Rule required doesn't. Points lost are what the released
+  player scored that week against what came in for them.</p>
+  {% if d.team_of_week.worst_transfers %}
+  <table class="grid">
+    <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
+    <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
+    <tbody>
+      {% for t in d.team_of_week.worst_transfers %}
+      <tr>
+        <td>{{ t.manager }}</td>
+        <td class="strong">{{ t.out_name }}</td>
+        <td class="num">{{ t.out_points }}</td>
+        <td>{{ t.in_name }}</td>
+        <td class="num">{{ t.in_points }}</td>
+        <td class="num cost">{{ t.loss }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="pending">No non-essential losses to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
   {% endif %}
 </section>
 

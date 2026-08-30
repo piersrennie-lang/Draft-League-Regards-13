@@ -535,6 +535,85 @@ def build_best_transfers(managers, totw_squads, prev_squads_raw, limit=5):
               "points": p["points"], "manager": p["manager"]} for p in picked_up[:limit]]
 
 
+def build_worst_transfers(managers, players, totw_squads, prev_squads_raw, totw_live,
+                           prev_gw_releases, limit=5):
+    """Points given up by dropping a starter who wasn't the mandated
+    release, ranked by how much each swap cost.
+
+    "Non-essential" per the brief: a manager releasing the player the
+    Highest Scorer Rule required them to release that week is compliance,
+    not a bad transfer, so that player is excluded even though they left
+    the squad. Needs prev_gw_releases -- the release list already written
+    for the gameweek before this one -- to know who that was; without it
+    (gameweek 1, or a gap in history) there's nothing to rank.
+
+    The dropped player only counts if they started (not benched) the
+    previous gameweek -- cutting a bench player who wasn't contributing
+    isn't a loss. Their "loss" is real points they scored that gameweek
+    (independent of who owned them) minus what their replacement scored;
+    only positive gaps count as a worst transfer.
+
+    A manager who made several swaps at once can't be traced to which in
+    replaced which out -- the picks endpoint doesn't carry that, only the
+    before/after squad. Paired same position first (the likeliest real
+    swap), any leftover by score rank.
+    """
+    if not prev_squads_raw or not totw_squads or not prev_gw_releases:
+        return []
+
+    pts = live_points(totw_live)
+    mandated = {r["manager"]: r["release"] for r in prev_gw_releases}
+    by_entry = {m["entry_id"]: le for le, m in managers.items()}
+
+    def describe(eid):
+        meta = players.get(eid, {"name": str(eid), "pos": "", "club": ""})
+        return {"element": eid, "name": meta["name"], "pos": meta["pos"],
+                "club": meta["club"], "points": pts.get(eid, 0)}
+
+    results = []
+    for entry_str, payload in prev_squads_raw.items():
+        le = by_entry.get(int(entry_str))
+        squad = totw_squads.get(le)
+        if le is None or squad is None:
+            continue
+        manager_name = managers[le]["manager"]
+
+        prev_picks = payload.get("picks", [])
+        prev_ids = {p["element"] for p in prev_picks}
+        prev_xi_ids = {p["element"] for p in prev_picks if p.get("position", 99) <= 11}
+        curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
+
+        dropped = [describe(eid) for eid in prev_ids - curr_ids if eid in prev_xi_ids]
+        eligible_outs = [o for o in dropped if o["name"] != mandated.get(manager_name)]
+        eligible_ins = [row for row in squad["xi"] if row["element"] not in prev_ids]
+        if not eligible_outs or not eligible_ins:
+            continue
+
+        pairs, rem_outs, rem_ins = [], list(eligible_outs), list(eligible_ins)
+        for pos in ("GKP", "DEF", "MID", "FWD"):
+            pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=lambda o: -o["points"])
+            pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=lambda i: -i["points"])
+            for o, i in zip(pos_outs, pos_ins):
+                pairs.append((o, i))
+                rem_outs.remove(o)
+                rem_ins.remove(i)
+        rem_outs.sort(key=lambda o: -o["points"])
+        rem_ins.sort(key=lambda i: -i["points"])
+        pairs.extend(zip(rem_outs, rem_ins))
+
+        for o, i in pairs:
+            loss = o["points"] - i["points"]
+            if loss > 0:
+                results.append({
+                    "manager": manager_name,
+                    "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],
+                    "in_name": i["name"], "in_club": i["club"], "in_points": i["points"],
+                    "loss": loss,
+                })
+    results.sort(key=lambda r: (-r["loss"], r["out_name"]))
+    return results[:limit]
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -595,6 +674,12 @@ def main():
     team_of_week = build_team_of_week(managers, totw_squads)
     best_transfers = build_best_transfers(managers, totw_squads, prev_totw_squads_raw)
 
+    totw_prev_releases_path = DERIVED / f"gw{totw_gw - 1}_releases.json"
+    totw_prev_releases = (json.loads(totw_prev_releases_path.read_text())
+                          if totw_prev_releases_path.exists() else None)
+    worst_transfers = build_worst_transfers(
+        managers, players, totw_squads, prev_totw_squads_raw, totw_live, totw_prev_releases)
+
     gaps = []
     if not squads_raw:
         gaps.append(
@@ -637,6 +722,7 @@ def main():
             "formation": (team_of_week or {}).get("formation"),
             "total_points": (team_of_week or {}).get("total_points", 0),
             "best_transfers": best_transfers,
+            "worst_transfers": worst_transfers,
         },
         "pot": {
             "base": config.BASE_POT,
