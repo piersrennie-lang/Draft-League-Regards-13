@@ -450,6 +450,62 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
     return out
 
 
+def build_team_of_week(managers, players, totw_squads_raw, totw_live):
+    """Best possible XI pooled from every manager's full squad that week.
+
+    Not a per-manager metric: every player drafted anywhere in the league
+    is eligible, whichever squad or bench they sat on. Formation minimums
+    (1 GK, 3 DEF, 2 MID, 1 FWD) are filled with the best at each position;
+    the four remaining slots go to whoever scored highest among what's
+    left, regardless of position. That greedy fill is optimal here --
+    there's no upper bound on any outfield position, only lower bounds, so
+    nothing is ever gained by holding back a high scorer to satisfy a
+    minimum a lower scorer could have met instead.
+    """
+    if not totw_squads_raw or not totw_live:
+        return None
+
+    squads = build_squads(managers, totw_squads_raw, totw_live, players)
+    pool = {}
+    for le, squad in squads.items():
+        for row in squad["xi"] + squad["bench"]:
+            pool[row["element"]] = {**row, "manager": managers[le]["manager"]}
+    if not pool:
+        return None
+
+    by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+    for p in pool.values():
+        if p["pos"] in by_pos:
+            by_pos[p["pos"]].append(p)
+    for group in by_pos.values():
+        group.sort(key=lambda p: (-p["points"], p["name"]))
+
+    minimums = {"GKP": 1, "DEF": 3, "MID": 2, "FWD": 1}
+    selected, selected_ids = [], set()
+    for pos, n in minimums.items():
+        for p in by_pos[pos][:n]:
+            selected.append(p)
+            selected_ids.add(p["element"])
+
+    remaining = [p for p in by_pos["DEF"] + by_pos["MID"] + by_pos["FWD"]
+                 if p["element"] not in selected_ids]
+    remaining.sort(key=lambda p: (-p["points"], p["name"]))
+    flex_needed = 11 - len(selected)
+    selected.extend(remaining[:flex_needed])
+
+    order = {"GKP": 0, "DEF": 1, "MID": 2, "FWD": 3}
+    selected.sort(key=lambda p: (order[p["pos"]], -p["points"]))
+
+    formation = "-".join(
+        str(sum(1 for p in selected if p["pos"] == pos)) for pos in ("DEF", "MID", "FWD"))
+    return {
+        "players": [{"name": p["name"], "pos": p["pos"], "club": p["club"],
+                     "points": p["points"], "manager": p["manager"]} for p in selected],
+        "formation": formation,
+        "total_points": sum(p["points"] for p in selected),
+    }
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -474,6 +530,14 @@ def main():
     prev_squads_raw = load(f"squads_gw{gw - 1}")
     raw_transactions = load("transactions")
 
+    # Team of the week always shows the last gameweek whose squads and
+    # scores are fully settled -- one behind gw, since gw itself is still
+    # either in progress or just started (per fetch.py's current_event
+    # semantics). Floored at 1: there's no gameweek 0 to fall back to.
+    totw_gw = max(1, gw - 1)
+    totw_squads_raw = load(f"squads_gw{totw_gw}")
+    totw_live = load(f"live_gw{totw_gw}")
+
     managers = build_managers(details)
     matches = build_matches(details, gw, managers)
 
@@ -497,6 +561,8 @@ def main():
     prev_path = DERIVED / f"gw{gw - 1}_releases.json"
     prev_releases = json.loads(prev_path.read_text()) if prev_path.exists() else None
 
+    team_of_week = build_team_of_week(managers, players, totw_squads_raw, totw_live)
+
     gaps = []
     if not squads_raw:
         gaps.append(
@@ -508,6 +574,9 @@ def main():
         )
     if not bootstrap:
         gaps.append("Player names are unavailable without bootstrap_static.json.")
+    if not team_of_week:
+        gaps.append(f"Squad picks or live scores for gameweek {totw_gw} are not on "
+                     f"disk, so Team of the Week cannot be computed.")
 
     payload = {
         "league": {
@@ -530,6 +599,12 @@ def main():
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in build_transfers(
             managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
+        "team_of_week": {
+            "gameweek": totw_gw,
+            "players": (team_of_week or {}).get("players", []),
+            "formation": (team_of_week or {}).get("formation"),
+            "total_points": (team_of_week or {}).get("total_points", 0),
+        },
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,
