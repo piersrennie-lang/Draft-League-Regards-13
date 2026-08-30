@@ -3691,7 +3691,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       }
      ],
@@ -3781,8 +3781,14 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
+      },
+      {
+       "name": "Yellow cards",
+       "points": -1,
+       "value": 1,
+       "stat": "yellow_cards"
       },
       {
        "name": "Defensive Contribution",
@@ -3934,7 +3940,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -4036,7 +4042,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 1,
+       "value": 2,
        "stat": "minutes"
       }
      ],
@@ -4081,7 +4087,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 1,
+       "value": 2,
        "stat": "minutes"
       }
      ],
@@ -4318,7 +4324,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 28,
+       "value": 29,
        "stat": "minutes"
       }
      ],
@@ -4459,7 +4465,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -4645,7 +4651,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 20,
+       "value": 21,
        "stat": "minutes"
       }
      ],
@@ -4837,7 +4843,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       }
      ],
@@ -4927,7 +4933,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 1,
+       "value": 2,
        "stat": "minutes"
       }
      ],
@@ -5472,6 +5478,12 @@
        "points": 1,
        "value": 10,
        "stat": "minutes"
+      },
+      {
+       "name": "Yellow cards",
+       "points": -1,
+       "value": 1,
+       "stat": "yellow_cards"
       }
      ],
      16
@@ -5699,10 +5711,22 @@
        "stat": "minutes"
       },
       {
+       "name": "Goals scored",
+       "points": 5,
+       "value": 1,
+       "stat": "goals_scored"
+      },
+      {
        "name": "Assists",
        "points": 3,
        "value": 1,
        "stat": "assists"
+      },
+      {
+       "name": "Bonus",
+       "points": 3,
+       "value": 3,
+       "stat": "bonus"
       }
      ],
      16
@@ -5838,6 +5862,12 @@
        "points": 2,
        "value": 90,
        "stat": "minutes"
+      },
+      {
+       "name": "Assists",
+       "points": 3,
+       "value": 1,
+       "stat": "assists"
       }
      ],
      16
@@ -6619,7 +6649,7 @@
       {
        "name": "Goals conceded",
        "points": -1,
-       "value": 2,
+       "value": 3,
        "stat": "goals_conceded"
       }
      ],
@@ -6823,7 +6853,7 @@
       {
        "name": "Goals conceded",
        "points": -1,
-       "value": 2,
+       "value": 3,
        "stat": "goals_conceded"
       }
      ],
@@ -7203,12 +7233,6 @@
        "points": 5,
        "value": 1,
        "stat": "goals_scored"
-      },
-      {
-       "name": "Bonus",
-       "points": 1,
-       "value": 1,
-       "stat": "bonus"
       }
      ],
      16
@@ -7641,8 +7665,8 @@
       },
       {
        "name": "Bonus",
-       "points": 3,
-       "value": 3,
+       "points": 2,
+       "value": 2,
        "stat": "bonus"
       }
      ],
@@ -9259,7 +9283,7 @@
       {
        "name": "Goals conceded",
        "points": -1,
-       "value": 2,
+       "value": 3,
        "stat": "goals_conceded"
       }
      ],
@@ -11589,6 +11613,12 @@
        "points": 2,
        "value": 90,
        "stat": "minutes"
+      },
+      {
+       "name": "Saves",
+       "points": 1,
+       "value": 3,
+       "stat": "saves"
       }
      ],
      19
@@ -12049,7 +12079,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 44,
+       "value": 45,
        "stat": "minutes"
       }
      ],
@@ -15367,7 +15397,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       }
      ],
@@ -15457,13 +15487,13 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
        "name": "Defensive Contribution",
        "points": 2,
-       "value": 16,
+       "value": 19,
        "stat": "defensive_contribution"
       }
      ],
@@ -15508,13 +15538,13 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
        "name": "Defensive Contribution",
        "points": 2,
-       "value": 14,
+       "value": 16,
        "stat": "defensive_contribution"
       }
      ],
@@ -15649,7 +15679,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       }
      ],
@@ -15874,7 +15904,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 21,
+       "value": 22,
        "stat": "minutes"
       }
      ],
@@ -15964,7 +15994,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 44,
+       "value": 45,
        "stat": "minutes"
       }
      ],
@@ -16009,7 +16039,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -16066,7 +16096,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 20,
+       "value": 21,
        "stat": "minutes"
       },
       {
@@ -17878,7 +17908,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -24862,7 +24892,7 @@
       {
        "name": "Defensive Contribution",
        "points": 2,
-       "value": 18,
+       "value": 19,
        "stat": "defensive_contribution"
       }
      ],
@@ -25452,12 +25482,6 @@
        "points": 1,
        "value": 1,
        "stat": "clean_sheets"
-      },
-      {
-       "name": "Defensive Contribution",
-       "points": 2,
-       "value": 12,
-       "stat": "defensive_contribution"
       }
      ],
      19
@@ -25975,13 +25999,13 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 89,
+       "value": 90,
        "stat": "minutes"
       },
       {
        "name": "Defensive Contribution",
        "points": 2,
-       "value": 14,
+       "value": 15,
        "stat": "defensive_contribution"
       }
      ],
@@ -28018,7 +28042,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 55,
+       "value": 56,
        "stat": "minutes"
       }
      ],
@@ -28434,8 +28458,8 @@
       },
       {
        "name": "Bonus",
-       "points": 2,
-       "value": 2,
+       "points": 1,
+       "value": 1,
        "stat": "bonus"
       }
      ],
@@ -31072,6 +31096,10 @@
      ],
      "a": [
       {
+       "element": 124,
+       "value": 1
+      },
+      {
        "element": 608,
        "value": 1
       }
@@ -31096,6 +31124,10 @@
      "a": [
       {
        "element": 124,
+       "value": 1
+      },
+      {
+       "element": 127,
        "value": 1
       },
       {
@@ -31140,6 +31172,10 @@
       {
        "element": 116,
        "value": 1
+      },
+      {
+       "element": 119,
+       "value": 1
       }
      ]
     },
@@ -31163,17 +31199,17 @@
      "h": [
       {
        "element": 165,
-       "value": 3
-      },
-      {
-       "element": 156,
-       "value": 1
+       "value": 2
       }
      ],
      "a": [
       {
+       "element": 124,
+       "value": 3
+      },
+      {
        "element": 608,
-       "value": 2
+       "value": 1
       }
      ]
     },
@@ -31182,7 +31218,7 @@
      "h": [
       {
        "element": 165,
-       "value": 47
+       "value": 44
       },
       {
        "element": 156,
@@ -31198,31 +31234,15 @@
       },
       {
        "element": 154,
-       "value": 25
+       "value": 28
       },
       {
        "element": 148,
-       "value": 15
-      },
-      {
-       "element": 583,
-       "value": 5
-      },
-      {
-       "element": 142,
-       "value": 3
-      },
-      {
-       "element": 151,
-       "value": 3
+       "value": 12
       },
       {
        "element": 159,
        "value": 3
-      },
-      {
-       "element": 144,
-       "value": 2
       },
       {
        "element": 149,
@@ -31230,37 +31250,53 @@
       },
       {
        "element": 568,
-       "value": 2
+       "value": 1
       },
       {
-       "element": 200,
+       "element": 583,
        "value": 1
+      },
+      {
+       "element": 142,
+       "value": -1
+      },
+      {
+       "element": 151,
+       "value": -1
+      },
+      {
+       "element": 144,
+       "value": -2
       },
       {
        "element": 145,
        "value": -2
+      },
+      {
+       "element": 200,
+       "value": -3
       }
      ],
      "a": [
       {
-       "element": 608,
-       "value": 39
+       "element": 124,
+       "value": 46
       },
       {
-       "element": 124,
-       "value": 26
+       "element": 608,
+       "value": 39
       },
       {
        "element": 138,
        "value": 17
       },
       {
-       "element": 130,
-       "value": 8
+       "element": 127,
+       "value": 15
       },
       {
-       "element": 127,
-       "value": 6
+       "element": 130,
+       "value": 8
       },
       {
        "element": 600,
@@ -31271,15 +31307,11 @@
        "value": 3
       },
       {
-       "element": 119,
-       "value": 2
-      },
-      {
        "element": 109,
        "value": -1
       },
       {
-       "element": 504,
+       "element": 119,
        "value": -1
       },
       {
@@ -31287,11 +31319,15 @@
        "value": -2
       },
       {
-       "element": 113,
-       "value": -4
+       "element": 115,
+       "value": -2
       },
       {
-       "element": 115,
+       "element": 504,
+       "value": -2
+      },
+      {
+       "element": 113,
        "value": -4
       },
       {
@@ -31312,12 +31348,16 @@
        "value": 9
       },
       {
+       "element": 200,
+       "value": 9
+      },
+      {
        "element": 154,
        "value": 8
       },
       {
-       "element": 200,
-       "value": 8
+       "element": 148,
+       "value": 6
       },
       {
        "element": 161,
@@ -31332,12 +31372,12 @@
        "value": 5
       },
       {
-       "element": 148,
+       "element": 156,
        "value": 4
       },
       {
-       "element": 156,
-       "value": 4
+       "element": 151,
+       "value": 3
       },
       {
        "element": 165,
@@ -31346,10 +31386,6 @@
       {
        "element": 583,
        "value": 3
-      },
-      {
-       "element": 151,
-       "value": 2
       },
       {
        "element": 568,
@@ -31391,7 +31427,7 @@
       },
       {
        "element": 115,
-       "value": 1
+       "value": 2
       },
       {
        "element": 600,
@@ -31467,6 +31503,10 @@
      "h": [],
      "a": [
       {
+       "element": 84,
+       "value": 1
+      },
+      {
        "element": 87,
        "value": 1
       },
@@ -31531,12 +31571,16 @@
        "value": 20
       },
       {
+       "element": 347,
+       "value": 18
+      },
+      {
        "element": 334,
        "value": 17
       },
       {
-       "element": 347,
-       "value": 17
+       "element": 332,
+       "value": 13
       },
       {
        "element": 335,
@@ -31551,12 +31595,12 @@
        "value": 11
       },
       {
-       "element": 332,
-       "value": 10
-      },
-      {
        "element": 330,
        "value": 9
+      },
+      {
+       "element": 260,
+       "value": 7
       },
       {
        "element": 599,
@@ -31569,10 +31613,6 @@
       {
        "element": 345,
        "value": 6
-      },
-      {
-       "element": 260,
-       "value": 5
       },
       {
        "element": 329,
@@ -31597,16 +31637,16 @@
        "value": 20
       },
       {
-       "element": 84,
-       "value": 19
+       "element": 556,
+       "value": 17
       },
       {
        "element": 95,
-       "value": 15
+       "value": 16
       },
       {
-       "element": 556,
-       "value": 15
+       "element": 84,
+       "value": 14
       },
       {
        "element": 98,
@@ -31625,6 +31665,10 @@
        "value": 7
       },
       {
+       "element": 90,
+       "value": 6
+      },
+      {
        "element": 102,
        "value": 4
       },
@@ -31634,10 +31678,6 @@
       },
       {
        "element": 89,
-       "value": 3
-      },
-      {
-       "element": 90,
        "value": 3
       },
       {
@@ -31655,11 +31695,11 @@
      "h": [
       {
        "element": 334,
-       "value": 16
+       "value": 19
       },
       {
        "element": 335,
-       "value": 14
+       "value": 16
       },
       {
        "element": 338,
@@ -31667,26 +31707,26 @@
       },
       {
        "element": 345,
-       "value": 10
+       "value": 11
+      },
+      {
+       "element": 332,
+       "value": 8
       },
       {
        "element": 330,
        "value": 7
       },
       {
-       "element": 332,
-       "value": 7
-      },
-      {
        "element": 260,
-       "value": 5
-      },
-      {
-       "element": 327,
-       "value": 5
+       "value": 6
       },
       {
        "element": 599,
+       "value": 6
+      },
+      {
+       "element": 327,
        "value": 5
       },
       {
@@ -31721,7 +31761,7 @@
       },
       {
        "element": 556,
-       "value": 14
+       "value": 15
       },
       {
        "element": 84,
@@ -31745,7 +31785,7 @@
       },
       {
        "element": 95,
-       "value": 6
+       "value": 7
       },
       {
        "element": 88,
@@ -31756,7 +31796,15 @@
        "value": 4
       },
       {
+       "element": 90,
+       "value": 1
+      },
+      {
        "element": 105,
+       "value": 1
+      },
+      {
+       "element": 108,
        "value": 1
       }
      ]
@@ -31839,11 +31887,7 @@
      "a": [
       {
        "element": 250,
-       "value": 2
-      },
-      {
-       "element": 263,
-       "value": 1
+       "value": 3
       }
      ]
     },
@@ -31932,7 +31976,7 @@
      "a": [
       {
        "element": 261,
-       "value": 19
+       "value": 20
       },
       {
        "element": 258,
@@ -31947,6 +31991,10 @@
        "value": 14
       },
       {
+       "element": 250,
+       "value": 10
+      },
+      {
        "element": 254,
        "value": 10
       },
@@ -31959,8 +32007,8 @@
        "value": 8
       },
       {
-       "element": 250,
-       "value": 7
+       "element": 262,
+       "value": 5
       },
       {
        "element": 570,
@@ -31971,23 +32019,19 @@
        "value": 4
       },
       {
-       "element": 262,
-       "value": 4
-      },
-      {
        "element": 269,
        "value": 3
       },
       {
+       "element": 263,
+       "value": 2
+      },
+      {
        "element": 569,
-       "value": 3
+       "value": 2
       },
       {
        "element": 579,
-       "value": 3
-      },
-      {
-       "element": 263,
        "value": 2
       }
      ]
@@ -31997,11 +32041,11 @@
      "h": [
       {
        "element": 533,
-       "value": 18
+       "value": 19
       },
       {
        "element": 545,
-       "value": 12
+       "value": 11
       },
       {
        "element": 532,
@@ -32050,11 +32094,11 @@
        "value": 9
       },
       {
-       "element": 257,
-       "value": 8
+       "element": 253,
+       "value": 7
       },
       {
-       "element": 253,
+       "element": 257,
        "value": 7
       },
       {
@@ -32086,7 +32130,15 @@
        "value": 2
       },
       {
+       "element": 579,
+       "value": 2
+      },
+      {
        "element": 262,
+       "value": 1
+      },
+      {
+       "element": 269,
        "value": 1
       }
      ]
