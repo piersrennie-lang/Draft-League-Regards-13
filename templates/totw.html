@@ -4,10 +4,10 @@
 {% block content %}
 
 <section id="totw" class="section--tight">
-  <h3 class="eyebrow eyebrow--sm">
-    GW{{ d.team_of_week.gameweek }}
-    {% if d.team_of_week.formation %}&middot; {{ d.team_of_week.formation }} &middot; {{ d.team_of_week.total_points }} pts{% endif %}
-  </h3>
+  <p class="totw-meta">
+    <span class="kicker">GW{{ d.team_of_week.gameweek }}</span>
+    {% if d.team_of_week.formation %}<span class="totw-meta__result">{{ d.team_of_week.formation }} &middot; {{ d.team_of_week.total_points }} pts</span>{% endif %}
+  </p>
   {% if d.team_of_week.players %}
   <div class="pitch">
     {% for row in [totw_by_pos.GKP, totw_by_pos.DEF, totw_by_pos.MID, totw_by_pos.FWD] %}
