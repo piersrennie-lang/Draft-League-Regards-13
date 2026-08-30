@@ -2,10 +2,14 @@
 <a class="manager-link" href="manager-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
 {%- endmacro %}
 
+{% macro player_photo(url, css_class) -%}
+<img class="{{ css_class }}" src="{{ url if url else 'static/players/placeholder.png' }}" alt="" loading="lazy">
+{%- endmacro %}
+
 {% macro player_list(items) -%}
-{% if items %}{% for p in items %}<div class="transfer-player">{% if p.photo %}<img class="transfer-photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
+{% if items %}{% for p in items %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
 {%- endmacro %}
 
 {% macro release_cell(r) -%}
-{% if r.tie %}{% for p in r.tie %}<div class="transfer-player">{% if p.photo %}<img class="transfer-photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}<span>{{ p.name }}</span></div>{% if not loop.last %}<div class="tie-or">or</div>{% endif %}{% endfor %}{% else %}<div class="transfer-player">{% if r.release_photo %}<img class="transfer-photo" src="{{ r.release_photo }}" alt="" loading="lazy">{% endif %}<span>{{ r.release }}</span></div>{% endif %}
+{% if r.tie %}{% for p in r.tie %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% if not loop.last %}<div class="tie-or">or</div>{% endif %}{% endfor %}{% else %}<div class="transfer-player">{{ player_photo(r.release_photo, 'transfer-photo') }}<span>{{ r.release }}</span></div>{% endif %}
 {%- endmacro %}

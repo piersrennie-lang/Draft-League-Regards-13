@@ -15,7 +15,7 @@
     <div class="pitch__row">
       {% for p in row %}
       <div class="pitch__player">
-        {% if p.photo %}<img class="pitch__photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}
+        {{ macros.player_photo(p.photo, 'pitch__photo') }}
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>
