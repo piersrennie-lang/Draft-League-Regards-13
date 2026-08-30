@@ -1,3 +1,7 @@
 {% macro manager(name, avatars) -%}
 <a class="manager-link" href="manager-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
 {%- endmacro %}
+
+{% macro player_list(items) -%}
+{% if items %}{% for p in items %}<div class="transfer-player">{% if p.photo %}<img class="transfer-photo" src="{{ p.photo }}" alt="" loading="lazy">{% endif %}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
+{%- endmacro %}

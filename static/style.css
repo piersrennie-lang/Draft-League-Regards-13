@@ -296,6 +296,23 @@ code { font: 400 0.9em var(--data); }
 .manager-link { text-decoration: none; }
 .manager-link:hover { text-decoration: underline; }
 
+.transfer-player {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.transfer-player:last-child { margin-bottom: 0; }
+.transfer-photo {
+  width: 1.8rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: top;
+  background: var(--hair);
+  border-radius: 4px;
+}
+
 .flag {
   margin-left: 0.4rem;
   padding: 0.1rem 0.3rem;

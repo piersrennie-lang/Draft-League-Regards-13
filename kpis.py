@@ -71,6 +71,11 @@ def player_index(bootstrap):
     }
 
 
+def describe_player(eid, players):
+    meta = players.get(eid, {"name": str(eid), "club": "", "photo": ""})
+    return {"name": meta["name"], "club": meta.get("club", ""), "photo": meta.get("photo", "")}
+
+
 def live_points(live):
     if not live:
         return {}
@@ -393,8 +398,8 @@ def build_transactions(managers, raw, event, players):
         for t in payload.get("transactions", []):
             if t.get("event") != event or t.get("result") != "a":
                 continue
-            out[le]["in"].append(players.get(t.get("element_in"), {}).get("name", t.get("element_in")))
-            out[le]["out"].append(players.get(t.get("element_out"), {}).get("name", t.get("element_out")))
+            out[le]["in"].append(describe_player(t.get("element_in"), players))
+            out[le]["out"].append(describe_player(t.get("element_out"), players))
             out[le]["count"] += 1
     return out
 
@@ -428,10 +433,9 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw):
         curr_ids = {p["element"] for p in curr_picks}
         ins = curr_ids - prev_ids
         outs = prev_ids - curr_ids
-        name = lambda eid: players.get(eid, {}).get("name", str(eid))
         out[le] = {
-            "in": sorted(name(e) for e in ins),
-            "out": sorted(name(e) for e in outs),
+            "in": sorted((describe_player(e, players) for e in ins), key=lambda p: p["name"]),
+            "out": sorted((describe_player(e, players) for e in outs), key=lambda p: p["name"]),
             "count": max(len(ins), len(outs)),
         }
     return out
