@@ -4,21 +4,20 @@
 
 <section id="table">
   <h2 class="eyebrow">Standings</h2>
+  <div class="table-scroll">
   <table class="grid grid--table">
-    <thead><tr><th>Pos</th><th>Manager</th><th>Team</th><th class="num">P</th>
+    <thead><tr><th>Pos</th><th>Manager</th><th class="num">P</th>
     <th class="num">W</th><th class="num">D</th><th class="num">L</th>
-    <th class="num">For</th><th class="num">Ag</th><th class="num">Diff</th>
+    <th class="num">For</th><th class="num">Ag</th>
     <th class="num">Pts</th><th class="num">Move</th></tr></thead>
     <tbody>
       {% for r in d.standings %}
       <tr>
         <td class="mute">{{ r.pos }}</td>
         <td class="strong">{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager }}</td>
-        <td class="mute">{{ r.team }}</td>
         <td class="num">{{ r.played }}</td>
         <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
         <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>
-        <td class="num">{{ r.diff|signed or 0 }}</td>
         <td class="num strong">{{ r.points }}</td>
         <td class="num {{ 'move--up' if r.move and r.move > 0 }}{{ 'move--down' if r.move and r.move < 0 }}">
           {{ r.move|signed if r.move else '–' }}</td>
@@ -26,6 +25,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
 </section>
 
 {% endblock %}
