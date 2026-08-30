@@ -990,40 +990,37 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     return profiles
 
 
-def build_leaders(manager_profiles):
-    """Reduces manager_profiles down to whoever's on top -- or involved in
-    the single best/worst instance -- of every category also shown on an
-    individual manager's own profile page. Head-to-head-only categories
-    (most beaten, lost to most) don't have a single season leader in the
-    same sense, so aren't included here.
+def build_leaders(manager_profiles, limit=5):
+    """Reduces manager_profiles down to a top-N table for every category
+    also shown on an individual manager's own profile page -- one row per
+    manager's own best/worst instance of that category, ranked against
+    each other. Head-to-head-only categories (most beaten, lost to most)
+    don't have a single season leaderboard in the same sense, so aren't
+    included here.
     """
-    def top(key, reverse=True):
+    def top_n(key, reverse=True):
         pool = [(name, p[key]) for name, p in manager_profiles.items() if p.get(key) is not None]
-        if not pool:
-            return None
-        name, value = (max if reverse else min)(pool, key=lambda kv: kv[1])
-        return {"manager": name, "value": value}
+        pool.sort(key=lambda kv: kv[1], reverse=reverse)
+        return [{"manager": name, "value": value} for name, value in pool[:limit]]
 
-    def top_by(key, subkey, reverse=True):
+    def top_n_by(key, subkey, reverse=True):
         pool = [(name, p[key]) for name, p in manager_profiles.items() if p.get(key)]
-        if not pool:
-            return None
-        name, entry = (max if reverse else min)(pool, key=lambda kv: kv[1][subkey])
-        return {"manager": name, **entry}
+        pool.sort(key=lambda kv: kv[1][subkey], reverse=reverse)
+        return [{"manager": name, **entry} for name, entry in pool[:limit]]
 
     return {
-        "motw_wins": top("motw_wins"),
-        "mom_wins": top("mom_wins"),
-        "totw_appearances": top("totw_appearances"),
-        "longest_win_streak": top("longest_win_streak"),
-        "longest_loss_streak": top("longest_loss_streak"),
-        "biggest_win": top_by("biggest_win", "margin"),
-        "biggest_loss": top_by("biggest_loss", "margin", reverse=False),
-        "highest_score": top_by("highest_score", "points"),
-        "lowest_score": top_by("lowest_score", "points", reverse=False),
-        "best_player": top_by("best_player", "points"),
-        "best_transfer": top_by("best_transfer", "diff"),
-        "worst_transfer": top_by("worst_transfer", "diff", reverse=False),
+        "motw_wins": top_n("motw_wins"),
+        "mom_wins": top_n("mom_wins"),
+        "totw_appearances": top_n("totw_appearances"),
+        "longest_win_streak": top_n("longest_win_streak"),
+        "longest_loss_streak": top_n("longest_loss_streak"),
+        "biggest_win": top_n_by("biggest_win", "margin"),
+        "biggest_loss": top_n_by("biggest_loss", "margin", reverse=False),
+        "highest_score": top_n_by("highest_score", "points"),
+        "lowest_score": top_n_by("lowest_score", "points", reverse=False),
+        "best_player": top_n_by("best_player", "points"),
+        "best_transfer": top_n_by("best_transfer", "diff"),
+        "worst_transfer": top_n_by("worst_transfer", "diff", reverse=False),
     }
 
 

@@ -5915,71 +5915,343 @@
   }
  },
  "leaders": {
-  "motw_wins": {
-   "manager": "Brad Hill",
-   "value": 1
-  },
-  "mom_wins": {
-   "manager": "Piers Rennie",
-   "value": 0
-  },
-  "totw_appearances": {
-   "manager": "Brad Hill",
-   "value": 4
-  },
-  "longest_win_streak": {
-   "manager": "Piers Rennie",
-   "value": 1
-  },
-  "longest_loss_streak": {
-   "manager": "Stefano Babiolakis",
-   "value": 1
-  },
-  "biggest_win": {
-   "manager": "Nicolas Rubin",
-   "gameweek": 1,
-   "opponent": "Stefano Babiolakis",
-   "points": 38,
-   "against": 28,
-   "margin": 10,
-   "result": "W"
-  },
-  "biggest_loss": {
-   "manager": "Stefano Babiolakis",
-   "gameweek": 1,
-   "opponent": "Nicolas Rubin",
-   "points": 28,
-   "against": 38,
-   "margin": -10,
-   "result": "L"
-  },
-  "highest_score": {
-   "manager": "Brad Hill",
-   "gameweek": 1,
-   "opponent": "Roscoe Hill",
-   "points": 47,
-   "against": 44,
-   "margin": 3,
-   "result": "W"
-  },
-  "lowest_score": {
-   "manager": "Stefano Babiolakis",
-   "gameweek": 1,
-   "opponent": "Nicolas Rubin",
-   "points": 28,
-   "against": 38,
-   "margin": -10,
-   "result": "L"
-  },
-  "best_player": {
-   "manager": "Roscoe Hill",
-   "gameweek": 1,
-   "name": "Palmer",
-   "club": "CHE",
-   "points": 13
-  },
-  "best_transfer": null,
-  "worst_transfer": null
+  "motw_wins": [
+   {
+    "manager": "Brad Hill",
+    "value": 1
+   },
+   {
+    "manager": "Piers Rennie",
+    "value": 0
+   },
+   {
+    "manager": "Stefano Babiolakis",
+    "value": 0
+   },
+   {
+    "manager": "Nicolas Rubin",
+    "value": 0
+   },
+   {
+    "manager": "Mattato Alcock",
+    "value": 0
+   }
+  ],
+  "mom_wins": [
+   {
+    "manager": "Piers Rennie",
+    "value": 0
+   },
+   {
+    "manager": "Stefano Babiolakis",
+    "value": 0
+   },
+   {
+    "manager": "Nicolas Rubin",
+    "value": 0
+   },
+   {
+    "manager": "Mattato Alcock",
+    "value": 0
+   },
+   {
+    "manager": "Brad Hill",
+    "value": 0
+   }
+  ],
+  "totw_appearances": [
+   {
+    "manager": "Brad Hill",
+    "value": 4
+   },
+   {
+    "manager": "Nicolas Rubin",
+    "value": 2
+   },
+   {
+    "manager": "Mark Stone",
+    "value": 2
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "value": 1
+   },
+   {
+    "manager": "Michael Lavarack",
+    "value": 1
+   }
+  ],
+  "longest_win_streak": [
+   {
+    "manager": "Piers Rennie",
+    "value": 1
+   },
+   {
+    "manager": "Nicolas Rubin",
+    "value": 1
+   },
+   {
+    "manager": "Brad Hill",
+    "value": 1
+   },
+   {
+    "manager": "Michael Lavarack",
+    "value": 1
+   },
+   {
+    "manager": "Mark Stone",
+    "value": 1
+   }
+  ],
+  "longest_loss_streak": [
+   {
+    "manager": "Stefano Babiolakis",
+    "value": 1
+   },
+   {
+    "manager": "Mattato Alcock",
+    "value": 1
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "value": 1
+   },
+   {
+    "manager": "Matthew Lees",
+    "value": 1
+   },
+   {
+    "manager": "Roscoe Hill",
+    "value": 1
+   }
+  ],
+  "biggest_win": [
+   {
+    "manager": "Nicolas Rubin",
+    "gameweek": 1,
+    "opponent": "Stefano Babiolakis",
+    "points": 38,
+    "against": 28,
+    "margin": 10,
+    "result": "W"
+   },
+   {
+    "manager": "Mark Stone",
+    "gameweek": 1,
+    "opponent": "Mattato Alcock",
+    "points": 39,
+    "against": 34,
+    "margin": 5,
+    "result": "W"
+   },
+   {
+    "manager": "Piers Rennie",
+    "gameweek": 1,
+    "opponent": "Matthew Lees",
+    "points": 35,
+    "against": 31,
+    "margin": 4,
+    "result": "W"
+   },
+   {
+    "manager": "Brad Hill",
+    "gameweek": 1,
+    "opponent": "Roscoe Hill",
+    "points": 47,
+    "against": 44,
+    "margin": 3,
+    "result": "W"
+   },
+   {
+    "manager": "Michael Lavarack",
+    "gameweek": 1,
+    "opponent": "Matthew Xenakis",
+    "points": 37,
+    "against": 34,
+    "margin": 3,
+    "result": "W"
+   }
+  ],
+  "biggest_loss": [
+   {
+    "manager": "Stefano Babiolakis",
+    "gameweek": 1,
+    "opponent": "Nicolas Rubin",
+    "points": 28,
+    "against": 38,
+    "margin": -10,
+    "result": "L"
+   },
+   {
+    "manager": "Mattato Alcock",
+    "gameweek": 1,
+    "opponent": "Mark Stone",
+    "points": 34,
+    "against": 39,
+    "margin": -5,
+    "result": "L"
+   },
+   {
+    "manager": "Matthew Lees",
+    "gameweek": 1,
+    "opponent": "Piers Rennie",
+    "points": 31,
+    "against": 35,
+    "margin": -4,
+    "result": "L"
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "gameweek": 1,
+    "opponent": "Michael Lavarack",
+    "points": 34,
+    "against": 37,
+    "margin": -3,
+    "result": "L"
+   },
+   {
+    "manager": "Roscoe Hill",
+    "gameweek": 1,
+    "opponent": "Brad Hill",
+    "points": 44,
+    "against": 47,
+    "margin": -3,
+    "result": "L"
+   }
+  ],
+  "highest_score": [
+   {
+    "manager": "Brad Hill",
+    "gameweek": 1,
+    "opponent": "Roscoe Hill",
+    "points": 47,
+    "against": 44,
+    "margin": 3,
+    "result": "W"
+   },
+   {
+    "manager": "Roscoe Hill",
+    "gameweek": 1,
+    "opponent": "Brad Hill",
+    "points": 44,
+    "against": 47,
+    "margin": -3,
+    "result": "L"
+   },
+   {
+    "manager": "Mark Stone",
+    "gameweek": 1,
+    "opponent": "Mattato Alcock",
+    "points": 39,
+    "against": 34,
+    "margin": 5,
+    "result": "W"
+   },
+   {
+    "manager": "Nicolas Rubin",
+    "gameweek": 1,
+    "opponent": "Stefano Babiolakis",
+    "points": 38,
+    "against": 28,
+    "margin": 10,
+    "result": "W"
+   },
+   {
+    "manager": "Michael Lavarack",
+    "gameweek": 1,
+    "opponent": "Matthew Xenakis",
+    "points": 37,
+    "against": 34,
+    "margin": 3,
+    "result": "W"
+   }
+  ],
+  "lowest_score": [
+   {
+    "manager": "Stefano Babiolakis",
+    "gameweek": 1,
+    "opponent": "Nicolas Rubin",
+    "points": 28,
+    "against": 38,
+    "margin": -10,
+    "result": "L"
+   },
+   {
+    "manager": "Matthew Lees",
+    "gameweek": 1,
+    "opponent": "Piers Rennie",
+    "points": 31,
+    "against": 35,
+    "margin": -4,
+    "result": "L"
+   },
+   {
+    "manager": "Mattato Alcock",
+    "gameweek": 1,
+    "opponent": "Mark Stone",
+    "points": 34,
+    "against": 39,
+    "margin": -5,
+    "result": "L"
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "gameweek": 1,
+    "opponent": "Michael Lavarack",
+    "points": 34,
+    "against": 37,
+    "margin": -3,
+    "result": "L"
+   },
+   {
+    "manager": "Piers Rennie",
+    "gameweek": 1,
+    "opponent": "Matthew Lees",
+    "points": 35,
+    "against": 31,
+    "margin": 4,
+    "result": "W"
+   }
+  ],
+  "best_player": [
+   {
+    "manager": "Roscoe Hill",
+    "gameweek": 1,
+    "name": "Palmer",
+    "club": "CHE",
+    "points": 13
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "gameweek": 1,
+    "name": "Gakpo",
+    "club": "LIV",
+    "points": 12
+   },
+   {
+    "manager": "Nicolas Rubin",
+    "gameweek": 1,
+    "name": "Jo\u00e3o Pedro",
+    "club": "CHE",
+    "points": 11
+   },
+   {
+    "manager": "Brad Hill",
+    "gameweek": 1,
+    "name": "\u00d8degaard",
+    "club": "ARS",
+    "points": 11
+   },
+   {
+    "manager": "Michael Lavarack",
+    "gameweek": 1,
+    "name": "Dewsbury-Hall",
+    "club": "EVE",
+    "points": 11
+   }
+  ],
+  "best_transfer": [],
+  "worst_transfer": []
  },
  "pot": {
   "base": 200,
