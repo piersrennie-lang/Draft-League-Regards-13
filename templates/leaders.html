@@ -65,14 +65,14 @@
       <p class="strong">Best individual performance</p>
       {% if d.leaders.best_player %}
       <div class="table-scroll">
-      <table class="grid grid--table grid--table--tight">
+      <table class="grid grid--table">
         <thead><tr><th>#</th><th>Manager</th><th>Player</th><th class="num">Pts</th></tr></thead>
         <tbody>
           {% for row in d.leaders.best_player %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ row.name }} <span class="mute">{{ row.club }} &middot; GW{{ row.gameweek }}</span></td>
+            <td class="wrap">{{ row.name }}<br><span class="mute">{{ row.club }} &middot; GW{{ row.gameweek }}</span></td>
             <td class="num">{{ row.points }}</td>
           </tr>
           {% endfor %}
@@ -90,14 +90,14 @@
       <p class="strong">Biggest win</p>
       {% if d.leaders.biggest_win %}
       <div class="table-scroll">
-      <table class="grid grid--table grid--table--tight">
+      <table class="grid grid--table">
         <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Won by</th></tr></thead>
         <tbody>
           {% for row in d.leaders.biggest_win %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ macros.manager(row.opponent, avatars) }} <span class="mute">GW{{ row.gameweek }}</span></td>
+            <td class="wrap">{{ macros.manager(row.opponent, avatars) }}<br><span class="mute">GW{{ row.gameweek }}</span></td>
             <td class="num gain">{{ row.margin }}</td>
           </tr>
           {% endfor %}

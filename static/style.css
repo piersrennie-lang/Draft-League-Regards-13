@@ -307,10 +307,7 @@ p.strong { margin: 0 0 0.7rem; font-weight: 600; }
 .table-scroll { overflow-x: auto; }
 .grid--table { font-size: 0.9375rem; }
 .grid--table td, .grid--table th { white-space: nowrap; }
-.grid--table--tight { font-size: 0.78rem; }
-.grid--table--tight td { padding: 0.5rem 0.3rem; }
-.grid--table--tight .avatar { width: 1.2rem; height: 1.2rem; margin: -0.2rem 0.35rem -0.2rem 0; }
-.grid--table--tight .mute { font-size: 0.75rem; }
+.grid--table .wrap { white-space: normal; }
 .move--up { color: var(--pitch); }
 .move--down { color: var(--claret); }
 
