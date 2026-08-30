@@ -1,0 +1,142 @@
+{% extends "_base.html" %}
+{% block title %}Leaders &middot; {{ d.league.name }}{% endblock %}
+{% import "_macros.html" as macros %}
+{% block content %}
+
+<section id="leaders" class="section--tight">
+  <h3 class="eyebrow eyebrow--sm">Leaders for the season</h3>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Manager of the Week wins</p>
+      {% if d.leaders.motw_wins %}
+      <p>{{ macros.manager(d.leaders.motw_wins.manager, avatars) }} &mdash; {{ d.leaders.motw_wins.value }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Manager of the Month wins</p>
+      {% if d.leaders.mom_wins %}
+      <p>{{ macros.manager(d.leaders.mom_wins.manager, avatars) }} &mdash; {{ d.leaders.mom_wins.value }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Team of the Week appearances</p>
+      {% if d.leaders.totw_appearances %}
+      <p>{{ macros.manager(d.leaders.totw_appearances.manager, avatars) }} &mdash; {{ d.leaders.totw_appearances.value }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Best individual performance</p>
+      {% if d.leaders.best_player %}
+      <p>{{ macros.manager(d.leaders.best_player.manager, avatars) }} &mdash;
+      {{ d.leaders.best_player.name }} ({{ d.leaders.best_player.club }})
+      &mdash; {{ d.leaders.best_player.points }} pts &middot; GW{{ d.leaders.best_player.gameweek }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Biggest win</p>
+      {% if d.leaders.biggest_win %}
+      <p>{{ macros.manager(d.leaders.biggest_win.manager, avatars) }} &mdash;
+      {{ d.leaders.biggest_win.points }}&ndash;{{ d.leaders.biggest_win.against }} vs
+      {{ macros.manager(d.leaders.biggest_win.opponent, avatars) }} &middot; GW{{ d.leaders.biggest_win.gameweek }}
+      &middot; won by {{ d.leaders.biggest_win.margin }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Biggest loss</p>
+      {% if d.leaders.biggest_loss %}
+      <p>{{ macros.manager(d.leaders.biggest_loss.manager, avatars) }} &mdash;
+      {{ d.leaders.biggest_loss.points }}&ndash;{{ d.leaders.biggest_loss.against }} vs
+      {{ macros.manager(d.leaders.biggest_loss.opponent, avatars) }} &middot; GW{{ d.leaders.biggest_loss.gameweek }}
+      &middot; lost by {{ -d.leaders.biggest_loss.margin }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Highest score of the season</p>
+      {% if d.leaders.highest_score %}
+      <p>{{ macros.manager(d.leaders.highest_score.manager, avatars) }} &mdash;
+      {{ d.leaders.highest_score.points }} pts vs
+      {{ macros.manager(d.leaders.highest_score.opponent, avatars) }} &middot; GW{{ d.leaders.highest_score.gameweek }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Lowest score of the season</p>
+      {% if d.leaders.lowest_score %}
+      <p>{{ macros.manager(d.leaders.lowest_score.manager, avatars) }} &mdash;
+      {{ d.leaders.lowest_score.points }} pts vs
+      {{ macros.manager(d.leaders.lowest_score.opponent, avatars) }} &middot; GW{{ d.leaders.lowest_score.gameweek }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Longest winning streak</p>
+      {% if d.leaders.longest_win_streak and d.leaders.longest_win_streak.value %}
+      <p>{{ macros.manager(d.leaders.longest_win_streak.manager, avatars) }} &mdash;
+      {{ d.leaders.longest_win_streak.value }} game{{ 's' if d.leaders.longest_win_streak.value != 1 }} in a row</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Longest losing streak</p>
+      {% if d.leaders.longest_loss_streak and d.leaders.longest_loss_streak.value %}
+      <p>{{ macros.manager(d.leaders.longest_loss_streak.manager, avatars) }} &mdash;
+      {{ d.leaders.longest_loss_streak.value }} game{{ 's' if d.leaders.longest_loss_streak.value != 1 }} in a row</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Best transfer</p>
+      {% if d.leaders.best_transfer %}
+      <p>{{ macros.manager(d.leaders.best_transfer.manager, avatars) }} &mdash;
+      {{ d.leaders.best_transfer.out_name }} &rarr; {{ d.leaders.best_transfer.in_name }}
+      &middot; +{{ d.leaders.best_transfer.diff }} &middot; GW{{ d.leaders.best_transfer.gameweek }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Worst transfer</p>
+      {% if d.leaders.worst_transfer %}
+      <p>{{ macros.manager(d.leaders.worst_transfer.manager, avatars) }} &mdash;
+      {{ d.leaders.worst_transfer.out_name }} &rarr; {{ d.leaders.worst_transfer.in_name }}
+      &middot; {{ d.leaders.worst_transfer.diff }} &middot; GW{{ d.leaders.worst_transfer.gameweek }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

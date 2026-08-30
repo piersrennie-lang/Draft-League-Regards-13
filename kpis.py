@@ -912,6 +912,43 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     return profiles
 
 
+def build_leaders(manager_profiles):
+    """Reduces manager_profiles down to whoever's on top -- or involved in
+    the single best/worst instance -- of every category also shown on an
+    individual manager's own profile page. Head-to-head-only categories
+    (most beaten, lost to most) don't have a single season leader in the
+    same sense, so aren't included here.
+    """
+    def top(key, reverse=True):
+        pool = [(name, p[key]) for name, p in manager_profiles.items() if p.get(key) is not None]
+        if not pool:
+            return None
+        name, value = (max if reverse else min)(pool, key=lambda kv: kv[1])
+        return {"manager": name, "value": value}
+
+    def top_by(key, subkey, reverse=True):
+        pool = [(name, p[key]) for name, p in manager_profiles.items() if p.get(key)]
+        if not pool:
+            return None
+        name, entry = (max if reverse else min)(pool, key=lambda kv: kv[1][subkey])
+        return {"manager": name, **entry}
+
+    return {
+        "motw_wins": top("motw_wins"),
+        "mom_wins": top("mom_wins"),
+        "totw_appearances": top("totw_appearances"),
+        "longest_win_streak": top("longest_win_streak"),
+        "longest_loss_streak": top("longest_loss_streak"),
+        "biggest_win": top_by("biggest_win", "margin"),
+        "biggest_loss": top_by("biggest_loss", "margin", reverse=False),
+        "highest_score": top_by("highest_score", "points"),
+        "lowest_score": top_by("lowest_score", "points", reverse=False),
+        "best_player": top_by("best_player", "points"),
+        "best_transfer": top_by("best_transfer", "diff"),
+        "worst_transfer": top_by("worst_transfer", "diff", reverse=False),
+    }
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -979,6 +1016,7 @@ def main():
     manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"])
+    leaders = build_leaders(manager_profiles)
 
     gaps = []
     if not squads_raw:
@@ -1028,6 +1066,7 @@ def main():
         "manager_of_week": manager_of_week,
         "manager_of_month": manager_of_month,
         "manager_profiles": manager_profiles,
+        "leaders": leaders,
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,
