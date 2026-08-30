@@ -144,18 +144,16 @@
   <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
   <div class="table-scroll">
   <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th>
-    <th class="num">% of score</th></tr></thead>
+    <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for r in d.releases %}
       <tr>
         <td>{{ macros.manager(r.manager, avatars) }}</td>
         <td>{{ macros.release_cell(r) }}</td>
         <td class="num">{{ r.release_points }}</td>
-        <td class="num cost">{{ r.cost_pct }}%</td>
       </tr>
       {% else %}
-      <tr><td colspan="4" class="pending">Awaiting squad picks.</td></tr>
+      <tr><td colspan="3" class="pending">Awaiting squad picks.</td></tr>
       {% endfor %}
     </tbody>
   </table>
