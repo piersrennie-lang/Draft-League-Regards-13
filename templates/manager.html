@@ -68,6 +68,25 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
+      <p class="strong">Longest winning streak</p>
+      {% if profile.longest_win_streak %}
+      <p>{{ profile.longest_win_streak }} game{{ 's' if profile.longest_win_streak != 1 }} in a row</p>
+      {% else %}
+      <p class="pending">No wins yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Longest losing streak</p>
+      {% if profile.longest_loss_streak %}
+      <p>{{ profile.longest_loss_streak }} game{{ 's' if profile.longest_loss_streak != 1 }} in a row</p>
+      {% else %}
+      <p class="pending">No losses yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
       <p class="strong">Highest score of the season</p>
       {% if profile.highest_score %}
       <p>{{ profile.highest_score.points }} pts vs

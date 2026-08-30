@@ -711,6 +711,16 @@ def build_manager_of_month(managers, players, totw_gw, load_fn):
     }
 
 
+def longest_streak(fixtures_asc, result):
+    """Longest run of consecutive fixtures (in chronological order) with
+    the given result ("W" or "L")."""
+    best = cur = 0
+    for f in fixtures_asc:
+        cur = cur + 1 if f["result"] == result else 0
+        best = max(best, cur)
+    return best
+
+
 def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history):
     """Everything a manager's own page needs: their fixture history and
     head-to-head record (from the full season schedule, so this only gets
@@ -831,6 +841,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         biggest_loss = min(losses, key=lambda f: f["margin"], default=None)
         highest_score = max(fixtures[le], key=lambda f: f["points"], default=None)
         lowest_score = min(fixtures[le], key=lambda f: f["points"], default=None)
+        longest_win_streak = longest_streak(fixtures[le], "W")
+        longest_loss_streak = longest_streak(fixtures[le], "L")
         profiles[m["manager"]] = {
             "fixtures": sorted(fixtures[le], key=lambda f: -f["gameweek"]),
             "current_fixture": current_fixture[le],
@@ -839,6 +851,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "biggest_loss": biggest_loss,
             "highest_score": highest_score,
             "lowest_score": lowest_score,
+            "longest_win_streak": longest_win_streak,
+            "longest_loss_streak": longest_loss_streak,
             "best_player": best_player[le],
             "most_beaten": {"manager": managers[most_beaten[0]]["manager"], "wins": most_beaten[1]["w"]}
                 if most_beaten[0] is not None and most_beaten[1]["w"] > 0 else None,

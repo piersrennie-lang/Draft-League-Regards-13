@@ -78,7 +78,7 @@ a { color: inherit; }
 
 /* ------------------------------------------------------------- masthead */
 
-.masthead { padding-top: clamp(2rem, 6vw, 4.5rem); padding-bottom: 1rem; }
+.masthead { padding-top: clamp(2rem, 6vw, 4.5rem); padding-bottom: 0.4rem; }
 
 .masthead__rule {
   display: flex;
@@ -120,7 +120,7 @@ a { color: inherit; }
   gap: 1.4rem;
   overflow-x: auto;
   scrollbar-width: none;
-  margin-top: 1rem;
+  margin-top: 0.3rem;
   padding: 0.85rem var(--gutter);
   background: color-mix(in srgb, var(--paper) 92%, transparent);
   backdrop-filter: blur(6px);
