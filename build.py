@@ -9,6 +9,7 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import pathlib
 import shutil
@@ -51,7 +52,8 @@ def main():
         transfers_current.append({"manager": m["manager"], "team": m["team"], **cur})
     transfers_current.sort(key=lambda t: t["manager"])
 
-    # Grouped by row for the pitch layout, back to front (attack to keeper).
+    # Grouped by row for the pitch layout, goalkeeper at the top down to
+    # strikers, matching how the official FPL app lays out a pitch.
     totw_by_pos = {"FWD": [], "MID": [], "DEF": [], "GKP": []}
     for p in data["team_of_week"]["players"]:
         if p["pos"] in totw_by_pos:
@@ -66,8 +68,13 @@ def main():
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
     env.filters["friendly_time"] = friendly_time
 
+    # Cache-bust the stylesheet link so a style change is visible on the
+    # next load instead of waiting out whatever the browser/CDN cached.
+    css_bytes = (ROOT / "static" / "style.css").read_bytes()
+    css_version = hashlib.md5(css_bytes).hexdigest()[:8]
+
     render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
-                          totw_by_pos=totw_by_pos)
+                          totw_by_pos=totw_by_pos, css_version=css_version)
 
     DIST.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "static", DIST / "static", dirs_exist_ok=True)
@@ -83,7 +90,7 @@ def main():
     # Single file combining everything, CSS inlined, for sending round the
     # league the way the PDF used to go round -- not part of the site nav.
     combined = env.get_template("roundup.html").render(**render_kwargs)
-    css = (ROOT / "static" / "style.css").read_text()
+    css = css_bytes.decode()
     standalone = combined.replace(
         '<link rel="stylesheet" href="static/style.css">',
         f"<style>\n{css}\n</style>",
