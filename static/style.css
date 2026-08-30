@@ -280,7 +280,7 @@ code { font: 400 0.9em var(--data); }
 .grid tbody tr:hover { background: var(--panel); }
 
 .table-scroll { overflow-x: auto; }
-.grid--table { font-size: 0.9063rem; }
+.grid--table { font-size: 0.9375rem; }
 .grid--table td, .grid--table th { white-space: nowrap; }
 .move--up { color: var(--pitch); }
 .move--down { color: var(--claret); }
@@ -514,10 +514,6 @@ footer p { margin: 0; }
   .ledger__pct { grid-area: pct; }
   .ledger__player { grid-area: player; }
   .ledger__h2h { grid-area: h2h; }
-  .grid--table { font-size: 0.6875rem; }
-  .grid--table td, .grid--table th { padding-inline: 0.1rem; }
-  .grid--table .avatar { width: 1.15rem; height: 1.15rem; margin: -0.15rem 0.3rem -0.15rem 0; }
-  .grid--table .transfer-photo { width: 1.15rem; height: 1.15rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

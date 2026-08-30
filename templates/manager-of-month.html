@@ -13,6 +13,7 @@
 
   <h3 class="eyebrow eyebrow--sm">Leaderboard</h3>
   {% if d.manager_of_month.leaderboard %}
+  <div class="table-scroll">
   <table class="grid grid--table">
     <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
     <tbody>
@@ -24,6 +25,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
   {% else %}
   <p class="pending">No month has finished yet &mdash; the first is decided at the end of GW4.</p>
   {% endif %}
@@ -33,6 +35,7 @@
   {% for block in d.manager_of_month.history %}
   <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
   {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
+  <div class="table-scroll">
   <table class="grid grid--table">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
@@ -44,6 +47,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
   {% endfor %}
   {% else %}
   <p class="pending">Nothing here yet &mdash; the first month finalises at the end of GW4.</p>
