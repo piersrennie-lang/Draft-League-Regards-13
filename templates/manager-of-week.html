@@ -16,7 +16,7 @@
   <div class="cols-2">
     <div>
       <p class="strong">Top 3</p>
-      <table class="grid">
+      <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.top %}
@@ -30,7 +30,7 @@
     </div>
     <div>
       <p class="strong">Bottom 3</p>
-      <table class="grid">
+      <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.worst %}
@@ -58,7 +58,7 @@
     GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
     {% if d.manager_of_month.current.is_final %}&middot; final{% else %}&middot; live{% endif %}
   </p>
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in d.manager_of_month.current.standings %}

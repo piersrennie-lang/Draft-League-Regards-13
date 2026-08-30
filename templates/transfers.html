@@ -7,7 +7,7 @@
   <h2 class="eyebrow">Transfers</h2>
   <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
     <tbody>
       {% for t in transfers_current %}
@@ -36,7 +36,7 @@
   <p class="strong">Best</p>
   {% if d.team_of_week.best_transfers %}
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
     <tbody>
@@ -60,7 +60,7 @@
   <p class="strong">Worst</p>
   {% if d.team_of_week.worst_transfers %}
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
     <tbody>

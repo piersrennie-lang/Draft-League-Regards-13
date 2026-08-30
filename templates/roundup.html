@@ -62,7 +62,7 @@
   <h2 class="eyebrow">Transfers</h2>
   <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
     <tbody>
       {% for t in transfers_current %}
@@ -91,7 +91,7 @@
   <p class="strong">Best</p>
   {% if d.team_of_week.best_transfers %}
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
     <tbody>
@@ -115,7 +115,7 @@
   <p class="strong">Worst</p>
   {% if d.team_of_week.worst_transfers %}
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
     <tbody>
@@ -143,7 +143,7 @@
   <h2 class="eyebrow">Releases</h2>
   <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th>
     <th class="num">% of score</th></tr></thead>
     <tbody>
@@ -204,7 +204,7 @@
   <div class="cols-2">
     <div>
       <p class="strong">Top 3</p>
-      <table class="grid">
+      <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.top %}
@@ -218,7 +218,7 @@
     </div>
     <div>
       <p class="strong">Bottom 3</p>
-      <table class="grid">
+      <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.worst %}
@@ -246,7 +246,7 @@
     GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
     {% if d.manager_of_month.current.is_final %}&middot; final{% else %}&middot; live{% endif %}
   </p>
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in d.manager_of_month.current.standings %}
@@ -268,7 +268,7 @@
 
   <h3 class="eyebrow eyebrow--sm">Leaderboard</h3>
   {% if d.manager_of_month.leaderboard %}
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
     <tbody>
       {% for m in d.manager_of_month.leaderboard %}
@@ -288,7 +288,7 @@
   {% for block in d.manager_of_month.history %}
   <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
   {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in block.standings %}

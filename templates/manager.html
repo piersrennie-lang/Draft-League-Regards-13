@@ -11,6 +11,21 @@
 
   <div class="cols-2">
     <div>
+      <p class="strong">Manager of the Week wins</p>
+      <p>{{ profile.motw_wins }}</p>
+    </div>
+    <div>
+      <p class="strong">Manager of the Month wins</p>
+      <p>{{ profile.mom_wins }}</p>
+    </div>
+    <div>
+      <p class="strong">Team of the Week appearances</p>
+      <p>{{ profile.totw_appearances }}</p>
+    </div>
+  </div>
+
+  <div class="cols-2">
+    <div>
       <p class="strong">Biggest win</p>
       {% if profile.biggest_win %}
       <p>{{ profile.biggest_win.points }}&ndash;{{ profile.biggest_win.against }} vs
@@ -56,7 +71,7 @@
     <div>
       <p class="strong">Best</p>
       {% if profile.best_transfer %}
-      <table class="grid">
+      <table class="grid grid--table">
         <thead><tr><th>Released</th><th class="num">Pts</th>
         <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
         <tbody><tr>
@@ -74,7 +89,7 @@
     <div>
       <p class="strong">Worst</p>
       {% if profile.worst_transfer %}
-      <table class="grid">
+      <table class="grid grid--table">
         <thead><tr><th>Released</th><th class="num">Pts</th>
         <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
         <tbody><tr>
@@ -94,7 +109,7 @@
   <h3 class="eyebrow eyebrow--sm">Fixtures &amp; results</h3>
   {% if profile.fixtures %}
   <div class="table-scroll">
-  <table class="grid">
+  <table class="grid grid--table">
     <thead><tr><th>GW</th><th>Opponent</th><th class="num">Score</th><th>Result</th></tr></thead>
     <tbody>
       {% for f in profile.fixtures %}
