@@ -155,6 +155,8 @@ code { font: 400 0.9em var(--data); }
 
 .match { padding-block: 2.5rem; }
 .match + .match { border-top: 1px solid var(--hair); }
+#results .match { padding-block: 1.1rem; }
+#results .scoreline { margin: 0.6rem 0 0.3rem; }
 
 .match__head {
   display: flex;
