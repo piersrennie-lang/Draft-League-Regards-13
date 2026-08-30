@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 {% block title %}Transfers &middot; {{ d.league.name }}{% endblock %}
+{% import "_macros.html" as macros %}
 {% block content %}
 
 <section id="moves">
@@ -10,7 +11,7 @@
     <tbody>
       {% for t in transfers_current %}
       <tr>
-        <td>{% if avatars.get(t.manager) %}<img class="avatar" src="{{ avatars[t.manager] }}" alt="">{% endif %}{{ t.manager|dname }}</td>
+        <td>{{ macros.manager(t.manager, avatars) }}</td>
         <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
         <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
         <td class="num">{{ t.count }}</td>
@@ -38,7 +39,7 @@
     <tbody>
       {% for t in d.team_of_week.best_transfers %}
       <tr>
-        <td>{% if avatars.get(t.manager) %}<img class="avatar" src="{{ avatars[t.manager] }}" alt="">{% endif %}{{ t.manager|dname }}</td>
+        <td>{{ macros.manager(t.manager, avatars) }}</td>
         <td>{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td class="strong">{{ t.in_name }}</td>
@@ -60,7 +61,7 @@
     <tbody>
       {% for t in d.team_of_week.worst_transfers %}
       <tr>
-        <td>{% if avatars.get(t.manager) %}<img class="avatar" src="{{ avatars[t.manager] }}" alt="">{% endif %}{{ t.manager|dname }}</td>
+        <td>{{ macros.manager(t.manager, avatars) }}</td>
         <td class="strong">{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td>{{ t.in_name }}</td>

@@ -704,6 +704,93 @@ def build_manager_of_month(managers, players, totw_gw, load_fn):
     }
 
 
+def build_manager_profiles(details, managers, players, totw_gw, load_fn):
+    """Everything a manager's own page needs: their fixture history and
+    head-to-head record (from the full season schedule, so this only gets
+    more interesting as more rounds are played), their biggest single-match
+    win, the best individual player performance their active XI has ever
+    produced, and their personal best and worst transfer swaps.
+
+    Best player performance and transfer swaps are found by re-running the
+    same per-gameweek computations (build_squads, build_transfer_swaps)
+    used elsewhere in this file across every settled gameweek 1..totw_gw,
+    rather than reusing a single week's result -- there's no shortcut, a
+    manager's all-time best is only knowable by having looked at all of it.
+    """
+    fixtures = {le: [] for le in managers}
+    h2h = {le: {} for le in managers}
+    for m in sorted(details["matches"], key=lambda x: x["event"]):
+        if not m.get("finished"):
+            continue
+        h, a = m["league_entry_1"], m["league_entry_2"]
+        hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
+            if me not in managers or opp not in managers:
+                continue
+            result = "W" if mine > theirs else "D" if mine == theirs else "L"
+            fixtures[me].append({
+                "gameweek": m["event"], "opponent": managers[opp]["manager"],
+                "points": mine, "against": theirs, "margin": mine - theirs,
+                "result": result,
+            })
+            rec = h2h[me].setdefault(opp, {"w": 0, "d": 0, "l": 0})
+            rec[result.lower()] += 1
+
+    best_player = {le: None for le in managers}
+    best_transfer = {le: None for le in managers}
+    worst_transfer = {le: None for le in managers}
+    by_manager = {m["manager"]: le for le, m in managers.items()}
+
+    for g in range(1, totw_gw + 1):
+        g_squads_raw = load_fn(f"squads_gw{g}")
+        g_live = load_fn(f"live_gw{g}")
+        if not g_squads_raw or not g_live:
+            continue
+        squads = build_squads(managers, g_squads_raw, g_live, players)
+        for le, squad in squads.items():
+            for row in squad["xi"]:
+                cur = best_player[le]
+                if cur is None or row["points"] > cur["points"]:
+                    best_player[le] = {"gameweek": g, "name": row["name"],
+                                        "club": row["club"], "points": row["points"]}
+
+        if g == 1:
+            continue
+        g_prev_squads_raw = load_fn(f"squads_gw{g - 1}")
+        if not g_prev_squads_raw:
+            continue
+        swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live)
+        for s in swaps:
+            le = by_manager.get(s["manager"])
+            if le is None:
+                continue
+            tagged = {**s, "gameweek": g}
+            if s["diff"] > 0 and (best_transfer[le] is None or s["diff"] > best_transfer[le]["diff"]):
+                best_transfer[le] = tagged
+            if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
+                worst_transfer[le] = tagged
+
+    profiles = {}
+    for le, m in managers.items():
+        record = h2h[le]
+        most_beaten = max(record.items(), key=lambda kv: kv[1]["w"], default=(None, None))
+        most_lost_to = max(record.items(), key=lambda kv: kv[1]["l"], default=(None, None))
+        wins = [f for f in fixtures[le] if f["result"] == "W"]
+        biggest_win = max(wins, key=lambda f: f["margin"], default=None)
+        profiles[m["manager"]] = {
+            "fixtures": sorted(fixtures[le], key=lambda f: -f["gameweek"]),
+            "biggest_win": biggest_win,
+            "best_player": best_player[le],
+            "most_beaten": {"manager": managers[most_beaten[0]]["manager"], "wins": most_beaten[1]["w"]}
+                if most_beaten[0] is not None and most_beaten[1]["w"] > 0 else None,
+            "most_lost_to": {"manager": managers[most_lost_to[0]]["manager"], "losses": most_lost_to[1]["l"]}
+                if most_lost_to[0] is not None and most_lost_to[1]["l"] > 0 else None,
+            "best_transfer": best_transfer[le],
+            "worst_transfer": worst_transfer[le],
+        }
+    return profiles
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -768,6 +855,7 @@ def main():
     manager_of_week = build_manager_of_week(
         managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw)
     manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
+    manager_profiles = build_manager_profiles(details, managers, players, totw_gw, load)
 
     gaps = []
     if not squads_raw:
@@ -815,6 +903,7 @@ def main():
         },
         "manager_of_week": manager_of_week,
         "manager_of_month": manager_of_month,
+        "manager_profiles": manager_profiles,
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,

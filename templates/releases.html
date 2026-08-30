@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 {% block title %}Releases &middot; {{ d.league.name }}{% endblock %}
+{% import "_macros.html" as macros %}
 {% block content %}
 
 <section id="releases">
@@ -11,7 +12,7 @@
     <tbody>
       {% for r in d.releases %}
       <tr>
-        <td>{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager|dname }}</td>
+        <td>{{ macros.manager(r.manager, avatars) }}</td>
         <td>{{ r.tie | join(' or ') if r.tie else r.release }}</td>
         <td class="num">{{ r.release_points }}</td>
         <td class="num cost">{{ r.cost_pct }}%</td>

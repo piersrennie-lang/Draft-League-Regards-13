@@ -293,6 +293,8 @@ code { font: 400 0.9em var(--data); }
   object-fit: cover;
   vertical-align: middle;
 }
+.manager-link { text-decoration: none; }
+.manager-link:hover { text-decoration: underline; }
 
 .flag {
   margin-left: 0.4rem;

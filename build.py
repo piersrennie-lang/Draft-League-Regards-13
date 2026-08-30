@@ -115,6 +115,7 @@ def main():
     env.filters["friendly_time"] = friendly_time
     display_names = build_display_names(m["manager"] for m in data["managers"].values())
     env.filters["dname"] = lambda name: display_names.get(name, name)
+    env.filters["slug"] = manager_slug
 
     # Cache-bust the stylesheet link so a style change is visible on the
     # next load instead of waiting out whatever the browser/CDN cached.
@@ -136,6 +137,16 @@ def main():
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
         (DIST / f"{filename}.html").write_text(html)
+
+    # One page per manager -- fixtures, head-to-head, biggest win, best
+    # player performance, personal best/worst transfers -- linked from
+    # every avatar+name the manager() macro renders anywhere on the site.
+    profiles = data.get("manager_profiles", {})
+    manager_template = env.get_template("manager.html")
+    for m in data["managers"].values():
+        name = m["manager"]
+        html = manager_template.render(profile_name=name, profile=profiles.get(name), **render_kwargs)
+        (DIST / f"manager-{manager_slug(name)}.html").write_text(html)
 
     # Single file combining everything, CSS inlined, for sending round the
     # league the way the PDF used to go round -- not part of the site nav.

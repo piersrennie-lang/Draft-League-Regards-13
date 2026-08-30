@@ -1,0 +1,116 @@
+{% extends "_base.html" %}
+{% import "_macros.html" as macros %}
+{% block title %}{{ profile_name }} &middot; {{ d.league.name }}{% endblock %}
+{% block content %}
+
+<section id="manager-profile">
+  <h2 class="eyebrow">
+    {% if avatars.get(profile_name) %}<img class="avatar" src="{{ avatars[profile_name] }}" alt="" style="width:2rem;height:2rem;margin:-0.4rem 0.6rem -0.4rem 0;">{% endif %}
+    {{ profile_name }}
+  </h2>
+
+  <div class="cols-2">
+    <div>
+      <p class="strong">Biggest win</p>
+      {% if profile.biggest_win %}
+      <p>{{ profile.biggest_win.points }}&ndash;{{ profile.biggest_win.against }} vs
+      {{ macros.manager(profile.biggest_win.opponent, avatars) }} &middot; GW{{ profile.biggest_win.gameweek }}</p>
+      {% else %}
+      <p class="pending">No wins yet.</p>
+      {% endif %}
+    </div>
+    <div>
+      <p class="strong">Best individual performance</p>
+      {% if profile.best_player %}
+      <p>{{ profile.best_player.name }} ({{ profile.best_player.club }}) &mdash;
+      {{ profile.best_player.points }} pts &middot; GW{{ profile.best_player.gameweek }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="cols-2">
+    <div>
+      <p class="strong">Beaten most</p>
+      {% if profile.most_beaten %}
+      <p>{{ macros.manager(profile.most_beaten.manager, avatars) }} &mdash;
+      {{ profile.most_beaten.wins }} time{{ 's' if profile.most_beaten.wins != 1 }}</p>
+      {% else %}
+      <p class="pending">No wins yet.</p>
+      {% endif %}
+    </div>
+    <div>
+      <p class="strong">Lost to most</p>
+      {% if profile.most_lost_to %}
+      <p>{{ macros.manager(profile.most_lost_to.manager, avatars) }} &mdash;
+      {{ profile.most_lost_to.losses }} time{{ 's' if profile.most_lost_to.losses != 1 }}</p>
+      {% else %}
+      <p class="pending">No losses yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers</h3>
+  <div class="cols-2">
+    <div>
+      <p class="strong">Best</p>
+      {% if profile.best_transfer %}
+      <table class="grid">
+        <thead><tr><th>Released</th><th class="num">Pts</th>
+        <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
+        <tbody><tr>
+          <td>{{ profile.best_transfer.out_name }}</td>
+          <td class="num">{{ profile.best_transfer.out_points }}</td>
+          <td class="strong">{{ profile.best_transfer.in_name }}</td>
+          <td class="num">{{ profile.best_transfer.in_points }}</td>
+          <td class="num gain">{{ profile.best_transfer.diff }}</td>
+        </tr></tbody>
+      </table>
+      {% else %}
+      <p class="pending">None yet.</p>
+      {% endif %}
+    </div>
+    <div>
+      <p class="strong">Worst</p>
+      {% if profile.worst_transfer %}
+      <table class="grid">
+        <thead><tr><th>Released</th><th class="num">Pts</th>
+        <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
+        <tbody><tr>
+          <td class="strong">{{ profile.worst_transfer.out_name }}</td>
+          <td class="num">{{ profile.worst_transfer.out_points }}</td>
+          <td>{{ profile.worst_transfer.in_name }}</td>
+          <td class="num">{{ profile.worst_transfer.in_points }}</td>
+          <td class="num cost">{{ -profile.worst_transfer.diff }}</td>
+        </tr></tbody>
+      </table>
+      {% else %}
+      <p class="pending">None yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <h3 class="eyebrow eyebrow--sm">Fixtures &amp; results</h3>
+  {% if profile.fixtures %}
+  <div class="table-scroll">
+  <table class="grid">
+    <thead><tr><th>GW</th><th>Opponent</th><th class="num">Score</th><th>Result</th></tr></thead>
+    <tbody>
+      {% for f in profile.fixtures %}
+      <tr>
+        <td class="mute">{{ f.gameweek }}</td>
+        <td>{{ macros.manager(f.opponent, avatars) }}</td>
+        <td class="num">{{ f.points }}&ndash;{{ f.against }}</td>
+        <td class="strong {{ 'gain' if f.result == 'W' else 'cost' if f.result == 'L' else '' }}">{{ f.result }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <p class="pending">No completed fixtures yet.</p>
+  {% endif %}
+</section>
+
+{% endblock %}

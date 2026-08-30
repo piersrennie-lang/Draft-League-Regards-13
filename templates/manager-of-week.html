@@ -1,5 +1,6 @@
 {% extends "_base.html" %}
 {% block title %}Manager of the Week &middot; {{ d.league.name }}{% endblock %}
+{% import "_macros.html" as macros %}
 {% block content %}
 
 <section id="manager-of-week">
@@ -20,7 +21,7 @@
         <tbody>
           {% for m in d.manager_of_week.top %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num gain">{{ m.points }}</td>
           </tr>
           {% endfor %}
@@ -34,7 +35,7 @@
         <tbody>
           {% for m in d.manager_of_week.worst %}
           <tr>
-            <td{% if loop.last %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
+            <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num cost">{{ m.points }}</td>
           </tr>
           {% endfor %}
@@ -62,7 +63,7 @@
     <tbody>
       {% for m in d.manager_of_month.current.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}

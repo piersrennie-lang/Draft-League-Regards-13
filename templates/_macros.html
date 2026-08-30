@@ -1,0 +1,3 @@
+{% macro manager(name, avatars) -%}
+<a class="manager-link" href="manager-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
+{%- endmacro %}
