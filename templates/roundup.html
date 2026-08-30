@@ -39,7 +39,7 @@
     <thead><tr><th>Pos</th><th>Manager</th>
     <th class="num">W</th><th class="num">D</th><th class="num">L</th>
     <th class="num">For</th><th class="num">Ag</th>
-    <th class="num">Pts</th><th class="num">Move</th></tr></thead>
+    <th class="num">Pts</th></tr></thead>
     <tbody>
       {% for r in d.standings %}
       <tr>
@@ -48,8 +48,6 @@
         <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
         <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>
         <td class="num strong">{{ r.points }}</td>
-        <td class="num {{ 'move--up' if r.move and r.move > 0 }}{{ 'move--down' if r.move and r.move < 0 }}">
-          {{ r.move|signed if r.move else '–' }}</td>
       </tr>
       {% endfor %}
     </tbody>
