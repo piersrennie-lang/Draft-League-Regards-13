@@ -1029,7 +1029,6 @@ def build_leaders(manager_profiles, limit=5):
         "longest_win_streak": top_n("longest_win_streak"),
         "longest_loss_streak": top_n("longest_loss_streak"),
         "biggest_win": top_n_by("biggest_win", "margin"),
-        "biggest_loss": top_n_by("biggest_loss", "margin", reverse=False),
         "highest_score": top_n_by("highest_score", "points"),
         "lowest_score": top_n_by("lowest_score", "points", reverse=False),
         "best_player": top_n_by("best_player", "points"),
