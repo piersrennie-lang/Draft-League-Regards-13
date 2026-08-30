@@ -68,6 +68,29 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
+      <p class="strong">Highest score of the season</p>
+      {% if profile.highest_score %}
+      <p>{{ profile.highest_score.points }} pts vs
+      {{ macros.manager(profile.highest_score.opponent, avatars) }} &middot; GW{{ profile.highest_score.gameweek }}
+      &middot; {{ profile.highest_score.result }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Lowest score of the season</p>
+      {% if profile.lowest_score %}
+      <p>{{ profile.lowest_score.points }} pts vs
+      {{ macros.manager(profile.lowest_score.opponent, avatars) }} &middot; GW{{ profile.lowest_score.gameweek }}
+      &middot; {{ profile.lowest_score.result }}</p>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
       <p class="strong">Best individual performance</p>
       {% if profile.best_player %}
       <p>{{ profile.best_player.name }} ({{ profile.best_player.club }}) &mdash;

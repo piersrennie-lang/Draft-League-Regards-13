@@ -829,12 +829,16 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         losses = [f for f in fixtures[le] if f["result"] == "L"]
         biggest_win = max(wins, key=lambda f: f["margin"], default=None)
         biggest_loss = min(losses, key=lambda f: f["margin"], default=None)
+        highest_score = max(fixtures[le], key=lambda f: f["points"], default=None)
+        lowest_score = min(fixtures[le], key=lambda f: f["points"], default=None)
         profiles[m["manager"]] = {
             "fixtures": sorted(fixtures[le], key=lambda f: -f["gameweek"]),
             "current_fixture": current_fixture[le],
             "future_fixtures": future_fixtures[le],
             "biggest_win": biggest_win,
             "biggest_loss": biggest_loss,
+            "highest_score": highest_score,
+            "lowest_score": lowest_score,
             "best_player": best_player[le],
             "most_beaten": {"manager": managers[most_beaten[0]]["manager"], "wins": most_beaten[1]["w"]}
                 if most_beaten[0] is not None and most_beaten[1]["w"] > 0 else None,
