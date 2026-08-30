@@ -18,7 +18,7 @@
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>
-        <p class="pitch__manager">{{ p.manager }}</p>
+        <p class="pitch__manager">{{ p.manager|dname }}</p>
       </div>
       {% endfor %}
     </div>

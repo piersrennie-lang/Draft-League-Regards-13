@@ -41,6 +41,33 @@ def manager_slug(name):
     return name.lower().replace("'", "").replace(".", "").strip().replace(" ", "-")
 
 
+# First-name nicknames that differ from the registered FPL name -- only
+# needs an entry when the nickname itself isn't just name.split()[0].
+NICKNAMES = {
+    "Michael Lavarack": "Mike",
+    "Mattato Alcock": "Matt",
+    "Matthew Xenakis": "Matt",
+    "Matthew Lees": "Matt",
+}
+
+
+def build_display_names(manager_names):
+    """Full name -> short display name: first name (or nickname) alone,
+    unless that collides with another manager's, in which case both get
+    "<first> <last initial>" instead. Used for display only -- avatars,
+    result matching etc. all still key off the full registered name.
+    """
+    manager_names = list(manager_names)
+    firsts = {name: NICKNAMES.get(name, name.split()[0]) for name in manager_names}
+    counts = {}
+    for first in firsts.values():
+        counts[first] = counts.get(first, 0) + 1
+    return {
+        name: f"{first} {name.split()[-1][0]}" if counts[first] > 1 else first
+        for name, first in firsts.items()
+    }
+
+
 def build_avatars(manager_names):
     """Manager name -> static path, for whichever managers have a photo
     dropped in static/managers/{slug}.{jpg,jpeg,png,webp}. No mapping to
@@ -86,6 +113,8 @@ def main():
     )
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
     env.filters["friendly_time"] = friendly_time
+    display_names = build_display_names(m["manager"] for m in data["managers"].values())
+    env.filters["dname"] = lambda name: display_names.get(name, name)
 
     # Cache-bust the stylesheet link so a style change is visible on the
     # next load instead of waiting out whatever the browser/CDN cached.

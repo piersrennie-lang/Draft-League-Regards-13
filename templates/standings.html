@@ -14,7 +14,7 @@
       {% for r in d.standings %}
       <tr>
         <td class="mute">{{ r.pos }}</td>
-        <td class="strong">{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager }}</td>
+        <td class="strong">{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager|dname }}</td>
         <td class="num">{{ r.played }}</td>
         <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
         <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>

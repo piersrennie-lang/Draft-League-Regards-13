@@ -43,7 +43,7 @@
       {% for r in d.standings %}
       <tr>
         <td class="mute">{{ r.pos }}</td>
-        <td class="strong">{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager }}</td>
+        <td class="strong">{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager|dname }}</td>
         <td class="num">{{ r.played }}</td>
         <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
         <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>
@@ -66,7 +66,7 @@
     <tbody>
       {% for t in transfers_current %}
       <tr>
-        <td>{{ t.manager }}</td>
+        <td>{{ t.manager|dname }}</td>
         <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
         <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
         <td class="num">{{ t.count }}</td>
@@ -94,7 +94,7 @@
     <tbody>
       {% for t in d.team_of_week.best_transfers %}
       <tr>
-        <td>{{ t.manager }}</td>
+        <td>{{ t.manager|dname }}</td>
         <td>{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td class="strong">{{ t.in_name }}</td>
@@ -116,7 +116,7 @@
     <tbody>
       {% for t in d.team_of_week.worst_transfers %}
       <tr>
-        <td>{{ t.manager }}</td>
+        <td>{{ t.manager|dname }}</td>
         <td class="strong">{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td>{{ t.in_name }}</td>
@@ -142,7 +142,7 @@
     <tbody>
       {% for r in d.releases %}
       <tr>
-        <td>{{ r.manager }}</td>
+        <td>{{ r.manager|dname }}</td>
         <td>{{ r.tie | join(' or ') if r.tie else r.release }}</td>
         <td class="num">{{ r.release_points }}</td>
         <td class="num cost">{{ r.cost_pct }}%</td>
@@ -171,7 +171,7 @@
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>
-        <p class="pitch__manager">{{ p.manager }}</p>
+        <p class="pitch__manager">{{ p.manager|dname }}</p>
       </div>
       {% endfor %}
     </div>
@@ -201,7 +201,7 @@
         <tbody>
           {% for m in d.manager_of_week.top %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
             <td class="num gain">{{ m.points }}</td>
           </tr>
           {% endfor %}
@@ -215,7 +215,7 @@
         <tbody>
           {% for m in d.manager_of_week.worst %}
           <tr>
-            <td{% if loop.last %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+            <td{% if loop.last %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
             <td class="num cost">{{ m.points }}</td>
           </tr>
           {% endfor %}
@@ -243,7 +243,7 @@
     <tbody>
       {% for m in d.manager_of_month.current.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}
@@ -265,7 +265,7 @@
     <tbody>
       {% for m in d.manager_of_month.leaderboard %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
       </tr>
       {% endfor %}
@@ -279,13 +279,13 @@
   {% if d.manager_of_month.history %}
   {% for block in d.manager_of_month.history %}
   <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
-  {{ block.manager }} ({{ block.points }} pts)</p>
+  {{ block.manager|dname }} ({{ block.points }} pts)</p>
   <table class="grid">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in block.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}

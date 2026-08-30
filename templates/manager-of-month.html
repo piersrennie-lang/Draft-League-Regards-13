@@ -17,7 +17,7 @@
     <tbody>
       {% for m in d.manager_of_month.leaderboard %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
       </tr>
       {% endfor %}
@@ -31,13 +31,13 @@
   {% if d.manager_of_month.history %}
   {% for block in d.manager_of_month.history %}
   <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
-  {{ block.manager }} ({{ block.points }} pts)</p>
+  {{ block.manager|dname }} ({{ block.points }} pts)</p>
   <table class="grid">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in block.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{% if avatars.get(m.manager) %}<img class="avatar" src="{{ avatars[m.manager] }}" alt="">{% endif %}{{ m.manager|dname }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}
