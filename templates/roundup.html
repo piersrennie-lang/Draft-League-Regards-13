@@ -24,7 +24,7 @@
   <a href="#moves">Transfers</a>
   <a href="#releases">Releases</a>
   <a href="#totw">Team of the Week</a>
-  <a href="#best-manager">Best Manager</a>
+  <a href="#manager-of-week">Manager of the Week</a>
   <a href="#manager-of-month">Manager of the Month</a>
 </nav>
 
@@ -176,15 +176,15 @@
 </section>
 
 {# ------------------------------------------------------------ manager-of #}
-<section id="best-manager">
-  <h2 class="eyebrow">Best Manager</h2>
+<section id="manager-of-week">
+  <h2 class="eyebrow">Manager of the Week</h2>
   <p class="lede">Each manager's score for the gameweek is their active-XI
   points plus the full swing from any transfer that played that week &mdash;
   released player's score against their replacement's &mdash; so a good
   transfer call counts twice: once in the score it produced, once as a
   decision in its own right.</p>
 
-  <h3 class="eyebrow eyebrow--sm">Manager of the Week &middot; GW{{ d.team_of_week.gameweek }}</h3>
+  <h3 class="eyebrow eyebrow--sm">GW{{ d.team_of_week.gameweek }}</h3>
   {% if d.manager_of_week %}
   <div class="cols-2">
     <div>
