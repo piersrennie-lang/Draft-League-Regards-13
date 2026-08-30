@@ -49,6 +49,7 @@ a { color: inherit; }
   border-bottom: 1px solid var(--ink);
 }
 .eyebrow--sm { border: 0; padding: 0; margin: 0 0 0.7rem; font-size: 0.625rem; }
+.eyebrow--lg { border: 0; padding: 0; margin: 0 0 0.7rem; font-size: 1.0625rem; letter-spacing: 0.04em; }
 
 .kicker {
   font: 600 0.6875rem/1 var(--data);
@@ -296,7 +297,7 @@ code { font: 400 0.9em var(--data); }
 .grid th.num { text-align: right; }
 .grid .mute { color: var(--mute); }
 .grid .strong { font-weight: 600; }
-p.strong { margin: 0 0 0.7rem; }
+p.strong { margin: 0 0 0.7rem; font-weight: 600; }
 .grid .cost { color: var(--claret); }
 .grid .gain { color: var(--pitch); }
 .grid tbody tr:hover { background: var(--panel); }
