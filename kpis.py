@@ -625,34 +625,78 @@ def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live
     }
 
 
-def build_manager_of_month(managers, players, totw_gw, load_fn):
-    """Winner of the most recently completed 4-gameweek block (1-4, 5-8,
-    ...), by the same per-week score summed across the block. Nothing to
-    show until the first block (GW1-4) is fully settled -- i.e. until
-    totw_gw reaches 4 -- and the winner then holds the title for the
-    following four gameweeks, updating only once the next block closes.
+def _block_standings(managers, players, load_fn, block_start, block_end):
+    """Summed manager-week scores across gameweeks block_start..block_end.
+    A gameweek with no squads/live data on disk yet (not played, or not
+    fetched) simply contributes nothing -- callers don't need to worry
+    about how far the block has actually progressed.
     """
-    block_end = (totw_gw // 4) * 4
-    if block_end < 4:
-        return None
-
-    block_start = block_end - 3
     totals = {}
     for g in range(block_start, block_end + 1):
         g_squads_raw = load_fn(f"squads_gw{g}")
         g_live = load_fn(f"live_gw{g}")
+        if not g_squads_raw or not g_live:
+            continue
         g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
         for manager_name, score in manager_week_scores(
                 managers, players, g_squads_raw, g_live, g_prev_squads_raw).items():
             totals[manager_name] = totals.get(manager_name, 0) + score
     if not totals:
-        return None
-
+        return []
     ranked = sorted(totals.items(), key=lambda kv: -kv[1])
+    return [{"manager": n, "points": p} for n, p in ranked]
+
+
+def build_manager_of_month(managers, players, totw_gw, load_fn):
+    """Manager of the Month: a rolling 4-gameweek competition (GW1-4,
+    GW5-8, ...), by the same per-week score as Manager of the Week,
+    summed across the block. The block containing totw_gw is "current"
+    and its standings are shown live, updating gameweek by gameweek as
+    they accumulate -- it's only finalised, and its winner crowned, once
+    totw_gw reaches the block's last gameweek (a multiple of 4), at
+    which point the next block starts fresh from zero.
+
+    Also returns "history": every earlier block that's already finished,
+    most recent first, plus a "leaderboard" tally of how many months
+    each manager has won -- the record book for a separate page, since
+    the live standings above are the only thing that needs to be
+    front-and-centre week to week.
+    """
+    current_end = ((totw_gw + 3) // 4) * 4
+    current_start = current_end - 3
+    current_standings = _block_standings(managers, players, load_fn, current_start, totw_gw)
+    current = None
+    if current_standings:
+        current = {
+            "block_start": current_start,
+            "block_end": current_end,
+            "is_final": totw_gw == current_end,
+            "manager": current_standings[0]["manager"],
+            "points": current_standings[0]["points"],
+            "standings": current_standings,
+        }
+
+    history = []
+    for block_end in range(4, current_end, 4):
+        block_start = block_end - 3
+        standings = _block_standings(managers, players, load_fn, block_start, block_end)
+        if standings:
+            history.append({
+                "block_start": block_start, "block_end": block_end,
+                "manager": standings[0]["manager"], "points": standings[0]["points"],
+                "standings": standings,
+            })
+    history.reverse()
+
+    wins = {}
+    for h in history:
+        wins[h["manager"]] = wins.get(h["manager"], 0) + 1
+    leaderboard = sorted(wins.items(), key=lambda kv: (-kv[1], kv[0]))
+
     return {
-        "block_start": block_start, "block_end": block_end,
-        "manager": ranked[0][0], "points": ranked[0][1],
-        "standings": [{"manager": n, "points": p} for n, p in ranked],
+        "current": current,
+        "history": history,
+        "leaderboard": [{"manager": n, "wins": w} for n, w in leaderboard],
     }
 
 

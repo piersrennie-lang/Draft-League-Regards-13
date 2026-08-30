@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% block title %}Manager of the Month &middot; {{ d.league.name }}{% endblock %}
+{% block content %}
+
+<section id="manager-of-month">
+  <h2 class="eyebrow">Manager of the Month</h2>
+  <p class="lede">A fresh 4-gameweek competition each time &mdash;
+  GW1&ndash;4, GW5&ndash;8 and so on &mdash; using the same scoring as
+  Manager of the Week. See the current, still-live block on the
+  <a href="best-manager.html">Best Manager</a> page; this page is the
+  record of months already finalised.</p>
+
+  <h3 class="eyebrow eyebrow--sm">Leaderboard</h3>
+  {% if d.manager_of_month.leaderboard %}
+  <table class="grid">
+    <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
+    <tbody>
+      {% for m in d.manager_of_month.leaderboard %}
+      <tr>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="pending">No month has finished yet &mdash; the first is decided at the end of GW4.</p>
+  {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Past months</h3>
+  {% if d.manager_of_month.history %}
+  {% for block in d.manager_of_month.history %}
+  <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
+  {{ block.manager }} ({{ block.points }} pts)</p>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+    <tbody>
+      {% for m in block.standings %}
+      <tr>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endfor %}
+  {% else %}
+  <p class="pending">Nothing here yet &mdash; the first month finalises at the end of GW4.</p>
+  {% endif %}
+</section>
+
+{% endblock %}

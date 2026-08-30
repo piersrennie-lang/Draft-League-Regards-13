@@ -25,6 +25,7 @@
   <a href="#releases">Releases</a>
   <a href="#totw">Team of the Week</a>
   <a href="#best-manager">Best Manager</a>
+  <a href="#manager-of-month">Manager of the Month</a>
 </nav>
 
 <main>
@@ -220,13 +221,20 @@
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>
-  {% if d.manager_of_month %}
-  <p class="lede">GW{{ d.manager_of_month.block_start }}&ndash;GW{{ d.manager_of_month.block_end }},
-  holding the title until GW{{ d.manager_of_month.block_end + 4 }}.</p>
+  <p class="lede">Resets every 4 gameweeks &mdash; GW1&ndash;4, GW5&ndash;8 and
+  so on. Standings below are the running total for the current block;
+  results finalise and a winner is crowned at the end of GW{{ d.manager_of_month.current.block_end if d.manager_of_month.current else 4 }},
+  then the next block starts fresh from zero.
+  <a href="#manager-of-month">Past months &amp; the leaderboard &rarr;</a></p>
+  {% if d.manager_of_month.current %}
+  <p class="strong">
+    GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
+    {% if d.manager_of_month.current.is_final %}&middot; final{% else %}&middot; live{% endif %}
+  </p>
   <table class="grid">
     <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
-      {% for m in d.manager_of_month.standings %}
+      {% for m in d.manager_of_month.current.standings %}
       <tr>
         <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
@@ -235,7 +243,50 @@
     </tbody>
   </table>
   {% else %}
-  <p class="pending">Manager of the Month starts once GW4 is settled.</p>
+  <p class="pending">Not enough squad data yet for the current block.</p>
+  {% endif %}
+</section>
+
+{# --------------------------------------------------------- manager-of-month #}
+<section id="manager-of-month">
+  <h2 class="eyebrow">Manager of the Month &mdash; past months</h2>
+
+  <h3 class="eyebrow eyebrow--sm">Leaderboard</h3>
+  {% if d.manager_of_month.leaderboard %}
+  <table class="grid">
+    <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
+    <tbody>
+      {% for m in d.manager_of_month.leaderboard %}
+      <tr>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="pending">No month has finished yet &mdash; the first is decided at the end of GW4.</p>
+  {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Past months</h3>
+  {% if d.manager_of_month.history %}
+  {% for block in d.manager_of_month.history %}
+  <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
+  {{ block.manager }} ({{ block.points }} pts)</p>
+  <table class="grid">
+    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+    <tbody>
+      {% for m in block.standings %}
+      <tr>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ m.manager }}</td>
+        <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endfor %}
+  {% else %}
+  <p class="pending">Nothing here yet &mdash; the first month finalises at the end of GW4.</p>
   {% endif %}
 </section>
 
