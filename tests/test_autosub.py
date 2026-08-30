@@ -14,8 +14,11 @@ def player(eid, pos, team_id):
     return {"element": eid, "pos": pos, "team_id": team_id}
 
 
-def fixture(team_h, team_a, finished):
-    return {"team_h": team_h, "team_a": team_a, "finished": finished}
+def fixture(team_h, team_a, finished, finished_provisional=None):
+    return {
+        "team_h": team_h, "team_a": team_a, "finished": finished,
+        "finished_provisional": finished if finished_provisional is None else finished_provisional,
+    }
 
 
 def stats(minutes, points):
@@ -322,3 +325,23 @@ def test_15_three_simultaneous_missing_starters_bench_priority_and_formation():
     assert outs == {2, 5, 9}
     assert ins == {13, 14, 15}
     assert result["unresolved_players"] == []
+
+
+def test_16_finished_provisional_true_but_finished_false_still_triggers_autosub():
+    # Observed in production: FPL Draft can sit at finished=false /
+    # finished_provisional=true for days after full time while bonus
+    # points are confirmed. Waiting on the stricter flag meant an
+    # autosub that should have fired at the final whistle never did.
+    starters = base_starters()
+    bench = [player(12, "GKP", 1), player(14, "MID", 1), player(13, "DEF", 1), player(15, "FWD", 1)]
+    live_stats = {p["element"]: stats(90, 4) for p in starters}
+    live_stats[5] = stats(0, 0)
+    live_stats[14] = stats(90, 5)
+    for p in [bench[0], bench[2], bench[3]]:
+        live_stats[p["element"]] = stats(0, 0)
+    fixtures = [fixture(1, 2, finished=False, finished_provisional=True)]
+
+    result = calculate_effective_lineup(starters, bench, live_stats, fixtures)
+
+    assert {"player_out": 5, "player_in": 14, "reason": "starter_did_not_play"} in result["autosubs"]
+    assert result["is_final"] is True

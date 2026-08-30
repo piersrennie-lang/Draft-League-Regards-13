@@ -13,7 +13,7 @@ import json
 import pathlib
 
 import config
-from autosub import calculate_effective_lineup
+from autosub import calculate_effective_lineup, _fixture_over
 
 ROOT = pathlib.Path(__file__).parent
 RAW = ROOT / "data" / "raw"
@@ -319,6 +319,13 @@ def build_results(details, gw, managers, squads, live):
     """Every head-to-head fixture for the current gameweek, live or not --
     unlike build_matches() this doesn't filter down to finished ones, since
     the whole point is to show what's in progress right now.
+
+    While a match is still live, its score comes from our own projected
+    effective_xi_points rather than league_entry_1_points/
+    league_entry_2_points -- the FPL Draft API only applies autosubs once
+    the whole gameweek settles, so its own live number is just the raw
+    submitted-XI sum until then. Once finished, FPL's own number is
+    authoritative and used as-is.
     """
     remaining = fixtures_remaining(squads, live)
     rows = []
@@ -326,7 +333,11 @@ def build_results(details, gw, managers, squads, live):
         if m["event"] != gw:
             continue
         h, a = m["league_entry_1"], m["league_entry_2"]
-        hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        if m.get("finished"):
+            hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        else:
+            hp = squads.get(h, {}).get("effective_xi_points", m["league_entry_1_points"])
+            ap = squads.get(a, {}).get("effective_xi_points", m["league_entry_2_points"])
         rows.append({
             "home": h, "away": a,
             "home_name": managers[h]["manager"], "away_name": managers[a]["manager"],
@@ -819,7 +830,7 @@ def longest_streak(fixtures_asc, result):
     return best
 
 
-def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history):
+def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history, squads):
     """Everything a manager's own page needs: their fixture history and
     head-to-head record (from the full season schedule, so this only gets
     more interesting as more rounds are played), their biggest single-match
@@ -864,6 +875,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             if me not in managers or opp not in managers:
                 continue
             if m["event"] == gw:
+                if not m.get("finished"):
+                    mine = squads.get(me, {}).get("effective_xi_points", mine)
+                    theirs = squads.get(opp, {}).get("effective_xi_points", theirs)
                 current_fixture[me] = {
                     "gameweek": gw, "opponent": managers[opp]["manager"],
                     "points": mine, "against": theirs, "started": m.get("started", False),
@@ -934,7 +948,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     if live_squads_raw and live_gw_data:
         finished_clubs = {
             team_id
-            for f in (live_gw_data.get("fixtures") or []) if f.get("finished")
+            for f in (live_gw_data.get("fixtures") or []) if _fixture_over(f)
             for team_id in (f.get("team_h"), f.get("team_a"))
         }
         live_squads = build_squads(managers, live_squads_raw, live_gw_data, players)
@@ -1090,7 +1104,7 @@ def main():
         managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw)
     manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
     manager_profiles = build_manager_profiles(
-        details, managers, players, gw, totw_gw, load, manager_of_month["history"])
+        details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
     leaders = build_leaders(manager_profiles)
 
     gaps = []

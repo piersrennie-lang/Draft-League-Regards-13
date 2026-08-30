@@ -33,6 +33,17 @@ DEFINITELY_DID_NOT_PLAY = "DEFINITELY_DID_NOT_PLAY"
 NOT_PLAYED_YET = "NOT_PLAYED_YET"
 
 
+def _fixture_over(f):
+    """A fixture counts as over once full time is reached, not once FPL
+    has locked in bonus points. "finished" only flips after bonus/BPS is
+    confirmed, which in practice can lag "finished_provisional" (set at
+    the final whistle) by a long time -- observed here sitting at
+    finished=false / finished_provisional=true for days after kickoff.
+    Waiting on the stricter flag means an autosub that should have
+    triggered hours ago never does, so either flag is enough."""
+    return bool(f.get("finished") or f.get("finished_provisional"))
+
+
 def classify_status(team_id, minutes, fixtures):
     """One of PLAYED / DEFINITELY_DID_NOT_PLAY / NOT_PLAYED_YET for a
     player, given their club's id, their minutes played so far this
@@ -48,7 +59,7 @@ def classify_status(team_id, minutes, fixtures):
     if minutes and minutes > 0:
         return PLAYED
     team_fixtures = [f for f in fixtures if f.get("team_h") == team_id or f.get("team_a") == team_id]
-    if not team_fixtures or all(f.get("finished") for f in team_fixtures):
+    if not team_fixtures or all(_fixture_over(f) for f in team_fixtures):
         return DEFINITELY_DID_NOT_PLAY
     return NOT_PLAYED_YET
 
