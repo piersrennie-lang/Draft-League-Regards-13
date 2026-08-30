@@ -155,7 +155,7 @@
       <table class="grid grid--table">
         <thead><tr><th>GW</th><th>Opponent</th></tr></thead>
         <tbody>
-          {% for f in profile.future_fixtures %}
+          {% for f in profile.future_fixtures[:5] %}
           <tr>
             <td class="mute">{{ f.gameweek }}</td>
             <td>{{ macros.manager(f.opponent, avatars) }}</td>
