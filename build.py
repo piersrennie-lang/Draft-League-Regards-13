@@ -14,6 +14,9 @@ import json
 import pathlib
 import shutil
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
+LONDON = ZoneInfo("Europe/London")
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -33,8 +36,8 @@ def latest_gw():
 def friendly_time(iso):
     if not iso:
         return ""
-    dt = datetime.fromisoformat(iso.replace("Z", "+00:00"))
-    return dt.strftime("%d %b, %H:%M UTC")
+    dt = datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(LONDON)
+    return dt.strftime("%d %b, %H:%M %Z")
 
 
 def manager_slug(name):

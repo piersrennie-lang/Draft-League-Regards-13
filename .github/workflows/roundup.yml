@@ -1,9 +1,9 @@
 name: Build roundup
 
-# Every hour, so transfers and standings stay current through the week.
+# Every 15 minutes, so transfers and standings stay current through the week.
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 permissions:
