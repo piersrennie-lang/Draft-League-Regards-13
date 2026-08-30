@@ -17,6 +17,19 @@
   </div>
   <h1>{{ d.league.name }}</h1>
   <p class="standfirst">Updated {{ d.league.fetched_at | friendly_time }}</p>
+  {% if d.schedule.last_fixture or d.schedule.waivers_time or d.schedule.deadline_time %}
+  <div class="masthead__schedule">
+    {% if d.schedule.last_fixture %}
+    <p>Last game of the week: {{ d.schedule.last_fixture.home_team }} vs {{ d.schedule.last_fixture.away_team }} &middot; {{ d.schedule.last_fixture.kickoff_time | friendly_time }}</p>
+    {% endif %}
+    {% if d.schedule.waivers_time %}
+    <p>Waiver period starts (GW{{ d.schedule.next_gameweek }}): {{ d.schedule.waivers_time | friendly_time }}</p>
+    {% endif %}
+    {% if d.schedule.deadline_time %}
+    <p>Transfer window closes (GW{{ d.schedule.next_gameweek }}): {{ d.schedule.deadline_time | friendly_time }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
   <p class="standfirst">Gameweek {{ gw }}</p>
 </header>
 

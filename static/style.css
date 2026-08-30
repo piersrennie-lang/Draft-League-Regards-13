@@ -110,6 +110,11 @@ a { color: inherit; }
   margin-top: 0.3rem;
 }
 
+.masthead__schedule { margin: 0.6rem 0 0; max-width: 48ch; font-size: 0.875rem; line-height: 1.5; color: var(--mute); }
+@media (min-width: 640px) { .masthead__schedule { max-width: none; } }
+.masthead__schedule p { margin: 0; }
+.masthead__schedule p + p { margin-top: 0.15rem; }
+
 /* ----------------------------------------------------------------- tabs */
 
 .tabs {

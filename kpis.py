@@ -351,6 +351,35 @@ def build_results(details, gw, managers, squads, live):
     return rows
 
 
+def build_schedule(bootstrap, live, gw):
+    """When this gameweek's last real-world fixture kicks off, and when the
+    next gameweek's waiver and transfer windows move -- all sourced from
+    bootstrap_static's own events list (deadline_time/trades_time/
+    waivers_time per gameweek) plus this gameweek's own fixture list.
+    """
+    teams = {t["id"]: t.get("name", t.get("short_name", ""))
+             for t in (bootstrap or {}).get("teams", [])}
+    events = {e["id"]: e for e in (bootstrap or {}).get("events", {}).get("data", [])}
+
+    fixtures = [f for f in (live or {}).get("fixtures") or [] if f.get("kickoff_time")]
+    last_fixture = None
+    if fixtures:
+        f = max(fixtures, key=lambda f: f["kickoff_time"])
+        last_fixture = {
+            "home_team": teams.get(f.get("team_h"), "TBC"),
+            "away_team": teams.get(f.get("team_a"), "TBC"),
+            "kickoff_time": f["kickoff_time"],
+        }
+
+    next_event = events.get(gw + 1, {})
+    return {
+        "last_fixture": last_fixture,
+        "next_gameweek": gw + 1,
+        "waivers_time": next_event.get("waivers_time"),
+        "deadline_time": next_event.get("deadline_time"),
+    }
+
+
 def build_matches(details, gw, managers):
     rows = []
     for m in details["matches"]:
@@ -1085,6 +1114,7 @@ def main():
 
     squads = build_squads(managers, squads_raw, live, players)
     results = build_results(details, gw, managers, squads, live)
+    schedule = build_schedule(bootstrap, live, gw)
     releases = build_releases(managers, squads, results_by_entry)
     source = "computed"
     if not releases:
@@ -1135,6 +1165,7 @@ def main():
         "managers": {str(k): v for k, v in managers.items()},
         "matches": matches,
         "results": results,
+        "schedule": schedule,
         "squads": {str(k): v for k, v in squads.items()},
         "releases": releases,
         "release_efficiency": sorted(releases, key=lambda r: r["cost_pct"]),
