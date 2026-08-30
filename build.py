@@ -51,6 +51,12 @@ def main():
         transfers_current.append({"manager": m["manager"], "team": m["team"], **cur})
     transfers_current.sort(key=lambda t: t["manager"])
 
+    # Grouped by row for the pitch layout, back to front (attack to keeper).
+    totw_by_pos = {"FWD": [], "MID": [], "DEF": [], "GKP": []}
+    for p in data["team_of_week"]["players"]:
+        if p["pos"] in totw_by_pos:
+            totw_by_pos[p["pos"]].append(p)
+
     env = Environment(
         loader=FileSystemLoader(ROOT / "templates"),
         autoescape=select_autoescape(["html"]),
@@ -60,7 +66,8 @@ def main():
     env.filters["signed"] = lambda n: "" if not n else f"{'+' if n > 0 else ''}{n}"
     env.filters["friendly_time"] = friendly_time
 
-    render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current)
+    render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
+                          totw_by_pos=totw_by_pos)
 
     DIST.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "static", DIST / "static", dirs_exist_ok=True)
