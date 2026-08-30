@@ -269,7 +269,7 @@ code { font: 400 0.9em var(--data); }
   white-space: nowrap;
 }
 .grid td { padding: 0.65rem 0.55rem; border-bottom: 1px solid var(--hair); }
-.grid th:first-child, .grid td:first-child { padding-left: 0; }
+.grid th:first-child, .grid td:first-child { padding-left: 0; white-space: nowrap; }
 .grid th:last-child, .grid td:last-child { padding-right: 0; }
 .grid .num { text-align: right; font: 400 0.9375rem var(--data); font-variant-numeric: tabular-nums; }
 .grid th.num { text-align: right; }

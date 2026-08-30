@@ -35,7 +35,7 @@
   <h2 class="eyebrow">Standings</h2>
   <div class="table-scroll">
   <table class="grid grid--table">
-    <thead><tr><th>Pos</th><th>Manager</th><th class="num">P</th>
+    <thead><tr><th>Pos</th><th>Manager</th>
     <th class="num">W</th><th class="num">D</th><th class="num">L</th>
     <th class="num">For</th><th class="num">Ag</th>
     <th class="num">Pts</th><th class="num">Move</th></tr></thead>
@@ -44,7 +44,6 @@
       <tr>
         <td class="mute">{{ r.pos }}</td>
         <td class="strong">{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager|dname }}</td>
-        <td class="num">{{ r.played }}</td>
         <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
         <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>
         <td class="num strong">{{ r.points }}</td>
@@ -66,7 +65,7 @@
     <tbody>
       {% for t in transfers_current %}
       <tr>
-        <td>{{ t.manager|dname }}</td>
+        <td>{% if avatars.get(t.manager) %}<img class="avatar" src="{{ avatars[t.manager] }}" alt="">{% endif %}{{ t.manager|dname }}</td>
         <td>{{ t['in'] | join(', ') if t['in'] else 'None' }}</td>
         <td>{{ t.out | join(', ') if t.out else 'None' }}</td>
         <td class="num">{{ t.count }}</td>
@@ -94,7 +93,7 @@
     <tbody>
       {% for t in d.team_of_week.best_transfers %}
       <tr>
-        <td>{{ t.manager|dname }}</td>
+        <td>{% if avatars.get(t.manager) %}<img class="avatar" src="{{ avatars[t.manager] }}" alt="">{% endif %}{{ t.manager|dname }}</td>
         <td>{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td class="strong">{{ t.in_name }}</td>
@@ -116,7 +115,7 @@
     <tbody>
       {% for t in d.team_of_week.worst_transfers %}
       <tr>
-        <td>{{ t.manager|dname }}</td>
+        <td>{% if avatars.get(t.manager) %}<img class="avatar" src="{{ avatars[t.manager] }}" alt="">{% endif %}{{ t.manager|dname }}</td>
         <td class="strong">{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td>{{ t.in_name }}</td>
@@ -142,7 +141,7 @@
     <tbody>
       {% for r in d.releases %}
       <tr>
-        <td>{{ r.manager|dname }}</td>
+        <td>{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager|dname }}</td>
         <td>{{ r.tie | join(' or ') if r.tie else r.release }}</td>
         <td class="num">{{ r.release_points }}</td>
         <td class="num cost">{{ r.cost_pct }}%</td>
@@ -171,7 +170,7 @@
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>
-        <p class="pitch__manager">{{ p.manager|dname }}</p>
+        <p class="pitch__manager">{% if avatars.get(p.manager) %}<img class="avatar" src="{{ avatars[p.manager] }}" alt="">{% endif %}{{ p.manager|dname }}</p>
       </div>
       {% endfor %}
     </div>

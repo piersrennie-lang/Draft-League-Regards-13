@@ -11,7 +11,7 @@
     <tbody>
       {% for r in d.releases %}
       <tr>
-        <td>{{ r.manager|dname }}</td>
+        <td>{% if avatars.get(r.manager) %}<img class="avatar" src="{{ avatars[r.manager] }}" alt="">{% endif %}{{ r.manager|dname }}</td>
         <td>{{ r.tie | join(' or ') if r.tie else r.release }}</td>
         <td class="num">{{ r.release_points }}</td>
         <td class="num cost">{{ r.cost_pct }}%</td>
