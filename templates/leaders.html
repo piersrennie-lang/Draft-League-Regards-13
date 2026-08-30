@@ -97,7 +97,7 @@
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td class="wrap">{{ macros.manager(row.opponent, avatars) }}<br><span class="mute">GW{{ row.gameweek }}</span></td>
+            <td><a class="manager-link" href="manager-{{ row.opponent|slug }}.html">{{ row.opponent|dname }}</a> <span class="mute">GW{{ row.gameweek }}</span></td>
             <td class="num gain">{{ row.margin }}</td>
           </tr>
           {% endfor %}
