@@ -51,11 +51,6 @@
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>
-  <p class="lede">Resets every 4 gameweeks &mdash; GW1&ndash;4, GW5&ndash;8 and
-  so on. Standings below are the running total for the current block;
-  results finalise and a winner is crowned at the end of GW{{ d.manager_of_month.current.block_end if d.manager_of_month.current else 4 }},
-  then the next block starts fresh from zero.
-  <a href="manager-of-month.html">Past months &amp; the leaderboard &rarr;</a></p>
   {% if d.manager_of_month.current %}
   <p class="strong">
     GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
