@@ -72,7 +72,7 @@
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ row.name }} ({{ row.club }}) &middot; GW{{ row.gameweek }}</td>
+            <td class="wrap">{{ row.name }}<br><span class="mute">{{ row.club }} &middot; GW{{ row.gameweek }}</span></td>
             <td class="num">{{ row.points }}</td>
           </tr>
           {% endfor %}
