@@ -296,6 +296,7 @@ code { font: 400 0.9em var(--data); }
 .grid th.num { text-align: right; }
 .grid .mute { color: var(--mute); }
 .grid .strong { font-weight: 600; }
+p.strong { margin: 0 0 0.7rem; }
 .grid .cost { color: var(--claret); }
 .grid .gain { color: var(--pitch); }
 .grid tbody tr:hover { background: var(--panel); }
@@ -502,6 +503,7 @@ code { font: 400 0.9em var(--data); }
 /* -------------------------------------------------------------- cols-2 */
 
 .cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.8rem 2.5rem; }
+.cols-2 table.grid { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------- gaps */
 
