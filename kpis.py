@@ -64,6 +64,7 @@ def player_index(bootstrap):
             "name": p.get("web_name", str(p["id"])),
             "pos": types.get(p.get("element_type"), ""),
             "club": teams.get(p.get("team"), ""),
+            "team_id": p.get("team"),
             "photo": (f"https://resources.premierleague.com/premierleague/"
                       f"photos/players/110x140/p{p['code']}.png") if p.get("code") else "",
         }
@@ -111,6 +112,7 @@ def build_squads(managers, squads_raw, live, players):
                 "name": meta["name"],
                 "pos": meta["pos"],
                 "club": meta["club"],
+                "team_id": meta.get("team_id"),
                 "photo": meta.get("photo", ""),
                 "points": pts.get(eid, 0),
             }
@@ -241,6 +243,49 @@ def detect_breaches(prev_releases, squads):
 # --------------------------------------------------------------------------
 # Matches, entertainment, standings
 # --------------------------------------------------------------------------
+
+def fixtures_remaining(squads, live):
+    """How many of each manager's active-XI players' clubs haven't kicked
+    off yet this gameweek -- i.e. how much of their live score could still
+    move. Cross-references live_gw{n}.json's own real-world fixture list
+    (team_h/team_a, started) against each starter's club.
+    """
+    real_fixtures = (live or {}).get("fixtures") or []
+    not_started_clubs = set()
+    for f in real_fixtures:
+        if not f.get("started"):
+            not_started_clubs.add(f.get("team_h"))
+            not_started_clubs.add(f.get("team_a"))
+    return {
+        le: sum(1 for p in squad["xi"] if p.get("team_id") in not_started_clubs)
+        for le, squad in squads.items()
+    }
+
+
+def build_results(details, gw, managers, squads, live):
+    """Every head-to-head fixture for the current gameweek, live or not --
+    unlike build_matches() this doesn't filter down to finished ones, since
+    the whole point is to show what's in progress right now.
+    """
+    remaining = fixtures_remaining(squads, live)
+    rows = []
+    for m in details["matches"]:
+        if m["event"] != gw:
+            continue
+        h, a = m["league_entry_1"], m["league_entry_2"]
+        hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        rows.append({
+            "home": h, "away": a,
+            "home_name": managers[h]["manager"], "away_name": managers[a]["manager"],
+            "home_points": hp, "away_points": ap,
+            "home_remaining": remaining.get(h, 0),
+            "away_remaining": remaining.get(a, 0),
+            "started": m.get("started", False),
+            "finished": m.get("finished", False),
+            "winner": None if hp == ap else ("home" if hp > ap else "away"),
+        })
+    return rows
+
 
 def build_matches(details, gw, managers):
     rows = []
@@ -914,6 +959,7 @@ def main():
             }
 
     squads = build_squads(managers, squads_raw, live, players)
+    results = build_results(details, gw, managers, squads, live)
     releases = build_releases(managers, squads, results_by_entry)
     source = "computed"
     if not releases:
@@ -962,6 +1008,7 @@ def main():
         },
         "managers": {str(k): v for k, v in managers.items()},
         "matches": matches,
+        "results": results,
         "squads": {str(k): v for k, v in squads.items()},
         "releases": releases,
         "release_efficiency": sorted(releases, key=lambda r: r["cost_pct"]),
