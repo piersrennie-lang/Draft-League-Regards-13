@@ -5,7 +5,7 @@
   "season": "2026/27",
   "gameweek": 2,
   "next_gameweek": 3,
-  "fetched_at": "2026-08-31T20:47:30Z",
+  "fetched_at": "2026-08-31T21:02:37Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -98,7 +98,7 @@
    "away": 208632,
    "home_name": "Piers Rennie",
    "away_name": "Stefano Babiolakis",
-   "home_points": 41,
+   "home_points": 43,
    "away_points": 39,
    "home_remaining": 0,
    "away_remaining": 0,
@@ -124,7 +124,7 @@
    "away": 259872,
    "home_name": "Mattato Alcock",
    "away_name": "Roscoe Hill",
-   "home_points": 25,
+   "home_points": 36,
    "away_points": 44,
    "home_remaining": 0,
    "away_remaining": 0,
@@ -188,7 +188,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226597.png",
-     "points": 6
+     "points": 8
     },
     {
      "element": 356,
@@ -272,7 +272,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 41,
+   "effective_xi_points": 43,
    "autosubs": [
     {
      "player_out": 498,
@@ -298,6 +298,15 @@
      "points": 13
     },
     {
+     "element": 4,
+     "name": "Gabriel",
+     "pos": "DEF",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226597.png",
+     "points": 8
+    },
+    {
      "element": 464,
      "name": "Wissa",
      "pos": "FWD",
@@ -305,15 +314,6 @@
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p216646.png",
      "points": 8
-    },
-    {
-     "element": 4,
-     "name": "Gabriel",
-     "pos": "DEF",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226597.png",
-     "points": 6
     },
     {
      "element": 542,
@@ -426,7 +426,7 @@
      "points": 0
     }
    ],
-   "xi_points": 38,
+   "xi_points": 40,
    "bench_points": 5,
    "best_bench": {
     "element": 110,
@@ -555,8 +555,11 @@
      "reason": "starter_did_not_play"
     }
    ],
-   "unresolved_players": [],
-   "is_final": false,
+   "unresolved_players": [
+    166,
+    55
+   ],
+   "is_final": true,
    "xi": [
     {
      "element": 399,
@@ -990,15 +993,6 @@
      "points": 1
     },
     {
-     "element": 9,
-     "name": "Hincapie",
-     "pos": "DEF",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p448104.png",
-     "points": 0
-    },
-    {
      "element": 390,
      "name": "R\u00faben",
      "pos": "DEF",
@@ -1044,15 +1038,6 @@
      "points": 2
     },
     {
-     "element": 25,
-     "name": "Gy\u00f6keres",
-     "pos": "FWD",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p224117.png",
-     "points": 0
-    },
-    {
      "element": 79,
      "name": "Evanilson",
      "pos": "FWD",
@@ -1069,18 +1054,46 @@
      "team_id": 10,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p577725.png",
      "points": 2
+    },
+    {
+     "element": 449,
+     "name": "Hall",
+     "pos": "DEF",
+     "club": "NEW",
+     "team_id": 17,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p487838.png",
+     "points": 11
+    },
+    {
+     "element": 113,
+     "name": "F.Kad\u0131o\u011flu",
+     "pos": "DEF",
+     "club": "BHA",
+     "team_id": 5,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p231416.png",
+     "points": 0
     }
    ],
-   "effective_xi_points": 25,
+   "effective_xi_points": 36,
    "autosubs": [
     {
      "player_out": 431,
      "player_in": 268,
      "reason": "starter_did_not_play"
+    },
+    {
+     "player_out": 9,
+     "player_in": 449,
+     "reason": "starter_did_not_play"
+    },
+    {
+     "player_out": 25,
+     "player_in": 113,
+     "reason": "starter_did_not_play"
     }
    ],
    "unresolved_players": [],
-   "is_final": false,
+   "is_final": true,
    "xi": [
     {
      "element": 377,
@@ -2877,11 +2890,14 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p222531.png",
    "release_points": 13,
    "tie": [],
-   "next": "Wissa",
+   "next": "Gabriel",
    "next_points": 8,
-   "next_tie": [],
-   "score": 38,
-   "cost_pct": 34.2,
+   "next_tie": [
+    "Gabriel",
+    "Wissa"
+   ],
+   "score": 40,
+   "cost_pct": 32.5,
    "h2h": null
   },
   {
@@ -3137,11 +3153,14 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p222531.png",
    "release_points": 13,
    "tie": [],
-   "next": "Wissa",
+   "next": "Gabriel",
    "next_points": 8,
-   "next_tie": [],
-   "score": 38,
-   "cost_pct": 34.2,
+   "next_tie": [
+    "Gabriel",
+    "Wissa"
+   ],
+   "score": 40,
+   "cost_pct": 32.5,
    "h2h": null
   },
   {
@@ -3941,7 +3960,7 @@
    "current_fixture": {
     "gameweek": 2,
     "opponent": "Stefano Babiolakis",
-    "points": 41,
+    "points": 43,
     "against": 39,
     "started": true
    },
@@ -4150,7 +4169,7 @@
     "gameweek": 2,
     "opponent": "Piers Rennie",
     "points": 39,
-    "against": 41,
+    "against": 43,
     "started": true
    },
    "future_fixtures": [
@@ -4565,7 +4584,7 @@
    "current_fixture": {
     "gameweek": 2,
     "opponent": "Roscoe Hill",
-    "points": 25,
+    "points": 36,
     "against": 44,
     "started": true
    },
@@ -4743,10 +4762,10 @@
    "longest_win_streak": 0,
    "longest_loss_streak": 1,
    "best_player": {
-    "gameweek": 1,
-    "name": "Ndiaye",
-    "club": "EVE",
-    "points": 9
+    "gameweek": 2,
+    "name": "Hall",
+    "club": "NEW",
+    "points": 11
    },
    "most_beaten": null,
    "most_lost_to": {
@@ -5606,7 +5625,7 @@
     "gameweek": 2,
     "opponent": "Mattato Alcock",
     "points": 44,
-    "against": 25,
+    "against": 36,
     "started": true
    },
    "future_fixtures": [
