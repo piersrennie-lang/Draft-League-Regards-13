@@ -5,7 +5,7 @@
   "season": "2026/27",
   "gameweek": 2,
   "next_gameweek": 3,
-  "fetched_at": "2026-08-31T19:17:36Z",
+  "fetched_at": "2026-08-31T19:32:23Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -99,12 +99,12 @@
    "home_name": "Piers Rennie",
    "away_name": "Stefano Babiolakis",
    "home_points": 36,
-   "away_points": 36,
+   "away_points": 38,
    "home_remaining": 0,
    "away_remaining": 0,
    "started": true,
    "finished": false,
-   "winner": null
+   "winner": "away"
   },
   {
    "home": 209435,
@@ -485,7 +485,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 1
+     "points": 3
     },
     {
      "element": 399,
@@ -542,7 +542,7 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 36,
+   "effective_xi_points": 38,
    "autosubs": [
     {
      "player_out": 231,
@@ -592,6 +592,15 @@
      "points": 4
     },
     {
+     "element": 13,
+     "name": "Rice",
+     "pos": "MID",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
+     "points": 3
+    },
+    {
      "element": 393,
      "name": "Khusanov",
      "pos": "DEF",
@@ -608,15 +617,6 @@
      "team_id": 19,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p438234.png",
      "points": 2
-    },
-    {
-     "element": 13,
-     "name": "Rice",
-     "pos": "MID",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 1
     },
     {
      "element": 231,
@@ -693,7 +693,7 @@
      "points": 0
     }
    ],
-   "xi_points": 35,
+   "xi_points": 37,
    "bench_points": 2,
    "best_bench": {
     "element": 198,
@@ -2862,8 +2862,8 @@
     "Roefs",
     "Thiaw"
    ],
-   "score": 35,
-   "cost_pct": 40.0,
+   "score": 37,
+   "cost_pct": 37.8,
    "h2h": null
   },
   {
@@ -3132,21 +3132,6 @@
    "h2h": null
   },
   {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
-   "release": "Gibbs-White",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p222531.png",
-   "release_points": 13,
-   "tie": [],
-   "next": "Wissa",
-   "next_points": 8,
-   "next_tie": [],
-   "score": 33,
-   "cost_pct": 39.4,
-   "h2h": null
-  },
-  {
    "league_entry": 208632,
    "manager": "Stefano Babiolakis",
    "team": "Iraola Coaster",
@@ -3160,8 +3145,23 @@
     "Roefs",
     "Thiaw"
    ],
-   "score": 35,
-   "cost_pct": 40.0,
+   "score": 37,
+   "cost_pct": 37.8,
+   "h2h": null
+  },
+  {
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
+   "release": "Gibbs-White",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p222531.png",
+   "release_points": 13,
+   "tie": [],
+   "next": "Wissa",
+   "next_points": 8,
+   "next_tie": [],
+   "score": 33,
+   "cost_pct": 39.4,
    "h2h": null
   },
   {
@@ -3929,7 +3929,7 @@
     "gameweek": 2,
     "opponent": "Stefano Babiolakis",
     "points": 36,
-    "against": 36,
+    "against": 38,
     "started": true
    },
    "future_fixtures": [
@@ -4136,7 +4136,7 @@
    "current_fixture": {
     "gameweek": 2,
     "opponent": "Piers Rennie",
-    "points": 36,
+    "points": 38,
     "against": 36,
     "started": true
    },
