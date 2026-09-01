@@ -425,6 +425,20 @@ def rank_entertainment(matches):
     return order
 
 
+def gw_matches_finished(details, gw):
+    """True once every head-to-head match for this gameweek carries FPL
+    Draft's own "finished" flag -- the same signal build_standings()
+    already gates matches_played on. This can happen well before
+    game.json's current_event advances to the next gameweek (that only
+    flips once the *next* gameweek's own deadline passes), so waiting on
+    current_event to know a gameweek is "done" leaves Team of the Week,
+    Manager of the Week/Month and best/worst transfers stuck showing the
+    previous gameweek for days after this one has actually settled.
+    """
+    matches = [m for m in details["matches"] if m["event"] == gw]
+    return bool(matches) and all(m.get("finished") for m in matches)
+
+
 def build_standings(details, managers, upto_gw):
     """Recomputed from finished matches.
 
@@ -1091,10 +1105,12 @@ def main():
     raw_transactions = load("transactions")
 
     # Team of the week always shows the last gameweek whose squads and
-    # scores are fully settled -- one behind gw, since gw itself is still
-    # either in progress or just started (per fetch.py's current_event
-    # semantics). Floored at 1: there's no gameweek 0 to fall back to.
-    totw_gw = max(1, gw - 1)
+    # scores are fully settled. That's gw itself once its own matches have
+    # all finished -- no need to wait for current_event to advance to the
+    # next gameweek, which only happens once *that* gameweek's deadline
+    # passes and can lag the actual results by days. Otherwise fall back to
+    # gw-1, floored at 1 since there's no gameweek 0.
+    totw_gw = gw if gw_matches_finished(details, gw) else max(1, gw - 1)
     totw_squads_raw = load(f"squads_gw{totw_gw}")
     totw_live = load(f"live_gw{totw_gw}")
     prev_totw_squads_raw = load(f"squads_gw{totw_gw - 1}")
