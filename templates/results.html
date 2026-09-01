@@ -19,12 +19,14 @@
     </div>
     <div class="scoreline">
       <div class="side {{ 'side--won' if r.winner == 'home' }}">
-        <p class="side__mgr">{{ macros.manager(r.home_name, avatars) }}</p>
+        <p class="side__mgr">{{ macros.squad_link(r.home_name, avatars) }}</p>
         <p class="side__team">{{ r.home_remaining }} fixture{{ 's' if r.home_remaining != 1 }} remaining</p>
       </div>
-      <p class="score">{{ r.home_points }}<span>&ndash;</span>{{ r.away_points }}</p>
+      <p class="score">
+        <a class="score__link" href="squad-{{ r.home_name|slug }}.html">{{ r.home_points }}</a><span>&ndash;</span><a class="score__link" href="squad-{{ r.away_name|slug }}.html">{{ r.away_points }}</a>
+      </p>
       <div class="side side--right {{ 'side--won' if r.winner == 'away' }}">
-        <p class="side__mgr">{{ macros.manager(r.away_name, avatars) }}</p>
+        <p class="side__mgr">{{ macros.squad_link(r.away_name, avatars) }}</p>
         <p class="side__team">{{ r.away_remaining }} fixture{{ 's' if r.away_remaining != 1 }} remaining</p>
       </div>
     </div>

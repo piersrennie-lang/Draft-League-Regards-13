@@ -2,6 +2,10 @@
 <a class="manager-link" href="manager-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
 {%- endmacro %}
 
+{% macro squad_link(name, avatars) -%}
+<a class="manager-link" href="squad-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
+{%- endmacro %}
+
 {% macro player_photo(url, css_class) -%}
 <img class="{{ css_class }}" src="{{ url if url else 'static/players/placeholder.png' }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='static/players/placeholder.png';">
 {%- endmacro %}

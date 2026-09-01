@@ -152,6 +152,15 @@ def main():
         html = manager_template.render(profile_name=name, profile=profiles.get(name), **render_kwargs)
         (DIST / f"manager-{manager_slug(name)}.html").write_text(html)
 
+    # One live-squad page per manager for this gameweek -- starting XI and
+    # bench, with projected autosubs -- linked only from the Results page
+    # (its manager name/icon and score), not from the nav or manager profile.
+    squad_template = env.get_template("squad.html")
+    for le, m in data["managers"].items():
+        name = m["manager"]
+        html = squad_template.render(profile_name=name, squad=data["squads"].get(le), **render_kwargs)
+        (DIST / f"squad-{manager_slug(name)}.html").write_text(html)
+
     # Single file combining everything, CSS inlined, for sending round the
     # league the way the PDF used to go round -- not part of the site nav.
     combined = env.get_template("roundup.html").render(**render_kwargs)

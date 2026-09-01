@@ -223,6 +223,8 @@ code { font: 400 0.9em var(--data); }
   white-space: nowrap;
 }
 .score span { color: var(--rule); padding-inline: 0.12em; }
+.score__link { color: inherit; text-decoration: none; }
+.score__link:hover { text-decoration: underline; }
 
 .match__meta {
   display: flex;
