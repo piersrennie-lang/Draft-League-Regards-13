@@ -158,7 +158,16 @@ def main():
     squad_template = env.get_template("squad.html")
     for le, m in data["managers"].items():
         name = m["manager"]
-        html = squad_template.render(profile_name=name, squad=data["squads"].get(le), **render_kwargs)
+        squad = data["squads"].get(le)
+        squad_by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+        formation = None
+        if squad:
+            for p in squad["effective_xi"]:
+                if p["pos"] in squad_by_pos:
+                    squad_by_pos[p["pos"]].append(p)
+            formation = "-".join(str(len(squad_by_pos[pos])) for pos in ("DEF", "MID", "FWD"))
+        html = squad_template.render(profile_name=name, squad=squad, squad_by_pos=squad_by_pos,
+                                      formation=formation, **render_kwargs)
         (DIST / f"squad-{manager_slug(name)}.html").write_text(html)
 
     # Single file combining everything, CSS inlined, for sending round the

@@ -1,8 +1,9 @@
 {% extends "_base.html" %}
+{% import "_macros.html" as macros %}
 {% block title %}{{ profile_name }} squad &middot; {{ d.league.name }}{% endblock %}
 {% block content %}
 
-<section id="squad">
+<section id="squad" class="section--tight">
   <div class="profile-hero">
     {% if avatars.get(profile_name) %}<img class="profile-hero__photo" src="{{ avatars[profile_name] }}" alt="">{% endif %}
     <div>
@@ -11,30 +12,35 @@
     </div>
   </div>
 
-  {% if squad %}
-  {% set effective_ids = squad.effective_xi | map(attribute='element') | list %}
+  {% if squad and squad.effective_xi %}
   {% set autosub_ins = squad.autosubs | map(attribute='player_in') | list %}
+  <p class="totw-meta">
+    <span class="kicker">GW{{ gw }}</span>
+    <span class="totw-meta__result">{{ formation }} &middot; {{ squad.effective_xi_points }} pts</span>
+  </p>
+  <div class="pitch">
+    {% for row in [squad_by_pos.GKP, squad_by_pos.DEF, squad_by_pos.MID, squad_by_pos.FWD] %}
+    <div class="pitch__row">
+      {% for p in row %}
+      <div class="pitch__player">
+        {{ macros.player_photo(p.photo, 'pitch__photo') }}
+        <p class="pitch__club">{{ p.club }}</p>
+        <p class="pitch__name">{{ p.name }}</p>
+        <p class="pitch__pts">{{ p.points }} pts{% if p.element in autosub_ins %} &middot; auto-sub{% endif %}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  {% if not squad.is_final %}
+  <p class="note">Reflects projected autosubs and isn't final until GW{{ gw }} concludes.</p>
+  {% endif %}
+
+  {% set effective_ids = squad.effective_xi | map(attribute='element') | list %}
+  {% set bench_rows = squad.bench | rejectattr('element', 'in', effective_ids) | list %}
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Starting XI</p>
-      <div class="table-scroll">
-      <table class="grid grid--table">
-        <thead><tr><th>Pos</th><th>Player</th><th class="num">Pts</th></tr></thead>
-        <tbody>
-          {% for p in squad.effective_xi %}
-          <tr>
-            <td class="mute">{{ p.pos }}</td>
-            <td>{{ p.name }} <span class="mute">{{ p.club }}</span>{% if p.element in autosub_ins %} <span class="mute">(auto-sub)</span>{% endif %}</td>
-            <td class="num">{{ p.points }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
-    </div>
-    <div class="profile-panel">
       <p class="strong">Bench</p>
-      {% set bench_rows = squad.bench | rejectattr('element', 'in', effective_ids) | list %}
       {% if bench_rows %}
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -55,9 +61,6 @@
       {% endif %}
     </div>
   </div>
-  {% if not squad.is_final %}
-  <p class="note">Starting XI reflects projected autosubs and isn't final until GW{{ gw }} concludes.</p>
-  {% endif %}
   {% else %}
   <p class="pending">No squad data for GW{{ gw }}.</p>
   {% endif %}
