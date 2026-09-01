@@ -5,11 +5,13 @@
 
 <section id="squad" class="section--tight">
   <div class="profile-hero">
-    {% if avatars.get(profile_name) %}<img class="profile-hero__photo" src="{{ avatars[profile_name] }}" alt="">{% endif %}
-    <div>
-      <p class="profile-hero__eyebrow">GW{{ gw }} squad</p>
-      <h2 class="profile-hero__name">{{ profile_name }}</h2>
-    </div>
+    <a class="profile-hero__link" href="manager-{{ profile_name|slug }}.html">
+      {% if avatars.get(profile_name) %}<img class="profile-hero__photo" src="{{ avatars[profile_name] }}" alt="">{% endif %}
+      <div>
+        <p class="profile-hero__eyebrow">GW{{ gw }} squad</p>
+        <h2 class="profile-hero__name">{{ profile_name }}</h2>
+      </div>
+    </a>
   </div>
 
   {% if squad and squad.effective_xi %}
