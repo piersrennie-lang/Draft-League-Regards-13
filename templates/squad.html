@@ -37,7 +37,9 @@
   {% endif %}
 
   {% set effective_ids = squad.effective_xi | map(attribute='element') | list %}
-  {% set bench_rows = squad.bench | rejectattr('element', 'in', effective_ids) | list %}
+  {% set autosub_outs = squad.autosubs | map(attribute='player_out') | list %}
+  {% set subbed_off = squad.xi | selectattr('element', 'in', autosub_outs) | list %}
+  {% set bench_rows = (squad.bench | rejectattr('element', 'in', effective_ids) | list) + subbed_off %}
   <div class="profile-grid">
     <div class="profile-panel">
       <p class="strong">Bench</p>
@@ -49,7 +51,12 @@
           {% for p in bench_rows %}
           <tr>
             <td class="mute">{{ p.pos }}</td>
-            <td>{{ p.name }} <span class="mute">{{ p.club }}</span></td>
+            <td>
+              <div class="transfer-player">
+                {{ macros.player_photo(p.photo, 'transfer-photo') }}
+                <span>{{ p.name }} <span class="mute">{{ p.club }}</span>{% if p.element in autosub_outs %} <span class="mute">(subbed off)</span>{% endif %}</span>
+              </div>
+            </td>
             <td class="num">{{ p.points }}</td>
           </tr>
           {% endfor %}
