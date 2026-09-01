@@ -671,7 +671,7 @@ def build_team_of_week(managers, totw_squads):
     }
 
 
-def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_live):
+def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_live, prev_live):
     """Every qualifying transfer swap for the team-of-week gameweek, each
     with the point swing it produced.
 
@@ -682,10 +682,16 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
 
     Both sides have to have actually played, though: the outgoing player
     must have started (been in the active XI, not the bench) the previous
-    gameweek, and the incoming player must have started this one. A
-    benched player, either side, isn't a real comparison -- if the
-    pickup sat on the bench this week, there's nothing to compare their
-    non-existent contribution against.
+    gameweek AND actually taken the field for their club that gameweek
+    (minutes > 0), and the incoming player must have started this one AND
+    actually played too. Being picked in the fantasy XI isn't enough on
+    its own -- a starter who was themselves an unused sub in their real
+    match scores 0 with 0 minutes, and pairing that against a genuine
+    performance isn't a real swap, just noise (a real-world blank on one
+    side inflating or deflating a "transfer" that never really happened).
+    A fantasy-benched player, either side, isn't a real comparison either
+    -- if the pickup sat on the bench this week, there's nothing to
+    compare their non-existent contribution against.
 
     diff = in_points - out_points, using each player's real score that
     gameweek independent of who rostered them. Positive is a gain, a
@@ -700,6 +706,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         return []
 
     pts = live_points(totw_live)
+    prev_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(prev_live).items()}
+    curr_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(totw_live).items()}
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
 
     def describe(eid):
@@ -720,8 +728,10 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         prev_xi_ids = {p["element"] for p in prev_picks if p.get("position", 99) <= 11}
         curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
 
-        outs = [describe(eid) for eid in prev_ids - curr_ids if eid in prev_xi_ids]
-        ins = [row for row in squad["xi"] if row["element"] not in prev_ids]
+        outs = [describe(eid) for eid in prev_ids - curr_ids
+                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0]
+        ins = [row for row in squad["xi"]
+               if row["element"] not in prev_ids and curr_minutes.get(row["element"], 0) > 0]
         if not outs or not ins:
             continue
 
@@ -755,7 +765,7 @@ def best_and_worst_transfers(swaps, limit=5):
             [{**s, "loss": -s["diff"]} for s in worst])
 
 
-def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_raw):
+def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_raw, prev_live):
     """Each manager's score for one gameweek: active-XI points scored,
     plus the full point swing (see build_transfer_swaps) from any
     qualifying transfer that week -- deliberately double-weighting the
@@ -766,7 +776,8 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
     if not gw_squads_raw or not gw_live:
         return {}
     squads = build_squads(managers, gw_squads_raw, gw_live, players)
-    swaps = build_transfer_swaps(managers, players, squads, prev_squads_raw, gw_live) if prev_squads_raw else []
+    swaps = (build_transfer_swaps(managers, players, squads, prev_squads_raw, gw_live, prev_live)
+             if prev_squads_raw else [])
     swing = {}
     for s in swaps:
         swing[s["manager"]] = swing.get(s["manager"], 0) + s["diff"]
@@ -774,9 +785,9 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
             for le, squad in squads.items()}
 
 
-def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw):
+def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live):
     """Top 3 and worst 3 managers for the team-of-week gameweek."""
-    scores = manager_week_scores(managers, players, totw_squads_raw, totw_live, prev_totw_squads_raw)
+    scores = manager_week_scores(managers, players, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live)
     if not scores:
         return None
     ranked = sorted(scores.items(), key=lambda kv: -kv[1])
@@ -801,8 +812,9 @@ def _block_standings(managers, players, load_fn, block_start, block_end):
         if not g_squads_raw or not g_live:
             continue
         g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
+        g_prev_live = load_fn(f"live_gw{g - 1}") if g > 1 else None
         for manager_name, score in manager_week_scores(
-                managers, players, g_squads_raw, g_live, g_prev_squads_raw).items():
+                managers, players, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live).items():
             totals[manager_name] = totals.get(manager_name, 0) + score
     if not totals:
         return []
@@ -957,7 +969,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                 totw_appearances[le] += 1
 
         g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
-        week_scores = manager_week_scores(managers, players, g_squads_raw, g_live, g_prev_squads_raw)
+        g_prev_live = load_fn(f"live_gw{g - 1}") if g > 1 else None
+        week_scores = manager_week_scores(managers, players, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live)
         if week_scores:
             winner_name = max(week_scores.items(), key=lambda kv: kv[1])[0]
             le = by_manager.get(winner_name)
@@ -968,7 +981,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             continue
         if not g_prev_squads_raw:
             continue
-        swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live)
+        swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live, g_prev_live)
         for s in swaps:
             le = by_manager.get(s["manager"])
             if le is None:
@@ -1114,6 +1127,7 @@ def main():
     totw_squads_raw = load(f"squads_gw{totw_gw}")
     totw_live = load(f"live_gw{totw_gw}")
     prev_totw_squads_raw = load(f"squads_gw{totw_gw - 1}")
+    prev_totw_live = load(f"live_gw{totw_gw - 1}")
 
     managers = build_managers(details)
     matches = build_matches(details, gw, managers)
@@ -1142,11 +1156,11 @@ def main():
 
     totw_squads = build_squads(managers, totw_squads_raw, totw_live, players) if totw_squads_raw and totw_live else {}
     team_of_week = build_team_of_week(managers, totw_squads)
-    transfer_swaps = build_transfer_swaps(managers, players, totw_squads, prev_totw_squads_raw, totw_live)
+    transfer_swaps = build_transfer_swaps(managers, players, totw_squads, prev_totw_squads_raw, totw_live, prev_totw_live)
     best_transfers, worst_transfers = best_and_worst_transfers(transfer_swaps)
 
     manager_of_week = build_manager_of_week(
-        managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw)
+        managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live)
     manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
