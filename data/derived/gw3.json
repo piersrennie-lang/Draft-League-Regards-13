@@ -5,7 +5,7 @@
   "season": "2026/27",
   "gameweek": 3,
   "next_gameweek": 4,
-  "fetched_at": "2026-09-05T16:02:33Z",
+  "fetched_at": "2026-09-05T16:22:37Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -138,7 +138,7 @@
    "home_name": "Stefano Babiolakis",
    "away_name": "Brad Hill",
    "home_points": 15,
-   "away_points": 24,
+   "away_points": 22,
    "home_remaining": 3,
    "away_remaining": 4,
    "started": true,
@@ -1242,7 +1242,7 @@
      "club": "CRY",
      "team_id": 8,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p427623.png",
-     "points": 3
+     "points": 1
     },
     {
      "element": 148,
@@ -1308,7 +1308,7 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 24,
+   "effective_xi_points": 22,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -1332,15 +1332,6 @@
      "points": 7
     },
     {
-     "element": 202,
-     "name": "Richards",
-     "pos": "DEF",
-     "club": "CRY",
-     "team_id": 8,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p427623.png",
-     "points": 3
-    },
-    {
      "element": 127,
      "name": "Gomez",
      "pos": "MID",
@@ -1348,6 +1339,15 @@
      "team_id": 5,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p514254.png",
      "points": 2
+    },
+    {
+     "element": 202,
+     "name": "Richards",
+     "pos": "DEF",
+     "club": "CRY",
+     "team_id": 8,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p427623.png",
+     "points": 1
     },
     {
      "element": 88,
@@ -1451,7 +1451,7 @@
      "points": 0
     }
    ],
-   "xi_points": 24,
+   "xi_points": 22,
    "bench_points": 4,
    "best_bench": {
     "element": 385,
@@ -1569,7 +1569,10 @@
    ],
    "effective_xi_points": 17,
    "autosubs": [],
-   "unresolved_players": [],
+   "unresolved_players": [
+    387,
+    392
+   ],
    "is_final": false,
    "xi": [
     {
@@ -2827,8 +2830,8 @@
    "next": "Gu\u00e9hi",
    "next_points": 7,
    "next_tie": [],
-   "score": 24,
-   "cost_pct": 41.7,
+   "score": 22,
+   "cost_pct": 45.5,
    "h2h": null
   },
   {
@@ -3072,8 +3075,8 @@
    "next": "Gu\u00e9hi",
    "next_points": 7,
    "next_tie": [],
-   "score": 24,
-   "cost_pct": 41.7,
+   "score": 22,
+   "cost_pct": 45.5,
    "h2h": null
   }
  ],
@@ -4256,7 +4259,7 @@
     "gameweek": 3,
     "opponent": "Brad Hill",
     "points": 15,
-    "against": 24,
+    "against": 22,
     "started": true
    },
    "future_fixtures": [
@@ -4931,7 +4934,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Stefano Babiolakis",
-    "points": 24,
+    "points": 22,
     "against": 15,
     "started": true
    },
