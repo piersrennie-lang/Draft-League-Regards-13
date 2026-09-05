@@ -1402,7 +1402,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 84,
        "stat": "minutes"
       },
       {
@@ -1416,7 +1416,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 84,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -1435,8 +1435,8 @@
     "ict_index": 0.0,
     "starts": 1,
     "expected_goals": 0.0,
-    "expected_assists": 0.02,
-    "expected_goal_involvements": 0.02,
+    "expected_assists": 0.03,
+    "expected_goal_involvements": 0.03,
     "expected_goals_conceded": 0.23,
     "clearances_blocks_interceptions": 1,
     "recoveries": 1,
@@ -1453,7 +1453,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -1461,13 +1461,19 @@
        "points": 4,
        "value": 1,
        "stat": "clean_sheets"
+      },
+      {
+       "name": "Bonus",
+       "points": 1,
+       "value": 1,
+       "stat": "bonus"
       }
      ],
      25
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -1478,22 +1484,22 @@
     "yellow_cards": 0,
     "red_cards": 0,
     "saves": 0,
-    "bonus": 0,
-    "bps": 25,
+    "bonus": 1,
+    "bps": 28,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 1,
-    "expected_goals": 0.02,
-    "expected_assists": 0.01,
-    "expected_goal_involvements": 0.03,
-    "expected_goals_conceded": 0.23,
-    "clearances_blocks_interceptions": 3,
-    "recoveries": 1,
+    "expected_goals": 0.13,
+    "expected_assists": 0.02,
+    "expected_goal_involvements": 0.15,
+    "expected_goals_conceded": 0.58,
+    "clearances_blocks_interceptions": 4,
+    "recoveries": 3,
     "tackles": 1,
-    "defensive_contribution": 4,
-    "total_points": 6,
+    "defensive_contribution": 5,
+    "total_points": 7,
     "in_dreamteam": false
    }
   },
@@ -1594,64 +1600,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
-       "stat": "minutes"
-      },
-      {
-       "name": "Clean sheets",
-       "points": 4,
-       "value": 1,
-       "stat": "clean_sheets"
-      },
-      {
-       "name": "Bonus",
-       "points": 3,
-       "value": 3,
-       "stat": "bonus"
-      }
-     ],
-     25
-    ]
-   ],
-   "stats": {
-    "minutes": 72,
-    "goals_scored": 0,
-    "assists": 0,
-    "clean_sheets": 1,
-    "goals_conceded": 0,
-    "own_goals": 0,
-    "penalties_saved": 0,
-    "penalties_missed": 0,
-    "yellow_cards": 0,
-    "red_cards": 0,
-    "saves": 0,
-    "bonus": 3,
-    "bps": 28,
-    "influence": 0.0,
-    "creativity": 0.0,
-    "threat": 0.0,
-    "ict_index": 0.0,
-    "starts": 1,
-    "expected_goals": 0.0,
-    "expected_assists": 0.42,
-    "expected_goal_involvements": 0.42,
-    "expected_goals_conceded": 0.23,
-    "clearances_blocks_interceptions": 2,
-    "recoveries": 0,
-    "tackles": 1,
-    "defensive_contribution": 3,
-    "total_points": 9,
-    "in_dreamteam": true
-   }
-  },
-  "37": {
-   "explain": [
-    [
-     [
-      {
-       "name": "Minutes played",
-       "points": 2,
-       "value": 72,
+       "value": 74,
        "stat": "minutes"
       },
       {
@@ -1671,7 +1620,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 74,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -1683,21 +1632,72 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 1,
-    "bps": 26,
+    "bps": 28,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 1,
     "expected_goals": 0.0,
-    "expected_assists": 0.02,
-    "expected_goal_involvements": 0.02,
+    "expected_assists": 0.42,
+    "expected_goal_involvements": 0.42,
     "expected_goals_conceded": 0.23,
-    "clearances_blocks_interceptions": 3,
-    "recoveries": 2,
-    "tackles": 0,
+    "clearances_blocks_interceptions": 2,
+    "recoveries": 0,
+    "tackles": 1,
     "defensive_contribution": 3,
     "total_points": 7,
+    "in_dreamteam": false
+   }
+  },
+  "37": {
+   "explain": [
+    [
+     [
+      {
+       "name": "Minutes played",
+       "points": 2,
+       "value": 90,
+       "stat": "minutes"
+      },
+      {
+       "name": "Clean sheets",
+       "points": 4,
+       "value": 1,
+       "stat": "clean_sheets"
+      }
+     ],
+     25
+    ]
+   ],
+   "stats": {
+    "minutes": 90,
+    "goals_scored": 0,
+    "assists": 0,
+    "clean_sheets": 1,
+    "goals_conceded": 0,
+    "own_goals": 0,
+    "penalties_saved": 0,
+    "penalties_missed": 0,
+    "yellow_cards": 0,
+    "red_cards": 0,
+    "saves": 0,
+    "bonus": 0,
+    "bps": 27,
+    "influence": 0.0,
+    "creativity": 0.0,
+    "threat": 0.0,
+    "ict_index": 0.0,
+    "starts": 1,
+    "expected_goals": 0.0,
+    "expected_assists": 0.09,
+    "expected_goal_involvements": 0.09,
+    "expected_goals_conceded": 0.58,
+    "clearances_blocks_interceptions": 4,
+    "recoveries": 2,
+    "tackles": 0,
+    "defensive_contribution": 4,
+    "total_points": 6,
     "in_dreamteam": false
    }
   },
@@ -1843,7 +1843,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 74,
        "stat": "minutes"
       },
       {
@@ -1857,7 +1857,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 74,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -1869,7 +1869,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 4,
+    "bps": 2,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -2029,7 +2029,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -2043,7 +2043,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -2055,7 +2055,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 2,
+    "bps": 6,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -2064,11 +2064,11 @@
     "expected_goals": 0.62,
     "expected_assists": 0.02,
     "expected_goal_involvements": 0.64,
-    "expected_goals_conceded": 0.23,
+    "expected_goals_conceded": 0.58,
     "clearances_blocks_interceptions": 1,
     "recoveries": 2,
-    "tackles": 1,
-    "defensive_contribution": 4,
+    "tackles": 2,
+    "defensive_contribution": 5,
     "total_points": 3,
     "in_dreamteam": false
    }
@@ -2080,7 +2080,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -2094,7 +2094,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -2112,10 +2112,10 @@
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 1,
-    "expected_goals": 0.16,
-    "expected_assists": 0.08,
-    "expected_goal_involvements": 0.24,
-    "expected_goals_conceded": 0.23,
+    "expected_goals": 0.19,
+    "expected_assists": 0.09,
+    "expected_goal_involvements": 0.28,
+    "expected_goals_conceded": 0.58,
     "clearances_blocks_interceptions": 2,
     "recoveries": 4,
     "tackles": 0,
@@ -2131,7 +2131,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -2145,7 +2145,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -2157,7 +2157,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 16,
+    "bps": 20,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -2166,11 +2166,11 @@
     "expected_goals": 0.0,
     "expected_assists": 0.07,
     "expected_goal_involvements": 0.07,
-    "expected_goals_conceded": 0.23,
+    "expected_goals_conceded": 0.58,
     "clearances_blocks_interceptions": 3,
-    "recoveries": 5,
+    "recoveries": 6,
     "tackles": 1,
-    "defensive_contribution": 9,
+    "defensive_contribution": 10,
     "total_points": 3,
     "in_dreamteam": false
    }
@@ -2317,7 +2317,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 74,
        "stat": "minutes"
       },
       {
@@ -2331,7 +2331,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 74,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -2367,8 +2367,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 15,
        "stat": "minutes"
       }
      ],
@@ -2376,7 +2376,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 15,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -2388,7 +2388,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 3,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -2397,12 +2397,12 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
+    "expected_goals_conceded": 0.35,
     "clearances_blocks_interceptions": 0,
-    "recoveries": 0,
+    "recoveries": 1,
     "tackles": 0,
-    "defensive_contribution": 0,
-    "total_points": 0,
+    "defensive_contribution": 1,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -2547,8 +2547,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 5,
        "stat": "minutes"
       }
      ],
@@ -2556,7 +2556,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 5,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -2568,7 +2568,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 3,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -2577,12 +2577,12 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
+    "expected_goals_conceded": 0.35,
     "clearances_blocks_interceptions": 0,
     "recoveries": 0,
-    "tackles": 0,
-    "defensive_contribution": 0,
-    "total_points": 0,
+    "tackles": 1,
+    "defensive_contribution": 1,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -7413,8 +7413,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 15,
        "stat": "minutes"
       }
      ],
@@ -7422,7 +7422,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 15,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -7434,7 +7434,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 4,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -7443,12 +7443,12 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
+    "expected_goals_conceded": 0.35,
     "clearances_blocks_interceptions": 0,
     "recoveries": 0,
     "tackles": 0,
     "defensive_contribution": 0,
-    "total_points": 0,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -7684,7 +7684,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 84,
        "stat": "minutes"
       }
      ],
@@ -7692,7 +7692,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 84,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -7715,9 +7715,9 @@
     "expected_goal_involvements": 0.49,
     "expected_goals_conceded": 0.23,
     "clearances_blocks_interceptions": 0,
-    "recoveries": 1,
+    "recoveries": 2,
     "tackles": 0,
-    "defensive_contribution": 1,
+    "defensive_contribution": 2,
     "total_points": 2,
     "in_dreamteam": false
    }
@@ -12829,7 +12829,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -12843,7 +12843,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -12864,11 +12864,11 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 1.6,
-    "clearances_blocks_interceptions": 2,
+    "expected_goals_conceded": 1.74,
+    "clearances_blocks_interceptions": 4,
     "recoveries": 1,
-    "tackles": 2,
-    "defensive_contribution": 4,
+    "tackles": 3,
+    "defensive_contribution": 7,
     "total_points": 6,
     "in_dreamteam": false
    }
@@ -12925,7 +12925,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -12945,7 +12945,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -12957,7 +12957,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 15,
+    "bps": 17,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -12966,11 +12966,11 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 1.6,
-    "clearances_blocks_interceptions": 4,
+    "expected_goals_conceded": 1.74,
+    "clearances_blocks_interceptions": 5,
     "recoveries": 1,
-    "tackles": 0,
-    "defensive_contribution": 4,
+    "tackles": 1,
+    "defensive_contribution": 6,
     "total_points": 5,
     "in_dreamteam": false
    }
@@ -13078,7 +13078,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -13086,13 +13086,19 @@
        "points": 4,
        "value": 1,
        "stat": "clean_sheets"
+      },
+      {
+       "name": "Bonus",
+       "points": 2,
+       "value": 2,
+       "stat": "bonus"
       }
      ],
      25
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -13103,22 +13109,22 @@
     "yellow_cards": 0,
     "red_cards": 0,
     "saves": 0,
-    "bonus": 0,
-    "bps": 22,
+    "bonus": 2,
+    "bps": 30,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 1,
     "expected_goals": 0.0,
-    "expected_assists": 0.01,
-    "expected_goal_involvements": 0.01,
-    "expected_goals_conceded": 1.6,
-    "clearances_blocks_interceptions": 1,
+    "expected_assists": 0.04,
+    "expected_goal_involvements": 0.04,
+    "expected_goals_conceded": 1.74,
+    "clearances_blocks_interceptions": 3,
     "recoveries": 4,
-    "tackles": 0,
-    "defensive_contribution": 1,
-    "total_points": 6,
+    "tackles": 1,
+    "defensive_contribution": 4,
+    "total_points": 8,
     "in_dreamteam": false
    }
   },
@@ -13264,7 +13270,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 81,
        "stat": "minutes"
       },
       {
@@ -13284,7 +13290,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 81,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -13305,7 +13311,7 @@
     "expected_goals": 0.03,
     "expected_assists": 0.01,
     "expected_goal_involvements": 0.04,
-    "expected_goals_conceded": 1.6,
+    "expected_goals_conceded": 1.74,
     "clearances_blocks_interceptions": 8,
     "recoveries": 1,
     "tackles": 3,
@@ -13456,7 +13462,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -13470,7 +13476,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -13482,7 +13488,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 8,
+    "bps": 11,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -13491,11 +13497,11 @@
     "expected_goals": 0.04,
     "expected_assists": 0.01,
     "expected_goal_involvements": 0.05,
-    "expected_goals_conceded": 1.6,
-    "clearances_blocks_interceptions": 2,
-    "recoveries": 0,
+    "expected_goals_conceded": 1.74,
+    "clearances_blocks_interceptions": 3,
+    "recoveries": 3,
     "tackles": 0,
-    "defensive_contribution": 2,
+    "defensive_contribution": 6,
     "total_points": 3,
     "in_dreamteam": false
    }
@@ -13687,7 +13693,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       }
      ],
@@ -13695,7 +13701,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -13707,20 +13713,20 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 5,
+    "bps": 4,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 1,
-    "expected_goals": 0.09,
-    "expected_assists": 0.01,
-    "expected_goal_involvements": 0.1,
-    "expected_goals_conceded": 1.6,
-    "clearances_blocks_interceptions": 0,
+    "expected_goals": 0.39,
+    "expected_assists": 0.05,
+    "expected_goal_involvements": 0.44,
+    "expected_goals_conceded": 1.74,
+    "clearances_blocks_interceptions": 1,
     "recoveries": 0,
-    "tackles": 1,
-    "defensive_contribution": 1,
+    "tackles": 2,
+    "defensive_contribution": 3,
     "total_points": 2,
     "in_dreamteam": false
    }
@@ -23352,7 +23358,7 @@
     "tackles": 1,
     "defensive_contribution": 4,
     "total_points": 9,
-    "in_dreamteam": false
+    "in_dreamteam": true
    }
   },
   "500": {
@@ -26731,7 +26737,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -26745,7 +26751,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -26757,7 +26763,7 @@
     "red_cards": 0,
     "saves": 1,
     "bonus": 0,
-    "bps": 25,
+    "bps": 26,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -26766,9 +26772,9 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 1.6,
+    "expected_goals_conceded": 1.74,
     "clearances_blocks_interceptions": 0,
-    "recoveries": 8,
+    "recoveries": 10,
     "tackles": 0,
     "defensive_contribution": 0,
     "total_points": 6,
@@ -26961,8 +26967,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 8,
        "stat": "minutes"
       }
      ],
@@ -26970,7 +26976,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 8,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -26982,7 +26988,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 4,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -26993,10 +26999,10 @@
     "expected_goal_involvements": 0.0,
     "expected_goals_conceded": 0.0,
     "clearances_blocks_interceptions": 0,
-    "recoveries": 0,
+    "recoveries": 1,
     "tackles": 0,
-    "defensive_contribution": 0,
-    "total_points": 0,
+    "defensive_contribution": 1,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -27391,7 +27397,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 1,
+       "value": 19,
        "stat": "minutes"
       }
      ],
@@ -27399,7 +27405,7 @@
     ]
    ],
    "stats": {
-    "minutes": 1,
+    "minutes": 19,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -27411,7 +27417,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 3,
+    "bps": 2,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -27420,11 +27426,11 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
-    "clearances_blocks_interceptions": 0,
-    "recoveries": 0,
-    "tackles": 0,
-    "defensive_contribution": 0,
+    "expected_goals_conceded": 0.14,
+    "clearances_blocks_interceptions": 1,
+    "recoveries": 1,
+    "tackles": 1,
+    "defensive_contribution": 2,
     "total_points": 1,
     "in_dreamteam": false
    }
@@ -27595,7 +27601,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 81,
        "stat": "minutes"
       },
       {
@@ -27615,7 +27621,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 81,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -27636,11 +27642,11 @@
     "expected_goals": 0.0,
     "expected_assists": 0.01,
     "expected_goal_involvements": 0.01,
-    "expected_goals_conceded": 1.6,
-    "clearances_blocks_interceptions": 3,
-    "recoveries": 4,
+    "expected_goals_conceded": 1.74,
+    "clearances_blocks_interceptions": 4,
+    "recoveries": 5,
     "tackles": 2,
-    "defensive_contribution": 9,
+    "defensive_contribution": 11,
     "total_points": 2,
     "in_dreamteam": false
    }
@@ -27939,8 +27945,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 15,
        "stat": "minutes"
       }
      ],
@@ -27948,7 +27954,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 15,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -27960,21 +27966,21 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 3,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 0,
     "expected_goals": 0.0,
-    "expected_assists": 0.0,
-    "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
-    "clearances_blocks_interceptions": 0,
-    "recoveries": 0,
+    "expected_assists": 0.01,
+    "expected_goal_involvements": 0.01,
+    "expected_goals_conceded": 0.35,
+    "clearances_blocks_interceptions": 1,
+    "recoveries": 2,
     "tackles": 0,
-    "defensive_contribution": 0,
-    "total_points": 0,
+    "defensive_contribution": 1,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -27985,7 +27991,7 @@
       {
        "name": "Minutes played",
        "points": 2,
-       "value": 72,
+       "value": 90,
        "stat": "minutes"
       },
       {
@@ -27997,7 +28003,7 @@
       {
        "name": "Saves",
        "points": 1,
-       "value": 3,
+       "value": 4,
        "stat": "saves"
       },
       {
@@ -28011,7 +28017,7 @@
     ]
    ],
    "stats": {
-    "minutes": 72,
+    "minutes": 90,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 1,
@@ -28021,9 +28027,9 @@
     "penalties_missed": 0,
     "yellow_cards": 0,
     "red_cards": 0,
-    "saves": 3,
+    "saves": 4,
     "bonus": 3,
-    "bps": 28,
+    "bps": 37,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -28032,9 +28038,9 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.23,
+    "expected_goals_conceded": 0.58,
     "clearances_blocks_interceptions": 1,
-    "recoveries": 10,
+    "recoveries": 13,
     "tackles": 0,
     "defensive_contribution": 0,
     "total_points": 10,
@@ -28638,8 +28644,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 5,
        "stat": "minutes"
       }
      ],
@@ -28647,7 +28653,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 5,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -28659,7 +28665,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 3,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -28668,12 +28674,12 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
-    "clearances_blocks_interceptions": 0,
+    "expected_goals_conceded": 0.35,
+    "clearances_blocks_interceptions": 1,
     "recoveries": 0,
     "tackles": 0,
-    "defensive_contribution": 0,
-    "total_points": 0,
+    "defensive_contribution": 1,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -28953,8 +28959,8 @@
      [
       {
        "name": "Minutes played",
-       "points": 0,
-       "value": 0,
+       "points": 1,
+       "value": 8,
        "stat": "minutes"
       }
      ],
@@ -28962,7 +28968,7 @@
     ]
    ],
    "stats": {
-    "minutes": 0,
+    "minutes": 8,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -28974,21 +28980,21 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 0,
+    "bps": 2,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 0,
-    "expected_goals": 0.0,
+    "expected_goals": 0.05,
     "expected_assists": 0.0,
-    "expected_goal_involvements": 0.0,
+    "expected_goal_involvements": 0.05,
     "expected_goals_conceded": 0.0,
     "clearances_blocks_interceptions": 0,
     "recoveries": 0,
     "tackles": 0,
     "defensive_contribution": 0,
-    "total_points": 0,
+    "total_points": 1,
     "in_dreamteam": false
    }
   },
@@ -30091,7 +30097,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 8,
+       "value": 26,
        "stat": "minutes"
       }
      ],
@@ -30099,7 +30105,7 @@
     ]
    ],
    "stats": {
-    "minutes": 8,
+    "minutes": 26,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -30120,11 +30126,11 @@
     "expected_goals": 0.0,
     "expected_assists": 0.0,
     "expected_goal_involvements": 0.0,
-    "expected_goals_conceded": 0.0,
-    "clearances_blocks_interceptions": 0,
-    "recoveries": 0,
+    "expected_goals_conceded": 0.14,
+    "clearances_blocks_interceptions": 1,
+    "recoveries": 2,
     "tackles": 0,
-    "defensive_contribution": 0,
+    "defensive_contribution": 1,
     "total_points": 1,
     "in_dreamteam": false
    }
@@ -30136,7 +30142,7 @@
       {
        "name": "Minutes played",
        "points": 1,
-       "value": 9,
+       "value": 27,
        "stat": "minutes"
       }
      ],
@@ -30144,7 +30150,7 @@
     ]
    ],
    "stats": {
-    "minutes": 9,
+    "minutes": 27,
     "goals_scored": 0,
     "assists": 0,
     "clean_sheets": 0,
@@ -30156,16 +30162,16 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 3,
+    "bps": 4,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
     "ict_index": 0.0,
     "starts": 0,
     "expected_goals": 0.0,
-    "expected_assists": 0.03,
-    "expected_goal_involvements": 0.03,
-    "expected_goals_conceded": 0.0,
+    "expected_assists": 0.04,
+    "expected_goal_involvements": 0.04,
+    "expected_goals_conceded": 0.14,
     "clearances_blocks_interceptions": 0,
     "recoveries": 0,
     "tackles": 0,
@@ -33057,24 +33063,29 @@
      "a": [
       {
        "element": 597,
-       "value": 3
+       "value": 4
       }
      ]
     },
     {
      "s": "bonus",
-     "h": [],
-     "a": [
+     "h": [
       {
-       "element": 36,
-       "value": 3
-      },
+       "element": 282,
+       "value": 2
+      }
+     ],
+     "a": [
       {
        "element": 597,
        "value": 3
       },
       {
-       "element": 37,
+       "element": 33,
+       "value": 1
+      },
+      {
+       "element": 36,
        "value": 1
       }
      ]
@@ -33083,16 +33094,16 @@
      "s": "bps",
      "h": [
       {
+       "element": 282,
+       "value": 30
+      },
+      {
        "element": 571,
-       "value": 25
+       "value": 26
       },
       {
        "element": 586,
        "value": 24
-      },
-      {
-       "element": 282,
-       "value": 22
       },
       {
        "element": 280,
@@ -33104,7 +33115,7 @@
       },
       {
        "element": 279,
-       "value": 15
+       "value": 17
       },
       {
        "element": 286,
@@ -33112,60 +33123,68 @@
       },
       {
        "element": 290,
-       "value": 8
+       "value": 11
       },
       {
        "element": 589,
        "value": 7
       },
       {
-       "element": 295,
-       "value": 5
-      },
-      {
        "element": 577,
        "value": 5
       },
       {
-       "element": 585,
-       "value": 3
+       "element": 295,
+       "value": 4
+      },
+      {
+       "element": 576,
+       "value": 4
+      },
+      {
+       "element": 644,
+       "value": 4
       },
       {
        "element": 643,
        "value": 3
       },
       {
-       "element": 644,
-       "value": 3
+       "element": 585,
+       "value": 2
+      },
+      {
+       "element": 618,
+       "value": 2
       }
      ],
      "a": [
+      {
+       "element": 597,
+       "value": 37
+      },
+      {
+       "element": 33,
+       "value": 28
+      },
       {
        "element": 36,
        "value": 28
       },
       {
-       "element": 597,
-       "value": 28
-      },
-      {
        "element": 37,
-       "value": 26
-      },
-      {
-       "element": 33,
-       "value": 25
+       "value": 27
       },
       {
        "element": 32,
        "value": 23
       },
       {
-       "element": 46,
-       "value": 16
+       "element": 47,
+       "value": 20
       },
       {
-       "element": 47,
+       "element": 46,
        "value": 16
       },
       {
@@ -33177,11 +33196,31 @@
        "value": 8
       },
       {
-       "element": 41,
+       "element": 45,
+       "value": 6
+      },
+      {
+       "element": 160,
        "value": 4
       },
       {
-       "element": 45,
+       "element": 52,
+       "value": 3
+      },
+      {
+       "element": 56,
+       "value": 3
+      },
+      {
+       "element": 596,
+       "value": 3
+      },
+      {
+       "element": 611,
+       "value": 3
+      },
+      {
+       "element": 41,
        "value": 2
       }
      ]
@@ -33194,42 +33233,54 @@
        "value": 12
       },
       {
+       "element": 589,
+       "value": 11
+      },
+      {
        "element": 586,
        "value": 10
       },
       {
-       "element": 589,
-       "value": 9
-      },
-      {
        "element": 277,
-       "value": 4
+       "value": 7
       },
       {
        "element": 279,
-       "value": 4
+       "value": 6
       },
       {
        "element": 290,
-       "value": 2
+       "value": 6
+      },
+      {
+       "element": 282,
+       "value": 4
+      },
+      {
+       "element": 295,
+       "value": 3
       },
       {
        "element": 577,
        "value": 2
       },
       {
-       "element": 282,
+       "element": 585,
+       "value": 2
+      },
+      {
+       "element": 576,
        "value": 1
       },
       {
-       "element": 295,
+       "element": 643,
        "value": 1
       }
      ],
      "a": [
       {
        "element": 47,
-       "value": 9
+       "value": 10
       },
       {
        "element": 51,
@@ -33241,10 +33292,14 @@
       },
       {
        "element": 33,
-       "value": 4
+       "value": 5
       },
       {
        "element": 45,
+       "value": 5
+      },
+      {
+       "element": 37,
        "value": 4
       },
       {
@@ -33252,11 +33307,11 @@
        "value": 3
       },
       {
-       "element": 37,
-       "value": 3
+       "element": 41,
+       "value": 2
       },
       {
-       "element": 41,
+       "element": 166,
        "value": 2
       },
       {
@@ -33264,7 +33319,19 @@
        "value": 1
       },
       {
-       "element": 166,
+       "element": 52,
+       "value": 1
+      },
+      {
+       "element": 56,
+       "value": 1
+      },
+      {
+       "element": 596,
+       "value": 1
+      },
+      {
+       "element": 611,
        "value": 1
       }
      ]
