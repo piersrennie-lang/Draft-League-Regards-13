@@ -5,7 +5,7 @@
   "season": "2026/27",
   "gameweek": 3,
   "next_gameweek": 4,
-  "fetched_at": "2026-09-05T13:02:55Z",
+  "fetched_at": "2026-09-05T13:21:25Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -99,7 +99,7 @@
    "home_name": "Michael Lavarack",
    "away_name": "Piers Rennie",
    "home_points": 0,
-   "away_points": 24,
+   "away_points": 27,
    "home_remaining": 11,
    "away_remaining": 6,
    "started": true,
@@ -111,7 +111,7 @@
    "away": 255427,
    "home_name": "Roscoe Hill",
    "away_name": "Matthew Lees",
-   "home_points": 9,
+   "home_points": 6,
    "away_points": 1,
    "home_remaining": 7,
    "away_remaining": 10,
@@ -242,7 +242,7 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
-     "points": 8
+     "points": 11
     },
     {
      "element": 295,
@@ -272,20 +272,11 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 24,
+   "effective_xi_points": 27,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
    "xi": [
-    {
-     "element": 350,
-     "name": "A.Becker",
-     "pos": "GKP",
-     "club": "LIV",
-     "team_id": 14,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png",
-     "points": 8
-    },
     {
      "element": 453,
      "name": "Barnes",
@@ -293,6 +284,15 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+     "points": 11
+    },
+    {
+     "element": 350,
+     "name": "A.Becker",
+     "pos": "GKP",
+     "club": "LIV",
+     "team_id": 14,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png",
      "points": 8
     },
     {
@@ -415,7 +415,7 @@
      "points": 0
     }
    ],
-   "xi_points": 24,
+   "xi_points": 27,
    "bench_points": 0,
    "best_bench": {
     "element": 110,
@@ -2260,7 +2260,7 @@
      "club": "BOU",
      "team_id": 3,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p463981.png",
-     "points": 2
+     "points": 1
     },
     {
      "element": 61,
@@ -2269,7 +2269,7 @@
      "club": "BOU",
      "team_id": 3,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p494521.png",
-     "points": 2
+     "points": 0
     },
     {
      "element": 533,
@@ -2344,7 +2344,7 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 9,
+   "effective_xi_points": 6,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2359,24 +2359,6 @@
      "points": 3
     },
     {
-     "element": 60,
-     "name": "Hill",
-     "pos": "DEF",
-     "club": "BOU",
-     "team_id": 3,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p463981.png",
-     "points": 2
-    },
-    {
-     "element": 61,
-     "name": "Truffert",
-     "pos": "DEF",
-     "club": "BOU",
-     "team_id": 3,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p494521.png",
-     "points": 2
-    },
-    {
      "element": 67,
      "name": "Rayan",
      "pos": "MID",
@@ -2386,12 +2368,30 @@
      "points": 2
     },
     {
+     "element": 60,
+     "name": "Hill",
+     "pos": "DEF",
+     "club": "BOU",
+     "team_id": 3,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p463981.png",
+     "points": 1
+    },
+    {
      "element": 82,
      "name": "Kelleher",
      "pos": "GKP",
      "club": "BRE",
      "team_id": 4,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200720.png",
+     "points": 0
+    },
+    {
+     "element": 61,
+     "name": "Truffert",
+     "pos": "DEF",
+     "club": "BOU",
+     "team_id": 3,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p494521.png",
      "points": 0
     },
     {
@@ -2487,7 +2487,7 @@
      "points": 0
     }
    ],
-   "xi_points": 9,
+   "xi_points": 6,
    "bench_points": 0,
    "best_bench": {
     "element": 1,
@@ -2498,7 +2498,7 @@
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p154561.png",
     "points": 0
    },
-   "blanks": 7,
+   "blanks": 8,
    "wasted": 0
   },
   "260926": {
@@ -2780,6 +2780,21 @@
    "h2h": null
   },
   {
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
+   "release": "Barnes",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+   "release_points": 11,
+   "tie": [],
+   "next": "A.Becker",
+   "next_points": 8,
+   "next_tie": [],
+   "score": 27,
+   "cost_pct": 40.7,
+   "h2h": null
+  },
+  {
    "league_entry": 209435,
    "manager": "Nicolas Rubin",
    "team": "25/26 Champion",
@@ -2821,30 +2836,6 @@
    "h2h": null
   },
   {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
-   "release": "A.Becker",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png",
-   "release_points": 8,
-   "tie": [
-    {
-     "name": "A.Becker",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png"
-    },
-    {
-     "name": "Barnes",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png"
-    }
-   ],
-   "next": "Virgil",
-   "next_points": 6,
-   "next_tie": [],
-   "score": 24,
-   "cost_pct": 33.3,
-   "h2h": null
-  },
-  {
    "league_entry": 242301,
    "manager": "Mattato Alcock",
    "team": "AlcockXI",
@@ -2867,15 +2858,11 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png",
    "release_points": 3,
    "tie": [],
-   "next": "Hill",
+   "next": "Rayan",
    "next_points": 2,
-   "next_tie": [
-    "Hill",
-    "Truffert",
-    "Rayan"
-   ],
-   "score": 9,
-   "cost_pct": 33.3,
+   "next_tie": [],
+   "score": 6,
+   "cost_pct": 50.0,
    "h2h": null
   },
   {
@@ -3168,43 +3155,15 @@
    "league_entry": 207565,
    "manager": "Piers Rennie",
    "team": "Mendls Macaroons",
-   "release": "A.Becker",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png",
-   "release_points": 8,
-   "tie": [
-    {
-     "name": "A.Becker",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png"
-    },
-    {
-     "name": "Barnes",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png"
-    }
-   ],
-   "next": "Virgil",
-   "next_points": 6,
-   "next_tie": [],
-   "score": 24,
-   "cost_pct": 33.3,
-   "h2h": null
-  },
-  {
-   "league_entry": 259872,
-   "manager": "Roscoe Hill",
-   "team": "Mbeumo my Cunha",
-   "release": "Szoboszlai",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png",
-   "release_points": 3,
+   "release": "Barnes",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+   "release_points": 11,
    "tie": [],
-   "next": "Hill",
-   "next_points": 2,
-   "next_tie": [
-    "Hill",
-    "Truffert",
-    "Rayan"
-   ],
-   "score": 9,
-   "cost_pct": 33.3,
+   "next": "A.Becker",
+   "next_points": 8,
+   "next_tie": [],
+   "score": 27,
+   "cost_pct": 40.7,
    "h2h": null
   },
   {
@@ -3220,6 +3179,21 @@
    "next_tie": [],
    "score": 26,
    "cost_pct": 42.3,
+   "h2h": null
+  },
+  {
+   "league_entry": 259872,
+   "manager": "Roscoe Hill",
+   "team": "Mbeumo my Cunha",
+   "release": "Szoboszlai",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png",
+   "release_points": 3,
+   "tie": [],
+   "next": "Rayan",
+   "next_points": 2,
+   "next_tie": [],
+   "score": 6,
+   "cost_pct": 50.0,
    "h2h": null
   },
   {
@@ -4287,7 +4261,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Michael Lavarack",
-    "points": 24,
+    "points": 27,
     "against": 0,
     "started": true
    },
@@ -5630,7 +5604,7 @@
     "gameweek": 3,
     "opponent": "Roscoe Hill",
     "points": 1,
-    "against": 9,
+    "against": 6,
     "started": true
    },
    "future_fixtures": [
@@ -5862,7 +5836,7 @@
     "gameweek": 3,
     "opponent": "Piers Rennie",
     "points": 0,
-    "against": 24,
+    "against": 27,
     "started": true
    },
    "future_fixtures": [
@@ -6093,7 +6067,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Matthew Lees",
-    "points": 9,
+    "points": 6,
     "against": 1,
     "started": true
    },
