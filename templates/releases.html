@@ -6,7 +6,13 @@
 <section id="releases" class="section--tight">
   <div class="profile-grid">
     <div class="profile-panel">
-      <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
+      <label class="eyebrow eyebrow--sm" for="gw-select">Gameweek</label>
+      <select id="gw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+        {% for g in available_gws|reverse %}
+        <option value="{{ 'releases.html' if g == current_gw else 'releases-gw' ~ g ~ '.html' }}"{% if g == gw %} selected{% endif %}>GW{{ g }}{% if g == current_gw %} &middot; current{% endif %}</option>
+        {% endfor %}
+      </select>
+      <p class="strong">Must release before GW{{ next_gw }}</p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th></tr></thead>

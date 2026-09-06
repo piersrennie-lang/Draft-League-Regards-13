@@ -135,8 +135,7 @@ def main():
 
     # Three real pages, each its own file, so navigating between them is a
     # normal page load rather than jumping to an anchor on one big page.
-    pages = {"leaders": "leaders", "index": "standings",
-              "releases": "releases", "manager-of-week": "manager-of-week"}
+    pages = {"leaders": "leaders", "index": "standings", "manager-of-week": "manager-of-week"}
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
         (DIST / f"{filename}.html").write_text(html)
@@ -171,6 +170,18 @@ def main():
                                           available_gws=available_gws, next_gw=g + 1,
                                           transfers_current=g_transfers_current, totw_by_pos=totw_by_pos,
                                           css_version=css_version, avatars=avatars)
+        (DIST / f"{filename}.html").write_text(html)
+
+    # Releases page, plus one per gameweek that's already happened -- same
+    # picker as Results; releases.html itself always tracks gw, whichever
+    # week is current.
+    releases_template = env.get_template("releases.html")
+    for g in available_gws:
+        g_data = data if g == gw else json.loads((DERIVED / f"gw{g}.json").read_text())
+        filename = "releases" if g == gw else f"releases-gw{g}"
+        html = releases_template.render(active="releases", d=g_data, gw=g, current_gw=gw,
+                                         available_gws=available_gws, next_gw=g + 1,
+                                         totw_by_pos=totw_by_pos, css_version=css_version, avatars=avatars)
         (DIST / f"{filename}.html").write_text(html)
 
     # Team of the Week, plus one page per gameweek whose Team of the Week
