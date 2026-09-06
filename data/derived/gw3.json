@@ -6,7 +6,7 @@
   "gameweek": 3,
   "next_gameweek": 4,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-06T14:34:05Z",
+  "fetched_at": "2026-09-06T14:42:44Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -99,7 +99,7 @@
    "away": 207565,
    "home_name": "Michael Lavarack",
    "away_name": "Piers Rennie",
-   "home_points": 39,
+   "home_points": 41,
    "away_points": 49,
    "home_remaining": 2,
    "away_remaining": 1,
@@ -112,7 +112,7 @@
    "away": 255427,
    "home_name": "Roscoe Hill",
    "away_name": "Matthew Lees",
-   "home_points": 20,
+   "home_points": 22,
    "away_points": 35,
    "home_remaining": 0,
    "away_remaining": 2,
@@ -2025,7 +2025,7 @@
      "club": "EVE",
      "team_id": 9,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p17761.png",
-     "points": 2
+     "points": 4
     },
     {
      "element": 503,
@@ -2091,7 +2091,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 39,
+   "effective_xi_points": 41,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2124,6 +2124,15 @@
      "points": 6
     },
     {
+     "element": 229,
+     "name": "Tarkowski",
+     "pos": "DEF",
+     "club": "EVE",
+     "team_id": 9,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p17761.png",
+     "points": 4
+    },
+    {
      "element": 224,
      "name": "Nketiah",
      "pos": "FWD",
@@ -2140,15 +2149,6 @@
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png",
      "points": 3
-    },
-    {
-     "element": 229,
-     "name": "Tarkowski",
-     "pos": "DEF",
-     "club": "EVE",
-     "team_id": 9,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p17761.png",
-     "points": 2
     },
     {
      "element": 167,
@@ -2234,7 +2234,7 @@
      "points": 0
     }
    ],
-   "xi_points": 39,
+   "xi_points": 41,
    "bench_points": 2,
    "best_bench": {
     "element": 236,
@@ -2293,7 +2293,7 @@
      "club": "EVE",
      "team_id": 9,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
-     "points": 2
+     "points": 4
     },
     {
      "element": 335,
@@ -2350,7 +2350,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 20,
+   "effective_xi_points": 22,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2362,6 +2362,15 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
+     "points": 4
+    },
+    {
+     "element": 230,
+     "name": "Branthwaite",
+     "pos": "DEF",
+     "club": "EVE",
+     "team_id": 9,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
      "points": 4
     },
     {
@@ -2380,15 +2389,6 @@
      "club": "BRE",
      "team_id": 4,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200720.png",
-     "points": 2
-    },
-    {
-     "element": 230,
-     "name": "Branthwaite",
-     "pos": "DEF",
-     "club": "EVE",
-     "team_id": 9,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
      "points": 2
     },
     {
@@ -2493,7 +2493,7 @@
      "points": 0
     }
    ],
-   "xi_points": 20,
+   "xi_points": 22,
    "bench_points": 0,
    "best_bench": {
     "element": 1,
@@ -2834,8 +2834,8 @@
    "next": "Van de Ven",
    "next_points": 9,
    "next_tie": [],
-   "score": 39,
-   "cost_pct": 28.2,
+   "score": 41,
+   "cost_pct": 26.8,
    "h2h": null
   },
   {
@@ -2950,16 +2950,49 @@
    "release": "Mukiele",
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
    "release_points": 4,
-   "tie": [],
+   "tie": [
+    {
+     "name": "Mukiele",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png"
+    },
+    {
+     "name": "Branthwaite",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png"
+    }
+   ],
    "next": "Szoboszlai",
    "next_points": 3,
    "next_tie": [],
-   "score": 20,
-   "cost_pct": 20.0,
+   "score": 22,
+   "cost_pct": 18.2,
    "h2h": null
   }
  ],
  "release_efficiency": [
+  {
+   "league_entry": 259872,
+   "manager": "Roscoe Hill",
+   "team": "Mbeumo my Cunha",
+   "release": "Mukiele",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
+   "release_points": 4,
+   "tie": [
+    {
+     "name": "Mukiele",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png"
+    },
+    {
+     "name": "Branthwaite",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png"
+    }
+   ],
+   "next": "Szoboszlai",
+   "next_points": 3,
+   "next_tie": [],
+   "score": 22,
+   "cost_pct": 18.2,
+   "h2h": null
+  },
   {
    "league_entry": 242301,
    "manager": "Mattato Alcock",
@@ -2985,21 +3018,6 @@
    ],
    "score": 37,
    "cost_pct": 18.9,
-   "h2h": null
-  },
-  {
-   "league_entry": 259872,
-   "manager": "Roscoe Hill",
-   "team": "Mbeumo my Cunha",
-   "release": "Mukiele",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
-   "release_points": 4,
-   "tie": [],
-   "next": "Szoboszlai",
-   "next_points": 3,
-   "next_tie": [],
-   "score": 20,
-   "cost_pct": 20.0,
    "h2h": null
   },
   {
@@ -3095,8 +3113,8 @@
    "next": "Van de Ven",
    "next_points": 9,
    "next_tie": [],
-   "score": 39,
-   "cost_pct": 28.2,
+   "score": 41,
+   "cost_pct": 26.8,
    "h2h": null
   },
   {
@@ -3233,10 +3251,10 @@
    "d": 1,
    "l": 0,
    "for": 127,
-   "against": 113,
+   "against": 115,
    "played": 3,
    "points": 7,
-   "diff": 14,
+   "diff": 12,
    "history": [
     {
      "event": 1,
@@ -3255,7 +3273,7 @@
     {
      "event": 3,
      "pts": 49,
-     "against": 39,
+     "against": 41,
      "opp": 259835,
      "result": "W"
     }
@@ -3272,10 +3290,10 @@
    "d": 0,
    "l": 1,
    "for": 113,
-   "against": 95,
+   "against": 97,
    "played": 3,
    "points": 6,
-   "diff": 18,
+   "diff": 16,
    "history": [
     {
      "event": 1,
@@ -3294,7 +3312,7 @@
     {
      "event": 3,
      "pts": 35,
-     "against": 20,
+     "against": 22,
      "opp": 259872,
      "result": "W"
     }
@@ -3310,11 +3328,11 @@
    "w": 1,
    "d": 0,
    "l": 2,
-   "for": 128,
+   "for": 130,
    "against": 145,
    "played": 3,
    "points": 3,
-   "diff": -17,
+   "diff": -15,
    "history": [
     {
      "event": 1,
@@ -3332,7 +3350,7 @@
     },
     {
      "event": 3,
-     "pts": 39,
+     "pts": 41,
      "against": 49,
      "opp": 207565,
      "result": "L"
@@ -3349,11 +3367,11 @@
    "w": 1,
    "d": 0,
    "l": 2,
-   "for": 108,
+   "for": 110,
    "against": 118,
    "played": 3,
    "points": 3,
-   "diff": -10,
+   "diff": -8,
    "history": [
     {
      "event": 1,
@@ -3371,7 +3389,7 @@
     },
     {
      "event": 3,
-     "pts": 20,
+     "pts": 22,
      "against": 35,
      "opp": 255427,
      "result": "L"
@@ -4105,14 +4123,14 @@
   ],
   "worst": [
    {
-    "manager": "Roscoe Hill",
-    "points": 20,
-    "transfer_points": 0
-   },
-   {
     "manager": "Stefano Babiolakis",
     "points": 21,
     "transfer_points": -1
+   },
+   {
+    "manager": "Roscoe Hill",
+    "points": 22,
+    "transfer_points": 0
    },
    {
     "manager": "Matthew Xenakis",
@@ -4126,7 +4144,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 34,
+    "points": 36,
     "transfer_points": -5
    }
   ]
@@ -4156,7 +4174,7 @@
     },
     {
      "manager": "Michael Lavarack",
-     "points": 122,
+     "points": 124,
      "transfer_points": -6
     },
     {
@@ -4171,7 +4189,7 @@
     },
     {
      "manager": "Roscoe Hill",
-     "points": 105,
+     "points": 107,
      "transfer_points": -3
     },
     {
@@ -4209,7 +4227,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 122,
+    "points": 124,
     "transfer_points": -6
    },
    {
@@ -4224,7 +4242,7 @@
    },
    {
     "manager": "Roscoe Hill",
-    "points": 105,
+    "points": 107,
     "transfer_points": -3
    },
    {
@@ -4270,7 +4288,7 @@
     "gameweek": 3,
     "opponent": "Michael Lavarack",
     "points": 49,
-    "against": 39,
+    "against": 41,
     "started": true,
     "live": true
    },
@@ -6188,7 +6206,7 @@
     "gameweek": 3,
     "opponent": "Roscoe Hill",
     "points": 35,
-    "against": 20,
+    "against": 22,
     "started": true,
     "live": true
    },
@@ -6512,7 +6530,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Piers Rennie",
-    "points": 39,
+    "points": 41,
     "against": 49,
     "started": true,
     "live": true
@@ -6857,7 +6875,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Matthew Lees",
-    "points": 20,
+    "points": 22,
     "against": 35,
     "started": true,
     "live": true
@@ -7905,7 +7923,7 @@
    },
    {
     "manager": "Matthew Lees",
-    "avg_against": 31.7
+    "avg_against": 32.3
    },
    {
     "manager": "Nicolas Rubin",
@@ -7917,7 +7935,7 @@
    },
    {
     "manager": "Piers Rennie",
-    "avg_against": 37.7
+    "avg_against": 38.3
    }
   ],
   "unluckiest": [
@@ -7942,7 +7960,7 @@
     "avg_against": 39.0
    }
   ],
-  "average": 37.5
+  "average": 37.6
  },
  "pot": {
   "base": 200,
