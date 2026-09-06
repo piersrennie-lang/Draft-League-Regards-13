@@ -439,8 +439,18 @@ def gw_matches_finished(details, gw):
     return bool(matches) and all(m.get("finished") for m in matches)
 
 
-def build_standings(details, managers, upto_gw):
-    """Recomputed from finished matches.
+def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None):
+    """Recomputed from finished matches, plus the current gameweek's live
+    projection once it has kicked off. A match only needs its own
+    "started" flag to count here, not "finished" -- so the table updates
+    continuously through a live gameweek instead of freezing until the
+    whole gameweek settles days later. While it's live, that gameweek's
+    contribution uses each squad's effective_xi_points (the same
+    autosub-aware projected score used everywhere else on the site)
+    rather than FPL's own raw number, which lags for the same reason
+    explained in autosub.py. Pass live_squads (this build's build_squads()
+    output) and live_gw (its gameweek) to enable this; omit both to only
+    ever count finished matches, as before.
 
     The API's own standings block reports matches_played as 38 for every
     manager before a ball is kicked, so it is not trusted for that column.
@@ -448,12 +458,20 @@ def build_standings(details, managers, upto_gw):
     table = {le: {"w": 0, "d": 0, "l": 0, "for": 0, "against": 0, "played": 0}
              for le in managers}
     history = {le: [] for le in managers}
+    live_entries = set()
 
     for m in sorted(details["matches"], key=lambda x: x["event"]):
-        if not m.get("finished") or m["event"] > upto_gw:
+        if m["event"] > upto_gw:
             continue
         h, a = m["league_entry_1"], m["league_entry_2"]
-        hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        if m.get("finished"):
+            hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        elif m.get("started") and live_squads is not None and m["event"] == live_gw:
+            hp = live_squads.get(h, {}).get("effective_xi_points", m["league_entry_1_points"])
+            ap = live_squads.get(a, {}).get("effective_xi_points", m["league_entry_2_points"])
+            live_entries.update((h, a))
+        else:
+            continue
         for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
             t = table[me]
             t["played"] += 1
@@ -478,6 +496,7 @@ def build_standings(details, managers, upto_gw):
             "points": t["w"] * 3 + t["d"],
             "diff": t["for"] - t["against"],
             "history": history[le],
+            "live": le in live_entries,
         })
     rows.sort(key=lambda r: (-r["points"], -r["for"], -r["diff"]))
 
@@ -1200,7 +1219,7 @@ def main():
         "releases": releases,
         "release_efficiency": sorted(releases, key=lambda r: r["cost_pct"]),
         "breaches": detect_breaches(prev_releases, squads),
-        "standings": build_standings(details, managers, gw),
+        "standings": build_standings(details, managers, gw, live_gw=gw, live_squads=squads),
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in build_transfers(
             managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
