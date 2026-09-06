@@ -70,6 +70,27 @@
       {% endif %}
     </div>
   </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Transfers this gameweek</p>
+      {% if transfers.count %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>In</th><th>Out</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>{{ macros.player_list(transfers['in']) }}</td>
+            <td>{{ macros.player_list(transfers.out) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">No transfers made this gameweek.</p>
+      {% endif %}
+    </div>
+  </div>
   {% else %}
   <p class="pending">No squad data for GW{{ gw }}.</p>
   {% endif %}

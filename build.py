@@ -166,8 +166,9 @@ def main():
                 if p["pos"] in squad_by_pos:
                     squad_by_pos[p["pos"]].append(p)
             formation = "-".join(str(len(squad_by_pos[pos])) for pos in ("DEF", "MID", "FWD"))
+        transfers = data["transfers"].get(str(le), {"in": [], "out": [], "count": 0, "source": "none"})
         html = squad_template.render(profile_name=name, squad=squad, squad_by_pos=squad_by_pos,
-                                      formation=formation, **render_kwargs)
+                                      formation=formation, transfers=transfers, **render_kwargs)
         (DIST / f"squad-{manager_slug(name)}.html").write_text(html)
 
     # Single file combining everything, CSS inlined, for sending round the
