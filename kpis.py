@@ -1289,7 +1289,7 @@ def build_leaders(manager_profiles, limit=5):
         pool.sort(key=lambda kv: kv[1], reverse=reverse)
         return [{"manager": name, "value": value} for name, value in pool[:limit]]
 
-    def top_n_by(key, subkey, reverse=True):
+    def top_n_by(key, subkey, reverse=True, limit=limit):
         pool = [(name, p[key]) for name, p in manager_profiles.items() if p.get(key)]
         pool.sort(key=lambda kv: kv[1][subkey], reverse=reverse)
         return [{"manager": name, **entry} for name, entry in pool[:limit]]
@@ -1305,7 +1305,7 @@ def build_leaders(manager_profiles, limit=5):
         "biggest_win": top_n_by("biggest_win", "margin"),
         "highest_score": top_n_by("highest_score", "points"),
         "lowest_score": top_n_by("lowest_score", "points", reverse=False),
-        "best_player": top_n_by("best_player", "points"),
+        "best_player": top_n_by("best_player", "points", limit=10),
         "best_transfers": top_n_by("best_transfer", "diff"),
         "worst_transfers": top_n_by("worst_transfer", "diff", reverse=False),
     }
