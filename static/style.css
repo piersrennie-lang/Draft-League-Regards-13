@@ -51,6 +51,18 @@ a { color: inherit; }
 .eyebrow--sm { border: 0; padding: 0; margin: 0 0 0.7rem; font-size: 0.625rem; }
 .eyebrow--lg { border: 0; padding: 0; margin: 0 0 0.7rem; font-size: 1.0625rem; letter-spacing: 0.04em; }
 
+.gw-select {
+  display: block;
+  font: 600 0.8125rem/1 var(--data);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.5rem 0.7rem;
+  margin: 0 0 1.4rem;
+}
+
 .kicker {
   font: 600 0.6875rem/1 var(--data);
   letter-spacing: 0.16em;

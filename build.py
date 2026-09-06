@@ -135,10 +135,24 @@ def main():
 
     # Three real pages, each its own file, so navigating between them is a
     # normal page load rather than jumping to an anchor on one big page.
-    pages = {"leaders": "leaders", "results": "results", "index": "standings", "transfers": "transfers",
+    pages = {"leaders": "leaders", "index": "standings", "transfers": "transfers",
               "releases": "releases", "totw": "totw", "manager-of-week": "manager-of-week"}
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
+        (DIST / f"{filename}.html").write_text(html)
+
+    # Results page, plus one per gameweek that's already happened -- a
+    # dropdown lets you jump to any of them, but results.html itself (the
+    # one the nav links to) always tracks gw, whichever week is current.
+    available_gws = sorted(int(p.stem[2:]) for p in DERIVED.glob("gw*.json") if p.stem[2:].isdigit())
+    results_template = env.get_template("results.html")
+    for g in available_gws:
+        g_data = data if g == gw else json.loads((DERIVED / f"gw{g}.json").read_text())
+        filename = "results" if g == gw else f"results-gw{g}"
+        html = results_template.render(active="results", d=g_data, gw=g, current_gw=gw,
+                                        available_gws=available_gws, next_gw=next_gw,
+                                        transfers_current=transfers_current, totw_by_pos=totw_by_pos,
+                                        css_version=css_version, avatars=avatars)
         (DIST / f"{filename}.html").write_text(html)
 
     # One page per manager -- fixtures, head-to-head, biggest win, best
