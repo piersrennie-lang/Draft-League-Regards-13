@@ -143,11 +143,25 @@ def main():
     available_gws = sorted(int(p.stem[2:]) for p in DERIVED.glob("gw*.json") if p.stem[2:].isdigit())
 
     # Manager Competitions, plus one page per gameweek for the Manager of
-    # the Week section specifically -- same picker as Results. Manager of
-    # the Month/Season aren't scoped to a single gameweek, so those (and
-    # the masthead, and gw itself) stay pinned to the site's current state
-    # throughout; only the Top 5/Bottom 5 shown changes with the dropdown.
+    # the Week section, and one page per Manager of the Month block --
+    # same picker pattern as Results/Team of the Week, but each dropdown
+    # only changes its own section; everything else on the page (masthead,
+    # gw, and the other picker's own selection) stays pinned to the site's
+    # current state.
+    mom_current = data.get("manager_of_month", {}).get("current")
+    mom_history = data.get("manager_of_month", {}).get("history", [])
+    current_mom_block = (mom_current["block_start"], mom_current["block_end"]) if mom_current else None
+    available_mom_blocks = sorted({(h["block_start"], h["block_end"]) for h in mom_history} |
+                                   ({current_mom_block} if current_mom_block else set()))
+
+    def mom_block_for(start, end):
+        if (start, end) == current_mom_block:
+            return mom_current
+        return next((h for h in mom_history if (h["block_start"], h["block_end"]) == (start, end)), None)
+
     mow_template = env.get_template("manager-of-week.html")
+    mow_common = dict(current_gw=gw, available_gws=available_gws,
+                       current_mom_block=current_mom_block, available_mom_blocks=available_mom_blocks)
     for n in available_gws:
         if n == gw:
             n_mow = data["manager_of_week"]
@@ -157,8 +171,16 @@ def main():
         filename = "manager-of-week" if n == gw else f"manager-of-week-gw{n}"
         html = mow_template.render(active="manager-of-week", mow=n_mow, mow_gw=n,
                                     mow_live=(n == gw and not data["league"]["gw_fully_over"]),
-                                    current_gw=gw, available_gws=available_gws, **render_kwargs)
+                                    mom_block=mom_current, **mow_common, **render_kwargs)
         (DIST / f"{filename}.html").write_text(html)
+
+    for start, end in available_mom_blocks:
+        if (start, end) == current_mom_block:
+            continue
+        html = mow_template.render(active="manager-of-week", mow=data["manager_of_week"], mow_gw=gw,
+                                    mow_live=not data["league"]["gw_fully_over"],
+                                    mom_block=mom_block_for(start, end), **mow_common, **render_kwargs)
+        (DIST / f"manager-of-week-block-gw{start}-{end}.html").write_text(html)
 
     # Results page, plus one per gameweek that's already happened -- a
     # dropdown lets you jump to any of them, but results.html itself (the

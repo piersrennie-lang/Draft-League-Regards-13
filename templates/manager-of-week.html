@@ -62,22 +62,30 @@
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>
-  {% if d.manager_of_month.current %}
+  {% if mom_block %}
   <div class="profile-grid">
     <div class="profile-panel">
+      <div class="gw-picker">
+        <label class="eyebrow eyebrow--sm" for="mom-select">Block</label>
+        <select id="mom-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+          {% for start, end in available_mom_blocks|reverse %}
+          <option value="{{ 'manager-of-week.html' if (start, end) == current_mom_block else 'manager-of-week-block-gw' ~ start ~ '-' ~ end ~ '.html' }}"{% if (start, end) == (mom_block.block_start, mom_block.block_end) %} selected{% endif %}>GW{{ start }}&ndash;GW{{ end }}{% if (start, end) == current_mom_block %} &middot; current{% endif %}</option>
+          {% endfor %}
+        </select>
+      </div>
       <p class="strong">
-        GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
-        {% if d.manager_of_month.current.is_final %}&middot; final{% else %}&middot; live{% endif %}
+        GW{{ mom_block.block_start }}&ndash;GW{{ mom_block.block_end }}
+        {% if mom_block.is_final %}&middot; final{% else %}&middot; live{% endif %}
       </p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
-          {% for m in d.manager_of_month.current.standings %}
+          {% for m in mom_block.standings %}
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ d.manager_of_month.current.block_start ~ '-' ~ d.manager_of_month.current.block_end) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ mom_block.block_start ~ '-' ~ mom_block.block_end) }}
           </tr>
           {% endfor %}
         </tbody>
