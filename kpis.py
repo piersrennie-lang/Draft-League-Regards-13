@@ -802,8 +802,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
     return swaps
 
 
-def best_and_worst_transfers(swaps, limit=5):
-    """Split the swap list into top-5 gains and top-5 losses."""
+def best_and_worst_transfers(swaps, limit=3):
+    """Split the swap list into top-N gains and top-N losses."""
     best = sorted((s for s in swaps if s["diff"] > 0), key=lambda s: (-s["diff"], s["out_name"]))[:limit]
     worst = sorted((s for s in swaps if s["diff"] < 0), key=lambda s: (s["diff"], s["out_name"]))[:limit]
     return ([{**s, "gain": s["diff"]} for s in best],
