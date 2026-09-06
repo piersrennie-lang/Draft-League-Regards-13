@@ -1126,14 +1126,17 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     return profiles
 
 
-def build_luckiest(manager_profiles):
+def build_luckiest(manager_profiles, limit=5):
     """Every manager ranked by strength of schedule: the average score
     their opponents have put up against them across the season's finished
-    fixtures -- not the manager's own score. #1 is whoever has faced the
-    softest average opposition so far, regardless of their own result in
-    those games (a manager can top this list on the back of narrow losses
-    or big wins alike; what puts them here is the opponent's output, not
-    the scoreline).
+    fixtures -- not the manager's own score. "luckiest" is the top-N who
+    have faced the softest average opposition (ascending, easiest first);
+    "unluckiest" is the top-N who have faced the toughest (descending,
+    hardest first) -- the same underlying ranking read from both ends,
+    regardless of each manager's own results in those games (a manager
+    can land on either list on the back of narrow losses or big wins
+    alike; what places them here is the opponent's output, not the
+    scoreline).
 
     Also returns "average": the league-wide average score across every
     finished fixture so far, so each manager's avg_against can be read
@@ -1151,7 +1154,11 @@ def build_luckiest(manager_profiles):
         all_points.extend(f["points"] for f in fixtures)
     rows.sort(key=lambda r: r["avg_against"])
     average = round(sum(all_points) / len(all_points), 1) if all_points else 0
-    return {"rows": rows, "average": average}
+    return {
+        "luckiest": rows[:limit],
+        "unluckiest": list(reversed(rows[-limit:])) if rows else [],
+        "average": average,
+    }
 
 
 def build_leaders(manager_profiles, limit=5):
@@ -1271,7 +1278,7 @@ def main():
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
     leaders = build_leaders(manager_profiles)
-    luckiest = build_luckiest(manager_profiles)
+    luck = build_luckiest(manager_profiles)
 
     gaps = []
     if not squads_raw:
@@ -1328,7 +1335,7 @@ def main():
         "manager_of_month": manager_of_month,
         "manager_profiles": manager_profiles,
         "leaders": leaders,
-        "luckiest": luckiest,
+        "luck": luck,
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,
