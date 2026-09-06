@@ -1,9 +1,13 @@
 name: Build roundup
 
-# Every 15 minutes, so transfers and standings stay current through the week.
+# Every 2 minutes, so transfers and standings stay current through the week.
+# GitHub Actions doesn't guarantee anything finer than 5-minute granularity
+# for scheduled workflows and can delay runs further under high load, so in
+# practice this fires as often as GitHub's scheduler allows, not literally
+# every 2 minutes.
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/2 * * * *"
   workflow_dispatch:
 
 permissions:
