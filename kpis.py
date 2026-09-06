@@ -1094,7 +1094,7 @@ def build_unluckiest(manager_profiles):
         if not fixtures:
             continue
         avg_against = sum(f["against"] for f in fixtures) / len(fixtures)
-        rows.append({"manager": name, "avg_against": round(avg_against, 1), "played": len(fixtures)})
+        rows.append({"manager": name, "avg_against": round(avg_against, 1)})
     rows.sort(key=lambda r: -r["avg_against"])
     return rows
 
