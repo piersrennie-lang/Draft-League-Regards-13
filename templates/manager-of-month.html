@@ -42,12 +42,13 @@
       {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
           {% for m in block.standings %}
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+            {{ macros.transfer_points_cell(m.transfer_points) }}
           </tr>
           {% endfor %}
         </tbody>

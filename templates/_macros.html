@@ -14,6 +14,10 @@
 {% if items %}{% for p in items %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
 {%- endmacro %}
 
+{% macro transfer_points_cell(n) -%}
+<td class="num {{ 'gain' if n > 0 else 'cost' if n < 0 else 'mute' }}">{{ '+' if n > 0 }}{{ n }}</td>
+{%- endmacro %}
+
 {% macro release_cell(r) -%}
 {% if r.tie %}{% for p in r.tie %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% if not loop.last %}<div class="tie-or">or</div>{% endif %}{% endfor %}{% else %}<div class="transfer-player">{{ player_photo(r.release_photo, 'transfer-photo') }}<span>{{ r.release }}</span></div>{% endif %}
 {%- endmacro %}

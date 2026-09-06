@@ -816,7 +816,8 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
     qualifying transfer that week -- deliberately double-weighting the
     transfer decision, since the incoming player's points already count
     once toward the raw score and the swing is added again on top as a
-    bonus for the call itself.
+    bonus for the call itself. "transfer_points" is that swing on its
+    own, so callers can show it as a column in its own right.
     """
     if not gw_squads_raw or not gw_live:
         return {}
@@ -826,8 +827,13 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
     swing = {}
     for s in swaps:
         swing[s["manager"]] = swing.get(s["manager"], 0) + s["diff"]
-    return {managers[le]["manager"]: squad["effective_xi_points"] + swing.get(managers[le]["manager"], 0)
-            for le, squad in squads.items()}
+    return {
+        managers[le]["manager"]: {
+            "points": squad["effective_xi_points"] + swing.get(managers[le]["manager"], 0),
+            "transfer_points": swing.get(managers[le]["manager"], 0),
+        }
+        for le, squad in squads.items()
+    }
 
 
 def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live):
@@ -835,20 +841,21 @@ def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live
     scores = manager_week_scores(managers, players, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live)
     if not scores:
         return None
-    ranked = sorted(scores.items(), key=lambda kv: -kv[1])
+    ranked = sorted(scores.items(), key=lambda kv: -kv[1]["points"])
     worst = ranked[-3:][::-1] if len(ranked) >= 3 else []
     return {
         "gameweek": totw_gw,
-        "top": [{"manager": n, "points": p} for n, p in ranked[:3]],
-        "worst": [{"manager": n, "points": p} for n, p in worst],
+        "top": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in ranked[:3]],
+        "worst": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in worst],
     }
 
 
 def _block_standings(managers, players, load_fn, block_start, block_end):
-    """Summed manager-week scores across gameweeks block_start..block_end.
-    A gameweek with no squads/live data on disk yet (not played, or not
-    fetched) simply contributes nothing -- callers don't need to worry
-    about how far the block has actually progressed.
+    """Summed manager-week scores (and their transfer-points component)
+    across gameweeks block_start..block_end. A gameweek with no
+    squads/live data on disk yet (not played, or not fetched) simply
+    contributes nothing -- callers don't need to worry about how far the
+    block has actually progressed.
     """
     totals = {}
     for g in range(block_start, block_end + 1):
@@ -858,13 +865,15 @@ def _block_standings(managers, players, load_fn, block_start, block_end):
             continue
         g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
         g_prev_live = load_fn(f"live_gw{g - 1}") if g > 1 else None
-        for manager_name, score in manager_week_scores(
+        for manager_name, s in manager_week_scores(
                 managers, players, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live).items():
-            totals[manager_name] = totals.get(manager_name, 0) + score
+            acc = totals.setdefault(manager_name, {"points": 0, "transfer_points": 0})
+            acc["points"] += s["points"]
+            acc["transfer_points"] += s["transfer_points"]
     if not totals:
         return []
-    ranked = sorted(totals.items(), key=lambda kv: -kv[1])
-    return [{"manager": n, "points": p} for n, p in ranked]
+    ranked = sorted(totals.items(), key=lambda kv: -kv[1]["points"])
+    return [{"manager": n, "points": t["points"], "transfer_points": t["transfer_points"]} for n, t in ranked]
 
 
 def build_manager_of_month(managers, players, gw, gw_fully_over, load_fn):
@@ -1028,7 +1037,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         g_prev_live = load_fn(f"live_gw{g - 1}") if g > 1 else None
         week_scores = manager_week_scores(managers, players, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live)
         if week_scores:
-            winner_name = max(week_scores.items(), key=lambda kv: kv[1])[0]
+            winner_name = max(week_scores.items(), key=lambda kv: kv[1]["points"])[0]
             le = by_manager.get(winner_name)
             if le is not None:
                 motw_wins[le] += 1

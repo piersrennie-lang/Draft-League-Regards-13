@@ -17,12 +17,13 @@
       <p class="strong">Top 3</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.top %}
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num gain">{{ m.points }}</td>
+            {{ macros.transfer_points_cell(m.transfer_points) }}
           </tr>
           {% endfor %}
         </tbody>
@@ -33,12 +34,13 @@
       <p class="strong">Bottom 3</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.worst %}
           <tr>
             <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num cost">{{ m.points }}</td>
+            {{ macros.transfer_points_cell(m.transfer_points) }}
           </tr>
           {% endfor %}
         </tbody>
@@ -60,12 +62,13 @@
       </p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_month.current.standings %}
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+            {{ macros.transfer_points_cell(m.transfer_points) }}
           </tr>
           {% endfor %}
         </tbody>
