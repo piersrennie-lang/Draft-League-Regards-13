@@ -152,6 +152,38 @@ def main():
         html = manager_template.render(profile_name=name, profile=profiles.get(name), **render_kwargs)
         (DIST / f"manager-{manager_slug(name)}.html").write_text(html)
 
+    # Per-manager transfer-history pages -- season (every block), the
+    # current gameweek alone, and every Manager of the Month block that's
+    # either live or already finalised -- so a Transfer pts number anywhere
+    # on the site links to a page scoped to exactly the swaps behind that
+    # number, not the manager's whole season.
+    transfers_template = env.get_template("manager-transfers.html")
+    block_ranges = set()
+    mom_current = data.get("manager_of_month", {}).get("current")
+    if mom_current:
+        block_ranges.add((mom_current["block_start"], mom_current["block_end"]))
+    for h in data.get("manager_of_month", {}).get("history", []):
+        block_ranges.add((h["block_start"], h["block_end"]))
+
+    for m in data["managers"].values():
+        name = m["manager"]
+        slug = manager_slug(name)
+        blocks = profiles.get(name, {}).get("transfer_blocks", [])
+
+        html = transfers_template.render(profile_name=name, scope="season", blocks=blocks, **render_kwargs)
+        (DIST / f"manager-{slug}-transfers.html").write_text(html)
+
+        week_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == gw]
+        html = transfers_template.render(profile_name=name, scope="week", week=gw, swaps=week_swaps, **render_kwargs)
+        (DIST / f"manager-{slug}-transfers-gw{gw}.html").write_text(html)
+
+        for start, end in block_ranges:
+            block_swaps = next((b["swaps"] for b in blocks
+                                 if b["block_start"] == start and b["block_end"] == end), [])
+            html = transfers_template.render(profile_name=name, scope="block", block_start=start, block_end=end,
+                                              swaps=block_swaps, **render_kwargs)
+            (DIST / f"manager-{slug}-transfers-gw{start}-{end}.html").write_text(html)
+
     # One live-squad page per manager for this gameweek -- starting XI and
     # bench, with projected autosubs -- linked only from the Results page
     # (its manager name/icon and score), not from the nav or manager profile.

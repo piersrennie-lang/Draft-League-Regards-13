@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% import "_macros.html" as macros %}
+{% block title %}{{ profile_name }} transfers &middot; {{ d.league.name }}{% endblock %}
+{% block content %}
+
+<section id="manager-transfers">
+  <div class="profile-hero">
+    {% if avatars.get(profile_name) %}<img class="profile-hero__photo" src="{{ avatars[profile_name] }}" alt="">{% endif %}
+    <div>
+      <p class="profile-hero__eyebrow"><a class="manager-link" href="manager-{{ profile_name|slug }}.html">&larr; {{ profile_name }}</a></p>
+      <h2 class="profile-hero__name">
+        {% if scope == 'season' %}Transfer history
+        {% elif scope == 'block' %}Transfers &middot; GW{{ block_start }}&ndash;GW{{ block_end }}
+        {% else %}Transfers &middot; GW{{ week }}
+        {% endif %}
+      </h2>
+    </div>
+  </div>
+
+  {% if scope == 'season' %}
+  {% if blocks %}
+  {% for block in blocks %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }}</p>
+      {{ macros.transfer_swap_table(block.swaps) }}
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <p class="pending">No transfers yet.</p>
+  {% endif %}
+  {% else %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      {% if swaps %}
+      {{ macros.transfer_swap_table(swaps) }}
+      {% else %}
+      <p class="pending">No qualifying transfers {% if scope == 'block' %}this block{% else %}this week{% endif %} yet.</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
