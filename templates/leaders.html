@@ -196,13 +196,13 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Best transfer</p>
-      {% if d.leaders.best_transfer %}
+      <p class="strong">Best transfers{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
+      {% if d.leaders.best_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Gain</th></tr></thead>
         <tbody>
-          {% for row in d.leaders.best_transfer %}
+          {% for row in d.leaders.best_transfers %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
@@ -218,13 +218,13 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Worst transfer</p>
-      {% if d.leaders.worst_transfer %}
+      <p class="strong">Worst transfers{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
+      {% if d.leaders.worst_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Lost</th></tr></thead>
         <tbody>
-          {% for row in d.leaders.worst_transfer %}
+          {% for row in d.leaders.worst_transfers %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>

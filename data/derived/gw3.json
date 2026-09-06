@@ -3992,9 +3992,11 @@
     "out_name": "Gro\u00df",
     "out_club": "BHA",
     "out_points": 1,
+    "out_team_id": 5,
     "in_name": "Suzuki",
     "in_club": "AVL",
     "in_points": 10,
+    "in_team_id": 2,
     "diff": 9,
     "gain": 9
    },
@@ -4003,9 +4005,11 @@
     "out_name": "Mac Allister",
     "out_club": "LIV",
     "out_points": 2,
+    "out_team_id": 14,
     "in_name": "Gakpo",
     "in_club": "LIV",
     "in_points": 11,
+    "in_team_id": 14,
     "diff": 9,
     "gain": 9
    }
@@ -4016,9 +4020,11 @@
     "out_name": "Mendy",
     "out_club": "HUL",
     "out_points": 8,
+    "out_team_id": 11,
     "in_name": "Dedi\u0107",
     "in_club": "NEW",
     "in_points": 1,
+    "in_team_id": 17,
     "diff": -7,
     "loss": 7
    },
@@ -4027,9 +4033,11 @@
     "out_name": "Haaland",
     "out_club": "MCI",
     "out_points": 9,
+    "out_team_id": 15,
     "in_name": "Nketiah",
     "in_club": "CRY",
     "in_points": 4,
+    "in_team_id": 8,
     "diff": -5,
     "loss": 5
    },
@@ -4038,9 +4046,11 @@
     "out_name": "Gibbs-White",
     "out_club": "NFO",
     "out_points": 3,
+    "out_team_id": 18,
     "in_name": "Ndoye",
     "in_club": "NFO",
     "in_points": 1,
+    "in_team_id": 18,
     "diff": -2,
     "loss": 2
    }
@@ -4409,14 +4419,16 @@
    "best_transfer": null,
    "worst_transfer": {
     "manager": "Piers Rennie",
-    "out_name": "Gonzalo",
-    "out_club": "FUL",
-    "out_points": 2,
-    "in_name": "McBurnie",
-    "in_club": "HUL",
+    "out_name": "Gibbs-White",
+    "out_club": "NFO",
+    "out_points": 3,
+    "out_team_id": 18,
+    "in_name": "Ndoye",
+    "in_club": "NFO",
     "in_points": 1,
-    "diff": -1,
-    "gameweek": 2
+    "in_team_id": 18,
+    "diff": -2,
+    "gameweek": 3
    },
    "transfer_blocks": [
     {
@@ -4428,9 +4440,11 @@
        "out_name": "Gonzalo",
        "out_club": "FUL",
        "out_points": 2,
+       "out_team_id": 10,
        "in_name": "McBurnie",
        "in_club": "HUL",
        "in_points": 1,
+       "in_team_id": 11,
        "diff": -1,
        "gameweek": 2
       },
@@ -4439,9 +4453,11 @@
        "out_name": "Gibbs-White",
        "out_club": "NFO",
        "out_points": 3,
+       "out_team_id": 18,
        "in_name": "Ndoye",
        "in_club": "NFO",
        "in_points": 1,
+       "in_team_id": 18,
        "diff": -2,
        "gameweek": 3
       }
@@ -4665,9 +4681,11 @@
     "out_name": "Saka",
     "out_club": "ARS",
     "out_points": 11,
+    "out_team_id": 1,
     "in_name": "M.Sangar\u00e9",
     "in_club": "BRE",
     "in_points": 4,
+    "in_team_id": 4,
     "diff": -7,
     "gameweek": 2
    },
@@ -4681,9 +4699,11 @@
        "out_name": "Saka",
        "out_club": "ARS",
        "out_points": 11,
+       "out_team_id": 1,
        "in_name": "M.Sangar\u00e9",
        "in_club": "BRE",
        "in_points": 4,
+       "in_team_id": 4,
        "diff": -7,
        "gameweek": 2
       },
@@ -4692,9 +4712,11 @@
        "out_name": "Cherki",
        "out_club": "MCI",
        "out_points": 3,
+       "out_team_id": 15,
        "in_name": "Ampadu",
        "in_club": "LEE",
        "in_points": 2,
+       "in_team_id": 13,
        "diff": -1,
        "gameweek": 3
       }
@@ -4922,15 +4944,29 @@
     "manager": "Mark Stone",
     "losses": 1
    },
-   "best_transfer": null,
+   "best_transfer": {
+    "manager": "Nicolas Rubin",
+    "out_name": "Mac Allister",
+    "out_club": "LIV",
+    "out_points": 2,
+    "out_team_id": 14,
+    "in_name": "Gakpo",
+    "in_club": "LIV",
+    "in_points": 11,
+    "in_team_id": 14,
+    "diff": 9,
+    "gameweek": 3
+   },
    "worst_transfer": {
     "manager": "Nicolas Rubin",
     "out_name": "Jo\u00e3o Pedro",
     "out_club": "CHE",
     "out_points": 9,
+    "out_team_id": 6,
     "in_name": "Emersonn",
     "in_club": "IPS",
     "in_points": 1,
+    "in_team_id": 12,
     "diff": -8,
     "gameweek": 2
    },
@@ -4944,9 +4980,11 @@
        "out_name": "Jo\u00e3o Pedro",
        "out_club": "CHE",
        "out_points": 9,
+       "out_team_id": 6,
        "in_name": "Emersonn",
        "in_club": "IPS",
        "in_points": 1,
+       "in_team_id": 12,
        "diff": -8,
        "gameweek": 2
       },
@@ -4955,9 +4993,11 @@
        "out_name": "Mac Allister",
        "out_club": "LIV",
        "out_points": 2,
+       "out_team_id": 14,
        "in_name": "Gakpo",
        "in_club": "LIV",
        "in_points": 11,
+       "in_team_id": 14,
        "diff": 9,
        "gameweek": 3
       }
@@ -5180,9 +5220,11 @@
     "out_name": "Ndiaye",
     "out_club": "MCI",
     "out_points": 4,
+    "out_team_id": 15,
     "in_name": "Munoz",
     "in_club": "LIV",
     "in_points": 6,
+    "in_team_id": 14,
     "diff": 2,
     "gameweek": 2
    },
@@ -5197,9 +5239,11 @@
        "out_name": "Ndiaye",
        "out_club": "MCI",
        "out_points": 4,
+       "out_team_id": 15,
        "in_name": "Munoz",
        "in_club": "LIV",
        "in_points": 6,
+       "in_team_id": 14,
        "diff": 2,
        "gameweek": 2
       }
@@ -5422,9 +5466,11 @@
     "out_name": "\u00d8degaard",
     "out_club": "ARS",
     "out_points": 3,
+    "out_team_id": 1,
     "in_name": "Scott",
     "in_club": "BOU",
     "in_points": 12,
+    "in_team_id": 3,
     "diff": 9,
     "gameweek": 2
    },
@@ -5433,9 +5479,11 @@
     "out_name": "Ballard",
     "out_club": "SUN",
     "out_points": 8,
+    "out_team_id": 20,
     "in_name": "Kayode",
     "in_club": "BRE",
     "in_points": 2,
+    "in_team_id": 4,
     "diff": -6,
     "gameweek": 2
    },
@@ -5449,9 +5497,11 @@
        "out_name": "Ballard",
        "out_club": "SUN",
        "out_points": 8,
+       "out_team_id": 20,
        "in_name": "Kayode",
        "in_club": "BRE",
        "in_points": 2,
+       "in_team_id": 4,
        "diff": -6,
        "gameweek": 2
       },
@@ -5460,9 +5510,11 @@
        "out_name": "\u00d8degaard",
        "out_club": "ARS",
        "out_points": 3,
+       "out_team_id": 1,
        "in_name": "Scott",
        "in_club": "BOU",
        "in_points": 12,
+       "in_team_id": 3,
        "diff": 9,
        "gameweek": 2
       }
@@ -5681,7 +5733,19 @@
     "losses": 1
    },
    "best_transfer": null,
-   "worst_transfer": null,
+   "worst_transfer": {
+    "manager": "Matthew Xenakis",
+    "out_name": "Awoniyi",
+    "out_club": "COV",
+    "out_points": 2,
+    "out_team_id": 7,
+    "in_name": "Enciso",
+    "in_club": "IPS",
+    "in_points": 1,
+    "in_team_id": 12,
+    "diff": -1,
+    "gameweek": 3
+   },
    "transfer_blocks": [
     {
      "block_start": 1,
@@ -5692,9 +5756,11 @@
        "out_name": "Awoniyi",
        "out_club": "COV",
        "out_points": 2,
+       "out_team_id": 7,
        "in_name": "Enciso",
        "in_club": "IPS",
        "in_points": 1,
+       "in_team_id": 12,
        "diff": -1,
        "gameweek": 3
       }
@@ -5924,14 +5990,16 @@
    },
    "best_transfer": {
     "manager": "Matthew Lees",
-    "out_name": "Szoboszlai",
-    "out_club": "LIV",
-    "out_points": 4,
-    "in_name": "Xhaka",
-    "in_club": "SUN",
-    "in_points": 6,
-    "diff": 2,
-    "gameweek": 2
+    "out_name": "Gro\u00df",
+    "out_club": "BHA",
+    "out_points": 1,
+    "out_team_id": 5,
+    "in_name": "Suzuki",
+    "in_club": "AVL",
+    "in_points": 10,
+    "in_team_id": 2,
+    "diff": 9,
+    "gameweek": 3
    },
    "worst_transfer": null,
    "transfer_blocks": [
@@ -5944,9 +6012,11 @@
        "out_name": "Szoboszlai",
        "out_club": "LIV",
        "out_points": 4,
+       "out_team_id": 14,
        "in_name": "Xhaka",
        "in_club": "SUN",
        "in_points": 6,
+       "in_team_id": 20,
        "diff": 2,
        "gameweek": 2
       },
@@ -5955,9 +6025,11 @@
        "out_name": "Gro\u00df",
        "out_club": "BHA",
        "out_points": 1,
+       "out_team_id": 5,
        "in_name": "Suzuki",
        "in_club": "AVL",
        "in_points": 10,
+       "in_team_id": 2,
        "diff": 9,
        "gameweek": 3
       }
@@ -6188,14 +6260,16 @@
    "best_transfer": null,
    "worst_transfer": {
     "manager": "Michael Lavarack",
-    "out_name": "Dewsbury-Hall",
-    "out_club": "EVE",
-    "out_points": 2,
-    "in_name": "Janelt",
-    "in_club": "BRE",
-    "in_points": 1,
-    "diff": -1,
-    "gameweek": 2
+    "out_name": "Haaland",
+    "out_club": "MCI",
+    "out_points": 9,
+    "out_team_id": 15,
+    "in_name": "Nketiah",
+    "in_club": "CRY",
+    "in_points": 4,
+    "in_team_id": 8,
+    "diff": -5,
+    "gameweek": 3
    },
    "transfer_blocks": [
     {
@@ -6207,9 +6281,11 @@
        "out_name": "Dewsbury-Hall",
        "out_club": "EVE",
        "out_points": 2,
+       "out_team_id": 9,
        "in_name": "Janelt",
        "in_club": "BRE",
        "in_points": 1,
+       "in_team_id": 4,
        "diff": -1,
        "gameweek": 2
       },
@@ -6218,9 +6294,11 @@
        "out_name": "Haaland",
        "out_club": "MCI",
        "out_points": 9,
+       "out_team_id": 15,
        "in_name": "Nketiah",
        "in_club": "CRY",
        "in_points": 4,
+       "in_team_id": 8,
        "diff": -5,
        "gameweek": 3
       }
@@ -6454,9 +6532,11 @@
     "out_name": "Palmer",
     "out_club": "CHE",
     "out_points": 7,
+    "out_team_id": 6,
     "in_name": "Stach",
     "in_club": "LEE",
     "in_points": 4,
+    "in_team_id": 13,
     "diff": -3,
     "gameweek": 2
    },
@@ -6470,9 +6550,11 @@
        "out_name": "Palmer",
        "out_club": "CHE",
        "out_points": 7,
+       "out_team_id": 6,
        "in_name": "Stach",
        "in_club": "LEE",
        "in_points": 4,
+       "in_team_id": 13,
        "diff": -3,
        "gameweek": 2
       }
@@ -6693,14 +6775,16 @@
    "best_transfer": null,
    "worst_transfer": {
     "manager": "Mark Stone",
-    "out_name": "White",
-    "out_club": "ARS",
-    "out_points": 7,
-    "in_name": "Mendy",
-    "in_club": "HUL",
+    "out_name": "Mendy",
+    "out_club": "HUL",
+    "out_points": 8,
+    "out_team_id": 11,
+    "in_name": "Dedi\u0107",
+    "in_club": "NEW",
     "in_points": 1,
-    "diff": -6,
-    "gameweek": 2
+    "in_team_id": 17,
+    "diff": -7,
+    "gameweek": 3
    },
    "transfer_blocks": [
     {
@@ -6712,9 +6796,11 @@
        "out_name": "White",
        "out_club": "ARS",
        "out_points": 7,
+       "out_team_id": 1,
        "in_name": "Mendy",
        "in_club": "HUL",
        "in_points": 1,
+       "in_team_id": 11,
        "diff": -6,
        "gameweek": 2
       },
@@ -6723,9 +6809,11 @@
        "out_name": "Mendy",
        "out_club": "HUL",
        "out_points": 8,
+       "out_team_id": 11,
        "in_name": "Dedi\u0107",
        "in_club": "NEW",
        "in_points": 1,
+       "in_team_id": 17,
        "diff": -7,
        "gameweek": 3
       },
@@ -6734,9 +6822,11 @@
        "out_name": "Schade",
        "out_club": "BRE",
        "out_points": 2,
+       "out_team_id": 4,
        "in_name": "Barcola",
        "in_club": "LIV",
        "in_points": 1,
+       "in_team_id": 14,
        "diff": -1,
        "gameweek": 3
       }
@@ -7037,50 +7127,71 @@
     "points": 13
    }
   ],
-  "best_transfer": [
+  "best_transfers": [
+   {
+    "manager": "Nicolas Rubin",
+    "out_name": "Mac Allister",
+    "out_club": "LIV",
+    "out_points": 2,
+    "out_team_id": 14,
+    "in_name": "Gakpo",
+    "in_club": "LIV",
+    "in_points": 11,
+    "in_team_id": 14,
+    "diff": 9,
+    "gameweek": 3
+   },
    {
     "manager": "Brad Hill",
     "out_name": "\u00d8degaard",
     "out_club": "ARS",
     "out_points": 3,
+    "out_team_id": 1,
     "in_name": "Scott",
     "in_club": "BOU",
     "in_points": 12,
+    "in_team_id": 3,
     "diff": 9,
     "gameweek": 2
+   },
+   {
+    "manager": "Matthew Lees",
+    "out_name": "Gro\u00df",
+    "out_club": "BHA",
+    "out_points": 1,
+    "out_team_id": 5,
+    "in_name": "Suzuki",
+    "in_club": "AVL",
+    "in_points": 10,
+    "in_team_id": 2,
+    "diff": 9,
+    "gameweek": 3
    },
    {
     "manager": "Mattato Alcock",
     "out_name": "Ndiaye",
     "out_club": "MCI",
     "out_points": 4,
+    "out_team_id": 15,
     "in_name": "Munoz",
     "in_club": "LIV",
     "in_points": 6,
-    "diff": 2,
-    "gameweek": 2
-   },
-   {
-    "manager": "Matthew Lees",
-    "out_name": "Szoboszlai",
-    "out_club": "LIV",
-    "out_points": 4,
-    "in_name": "Xhaka",
-    "in_club": "SUN",
-    "in_points": 6,
+    "in_team_id": 14,
     "diff": 2,
     "gameweek": 2
    }
   ],
-  "worst_transfer": [
+  "worst_transfers": [
    {
     "manager": "Nicolas Rubin",
     "out_name": "Jo\u00e3o Pedro",
     "out_club": "CHE",
     "out_points": 9,
+    "out_team_id": 6,
     "in_name": "Emersonn",
     "in_club": "IPS",
     "in_points": 1,
+    "in_team_id": 12,
     "diff": -8,
     "gameweek": 2
    },
@@ -7089,44 +7200,52 @@
     "out_name": "Saka",
     "out_club": "ARS",
     "out_points": 11,
+    "out_team_id": 1,
     "in_name": "M.Sangar\u00e9",
     "in_club": "BRE",
     "in_points": 4,
+    "in_team_id": 4,
     "diff": -7,
     "gameweek": 2
+   },
+   {
+    "manager": "Mark Stone",
+    "out_name": "Mendy",
+    "out_club": "HUL",
+    "out_points": 8,
+    "out_team_id": 11,
+    "in_name": "Dedi\u0107",
+    "in_club": "NEW",
+    "in_points": 1,
+    "in_team_id": 17,
+    "diff": -7,
+    "gameweek": 3
    },
    {
     "manager": "Brad Hill",
     "out_name": "Ballard",
     "out_club": "SUN",
     "out_points": 8,
+    "out_team_id": 20,
     "in_name": "Kayode",
     "in_club": "BRE",
     "in_points": 2,
+    "in_team_id": 4,
     "diff": -6,
     "gameweek": 2
    },
    {
-    "manager": "Mark Stone",
-    "out_name": "White",
-    "out_club": "ARS",
-    "out_points": 7,
-    "in_name": "Mendy",
-    "in_club": "HUL",
-    "in_points": 1,
-    "diff": -6,
-    "gameweek": 2
-   },
-   {
-    "manager": "Roscoe Hill",
-    "out_name": "Palmer",
-    "out_club": "CHE",
-    "out_points": 7,
-    "in_name": "Stach",
-    "in_club": "LEE",
+    "manager": "Michael Lavarack",
+    "out_name": "Haaland",
+    "out_club": "MCI",
+    "out_points": 9,
+    "out_team_id": 15,
+    "in_name": "Nketiah",
+    "in_club": "CRY",
     "in_points": 4,
-    "diff": -3,
-    "gameweek": 2
+    "in_team_id": 8,
+    "diff": -5,
+    "gameweek": 3
    }
   ]
  },

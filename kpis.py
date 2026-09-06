@@ -761,9 +761,9 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
 
     def describe(eid):
-        meta = players.get(eid, {"name": str(eid), "pos": "", "club": ""})
+        meta = players.get(eid, {"name": str(eid), "pos": "", "club": "", "team_id": None})
         return {"element": eid, "name": meta["name"], "pos": meta["pos"],
-                "club": meta["club"], "points": pts.get(eid, 0)}
+                "club": meta["club"], "team_id": meta.get("team_id"), "points": pts.get(eid, 0)}
 
     swaps = []
     for entry_str, payload in prev_squads_raw.items():
@@ -801,7 +801,9 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
             swaps.append({
                 "manager": manager_name,
                 "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],
+                "out_team_id": o.get("team_id"),
                 "in_name": i["name"], "in_club": i["club"], "in_points": i["points"],
+                "in_team_id": i.get("team_id"),
                 "diff": i["points"] - o["points"],
             })
     return swaps
@@ -1092,31 +1094,14 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
                 worst_transfer[le] = tagged
 
-    # transfer_log also needs the live current gameweek once it's ahead of
-    # totw_gw, so its transfer-history breakdown matches the live "Transfer
-    # pts" figures shown elsewhere (Manager of the Week/Month/Season, all
-    # of which track gw directly) -- best_transfer/worst_transfer/motw_wins
-    # above deliberately stay non-live, so this only extends the log.
-    if gw > totw_gw:
-        g_squads_raw = load_fn(f"squads_gw{gw}")
-        g_live = load_fn(f"live_gw{gw}")
-        g_prev_squads_raw = load_fn(f"squads_gw{gw - 1}")
-        g_prev_live = load_fn(f"live_gw{gw - 1}")
-        if g_squads_raw and g_live and g_prev_squads_raw:
-            squads = build_squads(managers, g_squads_raw, g_live, players)
-            swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live, g_prev_live)
-            for s in swaps:
-                le = by_manager.get(s["manager"])
-                if le is not None:
-                    transfer_log[le].append({**s, "gameweek": gw})
-
-    # Best individual performance is a running record, not a once-a-week
-    # competition like Team of the Week or Manager of the Week (which
-    # genuinely need every manager to have played before crowning a
-    # winner) -- so unlike the loop above, this also scans the current,
-    # still-live gameweek, counting a player the moment their own
-    # real-world fixture is finished rather than waiting for every other
-    # fixture in the gameweek to catch up too.
+    # Best individual performance, and best/worst transfer, are running
+    # records, not a once-a-week competition like Team of the Week or Manager
+    # of the Week (which genuinely need every manager to have played before
+    # crowning a winner) -- so unlike the totw_gw loop above, these also scan
+    # the current, still-live gameweek, counting a player/swap the moment the
+    # real-world fixture(s) involved are finished rather than waiting for
+    # every other fixture in the gameweek to catch up too. motw_wins stays
+    # non-live above.
     live_squads_raw = load_fn(f"squads_gw{gw}")
     live_gw_data = load_fn(f"live_gw{gw}")
     if live_squads_raw and live_gw_data:
@@ -1134,6 +1119,30 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                 if cur is None or row["points"] > cur["points"]:
                     best_player[le] = {"gameweek": gw, "name": row["name"],
                                         "club": row["club"], "points": row["points"]}
+
+        # transfer_log also needs the live current gameweek once it's ahead of
+        # totw_gw, so its transfer-history breakdown matches the live
+        # "Transfer pts" figures shown elsewhere (Manager of the Week/Month/
+        # Season, all of which track gw directly). best_transfer/worst_transfer
+        # only count a swap here once both the released and replacement
+        # player's own club fixtures have finished (finished_clubs), since
+        # bonus points aren't final until the match itself has concluded.
+        if gw > totw_gw:
+            g_prev_squads_raw = load_fn(f"squads_gw{gw - 1}")
+            g_prev_live = load_fn(f"live_gw{gw - 1}")
+            if g_prev_squads_raw:
+                swaps = build_transfer_swaps(managers, players, live_squads, g_prev_squads_raw, live_gw_data, g_prev_live)
+                for s in swaps:
+                    le = by_manager.get(s["manager"])
+                    if le is None:
+                        continue
+                    tagged = {**s, "gameweek": gw}
+                    transfer_log[le].append(tagged)
+                    if s.get("out_team_id") in finished_clubs and s.get("in_team_id") in finished_clubs:
+                        if s["diff"] > 0 and (best_transfer[le] is None or s["diff"] > best_transfer[le]["diff"]):
+                            best_transfer[le] = tagged
+                        if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
+                            worst_transfer[le] = tagged
 
     mom_wins = {le: 0 for le in managers}
     for block in manager_of_month_history:
@@ -1246,8 +1255,8 @@ def build_leaders(manager_profiles, limit=5):
         "highest_score": top_n_by("highest_score", "points"),
         "lowest_score": top_n_by("lowest_score", "points", reverse=False),
         "best_player": top_n_by("best_player", "points"),
-        "best_transfer": top_n_by("best_transfer", "diff"),
-        "worst_transfer": top_n_by("worst_transfer", "diff", reverse=False),
+        "best_transfers": top_n_by("best_transfer", "diff"),
+        "worst_transfers": top_n_by("worst_transfer", "diff", reverse=False),
     }
 
 
