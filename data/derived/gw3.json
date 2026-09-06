@@ -4276,9 +4276,9 @@
      "gameweek": 3,
      "opponent": "Michael Lavarack",
      "points": 51,
-     "against": 50,
-     "margin": 1,
-     "result": "W"
+     "against": 52,
+     "margin": -1,
+     "result": "L"
     },
     {
      "gameweek": 2,
@@ -4455,14 +4455,21 @@
     "margin": 4,
     "result": "W"
    },
-   "biggest_loss": null,
+   "biggest_loss": {
+    "gameweek": 3,
+    "opponent": "Michael Lavarack",
+    "points": 51,
+    "against": 52,
+    "margin": -1,
+    "result": "L"
+   },
    "highest_score": {
     "gameweek": 3,
     "opponent": "Michael Lavarack",
     "points": 51,
-    "against": 50,
-    "margin": 1,
-    "result": "W"
+    "against": 52,
+    "margin": -1,
+    "result": "L"
    },
    "lowest_score": {
     "gameweek": 1,
@@ -4473,7 +4480,7 @@
     "result": "W"
    },
    "longest_win_streak": 1,
-   "longest_loss_streak": 0,
+   "longest_loss_streak": 1,
    "best_player": {
     "gameweek": 2,
     "name": "Gibbs-White",
@@ -4484,7 +4491,10 @@
     "manager": "Matthew Lees",
     "wins": 1
    },
-   "most_lost_to": null,
+   "most_lost_to": {
+    "manager": "Michael Lavarack",
+    "losses": 1
+   },
    "best_transfer": null,
    "worst_transfer": {
     "manager": "Piers Rennie",
@@ -6650,10 +6660,10 @@
     {
      "gameweek": 3,
      "opponent": "Piers Rennie",
-     "points": 50,
+     "points": 52,
      "against": 51,
-     "margin": -1,
-     "result": "L"
+     "margin": 1,
+     "result": "W"
     },
     {
      "gameweek": 2,
@@ -6855,7 +6865,7 @@
     "result": "W"
    },
    "longest_win_streak": 1,
-   "longest_loss_streak": 2,
+   "longest_loss_streak": 1,
    "best_player": {
     "gameweek": 2,
     "name": "Haaland",
@@ -7777,8 +7787,8 @@
     "value": 3
    },
    {
-    "manager": "Michael Lavarack",
-    "value": 2
+    "manager": "Piers Rennie",
+    "value": 1
    },
    {
     "manager": "Stefano Babiolakis",
@@ -7860,9 +7870,9 @@
     "gameweek": 3,
     "opponent": "Michael Lavarack",
     "points": 51,
-    "against": 50,
-    "margin": 1,
-    "result": "W"
+    "against": 52,
+    "margin": -1,
+    "result": "L"
    },
    {
     "manager": "Mark Stone",
