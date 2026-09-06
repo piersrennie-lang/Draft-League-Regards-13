@@ -240,6 +240,30 @@
       {% endif %}
     </div>
   </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Unluckiest managers</p>
+      {% if d.unluckiest %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
+        <tbody>
+          {% for r in d.unluckiest %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.manager(r.manager, avatars) }}</td>
+            <td class="num">{{ r.avg_against }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
 </section>
 
 {% endblock %}

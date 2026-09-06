@@ -48,23 +48,4 @@
   </div>
 </section>
 
-<section class="section--tight">
-  <h3 class="eyebrow eyebrow--sm">Unluckiest managers</h3>
-  <p class="lede">Ranked by the average score their opponents have put up against them this season &mdash; the toughest schedule so far, not their own results.</p>
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Pos</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
-    <tbody>
-      {% for r in d.unluckiest %}
-      <tr>
-        <td class="mute">{{ loop.index }}</td>
-        <td class="strong">{{ macros.manager(r.manager, avatars) }}</td>
-        <td class="num strong">{{ r.avg_against }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  </div>
-</section>
-
 {% endblock %}
