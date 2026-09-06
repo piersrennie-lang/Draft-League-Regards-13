@@ -174,6 +174,81 @@
   {% else %}
   <p class="pending">Not enough squad data yet for the season.</p>
   {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Leaders</h3>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Manager of the Week wins</p>
+      {% if d.leaders.motw_wins %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.motw_wins %}
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Manager of the Month wins</p>
+      {% if d.leaders.mom_wins %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.mom_wins %}
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Worst Manager of the Week wins</p>
+      {% if d.leaders.worst_motw_wins %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.worst_motw_wins %}
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Worst Manager of the Month wins</p>
+      {% if d.leaders.worst_mom_wins %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.worst_mom_wins %}
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
 </section>
 
 {% endblock %}
