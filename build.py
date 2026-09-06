@@ -136,7 +136,7 @@ def main():
     # Three real pages, each its own file, so navigating between them is a
     # normal page load rather than jumping to an anchor on one big page.
     pages = {"leaders": "leaders", "index": "standings", "transfers": "transfers",
-              "releases": "releases", "totw": "totw", "manager-of-week": "manager-of-week"}
+              "releases": "releases", "manager-of-week": "manager-of-week"}
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
         (DIST / f"{filename}.html").write_text(html)
@@ -153,6 +153,32 @@ def main():
                                         available_gws=available_gws, next_gw=next_gw,
                                         transfers_current=transfers_current, totw_by_pos=totw_by_pos,
                                         css_version=css_version, avatars=avatars)
+        (DIST / f"{filename}.html").write_text(html)
+
+    # Team of the Week, plus one page per gameweek whose Team of the Week
+    # has already finalised -- same picker as Results. Unlike Results
+    # though, only the pitch shown changes with the dropdown: the
+    # masthead (and gw itself) stays pinned to the site's actual current
+    # gameweek throughout, same as totw.html always has, since totw_gw
+    # deliberately lags gw until a week is fully settled.
+    current_totw_gw = data["team_of_week"]["gameweek"]
+    available_totw_gws = list(range(1, current_totw_gw + 1))
+    totw_template = env.get_template("totw.html")
+    for n in available_totw_gws:
+        if n == current_totw_gw:
+            n_totw = data["team_of_week"]
+        else:
+            n_data = json.loads((DERIVED / f"gw{n}.json").read_text())
+            n_totw = n_data.get("team_of_week") or {}
+        n_totw_by_pos = {"FWD": [], "MID": [], "DEF": [], "GKP": []}
+        for p in n_totw.get("players", []):
+            if p["pos"] in n_totw_by_pos:
+                n_totw_by_pos[p["pos"]].append(p)
+        filename = "totw" if n == current_totw_gw else f"totw-gw{n}"
+        html = totw_template.render(active="totw", totw=n_totw, totw_by_pos=n_totw_by_pos,
+                                     current_totw_gw=current_totw_gw, available_totw_gws=available_totw_gws,
+                                     d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
+                                     css_version=css_version, avatars=avatars)
         (DIST / f"{filename}.html").write_text(html)
 
     # One page per manager -- fixtures, head-to-head, biggest win, best

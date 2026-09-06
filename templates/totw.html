@@ -4,11 +4,14 @@
 {% block content %}
 
 <section id="totw" class="section--tight">
-  <p class="totw-meta">
-    <span class="kicker">GW{{ d.team_of_week.gameweek }}</span>
-    {% if d.team_of_week.formation %}<span class="totw-meta__result">{{ d.team_of_week.formation }} &middot; {{ d.team_of_week.total_points }} pts</span>{% endif %}
-  </p>
-  {% if d.team_of_week.players %}
+  <label class="eyebrow eyebrow--sm" for="totw-select">Gameweek</label>
+  <select id="totw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+    {% for n in available_totw_gws|reverse %}
+    <option value="{{ 'totw.html' if n == current_totw_gw else 'totw-gw' ~ n ~ '.html' }}"{% if n == totw.gameweek %} selected{% endif %}>GW{{ n }}{% if n == current_totw_gw %} &middot; current{% endif %}</option>
+    {% endfor %}
+  </select>
+  {% if totw.formation %}<p class="totw-meta__result">{{ totw.formation }} &middot; {{ totw.total_points }} pts</p>{% endif %}
+  {% if totw.players %}
   <div class="pitch">
     {% for row in [totw_by_pos.GKP, totw_by_pos.DEF, totw_by_pos.MID, totw_by_pos.FWD] %}
     <div class="pitch__row">
@@ -25,7 +28,7 @@
     {% endfor %}
   </div>
   {% else %}
-  <p class="pending">Not enough squad data yet for GW{{ d.team_of_week.gameweek }}.</p>
+  <p class="pending">Not enough squad data yet for GW{{ totw.gameweek }}.</p>
   {% endif %}
 </section>
 
