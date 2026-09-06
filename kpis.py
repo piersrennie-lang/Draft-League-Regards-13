@@ -836,15 +836,16 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
     }
 
 
-def build_manager_of_week(managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live):
-    """Top 3 and worst 3 managers for the team-of-week gameweek."""
-    scores = manager_week_scores(managers, players, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live)
+def build_manager_of_week(managers, players, gw, squads_raw, live, prev_squads_raw, prev_live):
+    """Top 3 and worst 3 managers for gw -- live, updating as it plays out
+    (unlike Team of the Week, which waits for gw to fully settle)."""
+    scores = manager_week_scores(managers, players, squads_raw, live, prev_squads_raw, prev_live)
     if not scores:
         return None
     ranked = sorted(scores.items(), key=lambda kv: -kv[1]["points"])
     worst = ranked[-3:][::-1] if len(ranked) >= 3 else []
     return {
-        "gameweek": totw_gw,
+        "gameweek": gw,
         "top": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in ranked[:3]],
         "worst": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in worst],
     }
@@ -1201,6 +1202,7 @@ def main():
     gw_kicked_off, gw_fully_over = gw_window(live)
     squads_raw = load(f"squads_gw{gw}")
     prev_squads_raw = load(f"squads_gw{gw - 1}")
+    prev_live = load(f"live_gw{gw - 1}")
     raw_transactions = load("transactions")
 
     # Team of the week always shows the last gameweek whose squads and
@@ -1209,11 +1211,11 @@ def main():
     # real-world fixture calendar standings uses), not the moment they
     # kick off, and not the FPL Draft league's own match-level "finished"
     # flag either, which lags real match completion by hours or days
-    # (bonus/BPS confirmation). Team of the Week, Manager of the Week and
-    # best/worst transfers are deliberately NOT live during the gameweek --
-    # only Manager of the Month tracks gw directly, further down. Before
-    # gw is fully over, fall back to gw-1, floored at 1 since there's no
-    # gameweek 0.
+    # (bonus/BPS confirmation). Team of the Week is deliberately NOT live
+    # during the gameweek. Manager of the Week, best/worst transfers and
+    # Manager of the Month all track gw directly instead (further down),
+    # updating live as the gameweek plays out. Before gw is fully over,
+    # fall back to gw-1, floored at 1 since there's no gameweek 0.
     totw_gw = gw if gw_fully_over else max(1, gw - 1)
     totw_squads_raw = load(f"squads_gw{totw_gw}")
     totw_live = load(f"live_gw{totw_gw}")
@@ -1247,11 +1249,16 @@ def main():
 
     totw_squads = build_squads(managers, totw_squads_raw, totw_live, players) if totw_squads_raw and totw_live else {}
     team_of_week = build_team_of_week(managers, totw_squads)
-    transfer_swaps = build_transfer_swaps(managers, players, totw_squads, prev_totw_squads_raw, totw_live, prev_totw_live)
+
+    # Unlike Team of the Week above, best/worst transfers and Manager of
+    # the Week track gw directly and live -- using the same live/projected
+    # scores standings already shows -- rather than waiting for the
+    # gameweek to fully settle.
+    transfer_swaps = build_transfer_swaps(managers, players, squads, prev_squads_raw, live, prev_live)
     best_transfers, worst_transfers = best_and_worst_transfers(transfer_swaps)
 
     manager_of_week = build_manager_of_week(
-        managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live)
+        managers, players, gw, squads_raw, live, prev_squads_raw, prev_live)
     manager_of_month = build_manager_of_month(managers, players, gw, gw_fully_over, load)
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
@@ -1280,6 +1287,7 @@ def main():
             "season": config.SEASON,
             "gameweek": gw,
             "next_gameweek": gw + 1,
+            "gw_fully_over": gw_fully_over,
             "fetched_at": meta.get("fetched_at"),
             "transaction_mode": details["league"].get("transaction_mode"),
             "scoring": details["league"].get("scoring"),
@@ -1302,6 +1310,9 @@ def main():
             "players": (team_of_week or {}).get("players", []),
             "formation": (team_of_week or {}).get("formation"),
             "total_points": (team_of_week or {}).get("total_points", 0),
+        },
+        "transfers_of_week": {
+            "gameweek": gw,
             "best_transfers": best_transfers,
             "worst_transfers": worst_transfers,
         },

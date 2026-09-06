@@ -10,7 +10,7 @@
   transfer call counts twice: once in the score it produced, once as a
   decision in its own right.</p>
 
-  <h3 class="eyebrow eyebrow--lg">GW{{ d.team_of_week.gameweek }}</h3>
+  <h3 class="eyebrow eyebrow--lg">GW{{ gw }}{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</h3>
   {% if d.manager_of_week %}
   <div class="cols-2">
     <div class="profile-panel">
@@ -49,7 +49,7 @@
     </div>
   </div>
   {% else %}
-  <p class="pending">Not enough squad data yet for GW{{ d.team_of_week.gameweek }}.</p>
+  <p class="pending">Not enough squad data yet for GW{{ gw }}.</p>
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>

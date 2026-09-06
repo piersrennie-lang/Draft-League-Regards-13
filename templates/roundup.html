@@ -75,25 +75,25 @@
   </table>
   </div>
 
-  {% if d.team_of_week.gameweek == 1 %}
+  {% if gw == 1 %}
   <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers</h3>
   <p class="pending">Needs a full gameweek's results to assess &mdash; this
   will start appearing once GW{{ gw }} concludes.</p>
   {% else %}
-  <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers of GW{{ d.team_of_week.gameweek }}</h3>
+  <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers of GW{{ gw }}{% if not d.league.gw_fully_over %} &middot; live{% endif %}</h3>
   <p class="lede">Every swap where both the released and incoming player
   started their gameweek, ranked by the points swing it produced &mdash;
   released player's score against their replacement's, whoever forced
   the move.</p>
 
   <p class="strong">Best</p>
-  {% if d.team_of_week.best_transfers %}
+  {% if d.transfers_of_week.best_transfers %}
   <div class="table-scroll">
   <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
     <tbody>
-      {% for t in d.team_of_week.best_transfers %}
+      {% for t in d.transfers_of_week.best_transfers %}
       <tr>
         <td>{{ macros.manager(t.manager, avatars) }}</td>
         <td>{{ t.out_name }}</td>
@@ -107,17 +107,17 @@
   </table>
   </div>
   {% else %}
-  <p class="pending">No transfers to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+  <p class="pending">No transfers to rank yet for GW{{ gw }}.</p>
   {% endif %}
 
   <p class="strong">Worst</p>
-  {% if d.team_of_week.worst_transfers %}
+  {% if d.transfers_of_week.worst_transfers %}
   <div class="table-scroll">
   <table class="grid grid--table">
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
     <tbody>
-      {% for t in d.team_of_week.worst_transfers %}
+      {% for t in d.transfers_of_week.worst_transfers %}
       <tr>
         <td>{{ macros.manager(t.manager, avatars) }}</td>
         <td class="strong">{{ t.out_name }}</td>
@@ -131,7 +131,7 @@
   </table>
   </div>
   {% else %}
-  <p class="pending">No losses to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+  <p class="pending">No losses to rank yet for GW{{ gw }}.</p>
   {% endif %}
   {% endif %}
 </section>
@@ -195,7 +195,7 @@
   transfer call counts twice: once in the score it produced, once as a
   decision in its own right.</p>
 
-  <h3 class="eyebrow eyebrow--lg">GW{{ d.team_of_week.gameweek }}</h3>
+  <h3 class="eyebrow eyebrow--lg">GW{{ gw }}{% if not d.league.gw_fully_over %} &middot; live{% endif %}</h3>
   {% if d.manager_of_week %}
   <div class="cols-2">
     <div>
@@ -232,7 +232,7 @@
     </div>
   </div>
   {% else %}
-  <p class="pending">Not enough squad data yet for GW{{ d.team_of_week.gameweek }}.</p>
+  <p class="pending">Not enough squad data yet for GW{{ gw }}.</p>
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>
