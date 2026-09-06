@@ -6,7 +6,7 @@
   "gameweek": 3,
   "next_gameweek": 4,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-06T17:14:07Z",
+  "fetched_at": "2026-09-06T17:20:29Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -126,7 +126,7 @@
    "home_name": "Mark Stone",
    "away_name": "Matthew Xenakis",
    "home_points": 51,
-   "away_points": 34,
+   "away_points": 33,
    "home_remaining": 0,
    "away_remaining": 0,
    "started": true,
@@ -1526,7 +1526,7 @@
      "club": "CHE",
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-     "points": 7
+     "points": 6
     },
     {
      "element": 591,
@@ -1574,7 +1574,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 34,
+   "effective_xi_points": 33,
    "autosubs": [
     {
      "player_out": 387,
@@ -1588,21 +1588,21 @@
    "is_final": false,
    "xi": [
     {
-     "element": 40,
-     "name": "Rogers",
-     "pos": "MID",
-     "club": "CHE",
-     "team_id": 6,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-     "points": 7
-    },
-    {
      "element": 496,
      "name": "Kinsky",
      "pos": "GKP",
      "club": "TOT",
      "team_id": 19,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
+     "points": 6
+    },
+    {
+     "element": 40,
+     "name": "Rogers",
+     "pos": "MID",
+     "club": "CHE",
+     "team_id": 6,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
      "points": 6
     },
     {
@@ -1725,7 +1725,7 @@
      "points": 0
     }
    ],
-   "xi_points": 32,
+   "xi_points": 31,
    "bench_points": 3,
    "best_bench": {
     "element": 156,
@@ -2908,15 +2908,24 @@
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
-   "release": "Rogers",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-   "release_points": 7,
-   "tie": [],
-   "next": "Kinsky",
-   "next_points": 6,
+   "release": "Kinsky",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
+   "release_points": 6,
+   "tie": [
+    {
+     "name": "Kinsky",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png"
+    },
+    {
+     "name": "Rogers",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png"
+    }
+   ],
+   "next": "\u0160e\u0161ko",
+   "next_points": 5,
    "next_tie": [],
-   "score": 32,
-   "cost_pct": 21.9,
+   "score": 31,
+   "cost_pct": 19.4,
    "h2h": null
   },
   {
@@ -3044,15 +3053,24 @@
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
-   "release": "Rogers",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-   "release_points": 7,
-   "tie": [],
-   "next": "Kinsky",
-   "next_points": 6,
+   "release": "Kinsky",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
+   "release_points": 6,
+   "tie": [
+    {
+     "name": "Kinsky",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png"
+    },
+    {
+     "name": "Rogers",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png"
+    }
+   ],
+   "next": "\u0160e\u0161ko",
+   "next_points": 5,
    "next_tie": [],
-   "score": 32,
-   "cost_pct": 21.9,
+   "score": 31,
+   "cost_pct": 19.4,
    "h2h": null
   },
   {
@@ -3199,10 +3217,10 @@
    "d": 0,
    "l": 0,
    "for": 123,
-   "against": 89,
+   "against": 88,
    "played": 3,
    "points": 9,
-   "diff": 34,
+   "diff": 35,
    "history": [
     {
      "event": 1,
@@ -3221,7 +3239,7 @@
     {
      "event": 3,
      "pts": 51,
-     "against": 34,
+     "against": 33,
      "opp": 254700,
      "result": "W"
     }
@@ -3510,11 +3528,11 @@
    "w": 0,
    "d": 0,
    "l": 3,
-   "for": 108,
+   "for": 107,
    "against": 135,
    "played": 3,
    "points": 0,
-   "diff": -27,
+   "diff": -28,
    "history": [
     {
      "event": 1,
@@ -3532,7 +3550,7 @@
     },
     {
      "event": 3,
-     "pts": 34,
+     "pts": 33,
      "against": 51,
      "opp": 260926,
      "result": "L"
@@ -4126,7 +4144,7 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 32,
+    "points": 31,
     "transfer_points": -2
    },
    {
@@ -4181,7 +4199,7 @@
     },
     {
      "manager": "Matthew Xenakis",
-     "points": 106,
+     "points": 105,
      "transfer_points": -2
     },
     {
@@ -4234,7 +4252,7 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 106,
+    "points": 105,
     "transfer_points": -2
    },
    {
@@ -5913,7 +5931,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Mark Stone",
-    "points": 34,
+    "points": 33,
     "against": 51,
     "started": true,
     "live": true
@@ -7226,7 +7244,7 @@
     "gameweek": 3,
     "opponent": "Matthew Xenakis",
     "points": 51,
-    "against": 34,
+    "against": 33,
     "started": true,
     "live": true
    },
@@ -7957,7 +7975,7 @@
   "luckiest": [
    {
     "manager": "Mark Stone",
-    "avg_against": 29.7
+    "avg_against": 29.3
    },
    {
     "manager": "Matthew Lees",
