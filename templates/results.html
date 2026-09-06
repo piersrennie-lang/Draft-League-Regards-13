@@ -4,16 +4,16 @@
 {% block content %}
 
 <section id="results" class="section--tight">
-  <div class="gw-picker">
-    <label class="eyebrow eyebrow--sm" for="gw-select">Gameweek</label>
-    <select id="gw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
-      {% for g in available_gws|reverse %}
-      <option value="{{ 'results.html' if g == current_gw else 'results-gw' ~ g ~ '.html' }}"{% if g == gw %} selected{% endif %}>GW{{ g }}{% if g == current_gw %} &middot; current{% endif %}</option>
-      {% endfor %}
-    </select>
-  </div>
   <div class="profile-grid">
     <div class="profile-panel">
+      <div class="gw-picker">
+        <label class="eyebrow eyebrow--sm" for="gw-select">Gameweek</label>
+        <select id="gw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+          {% for g in available_gws|reverse %}
+          <option value="{{ 'results.html' if g == current_gw else 'results-gw' ~ g ~ '.html' }}"{% if g == gw %} selected{% endif %}>GW{{ g }}{% if g == current_gw %} &middot; current{% endif %}</option>
+          {% endfor %}
+        </select>
+      </div>
       {% if d.results %}
       {% for r in d.results %}
       <div class="match">
