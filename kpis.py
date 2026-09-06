@@ -453,20 +453,6 @@ def rank_entertainment(matches):
     return order
 
 
-def gw_matches_finished(details, gw):
-    """True once every head-to-head match for this gameweek carries FPL
-    Draft's own "finished" flag -- the same signal build_standings()
-    already gates matches_played on. This can happen well before
-    game.json's current_event advances to the next gameweek (that only
-    flips once the *next* gameweek's own deadline passes), so waiting on
-    current_event to know a gameweek is "done" leaves Team of the Week,
-    Manager of the Week/Month and best/worst transfers stuck showing the
-    previous gameweek for days after this one has actually settled.
-    """
-    matches = [m for m in details["matches"] if m["event"] == gw]
-    return bool(matches) and all(m.get("finished") for m in matches)
-
-
 def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
                      live_kicked_off=False, live_fully_over=False):
     """Recomputed from finished matches, plus the current gameweek's live
@@ -881,14 +867,16 @@ def _block_standings(managers, players, load_fn, block_start, block_end):
     return [{"manager": n, "points": p} for n, p in ranked]
 
 
-def build_manager_of_month(managers, players, totw_gw, load_fn):
+def build_manager_of_month(managers, players, totw_gw, totw_gw_fully_over, load_fn):
     """Manager of the Month: a rolling 4-gameweek competition (GW1-4,
     GW5-8, ...), by the same per-week score as Manager of the Week,
     summed across the block. The block containing totw_gw is "current"
-    and its standings are shown live, updating gameweek by gameweek as
-    they accumulate -- it's only finalised, and its winner crowned, once
-    totw_gw reaches the block's last gameweek (a multiple of 4), at
-    which point the next block starts fresh from zero.
+    and its standings are shown live, updating gameweek by gameweek --
+    and within totw_gw itself, kick by kick -- as they accumulate. It's
+    only finalised, and its winner crowned, once totw_gw reaches the
+    block's last gameweek (a multiple of 4) AND that gameweek's own
+    real-world fixtures have all finished, at which point the next
+    block starts fresh from zero.
 
     Also returns "history": every earlier block that's already finished,
     most recent first, plus a "leaderboard" tally of how many months
@@ -904,7 +892,7 @@ def build_manager_of_month(managers, players, totw_gw, load_fn):
         current = {
             "block_start": current_start,
             "block_end": current_end,
-            "is_final": totw_gw == current_end,
+            "is_final": totw_gw == current_end and totw_gw_fully_over,
             "manager": current_standings[0]["manager"],
             "points": current_standings[0]["points"],
             "standings": current_standings,
@@ -1202,15 +1190,17 @@ def main():
     prev_squads_raw = load(f"squads_gw{gw - 1}")
     raw_transactions = load("transactions")
 
-    # Team of the week always shows the last gameweek whose squads and
-    # scores are fully settled. That's gw itself once its own matches have
-    # all finished -- no need to wait for current_event to advance to the
-    # next gameweek, which only happens once *that* gameweek's deadline
-    # passes and can lag the actual results by days. Otherwise fall back to
-    # gw-1, floored at 1 since there's no gameweek 0.
-    totw_gw = gw if gw_matches_finished(details, gw) else max(1, gw - 1)
+    # Team of the week, Manager of the Week/Month and best/worst transfers
+    # all track gw itself from the moment its real-world fixtures kick off
+    # -- using live/projected scores that update as the gameweek plays out,
+    # same as standings -- rather than waiting for current_event to advance
+    # to the next gameweek (which only happens once *that* gameweek's own
+    # deadline passes and can lag actual results by days). Before kickoff,
+    # fall back to gw-1, floored at 1 since there's no gameweek 0.
+    totw_gw = gw if gw_kicked_off else max(1, gw - 1)
     totw_squads_raw = load(f"squads_gw{totw_gw}")
     totw_live = load(f"live_gw{totw_gw}")
+    _, totw_gw_fully_over = gw_window(totw_live)
     prev_totw_squads_raw = load(f"squads_gw{totw_gw - 1}")
     prev_totw_live = load(f"live_gw{totw_gw - 1}")
 
@@ -1246,7 +1236,7 @@ def main():
 
     manager_of_week = build_manager_of_week(
         managers, players, totw_gw, totw_squads_raw, totw_live, prev_totw_squads_raw, prev_totw_live)
-    manager_of_month = build_manager_of_month(managers, players, totw_gw, load)
+    manager_of_month = build_manager_of_month(managers, players, totw_gw, totw_gw_fully_over, load)
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
     leaders = build_leaders(manager_profiles)
@@ -1293,6 +1283,7 @@ def main():
             managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
         "team_of_week": {
             "gameweek": totw_gw,
+            "final": totw_gw_fully_over,
             "players": (team_of_week or {}).get("players", []),
             "formation": (team_of_week or {}).get("formation"),
             "total_points": (team_of_week or {}).get("total_points", 0),

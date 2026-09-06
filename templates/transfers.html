@@ -30,7 +30,7 @@
   <p class="pending">Needs a full gameweek's results to assess &mdash; this
   will start appearing once GW{{ gw }} concludes.</p>
   {% else %}
-  <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers of GW{{ d.team_of_week.gameweek }}</h3>
+  <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers of GW{{ d.team_of_week.gameweek }}{% if not d.team_of_week.final %} <span class="live-tag">Live</span>{% endif %}</h3>
   <p class="lede">Every swap where both the released and incoming player
   started their gameweek, ranked by the points swing it produced &mdash;
   released player's score against their replacement's, whoever forced
