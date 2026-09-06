@@ -6,7 +6,7 @@
   "gameweek": 3,
   "next_gameweek": 4,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-06T14:03:15Z",
+  "fetched_at": "2026-09-06T14:16:07Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -112,7 +112,7 @@
    "away": 255427,
    "home_name": "Roscoe Hill",
    "away_name": "Matthew Lees",
-   "home_points": 18,
+   "home_points": 17,
    "away_points": 35,
    "home_remaining": 0,
    "away_remaining": 2,
@@ -2293,7 +2293,7 @@
      "club": "EVE",
      "team_id": 9,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
-     "points": 2
+     "points": 1
     },
     {
      "element": 335,
@@ -2350,7 +2350,7 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 18,
+   "effective_xi_points": 17,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2383,15 +2383,6 @@
      "points": 2
     },
     {
-     "element": 230,
-     "name": "Branthwaite",
-     "pos": "DEF",
-     "club": "EVE",
-     "team_id": 9,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
-     "points": 2
-    },
-    {
      "element": 335,
      "name": "Stach",
      "pos": "MID",
@@ -2416,6 +2407,15 @@
      "club": "BOU",
      "team_id": 3,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p463981.png",
+     "points": 1
+    },
+    {
+     "element": 230,
+     "name": "Branthwaite",
+     "pos": "DEF",
+     "club": "EVE",
+     "team_id": 9,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
      "points": 1
     },
     {
@@ -2493,7 +2493,7 @@
      "points": 0
     }
    ],
-   "xi_points": 18,
+   "xi_points": 17,
    "bench_points": 0,
    "best_bench": {
     "element": 1,
@@ -2945,8 +2945,8 @@
    "next": "Szoboszlai",
    "next_points": 3,
    "next_tie": [],
-   "score": 18,
-   "cost_pct": 22.2,
+   "score": 17,
+   "cost_pct": 23.5,
    "h2h": null
   }
  ],
@@ -2979,21 +2979,6 @@
    "h2h": null
   },
   {
-   "league_entry": 259872,
-   "manager": "Roscoe Hill",
-   "team": "Mbeumo my Cunha",
-   "release": "Mukiele",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
-   "release_points": 4,
-   "tie": [],
-   "next": "Szoboszlai",
-   "next_points": 3,
-   "next_tie": [],
-   "score": 18,
-   "cost_pct": 22.2,
-   "h2h": null
-  },
-  {
    "league_entry": 208632,
    "manager": "Stefano Babiolakis",
    "team": "Iraola Coaster",
@@ -3015,6 +3000,21 @@
    "next_tie": [],
    "score": 22,
    "cost_pct": 22.7,
+   "h2h": null
+  },
+  {
+   "league_entry": 259872,
+   "manager": "Roscoe Hill",
+   "team": "Mbeumo my Cunha",
+   "release": "Mukiele",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
+   "release_points": 4,
+   "tie": [],
+   "next": "Szoboszlai",
+   "next_points": 3,
+   "next_tie": [],
+   "score": 17,
+   "cost_pct": 23.5,
    "h2h": null
   },
   {
@@ -3254,10 +3254,10 @@
    "d": 0,
    "l": 1,
    "for": 113,
-   "against": 93,
+   "against": 92,
    "played": 3,
    "points": 6,
-   "diff": 20,
+   "diff": 21,
    "history": [
     {
      "event": 1,
@@ -3276,7 +3276,7 @@
     {
      "event": 3,
      "pts": 35,
-     "against": 18,
+     "against": 17,
      "opp": 259872,
      "result": "W"
     }
@@ -3370,11 +3370,11 @@
    "w": 1,
    "d": 0,
    "l": 2,
-   "for": 106,
+   "for": 105,
    "against": 118,
    "played": 3,
    "points": 3,
-   "diff": -12,
+   "diff": -13,
    "history": [
     {
      "event": 1,
@@ -3392,7 +3392,7 @@
     },
     {
      "event": 3,
-     "pts": 18,
+     "pts": 17,
      "against": 35,
      "opp": 255427,
      "result": "L"
@@ -4087,14 +4087,14 @@
   ],
   "worst": [
    {
+    "manager": "Roscoe Hill",
+    "points": 17,
+    "transfer_points": 0
+   },
+   {
     "manager": "Matthew Xenakis",
     "points": 17,
     "transfer_points": -1
-   },
-   {
-    "manager": "Roscoe Hill",
-    "points": 18,
-    "transfer_points": 0
    },
    {
     "manager": "Stefano Babiolakis",
@@ -4153,7 +4153,7 @@
     },
     {
      "manager": "Roscoe Hill",
-     "points": 103,
+     "points": 102,
      "transfer_points": -3
     },
     {
@@ -4206,7 +4206,7 @@
    },
    {
     "manager": "Roscoe Hill",
-    "points": 103,
+    "points": 102,
     "transfer_points": -3
    },
    {
@@ -6170,7 +6170,7 @@
     "gameweek": 3,
     "opponent": "Roscoe Hill",
     "points": 35,
-    "against": 18,
+    "against": 17,
     "started": true,
     "live": true
    },
@@ -6839,7 +6839,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Matthew Lees",
-    "points": 18,
+    "points": 17,
     "against": 35,
     "started": true,
     "live": true
@@ -7887,7 +7887,7 @@
    },
    {
     "manager": "Matthew Lees",
-    "avg_against": 31.0
+    "avg_against": 30.7
    },
    {
     "manager": "Nicolas Rubin",
@@ -7924,7 +7924,7 @@
     "avg_against": 39.0
    }
   ],
-  "average": 37.2
+  "average": 37.1
  },
  "pot": {
   "base": 200,
