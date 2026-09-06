@@ -164,6 +164,7 @@ section + section { border-top: 1px solid var(--hair); }
 .section--tight { padding-top: clamp(1.4rem, 4vw, 2rem); }
 
 .lede { max-width: 56ch; color: var(--mute); margin: -0.6rem 0 2rem; }
+.lede:first-child { margin-top: 0; }
 .note {
   max-width: 62ch;
   margin-top: 1.6rem;
@@ -493,6 +494,7 @@ p.strong { margin: 0 0 0.7rem; font-weight: 600; }
   background: var(--panel);
 }
 .pitch .gw-picker { margin: 0; }
+.pitch:first-child { margin-top: 0; }
 .pitch__row {
   display: flex;
   justify-content: space-evenly;
@@ -535,7 +537,7 @@ p.strong { margin: 0 0 0.7rem; font-weight: 600; }
 
 /* -------------------------------------------------------------- cols-2 */
 
-.cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.8rem 2.5rem; margin-bottom: 2rem; }
+.cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.4rem 2.5rem; margin-bottom: 2rem; }
 .cols-2 table.grid { margin-bottom: 0; }
 
 /* ----------------------------------------------------------------- gaps */
