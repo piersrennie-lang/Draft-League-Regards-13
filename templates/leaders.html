@@ -87,7 +87,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Biggest win</p>
+      <p class="strong">Biggest win{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.leaders.biggest_win %}
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -112,7 +112,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Highest score of the season</p>
+      <p class="strong">Highest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.leaders.highest_score %}
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -134,7 +134,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Lowest score of the season</p>
+      <p class="strong">Lowest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.leaders.lowest_score %}
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -159,7 +159,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Longest winning streak</p>
+      <p class="strong">Longest winning streak{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.leaders.longest_win_streak %}
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -176,7 +176,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Longest losing streak</p>
+      <p class="strong">Longest losing streak{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.leaders.longest_loss_streak %}
       <div class="table-scroll">
       <table class="grid grid--table">

@@ -46,7 +46,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Biggest win</p>
+      <p class="strong">Biggest win{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.biggest_win %}
       <p>{{ profile.biggest_win.points }}&ndash;{{ profile.biggest_win.against }} vs
       {{ macros.manager(profile.biggest_win.opponent, avatars) }} &middot; GW{{ profile.biggest_win.gameweek }}
@@ -56,7 +56,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Biggest loss</p>
+      <p class="strong">Biggest loss{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.biggest_loss %}
       <p>{{ profile.biggest_loss.points }}&ndash;{{ profile.biggest_loss.against }} vs
       {{ macros.manager(profile.biggest_loss.opponent, avatars) }} &middot; GW{{ profile.biggest_loss.gameweek }}
@@ -69,7 +69,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Longest winning streak</p>
+      <p class="strong">Longest winning streak{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.longest_win_streak %}
       <p>{{ profile.longest_win_streak }} game{{ 's' if profile.longest_win_streak != 1 }} in a row</p>
       {% else %}
@@ -77,7 +77,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Longest losing streak</p>
+      <p class="strong">Longest losing streak{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.longest_loss_streak %}
       <p>{{ profile.longest_loss_streak }} game{{ 's' if profile.longest_loss_streak != 1 }} in a row</p>
       {% else %}
@@ -88,7 +88,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Highest score of the season</p>
+      <p class="strong">Highest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.highest_score %}
       <p>{{ profile.highest_score.points }} pts vs
       {{ macros.manager(profile.highest_score.opponent, avatars) }} &middot; GW{{ profile.highest_score.gameweek }}
@@ -98,7 +98,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Lowest score of the season</p>
+      <p class="strong">Lowest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.lowest_score %}
       <p>{{ profile.lowest_score.points }} pts vs
       {{ macros.manager(profile.lowest_score.opponent, avatars) }} &middot; GW{{ profile.lowest_score.gameweek }}
@@ -123,7 +123,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Beaten most</p>
+      <p class="strong">Beaten most{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.most_beaten %}
       <p>{{ macros.manager(profile.most_beaten.manager, avatars) }} &mdash;
       {{ profile.most_beaten.wins }} time{{ 's' if profile.most_beaten.wins != 1 }}</p>
@@ -132,7 +132,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Lost to most</p>
+      <p class="strong">Lost to most{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.most_lost_to %}
       <p>{{ macros.manager(profile.most_lost_to.manager, avatars) }} &mdash;
       {{ profile.most_lost_to.losses }} time{{ 's' if profile.most_lost_to.losses != 1 }}</p>

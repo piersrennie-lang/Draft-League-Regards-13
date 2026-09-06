@@ -1009,7 +1009,7 @@ def group_transfers_by_block(swaps):
     ]
 
 
-def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history, squads):
+def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history, squads, standings):
     """Everything a manager's own page needs: their fixture history and
     head-to-head record (from the full season schedule, so this only gets
     more interesting as more rounds are played), their biggest single-match
@@ -1017,6 +1017,15 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     produced, their personal best and worst transfer swaps, and their
     trophy count -- Manager of the Week wins, Manager of the Month wins,
     and Team of the Week appearances.
+
+    Fixture history and head-to-head come from standings' own per-match
+    history, which is already live -- it uses each squad's projected
+    effective_xi_points for the current gameweek once it's kicked off,
+    rather than waiting on the FPL Draft league's own "finished" flag
+    (which lags for days after a gameweek actually concludes). So Biggest
+    win, Highest/Lowest score, and the win/loss streaks below all update
+    through a live gameweek exactly like Standings and Team of the Week do,
+    instead of freezing until results are officially confirmed.
 
     Best player performance, transfer swaps, weekly wins and Team of the
     Week appearances are all found by re-running the same per-gameweek
@@ -1026,24 +1035,21 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     there's no shortcut, a manager's all-time best is only knowable by
     having looked at all of it.
     """
+    history_by_le = {r["league_entry"]: r["history"] for r in standings}
     fixtures = {le: [] for le in managers}
     h2h = {le: {} for le in managers}
-    for m in sorted(details["matches"], key=lambda x: x["event"]):
-        if not m.get("finished"):
-            continue
-        h, a = m["league_entry_1"], m["league_entry_2"]
-        hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
-        for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
-            if me not in managers or opp not in managers:
+    for le in managers:
+        for h in history_by_le.get(le, []):
+            opp = h["opp"]
+            if opp not in managers:
                 continue
-            result = "W" if mine > theirs else "D" if mine == theirs else "L"
-            fixtures[me].append({
-                "gameweek": m["event"], "opponent": managers[opp]["manager"],
-                "points": mine, "against": theirs, "margin": mine - theirs,
-                "result": result,
+            fixtures[le].append({
+                "gameweek": h["event"], "opponent": managers[opp]["manager"],
+                "points": h["pts"], "against": h["against"], "margin": h["pts"] - h["against"],
+                "result": h["result"],
             })
-            rec = h2h[me].setdefault(opp, {"w": 0, "d": 0, "l": 0})
-            rec[result.lower()] += 1
+            rec = h2h[le].setdefault(opp, {"w": 0, "d": 0, "l": 0})
+            rec[h["result"].lower()] += 1
 
     current_gw_live = load_fn(f"live_gw{gw}")
     current_kicked_off, current_fully_over = gw_window(current_gw_live)
@@ -1368,17 +1374,17 @@ def main():
     manager_of_week = build_manager_of_week(
         managers, players, gw, squads_raw, live, prev_squads_raw, prev_live)
     manager_of_month = build_manager_of_month(managers, players, gw, gw_fully_over, load)
+    standings = build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
+                                 live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over)
+    luck = build_luckiest(standings)
     manager_profiles = build_manager_profiles(
-        details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
+        details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads, standings)
     transfer_history = build_transfer_history(managers, players, raw_transactions, load, gw)
     for le, m in managers.items():
         profile = manager_profiles.get(m["manager"])
         if profile is not None:
             profile["raw_transfers"] = sorted(transfer_history[le], key=lambda t: -t["gameweek"])
     leaders = build_leaders(manager_profiles)
-    standings = build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
-                                 live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over)
-    luck = build_luckiest(standings)
 
     gaps = []
     if not squads_raw:
