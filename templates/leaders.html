@@ -243,7 +243,7 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Luckiest managers</p>
+      <p class="strong">Luckiest managers{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.luck.luckiest %}
       <p class="lede">League average score: {{ d.luck.average }} pts.</p>
       <div class="table-scroll">
@@ -265,7 +265,7 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Unluckiest managers</p>
+      <p class="strong">Unluckiest managers{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if d.luck.unluckiest %}
       <p class="lede">League average score: {{ d.luck.average }} pts.</p>
       <div class="table-scroll">

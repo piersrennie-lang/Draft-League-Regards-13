@@ -509,7 +509,7 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
                 t["d"] += 1
             else:
                 t["l"] += 1
-            history[me].append({"event": m["event"], "pts": mine, "opp": opp,
+            history[me].append({"event": m["event"], "pts": mine, "against": theirs, "opp": opp,
                                 "result": "W" if mine > theirs else "D" if mine == theirs else "L"})
 
     rows = []
@@ -1179,32 +1179,36 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     return profiles
 
 
-def build_luckiest(manager_profiles, limit=5):
+def build_luckiest(standings, limit=5):
     """Every manager ranked by strength of schedule: the average score
-    their opponents have put up against them across the season's finished
-    fixtures -- not the manager's own score. "luckiest" is the top-N who
-    have faced the softest average opposition (ascending, easiest first);
-    "unluckiest" is the top-N who have faced the toughest (descending,
-    hardest first) -- the same underlying ranking read from both ends,
-    regardless of each manager's own results in those games (a manager
-    can land on either list on the back of narrow losses or big wins
-    alike; what places them here is the opponent's output, not the
-    scoreline).
+    their opponents have put up against them across the season so far --
+    not the manager's own score. Sourced from standings' own per-match
+    history, which already carries the live gameweek's projected score
+    once it's kicked off (the same live_kicked_off/live_squads plumbing
+    standings itself uses), so this updates continuously through a live
+    gameweek instead of waiting for the FPL Draft league's own delayed
+    "finished" flag. "luckiest" is the top-N who have faced the softest
+    average opposition (ascending, easiest first); "unluckiest" is the
+    top-N who have faced the toughest (descending, hardest first) -- the
+    same underlying ranking read from both ends, regardless of each
+    manager's own results in those games (a manager can land on either
+    list on the back of narrow losses or big wins alike; what places
+    them here is the opponent's output, not the scoreline).
 
     Also returns "average": the league-wide average score across every
-    finished fixture so far, so each manager's avg_against can be read
+    match counted above, so each manager's avg_against can be read
     against a baseline -- e.g. a 48.0 next to a league average of 40
     means a genuinely tough run, not just a high-scoring league.
     """
     rows = []
     all_points = []
-    for name, p in manager_profiles.items():
-        fixtures = p.get("fixtures") or []
-        if not fixtures:
+    for r in standings:
+        history = r.get("history") or []
+        if not history:
             continue
-        avg_against = sum(f["against"] for f in fixtures) / len(fixtures)
-        rows.append({"manager": name, "avg_against": round(avg_against, 1)})
-        all_points.extend(f["points"] for f in fixtures)
+        avg_against = sum(f["against"] for f in history) / len(history)
+        rows.append({"manager": r["manager"], "avg_against": round(avg_against, 1)})
+        all_points.extend(f["pts"] for f in history)
     rows.sort(key=lambda r: r["avg_against"])
     average = round(sum(all_points) / len(all_points), 1) if all_points else 0
     return {
@@ -1331,7 +1335,9 @@ def main():
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
     leaders = build_leaders(manager_profiles)
-    luck = build_luckiest(manager_profiles)
+    standings = build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
+                                 live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over)
+    luck = build_luckiest(standings)
 
     gaps = []
     if not squads_raw:
@@ -1368,8 +1374,7 @@ def main():
         "releases": releases,
         "release_efficiency": sorted(releases, key=lambda r: r["cost_pct"]),
         "breaches": detect_breaches(prev_releases, squads),
-        "standings": build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
-                                      live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over),
+        "standings": standings,
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in build_transfers(
             managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
