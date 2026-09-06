@@ -79,6 +79,33 @@
   {% else %}
   <p class="pending">Not enough squad data yet for the current block.</p>
   {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Manager of the Season</h3>
+  {% if d.manager_of_month.season %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">
+        Through GW{{ gw }}{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}
+      </p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <tbody>
+          {% for m in d.manager_of_month.season %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+            {{ macros.transfer_points_cell(m.transfer_points) }}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="pending">Not enough squad data yet for the season.</p>
+  {% endif %}
 </section>
 
 {% endblock %}

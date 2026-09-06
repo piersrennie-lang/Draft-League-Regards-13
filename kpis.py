@@ -896,7 +896,9 @@ def build_manager_of_month(managers, players, gw, gw_fully_over, load_fn):
     most recent first, plus a "leaderboard" tally of how many months
     each manager has won -- the record book for a separate page, since
     the live standings above are the only thing that needs to be
-    front-and-centre week to week.
+    front-and-centre week to week. "season" is the same running tally
+    but for the whole season so far (GW1 through gw), live in exactly
+    the same way as "current".
     """
     current_end = ((gw + 3) // 4) * 4
     current_start = current_end - 3
@@ -911,6 +913,8 @@ def build_manager_of_month(managers, players, gw, gw_fully_over, load_fn):
             "points": current_standings[0]["points"],
             "standings": current_standings,
         }
+
+    season_standings = _block_standings(managers, players, load_fn, 1, gw)
 
     history = []
     for block_end in range(4, current_end, 4):
@@ -931,6 +935,7 @@ def build_manager_of_month(managers, players, gw, gw_fully_over, load_fn):
 
     return {
         "current": current,
+        "season": season_standings,
         "history": history,
         "leaderboard": [{"manager": n, "wins": w} for n, w in leaderboard],
     }
