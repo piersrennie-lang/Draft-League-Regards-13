@@ -89,6 +89,54 @@
     </div>
   </div>
   {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Leaders</h3>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Best transfers of all time{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
+      {% if d.leaders.best_transfers %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Gain</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.best_transfers %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.manager(row.manager, avatars) }}</td>
+            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
+            <td class="num gain">+{{ row.diff }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+    <div class="profile-panel">
+      <p class="strong">Worst transfers of all time{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
+      {% if d.leaders.worst_transfers %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Lost</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.worst_transfers %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.manager(row.manager, avatars) }}</td>
+            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
+            <td class="num cost">{{ row.diff }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
 </section>
 
 {% endblock %}

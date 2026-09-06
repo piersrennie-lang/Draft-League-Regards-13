@@ -1,35 +1,10 @@
 {% extends "_base.html" %}
-{% block title %}Leaders &middot; {{ d.league.name }}{% endblock %}
+{% block title %}Home &middot; {{ d.league.name }}{% endblock %}
 {% import "_macros.html" as macros %}
 {% block content %}
 
 <section id="leaders" class="section--tight">
-  <h3 class="eyebrow eyebrow--sm">Leaders for the season</h3>
-
-  <div class="profile-grid">
-    <div class="profile-panel">
-      <p class="strong">Best individual performance</p>
-      {% if d.leaders.best_player %}
-      <div class="table-scroll">
-      <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th>Player</th><th class="num">Pts</th></tr></thead>
-        <tbody>
-          {% for row in d.leaders.best_player %}
-          <tr>
-            <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td class="wrap">{{ row.name }}<br><span class="mute">{{ row.club }} &middot; GW{{ row.gameweek }}</span></td>
-            <td class="num">{{ row.points }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
-      {% else %}
-      <p class="pending">Not enough data yet.</p>
-      {% endif %}
-    </div>
-  </div>
+  <h3 class="eyebrow eyebrow--sm">Home</h3>
 
   <div class="profile-grid">
     <div class="profile-panel">
@@ -130,53 +105,6 @@
         <tbody>
           {% for row in d.leaders.longest_loss_streak %}
           <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
-      {% else %}
-      <p class="pending">Not enough data yet.</p>
-      {% endif %}
-    </div>
-  </div>
-
-  <div class="profile-grid">
-    <div class="profile-panel">
-      <p class="strong">Best transfers{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
-      {% if d.leaders.best_transfers %}
-      <div class="table-scroll">
-      <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Gain</th></tr></thead>
-        <tbody>
-          {% for row in d.leaders.best_transfers %}
-          <tr>
-            <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
-            <td class="num gain">+{{ row.diff }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
-      {% else %}
-      <p class="pending">Not enough data yet.</p>
-      {% endif %}
-    </div>
-    <div class="profile-panel">
-      <p class="strong">Worst transfers{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
-      {% if d.leaders.worst_transfers %}
-      <div class="table-scroll">
-      <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Lost</th></tr></thead>
-        <tbody>
-          {% for row in d.leaders.worst_transfers %}
-          <tr>
-            <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
-            <td class="num cost">{{ row.diff }}</td>
-          </tr>
           {% endfor %}
         </tbody>
       </table>

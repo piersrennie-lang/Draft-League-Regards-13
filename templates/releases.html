@@ -33,6 +33,32 @@
       </div>
     </div>
   </div>
+
+  <h3 class="eyebrow eyebrow--sm">Leaders</h3>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Best individual performance</p>
+      {% if d.leaders.best_player %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>#</th><th>Manager</th><th>Player</th><th class="num">Pts</th></tr></thead>
+        <tbody>
+          {% for row in d.leaders.best_player %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.manager(row.manager, avatars) }}</td>
+            <td class="wrap">{{ row.name }}<br><span class="mute">{{ row.club }} &middot; GW{{ row.gameweek }}</span></td>
+            <td class="num">{{ row.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Not enough data yet.</p>
+      {% endif %}
+    </div>
+  </div>
 </section>
 
 {% endblock %}
