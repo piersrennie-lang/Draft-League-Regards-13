@@ -4399,17 +4399,34 @@
     "diff": -1,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Piers Rennie",
-     "out_name": "Gonzalo",
-     "out_club": "FUL",
-     "out_points": 2,
-     "in_name": "McBurnie",
-     "in_club": "HUL",
-     "in_points": 1,
-     "diff": -1,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Piers Rennie",
+       "out_name": "Gonzalo",
+       "out_club": "FUL",
+       "out_points": 2,
+       "in_name": "McBurnie",
+       "in_club": "HUL",
+       "in_points": 1,
+       "diff": -1,
+       "gameweek": 2
+      },
+      {
+       "manager": "Piers Rennie",
+       "out_name": "Gibbs-White",
+       "out_club": "NFO",
+       "out_points": 3,
+       "in_name": "Ndoye",
+       "in_club": "NFO",
+       "in_points": 1,
+       "diff": -2,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -4635,17 +4652,34 @@
     "diff": -7,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Stefano Babiolakis",
-     "out_name": "Saka",
-     "out_club": "ARS",
-     "out_points": 11,
-     "in_name": "M.Sangar\u00e9",
-     "in_club": "BRE",
-     "in_points": 4,
-     "diff": -7,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Stefano Babiolakis",
+       "out_name": "Saka",
+       "out_club": "ARS",
+       "out_points": 11,
+       "in_name": "M.Sangar\u00e9",
+       "in_club": "BRE",
+       "in_points": 4,
+       "diff": -7,
+       "gameweek": 2
+      },
+      {
+       "manager": "Stefano Babiolakis",
+       "out_name": "Cherki",
+       "out_club": "MCI",
+       "out_points": 3,
+       "in_name": "Ampadu",
+       "in_club": "LEE",
+       "in_points": 2,
+       "diff": -1,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -4881,17 +4915,34 @@
     "diff": -8,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Nicolas Rubin",
-     "out_name": "Jo\u00e3o Pedro",
-     "out_club": "CHE",
-     "out_points": 9,
-     "in_name": "Emersonn",
-     "in_club": "IPS",
-     "in_points": 1,
-     "diff": -8,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Nicolas Rubin",
+       "out_name": "Jo\u00e3o Pedro",
+       "out_club": "CHE",
+       "out_points": 9,
+       "in_name": "Emersonn",
+       "in_club": "IPS",
+       "in_points": 1,
+       "diff": -8,
+       "gameweek": 2
+      },
+      {
+       "manager": "Nicolas Rubin",
+       "out_name": "Mac Allister",
+       "out_club": "LIV",
+       "out_points": 2,
+       "in_name": "Gakpo",
+       "in_club": "LIV",
+       "in_points": 11,
+       "diff": 9,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -5117,17 +5168,23 @@
     "gameweek": 2
    },
    "worst_transfer": null,
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Mattato Alcock",
-     "out_name": "Ndiaye",
-     "out_club": "MCI",
-     "out_points": 4,
-     "in_name": "Munoz",
-     "in_club": "LIV",
-     "in_points": 6,
-     "diff": 2,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Mattato Alcock",
+       "out_name": "Ndiaye",
+       "out_club": "MCI",
+       "out_points": 4,
+       "in_name": "Munoz",
+       "in_club": "LIV",
+       "in_points": 6,
+       "diff": 2,
+       "gameweek": 2
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -5363,28 +5420,45 @@
     "diff": -6,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Brad Hill",
-     "out_name": "Ballard",
-     "out_club": "SUN",
-     "out_points": 8,
-     "in_name": "Kayode",
-     "in_club": "BRE",
-     "in_points": 2,
-     "diff": -6,
-     "gameweek": 2
-    },
-    {
-     "manager": "Brad Hill",
-     "out_name": "\u00d8degaard",
-     "out_club": "ARS",
-     "out_points": 3,
-     "in_name": "Scott",
-     "in_club": "BOU",
-     "in_points": 12,
-     "diff": 9,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Brad Hill",
+       "out_name": "Ballard",
+       "out_club": "SUN",
+       "out_points": 8,
+       "in_name": "Kayode",
+       "in_club": "BRE",
+       "in_points": 2,
+       "diff": -6,
+       "gameweek": 2
+      },
+      {
+       "manager": "Brad Hill",
+       "out_name": "\u00d8degaard",
+       "out_club": "ARS",
+       "out_points": 3,
+       "in_name": "Scott",
+       "in_club": "BOU",
+       "in_points": 12,
+       "diff": 9,
+       "gameweek": 2
+      },
+      {
+       "manager": "Brad Hill",
+       "out_name": "B.Fernandes",
+       "out_club": "MUN",
+       "out_points": 0,
+       "in_name": "Gomez",
+       "in_club": "BHA",
+       "in_points": 2,
+       "diff": 2,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 2,
@@ -5600,7 +5674,25 @@
    },
    "best_transfer": null,
    "worst_transfer": null,
-   "transfer_log": [],
+   "transfer_blocks": [
+    {
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Matthew Xenakis",
+       "out_name": "Cunha",
+       "out_club": "MUN",
+       "out_points": 0,
+       "in_name": "Enciso",
+       "in_club": "IPS",
+       "in_points": 1,
+       "diff": 1,
+       "gameweek": 3
+      }
+     ]
+    }
+   ],
    "motw_wins": 0,
    "mom_wins": 0,
    "totw_appearances": 1
@@ -5834,17 +5926,45 @@
     "gameweek": 2
    },
    "worst_transfer": null,
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Matthew Lees",
-     "out_name": "Szoboszlai",
-     "out_club": "LIV",
-     "out_points": 4,
-     "in_name": "Xhaka",
-     "in_club": "SUN",
-     "in_points": 6,
-     "diff": 2,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Matthew Lees",
+       "out_name": "Szoboszlai",
+       "out_club": "LIV",
+       "out_points": 4,
+       "in_name": "Xhaka",
+       "in_club": "SUN",
+       "in_points": 6,
+       "diff": 2,
+       "gameweek": 2
+      },
+      {
+       "manager": "Matthew Lees",
+       "out_name": "Maguire",
+       "out_club": "MUN",
+       "out_points": 0,
+       "in_name": "Botman",
+       "in_club": "NEW",
+       "in_points": 1,
+       "diff": 1,
+       "gameweek": 3
+      },
+      {
+       "manager": "Matthew Lees",
+       "out_name": "Gro\u00df",
+       "out_club": "BHA",
+       "out_points": 1,
+       "in_name": "Suzuki",
+       "in_club": "AVL",
+       "in_points": 10,
+       "diff": 9,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -6080,17 +6200,45 @@
     "diff": -1,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Michael Lavarack",
-     "out_name": "Dewsbury-Hall",
-     "out_club": "EVE",
-     "out_points": 2,
-     "in_name": "Janelt",
-     "in_club": "BRE",
-     "in_points": 1,
-     "diff": -1,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Michael Lavarack",
+       "out_name": "Dewsbury-Hall",
+       "out_club": "EVE",
+       "out_points": 2,
+       "in_name": "Janelt",
+       "in_club": "BRE",
+       "in_points": 1,
+       "diff": -1,
+       "gameweek": 2
+      },
+      {
+       "manager": "Michael Lavarack",
+       "out_name": "Eze",
+       "out_club": "ARS",
+       "out_points": 0,
+       "in_name": "Ndiaye",
+       "in_club": "MCI",
+       "in_points": 3,
+       "diff": 3,
+       "gameweek": 3
+      },
+      {
+       "manager": "Michael Lavarack",
+       "out_name": "Haaland",
+       "out_club": "MCI",
+       "out_points": 9,
+       "in_name": "Nketiah",
+       "in_club": "CRY",
+       "in_points": 4,
+       "diff": -5,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -6326,17 +6474,34 @@
     "diff": -3,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Roscoe Hill",
-     "out_name": "Palmer",
-     "out_club": "CHE",
-     "out_points": 7,
-     "in_name": "Stach",
-     "in_club": "LEE",
-     "in_points": 4,
-     "diff": -3,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Roscoe Hill",
+       "out_name": "Palmer",
+       "out_club": "CHE",
+       "out_points": 7,
+       "in_name": "Stach",
+       "in_club": "LEE",
+       "in_points": 4,
+       "diff": -3,
+       "gameweek": 2
+      },
+      {
+       "manager": "Roscoe Hill",
+       "out_name": "Mbeumo",
+       "out_club": "MUN",
+       "out_points": 0,
+       "in_name": "Szoboszlai",
+       "in_club": "LIV",
+       "in_points": 3,
+       "diff": 3,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,
@@ -6562,17 +6727,45 @@
     "diff": -6,
     "gameweek": 2
    },
-   "transfer_log": [
+   "transfer_blocks": [
     {
-     "manager": "Mark Stone",
-     "out_name": "White",
-     "out_club": "ARS",
-     "out_points": 7,
-     "in_name": "Mendy",
-     "in_club": "HUL",
-     "in_points": 1,
-     "diff": -6,
-     "gameweek": 2
+     "block_start": 1,
+     "block_end": 4,
+     "swaps": [
+      {
+       "manager": "Mark Stone",
+       "out_name": "White",
+       "out_club": "ARS",
+       "out_points": 7,
+       "in_name": "Mendy",
+       "in_club": "HUL",
+       "in_points": 1,
+       "diff": -6,
+       "gameweek": 2
+      },
+      {
+       "manager": "Mark Stone",
+       "out_name": "Mendy",
+       "out_club": "HUL",
+       "out_points": 8,
+       "in_name": "Dedi\u0107",
+       "in_club": "NEW",
+       "in_points": 1,
+       "diff": -7,
+       "gameweek": 3
+      },
+      {
+       "manager": "Mark Stone",
+       "out_name": "Schade",
+       "out_club": "BRE",
+       "out_points": 2,
+       "in_name": "Barcola",
+       "in_club": "LIV",
+       "in_points": 1,
+       "diff": -1,
+       "gameweek": 3
+      }
+     ]
     }
    ],
    "motw_wins": 0,

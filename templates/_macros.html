@@ -14,8 +14,8 @@
 {% if items %}{% for p in items %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
 {%- endmacro %}
 
-{% macro transfer_points_cell(n, manager_name=none) -%}
-<td class="num {{ 'gain' if n > 0 else 'cost' if n < 0 else 'mute' }}">{% if manager_name %}<a class="manager-link" href="manager-{{ manager_name|slug }}.html#transfer-history">{% endif %}{{ '+' if n > 0 }}{{ n }}{% if manager_name %}</a>{% endif %}</td>
+{% macro transfer_points_cell(n, manager_name=none, anchor='transfer-history') -%}
+<td class="num {{ 'gain' if n > 0 else 'cost' if n < 0 else 'mute' }}">{% if manager_name %}<a class="manager-link" href="manager-{{ manager_name|slug }}.html#{{ anchor }}">{% endif %}{{ '+' if n > 0 }}{{ n }}{% if manager_name %}</a>{% endif %}</td>
 {%- endmacro %}
 
 {% macro release_cell(r) -%}

@@ -951,6 +951,28 @@ def longest_streak(fixtures_asc, result):
     return best
 
 
+def group_transfers_by_block(swaps):
+    """Group a manager's tagged transfer swaps into the same 4-gameweek
+    blocks Manager of the Month uses (GW1-4, GW5-8, ...), most recent
+    block first and each block's swaps in gameweek order -- so a
+    "Transfer pts" figure for a given block can link straight to just
+    the swaps that made it up, instead of the manager's whole history.
+    """
+    blocks = {}
+    for s in swaps:
+        block_end = ((s["gameweek"] + 3) // 4) * 4
+        block_start = block_end - 3
+        blocks.setdefault((block_start, block_end), []).append(s)
+    return [
+        {
+            "block_start": block_start,
+            "block_end": block_end,
+            "swaps": sorted(block_swaps, key=lambda s: s["gameweek"]),
+        }
+        for (block_start, block_end), block_swaps in sorted(blocks.items(), reverse=True)
+    ]
+
+
 def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, manager_of_month_history, squads):
     """Everything a manager's own page needs: their fixture history and
     head-to-head record (from the full season schedule, so this only gets
@@ -1065,6 +1087,24 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
                 worst_transfer[le] = tagged
 
+    # transfer_log also needs the live current gameweek once it's ahead of
+    # totw_gw, so its transfer-history breakdown matches the live "Transfer
+    # pts" figures shown elsewhere (Manager of the Week/Month/Season, all
+    # of which track gw directly) -- best_transfer/worst_transfer/motw_wins
+    # above deliberately stay non-live, so this only extends the log.
+    if gw > totw_gw:
+        g_squads_raw = load_fn(f"squads_gw{gw}")
+        g_live = load_fn(f"live_gw{gw}")
+        g_prev_squads_raw = load_fn(f"squads_gw{gw - 1}")
+        g_prev_live = load_fn(f"live_gw{gw - 1}")
+        if g_squads_raw and g_live and g_prev_squads_raw:
+            squads = build_squads(managers, g_squads_raw, g_live, players)
+            swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live, g_prev_live)
+            for s in swaps:
+                le = by_manager.get(s["manager"])
+                if le is not None:
+                    transfer_log[le].append({**s, "gameweek": gw})
+
     # Best individual performance is a running record, not a once-a-week
     # competition like Team of the Week or Manager of the Week (which
     # genuinely need every manager to have played before crowning a
@@ -1126,7 +1166,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                 if most_lost_to[0] is not None and most_lost_to[1]["l"] > 0 else None,
             "best_transfer": best_transfer[le],
             "worst_transfer": worst_transfer[le],
-            "transfer_log": sorted(transfer_log[le], key=lambda s: -s["gameweek"]),
+            "transfer_blocks": group_transfers_by_block(transfer_log[le]),
             "motw_wins": motw_wins[le],
             "mom_wins": mom_wins[le],
             "totw_appearances": totw_appearances[le],

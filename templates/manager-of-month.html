@@ -48,7 +48,7 @@
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'transfers-gw' ~ block.block_start ~ '-' ~ block.block_end) }}
           </tr>
           {% endfor %}
         </tbody>

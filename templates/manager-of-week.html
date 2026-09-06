@@ -23,7 +23,7 @@
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num gain">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'transfers-gw' ~ gw) }}
           </tr>
           {% endfor %}
         </tbody>
@@ -40,7 +40,7 @@
           <tr>
             <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num cost">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'transfers-gw' ~ gw) }}
           </tr>
           {% endfor %}
         </tbody>
@@ -68,7 +68,7 @@
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'transfers-gw' ~ d.manager_of_month.current.block_start ~ '-' ~ d.manager_of_month.current.block_end) }}
           </tr>
           {% endfor %}
         </tbody>

@@ -187,16 +187,18 @@
   </div>
 
   <h3 id="transfer-history" class="eyebrow eyebrow--sm">Transfer history</h3>
-  {% if profile.transfer_log %}
-  <div class="profile-grid">
+  {% if profile.transfer_blocks %}
+  {% for block in profile.transfer_blocks %}
+  <div id="transfers-gw{{ block.block_start }}-{{ block.block_end }}" class="profile-grid">
     <div class="profile-panel">
+      <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }}</p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>GW</th><th>Released</th><th class="num">Pts</th>
         <th>Replaced with</th><th class="num">Pts</th><th class="num">Swing</th></tr></thead>
         <tbody>
-          {% for s in profile.transfer_log %}
-          <tr>
+          {% for s in block.swaps %}
+          <tr id="transfers-gw{{ s.gameweek }}">
             <td class="mute">{{ s.gameweek }}</td>
             <td>{{ s.out_name }}</td>
             <td class="num">{{ s.out_points }}</td>
@@ -210,6 +212,7 @@
       </div>
     </div>
   </div>
+  {% endfor %}
   {% else %}
   <p class="pending">No transfers yet.</p>
   {% endif %}
