@@ -6,7 +6,7 @@
   "gameweek": 3,
   "next_gameweek": 4,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-06T17:20:29Z",
+  "fetched_at": "2026-09-06T17:27:25Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -99,13 +99,13 @@
    "away": 207565,
    "home_name": "Michael Lavarack",
    "away_name": "Piers Rennie",
-   "home_points": 50,
+   "home_points": 52,
    "away_points": 51,
    "home_remaining": 0,
    "away_remaining": 0,
    "started": true,
    "finished": false,
-   "winner": "away"
+   "winner": "home"
   },
   {
    "home": 259872,
@@ -904,6 +904,15 @@
    ],
    "bench": [
     {
+     "element": 31,
+     "name": "Konsa",
+     "pos": "DEF",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p199798.png",
+     "points": 4
+    },
+    {
      "element": 423,
      "name": "Shaw",
      "pos": "DEF",
@@ -922,15 +931,6 @@
      "points": 3
     },
     {
-     "element": 31,
-     "name": "Konsa",
-     "pos": "DEF",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p199798.png",
-     "points": 2
-    },
-    {
      "element": 400,
      "name": "Doku",
      "pos": "MID",
@@ -941,18 +941,18 @@
     }
    ],
    "xi_points": 43,
-   "bench_points": 9,
+   "bench_points": 11,
    "best_bench": {
-    "element": 423,
-    "name": "Shaw",
+    "element": 31,
+    "name": "Konsa",
     "pos": "DEF",
-    "club": "MUN",
-    "team_id": 16,
-    "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p106760.png",
+    "club": "ARS",
+    "team_id": 1,
+    "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p199798.png",
     "points": 4
    },
    "blanks": 1,
-   "wasted": 7
+   "wasted": 9
   },
   "242301": {
    "effective_xi": [
@@ -2016,7 +2016,7 @@
      "club": "CHE",
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
-     "points": 0
+     "points": 2
     },
     {
      "element": 84,
@@ -2100,7 +2100,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 50,
+   "effective_xi_points": 52,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2169,6 +2169,15 @@
      "points": 3
     },
     {
+     "element": 200,
+     "name": "Lacroix",
+     "pos": "DEF",
+     "club": "CHE",
+     "team_id": 6,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
+     "points": 2
+    },
+    {
      "element": 167,
      "name": "Delap",
      "pos": "FWD",
@@ -2194,15 +2203,6 @@
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p209244.png",
      "points": 1
-    },
-    {
-     "element": 200,
-     "name": "Lacroix",
-     "pos": "DEF",
-     "club": "CHE",
-     "team_id": 6,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
-     "points": 0
     }
    ],
    "bench": [
@@ -2225,6 +2225,15 @@
      "points": 1
     },
     {
+     "element": 136,
+     "name": "Welbeck",
+     "pos": "FWD",
+     "club": "CHE",
+     "team_id": 6,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p50175.png",
+     "points": 1
+    },
+    {
      "element": 140,
      "name": "S\u00e1nchez",
      "pos": "GKP",
@@ -2232,19 +2241,10 @@
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215059.png",
      "points": 0
-    },
-    {
-     "element": 136,
-     "name": "Welbeck",
-     "pos": "FWD",
-     "club": "CHE",
-     "team_id": 6,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p50175.png",
-     "points": 0
     }
    ],
-   "xi_points": 50,
-   "bench_points": 3,
+   "xi_points": 52,
+   "bench_points": 4,
    "best_bench": {
     "element": 236,
     "name": "Dewsbury-Hall",
@@ -2254,8 +2254,8 @@
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215413.png",
     "points": 2
    },
-   "blanks": 1,
-   "wasted": 2
+   "blanks": 0,
+   "wasted": 1
   },
   "259872": {
    "effective_xi": [
@@ -2843,8 +2843,8 @@
    "next": "\u00d8degaard",
    "next_points": 10,
    "next_tie": [],
-   "score": 50,
-   "cost_pct": 22.0,
+   "score": 52,
+   "cost_pct": 21.2,
    "h2h": null
   },
   {
@@ -3084,8 +3084,8 @@
    "next": "\u00d8degaard",
    "next_points": 10,
    "next_tie": [],
-   "score": 50,
-   "cost_pct": 22.0,
+   "score": 52,
+   "cost_pct": 21.2,
    "h2h": null
   },
   {
@@ -3249,43 +3249,43 @@
    "move": 0
   },
   {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
+   "league_entry": 259835,
+   "manager": "Michael Lavarack",
+   "team": "Average",
    "w": 2,
-   "d": 1,
-   "l": 0,
-   "for": 129,
-   "against": 124,
+   "d": 0,
+   "l": 1,
+   "for": 141,
+   "against": 147,
    "played": 3,
-   "points": 7,
-   "diff": 5,
+   "points": 6,
+   "diff": -6,
    "history": [
     {
      "event": 1,
-     "pts": 35,
-     "against": 31,
-     "opp": 255427,
+     "pts": 37,
+     "against": 34,
+     "opp": 254700,
      "result": "W"
     },
     {
      "event": 2,
-     "pts": 43,
-     "against": 43,
-     "opp": 208632,
-     "result": "D"
+     "pts": 52,
+     "against": 62,
+     "opp": 254549,
+     "result": "L"
     },
     {
      "event": 3,
-     "pts": 51,
-     "against": 50,
-     "opp": 259835,
+     "pts": 52,
+     "against": 51,
+     "opp": 207565,
      "result": "W"
     }
    ],
    "live": true,
    "pos": 3,
-   "move": 0
+   "move": 1
   },
   {
    "league_entry": 255427,
@@ -3366,43 +3366,43 @@
    "move": 2
   },
   {
-   "league_entry": 259835,
-   "manager": "Michael Lavarack",
-   "team": "Average",
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
    "w": 1,
-   "d": 0,
-   "l": 2,
-   "for": 139,
-   "against": 147,
+   "d": 1,
+   "l": 1,
+   "for": 129,
+   "against": 126,
    "played": 3,
-   "points": 3,
-   "diff": -8,
+   "points": 4,
+   "diff": 3,
    "history": [
     {
      "event": 1,
-     "pts": 37,
-     "against": 34,
-     "opp": 254700,
+     "pts": 35,
+     "against": 31,
+     "opp": 255427,
      "result": "W"
     },
     {
      "event": 2,
-     "pts": 52,
-     "against": 62,
-     "opp": 254549,
-     "result": "L"
+     "pts": 43,
+     "against": 43,
+     "opp": 208632,
+     "result": "D"
     },
     {
      "event": 3,
-     "pts": 50,
-     "against": 51,
-     "opp": 207565,
+     "pts": 51,
+     "against": 52,
+     "opp": 259835,
      "result": "L"
     }
    ],
    "live": true,
    "pos": 6,
-   "move": -2
+   "move": -3
   },
   {
    "league_entry": 259872,
@@ -4117,7 +4117,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 45,
+    "points": 47,
     "transfer_points": -5
    },
    {
@@ -4169,7 +4169,7 @@
     },
     {
      "manager": "Michael Lavarack",
-     "points": 133,
+     "points": 135,
      "transfer_points": -6
     },
     {
@@ -4222,7 +4222,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 133,
+    "points": 135,
     "transfer_points": -6
    },
    {
@@ -4293,7 +4293,7 @@
     "gameweek": 3,
     "opponent": "Michael Lavarack",
     "points": 51,
-    "against": 50,
+    "against": 52,
     "started": true,
     "live": true
    },
@@ -6573,7 +6573,7 @@
    "current_fixture": {
     "gameweek": 3,
     "opponent": "Piers Rennie",
-    "points": 50,
+    "points": 52,
     "against": 51,
     "started": true,
     "live": true
@@ -8008,15 +8008,15 @@
     "avg_against": 43.0
    },
    {
-    "manager": "Roscoe Hill",
-    "avg_against": 41.7
+    "manager": "Piers Rennie",
+    "avg_against": 42.0
    },
    {
-    "manager": "Piers Rennie",
-    "avg_against": 41.3
+    "manager": "Roscoe Hill",
+    "avg_against": 41.7
    }
   ],
-  "average": 39.3
+  "average": 39.4
  },
  "pot": {
   "base": 200,
