@@ -1134,16 +1134,24 @@ def build_unluckiest(manager_profiles):
     those games (a manager can top this list on the back of narrow losses
     or big wins alike; what puts them here is the opponent's output, not
     the scoreline).
+
+    Also returns "average": the league-wide average score across every
+    finished fixture so far, so each manager's avg_against can be read
+    against a baseline -- e.g. a 48.0 next to a league average of 40
+    means a genuinely tough run, not just a high-scoring league.
     """
     rows = []
+    all_points = []
     for name, p in manager_profiles.items():
         fixtures = p.get("fixtures") or []
         if not fixtures:
             continue
         avg_against = sum(f["against"] for f in fixtures) / len(fixtures)
         rows.append({"manager": name, "avg_against": round(avg_against, 1)})
+        all_points.extend(f["points"] for f in fixtures)
     rows.sort(key=lambda r: -r["avg_against"])
-    return rows
+    average = round(sum(all_points) / len(all_points), 1) if all_points else 0
+    return {"rows": rows, "average": average}
 
 
 def build_leaders(manager_profiles, limit=5):
