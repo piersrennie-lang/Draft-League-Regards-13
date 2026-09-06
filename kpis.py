@@ -745,25 +745,33 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
     reads as a best or worst transfer is purely the points swing, not why
     the swap happened.
 
-    Both sides have to have actually played, though: the outgoing player
-    must have started (been in the active XI, not the bench) the previous
-    gameweek AND actually taken the field for their club that gameweek
-    (minutes > 0). The incoming player must have started this gameweek
-    AND actually played too. Being picked in the fantasy XI isn't enough
-    on its own -- a starter who was themselves an unused sub in their
-    real match scores 0 with 0 minutes, and pairing that against a
-    genuine performance isn't a real swap, just noise (a real-world
-    blank on one side inflating or deflating a "transfer" that never
-    really happened). A fantasy-benched player, either side, isn't a
-    real comparison either -- if the pickup sat on the bench this week,
+    The outgoing player must have started (been in the active XI, not the
+    bench) the previous gameweek AND actually taken the field for their
+    club that gameweek (minutes > 0) -- that's what makes them a genuine
+    release rather than a bench-warmer nobody would miss. Once released,
+    though, whether they go on to play for their club this gameweek is
+    no longer gatekept: a blank because they picked up an injury, got
+    dropped, or simply didn't feature is still a real, final result once
+    their club's match is over, and it's exactly the "you dropped him and
+    he blanked" (or "he still delivered anyway") story this table exists
+    to tell.
+
+    The incoming player must have started this gameweek in the fantasy
+    XI (not the bench) -- a fantasy-benched pickup isn't a real swap,
     there's nothing to compare their non-existent contribution against.
+    But once they're started, zero real minutes (unused sub, injury,
+    suspension) still counts as their result for the week, same as the
+    outgoing player: a manager who starts someone who then blanks while
+    the player they dropped scores is a genuine, often painful, worst
+    transfer.
 
     And since the score being compared for both is this gameweek's, not
     last week's, a swap only counts once BOTH players' own real-world
     club fixtures this gameweek have actually finished (not just kicked
-    off) -- bonus points aren't final, and a match still in progress can
-    still swing, until the final whistle, so a swap assessed mid-match
-    could read as a "best transfer" that later isn't.
+    off) -- a 0 only reads as final once the match is over; bonus points
+    aren't final and a match still in progress can still swing, until the
+    final whistle, so a swap assessed mid-match could read as a "best
+    transfer" that later isn't.
 
     diff = in_points - out_points, using each player's real score that
     gameweek independent of who rostered them. Positive is a gain, a
@@ -779,7 +787,6 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
 
     pts = live_points(totw_live)
     prev_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(prev_live).items()}
-    curr_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(totw_live).items()}
     finished_clubs = {
         team_id
         for f in ((totw_live or {}).get("fixtures") or []) if _fixture_over(f)
@@ -806,10 +813,10 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
 
         outs = [describe(eid) for eid in prev_ids - curr_ids
-                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0 and curr_minutes.get(eid, 0) > 0
+                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0
                 and players.get(eid, {}).get("team_id") in finished_clubs]
         ins = [row for row in squad["xi"]
-               if row["element"] not in prev_ids and curr_minutes.get(row["element"], 0) > 0
+               if row["element"] not in prev_ids
                and row.get("team_id") in finished_clubs]
         if not outs or not ins:
             continue
