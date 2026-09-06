@@ -6,7 +6,12 @@
 <section id="moves" class="section--tight">
   <div class="profile-grid">
     <div class="profile-panel">
-      <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
+      <label class="eyebrow eyebrow--sm" for="gw-select">Gameweek</label>
+      <select id="gw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+        {% for g in available_gws|reverse %}
+        <option value="{{ 'transfers.html' if g == current_gw else 'transfers-gw' ~ g ~ '.html' }}"{% if g == gw %} selected{% endif %}>GW{{ g }}{% if g == current_gw %} &middot; current{% endif %}</option>
+        {% endfor %}
+      </select>
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>

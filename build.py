@@ -135,7 +135,7 @@ def main():
 
     # Three real pages, each its own file, so navigating between them is a
     # normal page load rather than jumping to an anchor on one big page.
-    pages = {"leaders": "leaders", "index": "standings", "transfers": "transfers",
+    pages = {"leaders": "leaders", "index": "standings",
               "releases": "releases", "manager-of-week": "manager-of-week"}
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
@@ -153,6 +153,24 @@ def main():
                                         available_gws=available_gws, next_gw=next_gw,
                                         transfers_current=transfers_current, totw_by_pos=totw_by_pos,
                                         css_version=css_version, avatars=avatars)
+        (DIST / f"{filename}.html").write_text(html)
+
+    # Transfers page, plus one per gameweek that's already happened -- same
+    # picker as Results; transfers.html itself always tracks gw, whichever
+    # week is current.
+    transfers_template = env.get_template("transfers.html")
+    for g in available_gws:
+        g_data = data if g == gw else json.loads((DERIVED / f"gw{g}.json").read_text())
+        g_transfers_current = []
+        for le, m in g_data["managers"].items():
+            cur = g_data["transfers"].get(le, {"in": [], "out": [], "count": 0, "source": "none"})
+            g_transfers_current.append({"manager": m["manager"], "team": m["team"], **cur})
+        g_transfers_current.sort(key=lambda t: t["manager"])
+        filename = "transfers" if g == gw else f"transfers-gw{g}"
+        html = transfers_template.render(active="transfers", d=g_data, gw=g, current_gw=gw,
+                                          available_gws=available_gws, next_gw=g + 1,
+                                          transfers_current=g_transfers_current, totw_by_pos=totw_by_pos,
+                                          css_version=css_version, avatars=avatars)
         (DIST / f"{filename}.html").write_text(html)
 
     # Team of the Week, plus one page per gameweek whose Team of the Week
