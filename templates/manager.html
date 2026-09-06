@@ -33,9 +33,9 @@
     <p class="strong">
       {% if profile.current_fixture.started %}{{ profile.current_fixture.points }}&ndash;{{ profile.current_fixture.against }}{% else %}Not started{% endif %}
       vs {{ macros.squad_link(profile.current_fixture.opponent, avatars) }}
-      {% if profile.current_fixture.started %}<span class="live-tag">Live</span>{% endif %}
+      {% if profile.current_fixture.live %}<span class="live-tag">Live</span>{% endif %}
     </p>
-    {% if profile.current_fixture.started %}
+    {% if profile.current_fixture.live %}
     <p class="mute" style="margin:0.4rem 0 0;">Not final until GW{{ gw }} concludes.</p>
     {% endif %}
     <p class="mute" style="margin:0.6rem 0 0;"><a class="manager-link" href="squad-{{ profile_name|slug }}.html">View {{ profile_name }}'s live squad &rarr;</a></p>

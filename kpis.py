@@ -315,6 +315,28 @@ def fixtures_remaining(squads, live):
     }
 
 
+def gw_window(live):
+    """(kicked_off, fully_over) for this gameweek's real-world match
+    calendar -- kicked_off once any of its fixtures has started, fully_over
+    once every one of them has reached full time. "Over" means finished OR
+    finished_provisional (see _fixture_over/autosub.py): waiting for the
+    stricter "finished" flag would keep this window open for hours or days
+    after the real football has actually ended, since that flag only
+    flips once bonus/BPS is confirmed.
+
+    Deliberately independent of the FPL Draft league's own match-level
+    started/finished (which lags the same way) and of whether the next
+    gameweek's waiver or transfer window has opened -- this is purely
+    "has this gameweek's actual football been played", nothing else.
+    """
+    fixtures = (live or {}).get("fixtures") or []
+    if not fixtures:
+        return False, False
+    kicked_off = any(f.get("started") for f in fixtures)
+    fully_over = all(_fixture_over(f) for f in fixtures)
+    return kicked_off, fully_over
+
+
 def build_results(details, gw, managers, squads, live):
     """Every head-to-head fixture for the current gameweek, live or not --
     unlike build_matches() this doesn't filter down to finished ones, since
@@ -322,12 +344,18 @@ def build_results(details, gw, managers, squads, live):
 
     While a match is still live, its score comes from our own projected
     effective_xi_points rather than league_entry_1_points/
-    league_entry_2_points -- the FPL Draft API only applies autosubs once
+    league_entry_2_points -- the FPL Draft API only applies autosubs until
     the whole gameweek settles, so its own live number is just the raw
     submitted-XI sum until then. Once finished, FPL's own number is
     authoritative and used as-is.
+
+    "started"/"finished" here describe the real-world match calendar
+    (gw_window), not the FPL Draft match's own flags -- so the Live tag
+    disappears the moment the last real fixture ends, rather than staying
+    on until bonus points are confirmed league-wide.
     """
     remaining = fixtures_remaining(squads, live)
+    kicked_off, fully_over = gw_window(live)
     rows = []
     for m in details["matches"]:
         if m["event"] != gw:
@@ -344,8 +372,8 @@ def build_results(details, gw, managers, squads, live):
             "home_points": hp, "away_points": ap,
             "home_remaining": remaining.get(h, 0),
             "away_remaining": remaining.get(a, 0),
-            "started": m.get("started", False),
-            "finished": m.get("finished", False),
+            "started": kicked_off,
+            "finished": fully_over,
             "winner": None if hp == ap else ("home" if hp > ap else "away"),
         })
     return rows
@@ -439,18 +467,29 @@ def gw_matches_finished(details, gw):
     return bool(matches) and all(m.get("finished") for m in matches)
 
 
-def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None):
+def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
+                     live_kicked_off=False, live_fully_over=False):
     """Recomputed from finished matches, plus the current gameweek's live
-    projection once it has kicked off. A match only needs its own
-    "started" flag to count here, not "finished" -- so the table updates
-    continuously through a live gameweek instead of freezing until the
-    whole gameweek settles days later. While it's live, that gameweek's
-    contribution uses each squad's effective_xi_points (the same
-    autosub-aware projected score used everywhere else on the site)
-    rather than FPL's own raw number, which lags for the same reason
-    explained in autosub.py. Pass live_squads (this build's build_squads()
-    output) and live_gw (its gameweek) to enable this; omit both to only
-    ever count finished matches, as before.
+    projection once its real-world fixtures have kicked off (live_kicked_off,
+    from gw_window() -- not the FPL Draft league's own match-level "started",
+    which is a different signal). A match only needs that to count here, not
+    the league's "finished" -- so the table updates continuously through a
+    live gameweek instead of freezing until the whole gameweek settles days
+    later. While it's live, that gameweek's contribution uses each squad's
+    effective_xi_points (the same autosub-aware projected score used
+    everywhere else on the site) rather than FPL's own raw number, which
+    lags for the same reason explained in autosub.py.
+
+    Once every real fixture this gameweek has ended (live_fully_over), the
+    match keeps counting on the same projected score but is no longer
+    flagged "live" -- the results are settled even though the league's own
+    "finished" flag can take hours or days longer to flip (it waits on
+    bonus/BPS confirmation), and that lag has nothing to do with whether
+    the *next* gameweek's waiver or transfer window has opened.
+
+    Pass live_squads (this build's build_squads() output) and live_gw (its
+    gameweek) to enable any of this; omit them to only ever count finished
+    matches, as before.
 
     The API's own standings block reports matches_played as 38 for every
     manager before a ball is kicked, so it is not trusted for that column.
@@ -466,10 +505,11 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None):
         h, a = m["league_entry_1"], m["league_entry_2"]
         if m.get("finished"):
             hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
-        elif m.get("started") and live_squads is not None and m["event"] == live_gw:
+        elif m["event"] == live_gw and live_squads is not None and live_kicked_off:
             hp = live_squads.get(h, {}).get("effective_xi_points", m["league_entry_1_points"])
             ap = live_squads.get(a, {}).get("effective_xi_points", m["league_entry_2_points"])
-            live_entries.update((h, a))
+            if not live_fully_over:
+                live_entries.update((h, a))
         else:
             continue
         for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
@@ -940,6 +980,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             rec = h2h[me].setdefault(opp, {"w": 0, "d": 0, "l": 0})
             rec[result.lower()] += 1
 
+    current_gw_live = load_fn(f"live_gw{gw}")
+    current_kicked_off, current_fully_over = gw_window(current_gw_live)
+
     current_fixture = {le: None for le in managers}
     future_fixtures = {le: [] for le in managers}
     for m in details["matches"]:
@@ -954,7 +997,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                     theirs = squads.get(opp, {}).get("effective_xi_points", theirs)
                 current_fixture[me] = {
                     "gameweek": gw, "opponent": managers[opp]["manager"],
-                    "points": mine, "against": theirs, "started": m.get("started", False),
+                    "points": mine, "against": theirs,
+                    "started": current_kicked_off,
+                    "live": current_kicked_off and not current_fully_over,
                 }
             elif m["event"] > gw:
                 future_fixtures[me].append({"gameweek": m["event"], "opponent": managers[opp]["manager"]})
@@ -1152,6 +1197,7 @@ def main():
     bootstrap = load("bootstrap_static")
     players = player_index(bootstrap)
     live = load(f"live_gw{gw}")
+    gw_kicked_off, gw_fully_over = gw_window(live)
     squads_raw = load(f"squads_gw{gw}")
     prev_squads_raw = load(f"squads_gw{gw - 1}")
     raw_transactions = load("transactions")
@@ -1240,7 +1286,8 @@ def main():
         "releases": releases,
         "release_efficiency": sorted(releases, key=lambda r: r["cost_pct"]),
         "breaches": detect_breaches(prev_releases, squads),
-        "standings": build_standings(details, managers, gw, live_gw=gw, live_squads=squads),
+        "standings": build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
+                                      live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over),
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in build_transfers(
             managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
