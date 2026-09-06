@@ -24,7 +24,7 @@
       <p class="strong">GW{{ mow_gw }}{% if mow_live %} <span class="live-tag">Live</span>{% endif %} &middot; Top 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in mow.top %}
           <tr>
@@ -42,7 +42,7 @@
       <p class="strong">Bottom 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in mow.worst %}
           <tr>
@@ -79,7 +79,7 @@
       </p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in mom_block.standings %}
           <tr>
@@ -129,7 +129,7 @@
       {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in block.standings %}
           <tr>
@@ -157,7 +157,7 @@
       </p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_month.season %}
           <tr>
