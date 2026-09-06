@@ -10,12 +10,14 @@
   transfer call counts twice: once in the score it produced, once as a
   decision in its own right.</p>
 
-  <label class="eyebrow eyebrow--sm" for="mow-select">Gameweek</label>
-  <select id="mow-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
-    {% for n in available_gws|reverse %}
-    <option value="{{ 'manager-of-week.html' if n == current_gw else 'manager-of-week-gw' ~ n ~ '.html' }}"{% if n == mow_gw %} selected{% endif %}>GW{{ n }}{% if n == current_gw %} &middot; current{% endif %}</option>
-    {% endfor %}
-  </select>
+  <div class="gw-picker">
+    <label class="eyebrow eyebrow--sm" for="mow-select">Gameweek</label>
+    <select id="mow-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+      {% for n in available_gws|reverse %}
+      <option value="{{ 'manager-of-week.html' if n == current_gw else 'manager-of-week-gw' ~ n ~ '.html' }}"{% if n == mow_gw %} selected{% endif %}>GW{{ n }}{% if n == current_gw %} &middot; current{% endif %}</option>
+      {% endfor %}
+    </select>
+  </div>
   <h3 class="eyebrow eyebrow--lg">GW{{ mow_gw }}{% if mow_live %} <span class="live-tag">Live</span>{% endif %}</h3>
   {% if mow %}
   <div class="cols-2">
