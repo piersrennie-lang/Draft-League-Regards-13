@@ -243,14 +243,14 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Unluckiest managers</p>
-      {% if d.unluckiest.rows %}
-      <p class="lede">League average score: {{ d.unluckiest.average }} pts.</p>
+      <p class="strong">Luckiest managers</p>
+      {% if d.luckiest.rows %}
+      <p class="lede">League average score: {{ d.luckiest.average }} pts.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>#</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
         <tbody>
-          {% for r in d.unluckiest.rows %}
+          {% for r in d.luckiest.rows %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(r.manager, avatars) }}</td>

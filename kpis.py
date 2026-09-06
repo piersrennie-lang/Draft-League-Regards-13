@@ -1126,11 +1126,11 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     return profiles
 
 
-def build_unluckiest(manager_profiles):
+def build_luckiest(manager_profiles):
     """Every manager ranked by strength of schedule: the average score
     their opponents have put up against them across the season's finished
     fixtures -- not the manager's own score. #1 is whoever has faced the
-    toughest average opposition so far, regardless of their own result in
+    softest average opposition so far, regardless of their own result in
     those games (a manager can top this list on the back of narrow losses
     or big wins alike; what puts them here is the opponent's output, not
     the scoreline).
@@ -1149,7 +1149,7 @@ def build_unluckiest(manager_profiles):
         avg_against = sum(f["against"] for f in fixtures) / len(fixtures)
         rows.append({"manager": name, "avg_against": round(avg_against, 1)})
         all_points.extend(f["points"] for f in fixtures)
-    rows.sort(key=lambda r: -r["avg_against"])
+    rows.sort(key=lambda r: r["avg_against"])
     average = round(sum(all_points) / len(all_points), 1) if all_points else 0
     return {"rows": rows, "average": average}
 
@@ -1271,7 +1271,7 @@ def main():
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
     leaders = build_leaders(manager_profiles)
-    unluckiest = build_unluckiest(manager_profiles)
+    luckiest = build_luckiest(manager_profiles)
 
     gaps = []
     if not squads_raw:
@@ -1328,7 +1328,7 @@ def main():
         "manager_of_month": manager_of_month,
         "manager_profiles": manager_profiles,
         "leaders": leaders,
-        "unluckiest": unluckiest,
+        "luckiest": luckiest,
         "pot": {
             "base": config.BASE_POT,
             "prize_share": config.PRIZE_SHARE,
