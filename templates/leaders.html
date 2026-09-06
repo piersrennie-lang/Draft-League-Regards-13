@@ -206,7 +206,7 @@
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ row.out_name }} &rarr; {{ row.in_name }} &middot; GW{{ row.gameweek }}</td>
+            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
             <td class="num gain">+{{ row.diff }}</td>
           </tr>
           {% endfor %}
@@ -228,7 +228,7 @@
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ row.out_name }} &rarr; {{ row.in_name }} &middot; GW{{ row.gameweek }}</td>
+            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
             <td class="num cost">{{ row.diff }}</td>
           </tr>
           {% endfor %}

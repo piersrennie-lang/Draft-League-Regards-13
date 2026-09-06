@@ -18,19 +18,18 @@
 <td class="num {{ 'gain' if n > 0 else 'cost' if n < 0 else 'mute' }}">{% if manager_name %}<a class="manager-link" href="manager-{{ manager_name|slug }}-transfers{{ '-' ~ page_suffix if page_suffix else '' }}.html">{% endif %}{{ '+' if n > 0 }}{{ n }}{% if manager_name %}</a>{% endif %}</td>
 {%- endmacro %}
 
+{% macro swap_desc(out_name, in_name, gameweek=none) -%}
+{{ out_name }} &rarr; {{ in_name }}{% if gameweek %} &middot; GW{{ gameweek }}{% endif %}
+{%- endmacro %}
+
 {% macro transfer_swap_table(swaps) -%}
 <div class="table-scroll">
 <table class="grid grid--table">
-  <thead><tr><th>GW</th><th>Released</th><th class="num">Pts</th>
-  <th>Replaced</th><th class="num">Pts</th><th class="num">Swing</th></tr></thead>
+  <thead><tr><th>Swap</th><th class="num">Swing</th></tr></thead>
   <tbody>
     {% for s in swaps %}
     <tr>
-      <td class="mute">{{ s.gameweek }}</td>
-      <td>{{ s.out_name }}</td>
-      <td class="num">{{ s.out_points }}</td>
-      <td class="strong">{{ s.in_name }}</td>
-      <td class="num">{{ s.in_points }}</td>
+      <td>{{ swap_desc(s.out_name, s.in_name, s.gameweek) }}</td>
       {{ transfer_points_cell(s.diff) }}
     </tr>
     {% endfor %}

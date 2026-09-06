@@ -42,17 +42,13 @@
       {% if d.transfers_of_week.best_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
-        <th>Replaced</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
+        <thead><tr><th>Manager</th><th>Swap</th><th class="num">Gained</th></tr></thead>
         <tbody>
           {% for t in d.transfers_of_week.best_transfers %}
           <tr>
             <td>{{ macros.manager(t.manager, avatars) }}</td>
-            <td>{{ t.out_name }}</td>
-            <td class="num">{{ t.out_points }}</td>
-            <td class="strong">{{ t.in_name }}</td>
-            <td class="num">{{ t.in_points }}</td>
-            <td class="num gain">{{ t.gain }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name) }}</td>
+            <td class="num gain">+{{ t.diff }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -68,17 +64,13 @@
       {% if d.transfers_of_week.worst_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
-        <th>Replaced</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
+        <thead><tr><th>Manager</th><th>Swap</th><th class="num">Lost</th></tr></thead>
         <tbody>
           {% for t in d.transfers_of_week.worst_transfers %}
           <tr>
             <td>{{ macros.manager(t.manager, avatars) }}</td>
-            <td class="strong">{{ t.out_name }}</td>
-            <td class="num">{{ t.out_points }}</td>
-            <td>{{ t.in_name }}</td>
-            <td class="num">{{ t.in_points }}</td>
-            <td class="num cost">{{ t.loss }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name) }}</td>
+            <td class="num cost">{{ t.diff }}</td>
           </tr>
           {% endfor %}
         </tbody>

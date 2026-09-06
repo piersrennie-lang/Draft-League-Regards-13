@@ -149,14 +149,10 @@
       {% if profile.best_transfer %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Released</th><th class="num">Pts</th>
-        <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
+        <thead><tr><th>Swap</th><th class="num">Gained</th></tr></thead>
         <tbody><tr>
-          <td>{{ profile.best_transfer.out_name }}</td>
-          <td class="num">{{ profile.best_transfer.out_points }}</td>
-          <td class="strong">{{ profile.best_transfer.in_name }}</td>
-          <td class="num">{{ profile.best_transfer.in_points }}</td>
-          <td class="num gain">{{ profile.best_transfer.diff }}</td>
+          <td>{{ macros.swap_desc(profile.best_transfer.out_name, profile.best_transfer.in_name, profile.best_transfer.gameweek) }}</td>
+          <td class="num gain">+{{ profile.best_transfer.diff }}</td>
         </tr></tbody>
       </table>
       </div>
@@ -169,14 +165,10 @@
       {% if profile.worst_transfer %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Released</th><th class="num">Pts</th>
-        <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
+        <thead><tr><th>Swap</th><th class="num">Lost</th></tr></thead>
         <tbody><tr>
-          <td class="strong">{{ profile.worst_transfer.out_name }}</td>
-          <td class="num">{{ profile.worst_transfer.out_points }}</td>
-          <td>{{ profile.worst_transfer.in_name }}</td>
-          <td class="num">{{ profile.worst_transfer.in_points }}</td>
-          <td class="num cost">{{ -profile.worst_transfer.diff }}</td>
+          <td>{{ macros.swap_desc(profile.worst_transfer.out_name, profile.worst_transfer.in_name, profile.worst_transfer.gameweek) }}</td>
+          <td class="num cost">{{ profile.worst_transfer.diff }}</td>
         </tr></tbody>
       </table>
       </div>
