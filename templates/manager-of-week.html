@@ -10,7 +10,8 @@
   transfer call counts twice: once in the score it produced, once as a
   decision in its own right.</p>
 
-  <div class="profile-grid">
+  {% if mow %}
+  <div class="cols-2">
     <div class="profile-panel">
       <div class="gw-picker">
         <label class="eyebrow eyebrow--sm" for="mow-select">Gameweek</label>
@@ -20,13 +21,7 @@
           {% endfor %}
         </select>
       </div>
-      <h3 class="eyebrow eyebrow--lg">GW{{ mow_gw }}{% if mow_live %} <span class="live-tag">Live</span>{% endif %}</h3>
-    </div>
-  </div>
-  {% if mow %}
-  <div class="cols-2">
-    <div class="profile-panel">
-      <p class="strong">Top 5</p>
+      <p class="strong">GW{{ mow_gw }}{% if mow_live %} <span class="live-tag">Live</span>{% endif %} &middot; Top 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
