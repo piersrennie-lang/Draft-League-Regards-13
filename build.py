@@ -169,8 +169,9 @@ def main():
         name = m["manager"]
         slug = manager_slug(name)
         blocks = profiles.get(name, {}).get("transfer_blocks", [])
+        raw_transfers = profiles.get(name, {}).get("raw_transfers", [])
 
-        html = transfers_template.render(profile_name=name, scope="season", blocks=blocks, **render_kwargs)
+        html = transfers_template.render(profile_name=name, scope="season", raw_transfers=raw_transfers, **render_kwargs)
         (DIST / f"manager-{slug}-transfers.html").write_text(html)
 
         week_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == gw]

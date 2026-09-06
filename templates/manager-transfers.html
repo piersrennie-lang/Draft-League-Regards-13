@@ -18,12 +18,20 @@
   </div>
 
   {% if scope == 'season' %}
-  {% if blocks %}
-  {% for block in blocks %}
+  {% if raw_transfers %}
+  {% for week in raw_transfers %}
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }}</p>
-      {{ macros.transfer_swap_table(block.swaps) }}
+      <p class="strong">GW{{ week.gameweek }}</p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>In</th><th>Out</th></tr></thead>
+        <tbody><tr>
+          <td>{{ macros.player_list(week['in']) }}</td>
+          <td>{{ macros.player_list(week.out) }}</td>
+        </tr></tbody>
+      </table>
+      </div>
     </div>
   </div>
   {% endfor %}

@@ -657,6 +657,26 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
     return out
 
 
+def build_transfer_history(managers, players, raw_transactions, load_fn, gw):
+    """Every raw transfer (in/out) each manager has made this season, one
+    entry per gameweek it happened. Unlike transfer_log/best_transfer/
+    worst_transfer, this isn't filtered by whether a swap already
+    qualifies for scoring (both legs played, fixtures finished) -- it's
+    just the record of what moved and when, for browsing in full.
+    """
+    history = {le: [] for le in managers}
+    for g in range(2, gw + 1):
+        curr_squads_raw = load_fn(f"squads_gw{g}")
+        prev_squads_raw = load_fn(f"squads_gw{g - 1}")
+        if not curr_squads_raw or not prev_squads_raw:
+            continue
+        week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw)
+        for le, t in week.items():
+            if t["count"]:
+                history[le].append({"gameweek": g, "in": t["in"], "out": t["out"]})
+    return history
+
+
 def build_team_of_week(managers, totw_squads):
     """Best possible XI pooled from every manager's active XI that week.
 
@@ -1350,6 +1370,11 @@ def main():
     manager_of_month = build_manager_of_month(managers, players, gw, gw_fully_over, load)
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads)
+    transfer_history = build_transfer_history(managers, players, raw_transactions, load, gw)
+    for le, m in managers.items():
+        profile = manager_profiles.get(m["manager"])
+        if profile is not None:
+            profile["raw_transfers"] = sorted(transfer_history[le], key=lambda t: -t["gameweek"])
     leaders = build_leaders(manager_profiles)
     standings = build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
                                  live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over)
