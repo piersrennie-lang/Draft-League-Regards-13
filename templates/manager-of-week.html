@@ -1,5 +1,5 @@
 {% extends "_base.html" %}
-{% block title %}Manager of the Week &middot; {{ d.league.name }}{% endblock %}
+{% block title %}Manager Competitions &middot; {{ d.league.name }}{% endblock %}
 {% import "_macros.html" as macros %}
 {% block content %}
 
@@ -78,6 +78,57 @@
   </div>
   {% else %}
   <p class="pending">Not enough squad data yet for the current block.</p>
+  {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Manager of the Month wins</h3>
+  {% if d.manager_of_month.leaderboard %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
+        <tbody>
+          {% for m in d.manager_of_month.leaderboard %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="pending">No month has finished yet &mdash; the first is decided at the end of GW4.</p>
+  {% endif %}
+
+  <h3 class="eyebrow eyebrow--sm">Past months</h3>
+  {% if d.manager_of_month.history %}
+  {% for block in d.manager_of_month.history %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
+      {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
+        <tbody>
+          {% for m in block.standings %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ block.block_start ~ '-' ~ block.block_end) }}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <p class="pending">Nothing here yet &mdash; the first month finalises at the end of GW4.</p>
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Season</h3>
