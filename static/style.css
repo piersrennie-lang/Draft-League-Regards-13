@@ -89,6 +89,7 @@ a { color: inherit; }
   letter-spacing: 0;
 }
 .totw-meta__result {
+  margin: 0;
   font: 700 1.375rem/1.2 var(--data);
   color: var(--ink);
 }
@@ -491,6 +492,7 @@ p.strong { margin: 0 0 0.7rem; font-weight: 600; }
   border-radius: 10px;
   background: var(--panel);
 }
+.pitch .gw-picker { margin: 0; }
 .pitch__row {
   display: flex;
   justify-content: space-evenly;
