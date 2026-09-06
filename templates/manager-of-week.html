@@ -13,7 +13,7 @@
   <h3 class="eyebrow eyebrow--lg">GW{{ d.team_of_week.gameweek }}</h3>
   {% if d.manager_of_week %}
   <div class="cols-2">
-    <div>
+    <div class="profile-panel">
       <p class="strong">Top 3</p>
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -29,7 +29,7 @@
       </table>
       </div>
     </div>
-    <div>
+    <div class="profile-panel">
       <p class="strong">Bottom 3</p>
       <div class="table-scroll">
       <table class="grid grid--table">
@@ -52,22 +52,26 @@
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>
   {% if d.manager_of_month.current %}
-  <p class="strong">
-    GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
-    {% if d.manager_of_month.current.is_final %}&middot; final{% else %}&middot; live{% endif %}
-  </p>
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
-    <tbody>
-      {% for m in d.manager_of_month.current.standings %}
-      <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
-        <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">
+        GW{{ d.manager_of_month.current.block_start }}&ndash;GW{{ d.manager_of_month.current.block_end }}
+        {% if d.manager_of_month.current.is_final %}&middot; final{% else %}&middot; live{% endif %}
+      </p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <tbody>
+          {% for m in d.manager_of_month.current.standings %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
   {% else %}
   <p class="pending">Not enough squad data yet for the current block.</p>

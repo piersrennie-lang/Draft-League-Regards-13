@@ -4,21 +4,25 @@
 {% block content %}
 
 <section id="moves" class="section--tight">
-  <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
-    <tbody>
-      {% for t in transfers_current %}
-      <tr>
-        <td>{{ macros.manager(t.manager, avatars) }}</td>
-        <td>{{ macros.player_list(t['in']) }}</td>
-        <td>{{ macros.player_list(t.out) }}</td>
-        <td class="num">{{ t.count }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
+        <tbody>
+          {% for t in transfers_current %}
+          <tr>
+            <td>{{ macros.manager(t.manager, avatars) }}</td>
+            <td>{{ macros.player_list(t['in']) }}</td>
+            <td>{{ macros.player_list(t.out) }}</td>
+            <td class="num">{{ t.count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
 
   {% if d.team_of_week.gameweek == 1 %}
@@ -32,53 +36,59 @@
   released player's score against their replacement's, whoever forced
   the move.</p>
 
-  <p class="strong">Best</p>
-  {% if d.team_of_week.best_transfers %}
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
-    <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
-    <tbody>
-      {% for t in d.team_of_week.best_transfers %}
-      <tr>
-        <td>{{ macros.manager(t.manager, avatars) }}</td>
-        <td>{{ t.out_name }}</td>
-        <td class="num">{{ t.out_points }}</td>
-        <td class="strong">{{ t.in_name }}</td>
-        <td class="num">{{ t.in_points }}</td>
-        <td class="num gain">{{ t.gain }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  </div>
-  {% else %}
-  <p class="pending">No transfers to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
-  {% endif %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">Best</p>
+      {% if d.team_of_week.best_transfers %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
+        <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
+        <tbody>
+          {% for t in d.team_of_week.best_transfers %}
+          <tr>
+            <td>{{ macros.manager(t.manager, avatars) }}</td>
+            <td>{{ t.out_name }}</td>
+            <td class="num">{{ t.out_points }}</td>
+            <td class="strong">{{ t.in_name }}</td>
+            <td class="num">{{ t.in_points }}</td>
+            <td class="num gain">{{ t.gain }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">No transfers to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+      {% endif %}
+    </div>
 
-  <p class="strong">Worst</p>
-  {% if d.team_of_week.worst_transfers %}
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
-    <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
-    <tbody>
-      {% for t in d.team_of_week.worst_transfers %}
-      <tr>
-        <td>{{ macros.manager(t.manager, avatars) }}</td>
-        <td class="strong">{{ t.out_name }}</td>
-        <td class="num">{{ t.out_points }}</td>
-        <td>{{ t.in_name }}</td>
-        <td class="num">{{ t.in_points }}</td>
-        <td class="num cost">{{ t.loss }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <div class="profile-panel">
+      <p class="strong">Worst</p>
+      {% if d.team_of_week.worst_transfers %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
+        <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
+        <tbody>
+          {% for t in d.team_of_week.worst_transfers %}
+          <tr>
+            <td>{{ macros.manager(t.manager, avatars) }}</td>
+            <td class="strong">{{ t.out_name }}</td>
+            <td class="num">{{ t.out_points }}</td>
+            <td>{{ t.in_name }}</td>
+            <td class="num">{{ t.in_points }}</td>
+            <td class="num cost">{{ t.loss }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">No losses to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
+      {% endif %}
+    </div>
   </div>
-  {% else %}
-  <p class="pending">No losses to rank yet for GW{{ d.team_of_week.gameweek }}.</p>
-  {% endif %}
   {% endif %}
 </section>
 

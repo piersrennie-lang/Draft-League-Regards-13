@@ -12,18 +12,22 @@
 
   <h3 class="eyebrow eyebrow--sm">Leaderboard</h3>
   {% if d.manager_of_month.leaderboard %}
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
-    <tbody>
-      {% for m in d.manager_of_month.leaderboard %}
-      <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
-        <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
+        <tbody>
+          {% for m in d.manager_of_month.leaderboard %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
   {% else %}
   <p class="pending">No month has finished yet &mdash; the first is decided at the end of GW4.</p>
@@ -32,20 +36,24 @@
   <h3 class="eyebrow eyebrow--sm">Past months</h3>
   {% if d.manager_of_month.history %}
   {% for block in d.manager_of_month.history %}
-  <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
-  {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
-  <div class="table-scroll">
-  <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
-    <tbody>
-      {% for m in block.standings %}
-      <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
-        <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
+      {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <tbody>
+          {% for m in block.standings %}
+          <tr>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
   {% endfor %}
   {% else %}
