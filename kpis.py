@@ -873,16 +873,16 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
 
 
 def build_manager_of_week(managers, players, gw, squads_raw, live, prev_squads_raw, prev_live):
-    """Top 3 and worst 3 managers for gw -- live, updating as it plays out
+    """Top 5 and worst 5 managers for gw -- live, updating as it plays out
     (unlike Team of the Week, which waits for gw to fully settle)."""
     scores = manager_week_scores(managers, players, squads_raw, live, prev_squads_raw, prev_live)
     if not scores:
         return None
     ranked = sorted(scores.items(), key=lambda kv: -kv[1]["points"])
-    worst = ranked[-3:][::-1] if len(ranked) >= 3 else []
+    worst = ranked[-5:][::-1] if len(ranked) >= 5 else []
     return {
         "gameweek": gw,
-        "top": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in ranked[:3]],
+        "top": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in ranked[:5]],
         "worst": [{"manager": n, "points": s["points"], "transfer_points": s["transfer_points"]} for n, s in worst],
     }
 
