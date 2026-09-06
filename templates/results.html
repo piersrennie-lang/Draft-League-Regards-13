@@ -27,14 +27,14 @@
         <div class="scoreline">
           <div class="side {{ 'side--won' if r.winner == 'home' }}">
             <p class="side__mgr">{{ macros.squad_link(r.home_name, avatars) }}</p>
-            <p class="side__team">{{ r.home_remaining }} fixture{{ 's' if r.home_remaining != 1 }} remaining</p>
+            <p class="side__team">{% if gw == current_gw %}{{ r.home_remaining }} fixture{{ 's' if r.home_remaining != 1 }} remaining{% else %}&nbsp;{% endif %}</p>
           </div>
           <p class="score">
             <a class="score__link" href="squad-{{ r.home_name|slug }}.html">{{ r.home_points }}</a><span>&ndash;</span><a class="score__link" href="squad-{{ r.away_name|slug }}.html">{{ r.away_points }}</a>
           </p>
           <div class="side side--right {{ 'side--won' if r.winner == 'away' }}">
             <p class="side__mgr">{{ macros.squad_link(r.away_name, avatars) }}</p>
-            <p class="side__team">{{ r.away_remaining }} fixture{{ 's' if r.away_remaining != 1 }} remaining</p>
+            <p class="side__team">{% if gw == current_gw %}{{ r.away_remaining }} fixture{{ 's' if r.away_remaining != 1 }} remaining{% else %}&nbsp;{% endif %}</p>
           </div>
         </div>
       </div>
