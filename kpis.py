@@ -728,13 +728,18 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
     Both sides have to have actually played, though: the outgoing player
     must have started (been in the active XI, not the bench) the previous
     gameweek AND actually taken the field for their club that gameweek
-    (minutes > 0), and the incoming player must have started this one AND
-    actually played too. Being picked in the fantasy XI isn't enough on
-    its own -- a starter who was themselves an unused sub in their real
-    match scores 0 with 0 minutes, and pairing that against a genuine
-    performance isn't a real swap, just noise (a real-world blank on one
-    side inflating or deflating a "transfer" that never really happened).
-    A fantasy-benched player, either side, isn't a real comparison either
+    (minutes > 0) -- and, since the score being compared for them is this
+    gameweek's, not last week's, their real-world fixture this gameweek
+    must also have been played (minutes > 0 again, this time from this
+    week's data). Otherwise a player whose match simply hasn't kicked off
+    yet reads as a blank, which isn't a real result to compare against.
+    The incoming player must have started this gameweek AND actually
+    played too. Being picked in the fantasy XI isn't enough on its own --
+    a starter who was themselves an unused sub in their real match scores
+    0 with 0 minutes, and pairing that against a genuine performance
+    isn't a real swap, just noise (a real-world blank on one side
+    inflating or deflating a "transfer" that never really happened). A
+    fantasy-benched player, either side, isn't a real comparison either
     -- if the pickup sat on the bench this week, there's nothing to
     compare their non-existent contribution against.
 
@@ -774,7 +779,7 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
 
         outs = [describe(eid) for eid in prev_ids - curr_ids
-                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0]
+                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0 and curr_minutes.get(eid, 0) > 0]
         ins = [row for row in squad["xi"]
                if row["element"] not in prev_ids and curr_minutes.get(row["element"], 0) > 0]
         if not outs or not ins:
