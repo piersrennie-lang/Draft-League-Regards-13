@@ -1284,7 +1284,7 @@ def build_leaders(manager_profiles, limit=5):
     don't have a single season leaderboard in the same sense, so aren't
     included here.
     """
-    def top_n(key, reverse=True):
+    def top_n(key, reverse=True, limit=limit):
         pool = [(name, p[key]) for name, p in manager_profiles.items() if p.get(key) is not None]
         pool.sort(key=lambda kv: kv[1], reverse=reverse)
         return [{"manager": name, "value": value} for name, value in pool[:limit]]
@@ -1299,7 +1299,7 @@ def build_leaders(manager_profiles, limit=5):
         "worst_motw_wins": top_n("worst_motw_wins"),
         "mom_wins": top_n("mom_wins"),
         "worst_mom_wins": top_n("worst_mom_wins"),
-        "totw_appearances": top_n("totw_appearances"),
+        "totw_appearances": top_n("totw_appearances", limit=10),
         "longest_win_streak": top_n("longest_win_streak"),
         "longest_loss_streak": top_n("longest_loss_streak"),
         "biggest_win": top_n_by("biggest_win", "margin"),
