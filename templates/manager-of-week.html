@@ -10,8 +10,14 @@
   transfer call counts twice: once in the score it produced, once as a
   decision in its own right.</p>
 
-  <h3 class="eyebrow eyebrow--lg">GW{{ gw }}{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</h3>
-  {% if d.manager_of_week %}
+  <label class="eyebrow eyebrow--sm" for="mow-select">Gameweek</label>
+  <select id="mow-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+    {% for n in available_gws|reverse %}
+    <option value="{{ 'manager-of-week.html' if n == current_gw else 'manager-of-week-gw' ~ n ~ '.html' }}"{% if n == mow_gw %} selected{% endif %}>GW{{ n }}{% if n == current_gw %} &middot; current{% endif %}</option>
+    {% endfor %}
+  </select>
+  <h3 class="eyebrow eyebrow--lg">GW{{ mow_gw }}{% if mow_live %} <span class="live-tag">Live</span>{% endif %}</h3>
+  {% if mow %}
   <div class="cols-2">
     <div class="profile-panel">
       <p class="strong">Top 5</p>
@@ -19,11 +25,11 @@
       <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
-          {% for m in d.manager_of_week.top %}
+          {% for m in mow.top %}
           <tr>
             <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num gain">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ gw) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ mow_gw) }}
           </tr>
           {% endfor %}
         </tbody>
@@ -36,11 +42,11 @@
       <table class="grid grid--table">
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Transfer pts</th></tr></thead>
         <tbody>
-          {% for m in d.manager_of_week.worst %}
+          {% for m in mow.worst %}
           <tr>
             <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
             <td class="num cost">{{ m.points }}</td>
-            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ gw) }}
+            {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ mow_gw) }}
           </tr>
           {% endfor %}
         </tbody>
@@ -49,7 +55,7 @@
     </div>
   </div>
   {% else %}
-  <p class="pending">Not enough squad data yet for GW{{ gw }}.</p>
+  <p class="pending">Not enough squad data yet for GW{{ mow_gw }}.</p>
   {% endif %}
 
   <h3 class="eyebrow eyebrow--sm">Manager of the Month</h3>

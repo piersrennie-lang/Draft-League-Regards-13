@@ -135,15 +135,34 @@ def main():
 
     # Three real pages, each its own file, so navigating between them is a
     # normal page load rather than jumping to an anchor on one big page.
-    pages = {"leaders": "leaders", "index": "standings", "manager-of-week": "manager-of-week"}
+    pages = {"leaders": "leaders", "index": "standings"}
     for filename, template_name in pages.items():
         html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
+        (DIST / f"{filename}.html").write_text(html)
+
+    available_gws = sorted(int(p.stem[2:]) for p in DERIVED.glob("gw*.json") if p.stem[2:].isdigit())
+
+    # Manager Competitions, plus one page per gameweek for the Manager of
+    # the Week section specifically -- same picker as Results. Manager of
+    # the Month/Season aren't scoped to a single gameweek, so those (and
+    # the masthead, and gw itself) stay pinned to the site's current state
+    # throughout; only the Top 5/Bottom 5 shown changes with the dropdown.
+    mow_template = env.get_template("manager-of-week.html")
+    for n in available_gws:
+        if n == gw:
+            n_mow = data["manager_of_week"]
+        else:
+            n_data = json.loads((DERIVED / f"gw{n}.json").read_text())
+            n_mow = n_data.get("manager_of_week")
+        filename = "manager-of-week" if n == gw else f"manager-of-week-gw{n}"
+        html = mow_template.render(active="manager-of-week", mow=n_mow, mow_gw=n,
+                                    mow_live=(n == gw and not data["league"]["gw_fully_over"]),
+                                    current_gw=gw, available_gws=available_gws, **render_kwargs)
         (DIST / f"{filename}.html").write_text(html)
 
     # Results page, plus one per gameweek that's already happened -- a
     # dropdown lets you jump to any of them, but results.html itself (the
     # one the nav links to) always tracks gw, whichever week is current.
-    available_gws = sorted(int(p.stem[2:]) for p in DERIVED.glob("gw*.json") if p.stem[2:].isdigit())
     results_template = env.get_template("results.html")
     for g in available_gws:
         g_data = data if g == gw else json.loads((DERIVED / f"gw{g}.json").read_text())
@@ -262,12 +281,13 @@ def main():
         html = transfers_template.render(profile_name=name, scope="season", raw_transfers=season_weeks, **render_kwargs)
         (DIST / f"manager-{slug}-transfers.html").write_text(html)
 
-        week_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == gw]
-        week_pending = [t for t in raw_transfers
-                        if t["gameweek"] == gw and t["gameweek"] not in {s["gameweek"] for s in week_swaps}]
-        html = transfers_template.render(profile_name=name, scope="week", week=gw,
-                                          swaps=week_swaps, pending=week_pending, **render_kwargs)
-        (DIST / f"manager-{slug}-transfers-gw{gw}.html").write_text(html)
+        for n in available_gws:
+            n_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == n]
+            n_pending = [t for t in raw_transfers
+                         if t["gameweek"] == n and t["gameweek"] not in {s["gameweek"] for s in n_swaps}]
+            html = transfers_template.render(profile_name=name, scope="week", week=n,
+                                              swaps=n_swaps, pending=n_pending, **render_kwargs)
+            (DIST / f"manager-{slug}-transfers-gw{n}.html").write_text(html)
 
         for start, end in block_ranges:
             block_swaps = next((b["swaps"] for b in blocks
