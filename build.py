@@ -171,7 +171,27 @@ def main():
         blocks = profiles.get(name, {}).get("transfer_blocks", [])
         raw_transfers = profiles.get(name, {}).get("raw_transfers", [])
 
-        html = transfers_template.render(profile_name=name, scope="season", raw_transfers=raw_transfers, **render_kwargs)
+        # The season page shows every transfer, but a leg that's already
+        # qualified for scoring (both players played, fixtures finished)
+        # gets its points swing shown alongside it rather than sitting in
+        # the plain in/out list as if nothing were known about it yet.
+        qualified_by_gw = {}
+        for block in blocks:
+            for s in block["swaps"]:
+                qualified_by_gw.setdefault(s["gameweek"], []).append(s)
+        season_weeks = []
+        for week in raw_transfers:
+            qualified = qualified_by_gw.get(week["gameweek"], [])
+            qualified_in_names = {s["in_name"] for s in qualified}
+            qualified_out_names = {s["out_name"] for s in qualified}
+            season_weeks.append({
+                "gameweek": week["gameweek"],
+                "swaps": qualified,
+                "pending_in": [p for p in week["in"] if p["name"] not in qualified_in_names],
+                "pending_out": [p for p in week["out"] if p["name"] not in qualified_out_names],
+            })
+
+        html = transfers_template.render(profile_name=name, scope="season", raw_transfers=season_weeks, **render_kwargs)
         (DIST / f"manager-{slug}-transfers.html").write_text(html)
 
         week_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == gw]

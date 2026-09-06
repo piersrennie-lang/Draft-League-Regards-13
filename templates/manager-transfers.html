@@ -23,15 +23,20 @@
   <div class="profile-grid">
     <div class="profile-panel">
       <p class="strong">GW{{ week.gameweek }}</p>
+      {% if week.swaps %}
+      {{ macros.transfer_swap_table(week.swaps) }}
+      {% endif %}
+      {% if week.pending_in or week.pending_out %}
       <div class="table-scroll">
       <table class="grid grid--table">
         <thead><tr><th>In</th><th>Out</th></tr></thead>
         <tbody><tr>
-          <td>{{ macros.player_list(week['in']) }}</td>
-          <td>{{ macros.player_list(week.out) }}</td>
+          <td>{{ macros.player_list(week.pending_in) }}</td>
+          <td>{{ macros.player_list(week.pending_out) }}</td>
         </tr></tbody>
       </table>
       </div>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
