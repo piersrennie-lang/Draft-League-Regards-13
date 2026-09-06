@@ -39,6 +39,7 @@
   <p class="pending">No transfers yet.</p>
   {% endif %}
   {% else %}
+  {% if swaps or not pending %}
   <div class="profile-grid">
     <div class="profile-panel">
       {% if swaps %}
@@ -48,6 +49,23 @@
       {% endif %}
     </div>
   </div>
+  {% endif %}
+  {% for p in pending %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <p class="mute">GW{{ p.gameweek }} &middot; not yet assessed &mdash; waiting for both players' matches to finish.</p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <thead><tr><th>In</th><th>Out</th></tr></thead>
+        <tbody><tr>
+          <td>{{ macros.player_list(p['in']) }}</td>
+          <td>{{ macros.player_list(p.out) }}</td>
+        </tr></tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
   {% endif %}
 </section>
 

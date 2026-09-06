@@ -175,14 +175,20 @@ def main():
         (DIST / f"manager-{slug}-transfers.html").write_text(html)
 
         week_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == gw]
-        html = transfers_template.render(profile_name=name, scope="week", week=gw, swaps=week_swaps, **render_kwargs)
+        week_pending = [t for t in raw_transfers
+                        if t["gameweek"] == gw and t["gameweek"] not in {s["gameweek"] for s in week_swaps}]
+        html = transfers_template.render(profile_name=name, scope="week", week=gw,
+                                          swaps=week_swaps, pending=week_pending, **render_kwargs)
         (DIST / f"manager-{slug}-transfers-gw{gw}.html").write_text(html)
 
         for start, end in block_ranges:
             block_swaps = next((b["swaps"] for b in blocks
                                  if b["block_start"] == start and b["block_end"] == end), [])
+            qualifying_gws = {s["gameweek"] for s in block_swaps}
+            block_pending = [t for t in raw_transfers
+                             if start <= t["gameweek"] <= end and t["gameweek"] not in qualifying_gws]
             html = transfers_template.render(profile_name=name, scope="block", block_start=start, block_end=end,
-                                              swaps=block_swaps, **render_kwargs)
+                                              swaps=block_swaps, pending=block_pending, **render_kwargs)
             (DIST / f"manager-{slug}-transfers-gw{start}-{end}.html").write_text(html)
 
     # One live-squad page per manager for this gameweek -- starting XI and
