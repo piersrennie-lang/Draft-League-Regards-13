@@ -965,15 +965,20 @@ def build_manager_of_month(managers, players, gw, gw_fully_over, load_fn):
     history.reverse()
 
     wins = {}
+    worst_wins = {}
     for h in history:
         wins[h["manager"]] = wins.get(h["manager"], 0) + 1
+        worst_manager = h["standings"][-1]["manager"]
+        worst_wins[worst_manager] = worst_wins.get(worst_manager, 0) + 1
     leaderboard = sorted(wins.items(), key=lambda kv: (-kv[1], kv[0]))
+    worst_leaderboard = sorted(worst_wins.items(), key=lambda kv: (-kv[1], kv[0]))
 
     return {
         "current": current,
         "season": season_standings,
         "history": history,
         "leaderboard": [{"manager": n, "wins": w} for n, w in leaderboard],
+        "worst_leaderboard": [{"manager": n, "wins": w} for n, w in worst_leaderboard],
     }
 
 
@@ -1082,6 +1087,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     worst_transfer = {le: None for le in managers}
     transfer_log = {le: [] for le in managers}
     motw_wins = {le: 0 for le in managers}
+    worst_motw_wins = {le: 0 for le in managers}
     totw_appearances = {le: 0 for le in managers}
     by_manager = {m["manager"]: le for le, m in managers.items()}
 
@@ -1112,6 +1118,10 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             le = by_manager.get(winner_name)
             if le is not None:
                 motw_wins[le] += 1
+            loser_name = min(week_scores.items(), key=lambda kv: kv[1]["points"])[0]
+            le = by_manager.get(loser_name)
+            if le is not None:
+                worst_motw_wins[le] += 1
 
         if g == 1:
             continue
@@ -1178,10 +1188,14 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                         worst_transfer[le] = tagged
 
     mom_wins = {le: 0 for le in managers}
+    worst_mom_wins = {le: 0 for le in managers}
     for block in manager_of_month_history:
         le = by_manager.get(block["manager"])
         if le is not None:
             mom_wins[le] += 1
+        le = by_manager.get(block["standings"][-1]["manager"])
+        if le is not None:
+            worst_mom_wins[le] += 1
 
     profiles = {}
     for le, m in managers.items():
@@ -1215,7 +1229,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "worst_transfer": worst_transfer[le],
             "transfer_blocks": group_transfers_by_block(transfer_log[le]),
             "motw_wins": motw_wins[le],
+            "worst_motw_wins": worst_motw_wins[le],
             "mom_wins": mom_wins[le],
+            "worst_mom_wins": worst_mom_wins[le],
             "totw_appearances": totw_appearances[le],
         }
     return profiles
@@ -1280,7 +1296,9 @@ def build_leaders(manager_profiles, limit=5):
 
     return {
         "motw_wins": top_n("motw_wins"),
+        "worst_motw_wins": top_n("worst_motw_wins"),
         "mom_wins": top_n("mom_wins"),
+        "worst_mom_wins": top_n("worst_mom_wins"),
         "totw_appearances": top_n("totw_appearances"),
         "longest_win_streak": top_n("longest_win_streak"),
         "longest_loss_streak": top_n("longest_loss_streak"),
