@@ -1016,6 +1016,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     best_player = {le: None for le in managers}
     best_transfer = {le: None for le in managers}
     worst_transfer = {le: None for le in managers}
+    transfer_log = {le: [] for le in managers}
     motw_wins = {le: 0 for le in managers}
     totw_appearances = {le: 0 for le in managers}
     by_manager = {m["manager"]: le for le, m in managers.items()}
@@ -1058,6 +1059,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             if le is None:
                 continue
             tagged = {**s, "gameweek": g}
+            transfer_log[le].append(tagged)
             if s["diff"] > 0 and (best_transfer[le] is None or s["diff"] > best_transfer[le]["diff"]):
                 best_transfer[le] = tagged
             if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
@@ -1124,6 +1126,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                 if most_lost_to[0] is not None and most_lost_to[1]["l"] > 0 else None,
             "best_transfer": best_transfer[le],
             "worst_transfer": worst_transfer[le],
+            "transfer_log": sorted(transfer_log[le], key=lambda s: -s["gameweek"]),
             "motw_wins": motw_wins[le],
             "mom_wins": mom_wins[le],
             "totw_appearances": totw_appearances[le],
