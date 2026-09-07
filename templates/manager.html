@@ -40,7 +40,7 @@
   <div class="profile-panel" style="margin-bottom:2rem;">
     <p class="strong">
       {% if profile.current_fixture.started %}{{ profile.current_fixture.points }}&ndash;{{ profile.current_fixture.against }}{% else %}Not started{% endif %}
-      vs {{ macros.squad_link(profile.current_fixture.opponent, avatars) }}
+      vs {{ macros.squad_link(profile.current_fixture.opponent, avatars, manager_colors) }}
       {% if profile.current_fixture.live %}<span class="live-tag">Live</span>{% endif %}
     </p>
     {% if profile.current_fixture.live %}
@@ -57,7 +57,7 @@
       <p class="strong">Biggest win{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.biggest_win %}
       <p>{{ profile.biggest_win.points }}&ndash;{{ profile.biggest_win.against }} vs
-      {{ macros.manager(profile.biggest_win.opponent, avatars) }} &middot; GW{{ profile.biggest_win.gameweek }}
+      {{ macros.manager(profile.biggest_win.opponent, avatars, manager_colors) }} &middot; GW{{ profile.biggest_win.gameweek }}
       &middot; won by {{ profile.biggest_win.margin }}</p>
       {% else %}
       <p class="pending">No wins yet.</p>
@@ -67,7 +67,7 @@
       <p class="strong">Biggest loss{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.biggest_loss %}
       <p>{{ profile.biggest_loss.points }}&ndash;{{ profile.biggest_loss.against }} vs
-      {{ macros.manager(profile.biggest_loss.opponent, avatars) }} &middot; GW{{ profile.biggest_loss.gameweek }}
+      {{ macros.manager(profile.biggest_loss.opponent, avatars, manager_colors) }} &middot; GW{{ profile.biggest_loss.gameweek }}
       &middot; lost by {{ -profile.biggest_loss.margin }}</p>
       {% else %}
       <p class="pending">No losses yet.</p>
@@ -99,7 +99,7 @@
       <p class="strong">Highest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.highest_score %}
       <p>{{ profile.highest_score.points }} pts vs
-      {{ macros.manager(profile.highest_score.opponent, avatars) }} &middot; GW{{ profile.highest_score.gameweek }}
+      {{ macros.manager(profile.highest_score.opponent, avatars, manager_colors) }} &middot; GW{{ profile.highest_score.gameweek }}
       &middot; {{ profile.highest_score.result }}</p>
       {% else %}
       <p class="pending">Not enough data yet.</p>
@@ -109,7 +109,7 @@
       <p class="strong">Lowest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.lowest_score %}
       <p>{{ profile.lowest_score.points }} pts vs
-      {{ macros.manager(profile.lowest_score.opponent, avatars) }} &middot; GW{{ profile.lowest_score.gameweek }}
+      {{ macros.manager(profile.lowest_score.opponent, avatars, manager_colors) }} &middot; GW{{ profile.lowest_score.gameweek }}
       &middot; {{ profile.lowest_score.result }}</p>
       {% else %}
       <p class="pending">Not enough data yet.</p>
@@ -133,7 +133,7 @@
     <div class="profile-panel">
       <p class="strong">Beaten most{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.most_beaten %}
-      <p>{{ macros.manager(profile.most_beaten.manager, avatars) }} &mdash;
+      <p>{{ macros.manager(profile.most_beaten.manager, avatars, manager_colors) }} &mdash;
       {{ profile.most_beaten.wins }} time{{ 's' if profile.most_beaten.wins != 1 }}</p>
       {% else %}
       <p class="pending">No wins yet.</p>
@@ -142,7 +142,7 @@
     <div class="profile-panel">
       <p class="strong">Lost to most{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
       {% if profile.most_lost_to %}
-      <p>{{ macros.manager(profile.most_lost_to.manager, avatars) }} &mdash;
+      <p>{{ macros.manager(profile.most_lost_to.manager, avatars, manager_colors) }} &mdash;
       {{ profile.most_lost_to.losses }} time{{ 's' if profile.most_lost_to.losses != 1 }}</p>
       {% else %}
       <p class="pending">No losses yet.</p>
@@ -157,7 +157,8 @@
       {% if profile.best_transfer %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Swap</th><th class="num">Gained</th></tr></thead>
+        <colgroup><col style="width:74%"><col style="width:26%"></colgroup>
+      <thead><tr><th>Swap</th><th class="num">Gained</th></tr></thead>
         <tbody><tr>
           <td>{{ macros.swap_desc(profile.best_transfer.out_name, profile.best_transfer.in_name, profile.best_transfer.gameweek) }}</td>
           <td class="num gain">+{{ profile.best_transfer.diff }}</td>
@@ -173,7 +174,8 @@
       {% if profile.worst_transfer %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Swap</th><th class="num">Lost</th></tr></thead>
+        <colgroup><col style="width:74%"><col style="width:26%"></colgroup>
+      <thead><tr><th>Swap</th><th class="num">Lost</th></tr></thead>
         <tbody><tr>
           <td>{{ macros.swap_desc(profile.worst_transfer.out_name, profile.worst_transfer.in_name, profile.worst_transfer.gameweek) }}</td>
           <td class="num cost">{{ profile.worst_transfer.diff }}</td>
@@ -198,12 +200,13 @@
       {% if profile.fixtures %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>GW</th><th>Opponent</th><th class="num">Score</th><th>Result</th></tr></thead>
+        <colgroup><col style="width:12%"><col style="width:44%"><col style="width:24%"><col style="width:20%"></colgroup>
+      <thead><tr><th>GW</th><th>Opponent</th><th class="num">Score</th><th>Result</th></tr></thead>
         <tbody>
           {% for f in profile.fixtures[:5] %}
           <tr>
             <td class="mute">{{ f.gameweek }}</td>
-            <td>{{ macros.manager(f.opponent, avatars) }}</td>
+            <td>{{ macros.manager(f.opponent, avatars, manager_colors) }}</td>
             <td class="num">{{ f.points }}&ndash;{{ f.against }}</td>
             <td class="strong {{ 'gain' if f.result == 'W' else 'cost' if f.result == 'L' else '' }}">{{ f.result }}</td>
           </tr>
@@ -220,12 +223,13 @@
       {% if profile.future_fixtures %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>GW</th><th>Opponent</th></tr></thead>
+        <colgroup><col style="width:16%"><col style="width:84%"></colgroup>
+      <thead><tr><th>GW</th><th>Opponent</th></tr></thead>
         <tbody>
           {% for f in profile.future_fixtures[:5] %}
           <tr>
             <td class="mute">{{ f.gameweek }}</td>
-            <td>{{ macros.manager(f.opponent, avatars) }}</td>
+            <td>{{ macros.manager(f.opponent, avatars, manager_colors) }}</td>
           </tr>
           {% endfor %}
         </tbody>

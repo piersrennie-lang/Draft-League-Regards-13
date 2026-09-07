@@ -18,12 +18,13 @@
       <p class="strong">GW{{ mow_gw }}{% if mow_live %} <span class="live-tag">Live</span>{% endif %} &middot; Top 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:8%"><col style="width:40%"><col style="width:24%"><col style="width:28%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in mow.top %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num gain">{{ m.points }}</td>
             {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ mow_gw) }}
           </tr>
@@ -36,12 +37,13 @@
       <p class="strong">Bottom 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:8%"><col style="width:40%"><col style="width:24%"><col style="width:28%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in mow.worst %}
           <tr>
             <td class="mute">{{ d.managers|length - loop.index + 1 }}</td>
-            <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num cost">{{ m.points }}</td>
             {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ mow_gw) }}
           </tr>
@@ -73,11 +75,12 @@
       </p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:48%"><col style="width:24%"><col style="width:28%"></colgroup>
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in mom_block.standings %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
             {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ mom_block.block_start ~ '-' ~ mom_block.block_end) }}
           </tr>
@@ -97,11 +100,12 @@
     <div class="profile-panel">
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
         <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_month.leaderboard %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
           </tr>
           {% endfor %}
@@ -120,14 +124,15 @@
   <div class="profile-grid">
     <div class="profile-panel">
       <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
-      {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
+      {{ macros.manager(block.manager, avatars, manager_colors) }} ({{ block.points }} pts)</p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:48%"><col style="width:24%"><col style="width:28%"></colgroup>
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in block.standings %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
             {{ macros.transfer_points_cell(m.transfer_points, m.manager, 'gw' ~ block.block_start ~ '-' ~ block.block_end) }}
           </tr>
@@ -151,11 +156,12 @@
       </p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:48%"><col style="width:24%"><col style="width:28%"></colgroup>
         <thead><tr><th>Manager</th><th class="num">Points</th><th class="num">Trnfr pts</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_month.season %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
             {{ macros.transfer_points_cell(m.transfer_points, m.manager) }}
           </tr>
@@ -176,10 +182,11 @@
       {% if d.leaders.motw_wins %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
         <tbody>
           {% for row in d.leaders.motw_wins %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -193,10 +200,11 @@
       {% if d.leaders.mom_wins %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
         <tbody>
           {% for row in d.leaders.mom_wins %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -213,10 +221,11 @@
       {% if d.leaders.worst_motw_wins %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
         <tbody>
           {% for row in d.leaders.worst_motw_wins %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -230,10 +239,11 @@
       {% if d.leaders.worst_mom_wins %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Wins</th></tr></thead>
         <tbody>
           {% for row in d.leaders.worst_mom_wins %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>

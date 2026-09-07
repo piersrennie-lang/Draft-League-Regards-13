@@ -86,6 +86,29 @@ def build_avatars(manager_names):
     return avatars
 
 
+# Ten fixed hues, one per manager, read from a single map so the ring never
+# shuffles between gameweeks. Keyed by short display name.
+MANAGER_HUES = {
+    "Mike": "#2F5D50", "Matt A": "#2E6B3A",
+    "Brad": "#3A5A8C", "Mark": "#A0522D",
+    "Piers": "#8A5A1E", "Matt X": "#4A6E8A",
+    "Matt L": "#5A4A8C", "Nic": "#6B4E2E",
+    "Roscoe": "#7A5C4E", "Stefano": "#4F5B6B",
+}
+
+
+def build_manager_colors(managers, display_names):
+    """Manager full name -> ring colour, assigned once by entry_id (stable
+    ordering) via MANAGER_HUES. Falls back to a neutral tone for anyone not
+    in the fixed ten (a new manager joining mid-season, say).
+    """
+    colors = {}
+    for m in sorted(managers.values(), key=lambda m: m["entry_id"]):
+        name = m["manager"]
+        colors[name] = MANAGER_HUES.get(display_names.get(name, name), "#6E6B60")
+    return colors
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gw", type=int)
@@ -126,9 +149,11 @@ def main():
     css_version = hashlib.md5(css_bytes).hexdigest()[:8]
 
     avatars = build_avatars(m["manager"] for m in data["managers"].values())
+    manager_colors = build_manager_colors(data["managers"], display_names)
 
     render_kwargs = dict(d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
-                          totw_by_pos=totw_by_pos, css_version=css_version, avatars=avatars)
+                          totw_by_pos=totw_by_pos, css_version=css_version, avatars=avatars,
+                          manager_colors=manager_colors)
 
     DIST.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "static", DIST / "static", dirs_exist_ok=True)
@@ -192,7 +217,7 @@ def main():
         html = results_template.render(active="results", d=g_data, gw=g, current_gw=gw,
                                         available_gws=available_gws, next_gw=next_gw,
                                         transfers_current=transfers_current, totw_by_pos=totw_by_pos,
-                                        css_version=css_version, avatars=avatars)
+                                        css_version=css_version, avatars=avatars, manager_colors=manager_colors)
         (DIST / f"{filename}.html").write_text(html)
 
     # Transfers page, plus one per gameweek that's already happened -- same
@@ -210,7 +235,7 @@ def main():
         html = transfers_template.render(active="transfers", d=g_data, gw=g, current_gw=gw,
                                           available_gws=available_gws, next_gw=g + 1,
                                           transfers_current=g_transfers_current, totw_by_pos=totw_by_pos,
-                                          css_version=css_version, avatars=avatars)
+                                          css_version=css_version, avatars=avatars, manager_colors=manager_colors)
         (DIST / f"{filename}.html").write_text(html)
 
     # Releases page, plus one per gameweek that's already happened -- same
@@ -222,7 +247,8 @@ def main():
         filename = "releases" if g == gw else f"releases-gw{g}"
         html = releases_template.render(active="releases", d=g_data, gw=g, current_gw=gw,
                                          available_gws=available_gws, next_gw=g + 1,
-                                         totw_by_pos=totw_by_pos, css_version=css_version, avatars=avatars)
+                                         totw_by_pos=totw_by_pos, css_version=css_version, avatars=avatars,
+                                         manager_colors=manager_colors)
         (DIST / f"{filename}.html").write_text(html)
 
     # Team of the Week, plus one page per gameweek whose Team of the Week
@@ -248,7 +274,7 @@ def main():
         html = totw_template.render(active="totw", totw=n_totw, totw_by_pos=n_totw_by_pos,
                                      current_totw_gw=current_totw_gw, available_totw_gws=available_totw_gws,
                                      d=data, gw=gw, next_gw=next_gw, transfers_current=transfers_current,
-                                     css_version=css_version, avatars=avatars)
+                                     css_version=css_version, avatars=avatars, manager_colors=manager_colors)
         (DIST / f"{filename}.html").write_text(html)
 
     # One page per manager -- fixtures, head-to-head, biggest win, best

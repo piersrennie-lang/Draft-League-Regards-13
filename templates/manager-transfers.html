@@ -29,10 +29,11 @@
       {% if week.pending_in or week.pending_out %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
         <thead><tr><th>In</th><th>Out</th></tr></thead>
         <tbody><tr>
           <td>{{ macros.player_list(week.pending_in) }}</td>
-          <td>{{ macros.player_list(week.pending_out) }}</td>
+          <td>{{ macros.player_list(week.pending_out, outgoing=true) }}</td>
         </tr></tbody>
       </table>
       </div>
@@ -61,10 +62,11 @@
       <p class="mute">GW{{ p.gameweek }} &middot; not yet assessed &mdash; waiting for both players' matches to finish.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
         <thead><tr><th>In</th><th>Out</th></tr></thead>
         <tbody><tr>
           <td>{{ macros.player_list(p['in']) }}</td>
-          <td>{{ macros.player_list(p.out) }}</td>
+          <td>{{ macros.player_list(p.out, outgoing=true) }}</td>
         </tr></tbody>
       </table>
       </div>

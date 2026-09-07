@@ -12,13 +12,14 @@
       {% if d.leaders.biggest_win %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
+        <colgroup><col style="width:8%"><col style="width:38%"><col style="width:38%"><col style="width:16%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
         <tbody>
           {% for row in d.leaders.biggest_win %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ macros.manager(row.opponent, avatars) }} <span class="mute">GW{{ row.gameweek }}</span></td>
+            <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
+            <td>{{ macros.manager(row.opponent, avatars, manager_colors) }} <span class="mute">GW{{ row.gameweek }}</span></td>
             <td class="num gain">{{ row.margin }}</td>
           </tr>
           {% endfor %}
@@ -37,13 +38,14 @@
       {% if d.leaders.highest_score %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
+        <colgroup><col style="width:8%"><col style="width:38%"><col style="width:38%"><col style="width:16%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
         <tbody>
           {% for row in d.leaders.highest_score %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ macros.manager(row.opponent, avatars) }} &middot; GW{{ row.gameweek }}</td>
+            <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
+            <td>{{ macros.manager(row.opponent, avatars, manager_colors) }} &middot; GW{{ row.gameweek }}</td>
             <td class="num">{{ row.points }}</td>
           </tr>
           {% endfor %}
@@ -59,13 +61,14 @@
       {% if d.leaders.lowest_score %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
+        <colgroup><col style="width:8%"><col style="width:38%"><col style="width:38%"><col style="width:16%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
         <tbody>
           {% for row in d.leaders.lowest_score %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
-            <td>{{ macros.manager(row.opponent, avatars) }} &middot; GW{{ row.gameweek }}</td>
+            <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
+            <td>{{ macros.manager(row.opponent, avatars, manager_colors) }} &middot; GW{{ row.gameweek }}</td>
             <td class="num">{{ row.points }}</td>
           </tr>
           {% endfor %}
@@ -84,10 +87,11 @@
       {% if d.leaders.longest_win_streak %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th class="num">Games</th></tr></thead>
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th class="num">Games</th></tr></thead>
         <tbody>
           {% for row in d.leaders.longest_win_streak %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -101,10 +105,11 @@
       {% if d.leaders.longest_loss_streak %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th class="num">Games</th></tr></thead>
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th class="num">Games</th></tr></thead>
         <tbody>
           {% for row in d.leaders.longest_loss_streak %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -122,12 +127,13 @@
       <p class="lede lede--tight">League average score: {{ d.luck.average }} pts.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
+        <colgroup><col style="width:10%"><col style="width:44%"><col style="width:46%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
         <tbody>
           {% for r in d.luck.luckiest %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(r.manager, avatars) }}</td>
+            <td>{{ macros.manager(r.manager, avatars, manager_colors) }}</td>
             <td class="num">{{ r.avg_against }}</td>
           </tr>
           {% endfor %}
@@ -144,12 +150,13 @@
       <p class="lede lede--tight">League average score: {{ d.luck.average }} pts.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>#</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
+        <colgroup><col style="width:10%"><col style="width:44%"><col style="width:46%"></colgroup>
+      <thead><tr><th>#</th><th>Manager</th><th class="num">Avg opp. score</th></tr></thead>
         <tbody>
           {% for r in d.luck.unluckiest %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(r.manager, avatars) }}</td>
+            <td>{{ macros.manager(r.manager, avatars, manager_colors) }}</td>
             <td class="num">{{ r.avg_against }}</td>
           </tr>
           {% endfor %}

@@ -1,17 +1,32 @@
-{% macro manager(name, avatars) -%}
-<a class="manager-link" href="manager-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
+{% macro pitch_lines() -%}
+<svg class="pitch__lines" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+  <rect x="1" y="1" width="98" height="138" fill="var(--pitch-bed)" stroke="var(--rule-strong)" stroke-width="0.6"/>
+  <line x1="1" y1="70" x2="99" y2="70" stroke="var(--rule-strong)" stroke-width="0.6"/>
+  <circle cx="50" cy="70" r="13" fill="none" stroke="var(--rule-strong)" stroke-width="0.6"/>
+  <circle cx="50" cy="70" r="0.8" fill="var(--rule-strong)"/>
+  <rect x="24" y="113" width="52" height="26" fill="none" stroke="var(--rule-strong)" stroke-width="0.6"/>
+  <rect x="38" y="132" width="24" height="7" fill="none" stroke="var(--rule-strong)" stroke-width="0.6"/>
+</svg>
 {%- endmacro %}
 
-{% macro squad_link(name, avatars) -%}
-<a class="manager-link" href="squad-{{ name|slug }}.html">{% if avatars.get(name) %}<img class="avatar" src="{{ avatars[name] }}" alt="">{% endif %}{{ name|dname }}</a>
+{% macro ph(url, css_class, ring_color=none, initials='') -%}
+<span class="ph {{ css_class }}{{ '' if url else ' is-empty' }}"{% if ring_color %} style="--c: {{ ring_color }}"{% endif %}>{% if url %}<img src="{{ url }}" alt="" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty')">{% endif %}<span class="ph-initials" aria-hidden="true">{{ initials }}</span></span>
 {%- endmacro %}
 
-{% macro player_photo(url, css_class) -%}
-<img class="{{ css_class }}" src="{{ url if url else 'static/players/placeholder.png' }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='static/players/placeholder.png';">
+{% macro manager(name, avatars, manager_colors={}) -%}
+<a class="manager-link" href="manager-{{ name|slug }}.html">{{ ph(avatars.get(name), 'ph--row', manager_colors.get(name), (name.split()[0][0] ~ name.split()[-1][0])|upper) }}{{ name|dname }}</a>
 {%- endmacro %}
 
-{% macro player_list(items) -%}
-{% if items %}{% for p in items %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
+{% macro squad_link(name, avatars, manager_colors={}) -%}
+<a class="manager-link" href="squad-{{ name|slug }}.html">{{ ph(avatars.get(name), 'ph--row', manager_colors.get(name), (name.split()[0][0] ~ name.split()[-1][0])|upper) }}{{ name|dname }}</a>
+{%- endmacro %}
+
+{% macro player_photo(url, css_class, club='') -%}
+{{ ph(url, css_class, none, club) }}
+{%- endmacro %}
+
+{% macro player_list(items, outgoing=false) -%}
+{% if items %}{% for p in items %}<div class="transfer-player">{{ player_photo(p.photo, 'ph--player' ~ (' ph--out' if outgoing else ''), p.club) }}<span>{{ p.name }}</span></div>{% endfor %}{% else %}None{% endif %}
 {%- endmacro %}
 
 {% macro transfer_points_cell(n, manager_name=none, page_suffix=none) -%}
@@ -25,6 +40,7 @@
 {% macro transfer_swap_table(swaps) -%}
 <div class="table-scroll">
 <table class="grid grid--table">
+  <colgroup><col style="width:74%"><col style="width:26%"></colgroup>
   <thead><tr><th>Swap</th><th class="num">Swing</th></tr></thead>
   <tbody>
     {% for s in swaps %}
@@ -39,5 +55,5 @@
 {%- endmacro %}
 
 {% macro release_cell(r) -%}
-{% if r.tie %}{% for p in r.tie %}<div class="transfer-player">{{ player_photo(p.photo, 'transfer-photo') }}<span>{{ p.name }}</span></div>{% if not loop.last %}<div class="tie-or">or</div>{% endif %}{% endfor %}{% else %}<div class="transfer-player">{{ player_photo(r.release_photo, 'transfer-photo') }}<span>{{ r.release }}</span></div>{% endif %}
+{% if r.tie %}{% for p in r.tie %}<div class="transfer-player">{{ player_photo(p.photo, 'ph--player', p.club) }}<span>{{ p.name }}</span></div>{% if not loop.last %}<div class="tie-or">or</div>{% endif %}{% endfor %}{% else %}<div class="transfer-player">{{ player_photo(r.release_photo, 'ph--player', r.release_club) }}<span>{{ r.release }}</span></div>{% endif %}
 {%- endmacro %}

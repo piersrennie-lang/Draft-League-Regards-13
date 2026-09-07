@@ -16,13 +16,14 @@
       </div>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:25%"><col style="width:27%"><col style="width:27%"><col style="width:21%"></colgroup>
         <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
         <tbody>
           {% for t in transfers_current %}
           <tr>
-            <td>{{ macros.manager(t.manager, avatars) }}</td>
+            <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
             <td>{{ macros.player_list(t['in']) }}</td>
-            <td>{{ macros.player_list(t.out) }}</td>
+            <td>{{ macros.player_list(t.out, outgoing=true) }}</td>
             <td class="num">{{ t.count }}</td>
           </tr>
           {% endfor %}
@@ -45,11 +46,12 @@
       {% if d.transfers_of_week.best_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:26%"><col style="width:54%"><col style="width:20%"></colgroup>
         <thead><tr><th>Manager</th><th>Swap</th><th class="num">Gained</th></tr></thead>
         <tbody>
           {% for t in d.transfers_of_week.best_transfers %}
           <tr>
-            <td>{{ macros.manager(t.manager, avatars) }}</td>
+            <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
             <td>{{ macros.swap_desc(t.out_name, t.in_name) }}</td>
             <td class="num gain">+{{ t.diff }}</td>
           </tr>
@@ -67,11 +69,12 @@
       {% if d.transfers_of_week.worst_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:26%"><col style="width:54%"><col style="width:20%"></colgroup>
         <thead><tr><th>Manager</th><th>Swap</th><th class="num">Lost</th></tr></thead>
         <tbody>
           {% for t in d.transfers_of_week.worst_transfers %}
           <tr>
-            <td>{{ macros.manager(t.manager, avatars) }}</td>
+            <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
             <td>{{ macros.swap_desc(t.out_name, t.in_name) }}</td>
             <td class="num cost">{{ t.diff }}</td>
           </tr>
@@ -93,12 +96,13 @@
       {% if d.leaders.best_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:6%"><col style="width:28%"><col style="width:46%"><col style="width:20%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Gain</th></tr></thead>
         <tbody>
           {% for row in d.leaders.best_transfers %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
+            <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
             <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
             <td class="num gain">+{{ row.diff }}</td>
           </tr>
@@ -115,12 +119,13 @@
       {% if d.leaders.worst_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:6%"><col style="width:28%"><col style="width:46%"><col style="width:20%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Lost</th></tr></thead>
         <tbody>
           {% for row in d.leaders.worst_transfers %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
+            <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
             <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
             <td class="num cost">{{ row.diff }}</td>
           </tr>

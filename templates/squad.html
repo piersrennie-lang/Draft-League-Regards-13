@@ -21,11 +21,12 @@
     <span class="totw-meta__result">{{ formation }} &middot; {{ squad.effective_xi_points }} pts</span>
   </p>
   <div class="pitch">
+    {{ macros.pitch_lines() }}
     {% for row in [squad_by_pos.GKP, squad_by_pos.DEF, squad_by_pos.MID, squad_by_pos.FWD] %}
     <div class="pitch__row">
       {% for p in row %}
       <div class="pitch__player">
-        {{ macros.player_photo(p.photo, 'pitch__photo') }}
+        {{ macros.player_photo(p.photo, 'ph--pitch', p.club) }}
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts{% if p.element in autosub_ins %} &middot; auto-sub{% endif %}</p>
@@ -48,6 +49,7 @@
       {% if bench_rows %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:14%"><col style="width:66%"><col style="width:20%"></colgroup>
         <thead><tr><th>Pos</th><th>Player</th><th class="num">Pts</th></tr></thead>
         <tbody>
           {% for p in bench_rows %}
@@ -55,7 +57,7 @@
             <td class="mute">{{ p.pos }}</td>
             <td>
               <div class="transfer-player">
-                {{ macros.player_photo(p.photo, 'transfer-photo') }}
+                {{ macros.player_photo(p.photo, 'ph--player', p.club) }}
                 <span>{{ p.name }} <span class="mute">{{ p.club }}</span>{% if p.element in autosub_outs %} <span class="mute">(subbed off)</span>{% endif %}</span>
               </div>
             </td>
@@ -77,11 +79,12 @@
       {% if transfers.count %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
         <thead><tr><th>In</th><th>Out</th></tr></thead>
         <tbody>
           <tr>
             <td>{{ macros.player_list(transfers['in']) }}</td>
-            <td>{{ macros.player_list(transfers.out) }}</td>
+            <td>{{ macros.player_list(transfers.out, outgoing=true) }}</td>
           </tr>
         </tbody>
       </table>

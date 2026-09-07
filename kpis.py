@@ -31,19 +31,26 @@ def load(name, default=None):
 # Managers
 # --------------------------------------------------------------------------
 
+DISPLAY_FIRST_NAME = {"Nicolas": "Nic"}
+
+
 def build_managers(details):
     """Keyed by league_entry id, which is what matches and standings use.
 
     Note the two-id trap: league_entries carry both `id` (the league entry,
     used by matches and standings) and `entry_id` (the team, used by squad and
     transaction endpoints). Mixing them up is the most common way this breaks.
+
+    `manager` is a display name -- DISPLAY_FIRST_NAME overrides a first name
+    for every view that reads it, without touching the API's own fields.
     """
     out = {}
     for e in details["league_entries"]:
+        first = DISPLAY_FIRST_NAME.get(e["player_first_name"], e["player_first_name"])
         out[e["id"]] = {
             "league_entry": e["id"],
             "entry_id": e["entry_id"],
-            "manager": f"{e['player_first_name']} {e['player_last_name']}",
+            "manager": f"{first} {e['player_last_name']}",
             "team": e["entry_name"],
             "short": e["short_name"],
             "waiver_pick": e.get("waiver_pick"),
@@ -221,8 +228,9 @@ def build_releases(managers, squads, results_by_entry):
             "team": managers[le]["team"],
             "release": top["name"],
             "release_photo": top["photo"],
+            "release_club": top["club"],
             "release_points": top["points"],
-            "tie": [{"name": r["name"], "photo": r["photo"]} for r in tied] if len(tied) > 1 else [],
+            "tie": [{"name": r["name"], "photo": r["photo"], "club": r["club"]} for r in tied] if len(tied) > 1 else [],
             "next": nxt["name"] if nxt else None,
             "next_points": nxt["points"] if nxt else None,
             "next_tie": [r["name"] for r in nxt_tied] if len(nxt_tied) > 1 else [],
@@ -246,6 +254,7 @@ def manual_releases(gw, managers, results_by_entry, players):
         return []
     by_name = {m["manager"]: le for le, m in managers.items()}
     photo_by_name = {p["name"]: p.get("photo", "") for p in players.values()}
+    club_by_name = {p["name"]: p.get("club", "") for p in players.values()}
     rows = []
     for r in json.loads(path.read_text()):
         le = by_name.get(r["manager"])
@@ -259,8 +268,9 @@ def manual_releases(gw, managers, results_by_entry, players):
             "team": managers[le]["team"],
             "release": r["release"],
             "release_photo": photo_by_name.get(r["release"], ""),
+            "release_club": club_by_name.get(r["release"], ""),
             "release_points": r["release_points"],
-            "tie": [{"name": n, "photo": photo_by_name.get(n, "")} for n in r.get("tie", [])],
+            "tie": [{"name": n, "photo": photo_by_name.get(n, ""), "club": club_by_name.get(n, "")} for n in r.get("tie", [])],
             "next": r.get("next"),
             "next_points": r.get("next_points"),
             "next_tie": r.get("next_tie", []),

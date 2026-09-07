@@ -5,6 +5,7 @@
 
 <section id="totw" class="section--tight">
   <div class="pitch">
+    {{ macros.pitch_lines() }}
     <div class="gw-picker">
       <label class="eyebrow eyebrow--sm" for="totw-select">Gameweek</label>
       <select id="totw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
@@ -19,11 +20,11 @@
     <div class="pitch__row">
       {% for p in row %}
       <div class="pitch__player">
-        {{ macros.player_photo(p.photo, 'pitch__photo') }}
+        {{ macros.player_photo(p.photo, 'ph--pitch', p.club) }}
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>
-        <p class="pitch__manager">{{ macros.manager(p.manager, avatars) }}</p>
+        <p class="pitch__manager">{{ macros.manager(p.manager, avatars, manager_colors) }}</p>
       </div>
       {% endfor %}
     </div>
@@ -40,10 +41,11 @@
       {% if d.leaders.totw_appearances %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th class="num">Apps</th></tr></thead>
         <tbody>
           {% for row in d.leaders.totw_appearances %}
-          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars) }}</td><td class="num">{{ row.value }}</td></tr>
+          <tr><td class="mute">{{ loop.index }}</td><td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td><td class="num">{{ row.value }}</td></tr>
           {% endfor %}
         </tbody>
       </table>

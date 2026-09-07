@@ -17,11 +17,12 @@
       <p class="strong">Must release before GW{{ next_gw }}</p>
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:34%"><col style="width:46%"><col style="width:20%"></colgroup>
         <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for r in d.releases %}
           <tr>
-            <td>{{ macros.manager(r.manager, avatars) }}</td>
+            <td>{{ macros.manager(r.manager, avatars, manager_colors) }}</td>
             <td>{{ macros.release_cell(r) }}</td>
             <td class="num">{{ r.release_points }}</td>
           </tr>
@@ -41,12 +42,13 @@
       {% if d.leaders.best_player %}
       <div class="table-scroll">
       <table class="grid grid--table">
+        <colgroup><col style="width:6%"><col style="width:28%"><col style="width:50%"><col style="width:16%"></colgroup>
         <thead><tr><th>#</th><th>Manager</th><th>Player</th><th class="num">Pts</th></tr></thead>
         <tbody>
           {% for row in d.leaders.best_player %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.manager(row.manager, avatars) }}</td>
+            <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
             <td class="wrap">{{ row.name }}<br><span class="mute">{{ row.club }} &middot; GW{{ row.gameweek }}</span></td>
             <td class="num">{{ row.points }}</td>
           </tr>

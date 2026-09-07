@@ -7,7 +7,7 @@
 <title>{{ d.league.name }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
@@ -36,17 +36,18 @@
   <h2 class="eyebrow">Standings</h2>
   <div class="table-scroll">
   <table class="grid grid--table">
+    <colgroup><col style="width:9%"><col style="width:32%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:16%"><col style="width:16%"></colgroup>
     <thead><tr><th>Pos</th><th>Manager</th>
     <th class="num">W</th><th class="num">D</th><th class="num">L</th>
-    <th class="num">For</th><th class="num">Ag</th>
+    <th class="num">For</th>
     <th class="num">Pts</th></tr></thead>
     <tbody>
       {% for r in d.standings %}
       <tr>
         <td class="mute">{{ r.pos }}</td>
-        <td class="strong">{{ macros.manager(r.manager, avatars) }}</td>
+        <td class="strong">{{ macros.manager(r.manager, avatars, manager_colors) }}</td>
         <td class="num">{{ r.w }}</td><td class="num">{{ r.d }}</td><td class="num">{{ r.l }}</td>
-        <td class="num">{{ r['for'] }}</td><td class="num">{{ r.against }}</td>
+        <td class="num">{{ r['for'] }}</td>
         <td class="num strong">{{ r.points }}</td>
       </tr>
       {% endfor %}
@@ -61,13 +62,14 @@
   <h3 class="eyebrow eyebrow--sm">GW{{ gw }}</h3>
   <div class="table-scroll">
   <table class="grid grid--table">
+    <colgroup><col style="width:25%"><col style="width:27%"><col style="width:27%"><col style="width:21%"></colgroup>
     <thead><tr><th>Manager</th><th>In</th><th>Out</th><th class="num">Moves</th></tr></thead>
     <tbody>
       {% for t in transfers_current %}
       <tr>
-        <td>{{ macros.manager(t.manager, avatars) }}</td>
+        <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
         <td>{{ macros.player_list(t['in']) }}</td>
-        <td>{{ macros.player_list(t.out) }}</td>
+        <td>{{ macros.player_list(t.out, outgoing=true) }}</td>
         <td class="num">{{ t.count }}</td>
       </tr>
       {% endfor %}
@@ -85,13 +87,14 @@
   <p class="strong">Best</p>
   {% if d.transfers_of_week.best_transfers %}
   <div class="table-scroll">
-  <table class="grid grid--table">
+  <table class="grid grid--table grid--dense">
+    <colgroup><col style="width:19%"><col style="width:19%"><col style="width:9%"><col style="width:22%"><col style="width:9%"><col style="width:22%"></colgroup>
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Gained</th></tr></thead>
     <tbody>
       {% for t in d.transfers_of_week.best_transfers %}
       <tr>
-        <td>{{ macros.manager(t.manager, avatars) }}</td>
+        <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
         <td>{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td class="strong">{{ t.in_name }}</td>
@@ -109,13 +112,14 @@
   <p class="strong">Worst</p>
   {% if d.transfers_of_week.worst_transfers %}
   <div class="table-scroll">
-  <table class="grid grid--table">
+  <table class="grid grid--table grid--dense">
+    <colgroup><col style="width:19%"><col style="width:19%"><col style="width:9%"><col style="width:22%"><col style="width:9%"><col style="width:22%"></colgroup>
     <thead><tr><th>Manager</th><th>Released</th><th class="num">Pts</th>
     <th>Replaced with</th><th class="num">Pts</th><th class="num">Lost</th></tr></thead>
     <tbody>
       {% for t in d.transfers_of_week.worst_transfers %}
       <tr>
-        <td>{{ macros.manager(t.manager, avatars) }}</td>
+        <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
         <td class="strong">{{ t.out_name }}</td>
         <td class="num">{{ t.out_points }}</td>
         <td>{{ t.in_name }}</td>
@@ -138,11 +142,12 @@
   <h3 class="eyebrow eyebrow--sm">Must release before GW{{ next_gw }}</h3>
   <div class="table-scroll">
   <table class="grid grid--table">
+    <colgroup><col style="width:34%"><col style="width:46%"><col style="width:20%"></colgroup>
     <thead><tr><th>Manager</th><th>Must release</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for r in d.releases %}
       <tr>
-        <td>{{ macros.manager(r.manager, avatars) }}</td>
+        <td>{{ macros.manager(r.manager, avatars, manager_colors) }}</td>
         <td>{{ macros.release_cell(r) }}</td>
         <td class="num">{{ r.release_points }}</td>
       </tr>
@@ -163,15 +168,16 @@
   </h3>
   {% if d.team_of_week.players %}
   <div class="pitch">
+    {{ macros.pitch_lines() }}
     {% for row in [totw_by_pos.GKP, totw_by_pos.DEF, totw_by_pos.MID, totw_by_pos.FWD] %}
     <div class="pitch__row">
       {% for p in row %}
       <div class="pitch__player">
-        {{ macros.player_photo(p.photo, 'pitch__photo') }}
+        {{ macros.player_photo(p.photo, 'ph--pitch', p.club) }}
         <p class="pitch__club">{{ p.club }}</p>
         <p class="pitch__name">{{ p.name }}</p>
         <p class="pitch__pts">{{ p.points }} pts</p>
-        <p class="pitch__manager">{{ macros.manager(p.manager, avatars) }}</p>
+        <p class="pitch__manager">{{ macros.manager(p.manager, avatars, manager_colors) }}</p>
       </div>
       {% endfor %}
     </div>
@@ -198,11 +204,12 @@
       <p class="strong">Top 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
+      <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.top %}
           <tr>
-            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num gain">{{ m.points }}</td>
           </tr>
           {% endfor %}
@@ -214,11 +221,12 @@
       <p class="strong">Bottom 5</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+        <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
+      <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
         <tbody>
           {% for m in d.manager_of_week.worst %}
           <tr>
-            <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+            <td{% if loop.last %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
             <td class="num cost">{{ m.points }}</td>
           </tr>
           {% endfor %}
@@ -239,11 +247,12 @@
   </p>
   <div class="table-scroll">
   <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+    <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
+      <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in d.manager_of_month.current.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}
@@ -263,11 +272,12 @@
   {% if d.manager_of_month.leaderboard %}
   <div class="table-scroll">
   <table class="grid grid--table">
+    <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
     <thead><tr><th>Manager</th><th class="num">Months won</th></tr></thead>
     <tbody>
       {% for m in d.manager_of_month.leaderboard %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.wins }}</td>
       </tr>
       {% endfor %}
@@ -282,14 +292,15 @@
   {% if d.manager_of_month.history %}
   {% for block in d.manager_of_month.history %}
   <p class="strong">GW{{ block.block_start }}&ndash;GW{{ block.block_end }} &mdash;
-  {{ macros.manager(block.manager, avatars) }} ({{ block.points }} pts)</p>
+  {{ macros.manager(block.manager, avatars, manager_colors) }} ({{ block.points }} pts)</p>
   <div class="table-scroll">
   <table class="grid grid--table">
-    <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
+    <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
+      <thead><tr><th>Manager</th><th class="num">Points</th></tr></thead>
     <tbody>
       {% for m in block.standings %}
       <tr>
-        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars) }}</td>
+        <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(m.manager, avatars, manager_colors) }}</td>
         <td class="num{% if loop.first %} gain{% endif %}">{{ m.points }}</td>
       </tr>
       {% endfor %}
