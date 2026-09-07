@@ -158,12 +158,8 @@ def main():
     DIST.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "static", DIST / "static", dirs_exist_ok=True)
 
-    # Three real pages, each its own file, so navigating between them is a
-    # normal page load rather than jumping to an anchor on one big page.
-    pages = {"leaders": "leaders", "index": "standings"}
-    for filename, template_name in pages.items():
-        html = env.get_template(f"{template_name}.html").render(active=template_name, **render_kwargs)
-        (DIST / f"{filename}.html").write_text(html)
+    html = env.get_template("standings.html").render(active="standings", **render_kwargs)
+    (DIST / "standings.html").write_text(html)
 
     available_gws = sorted(int(p.stem[2:]) for p in DERIVED.glob("gw*.json") if p.stem[2:].isdigit())
 
@@ -210,6 +206,8 @@ def main():
     # Results page, plus one per gameweek that's already happened -- a
     # dropdown lets you jump to any of them, but results.html itself (the
     # one the nav links to) always tracks gw, whichever week is current.
+    # It's also the site's default/landing page (index.html), with the
+    # season-long leader tables appended below the current week's matches.
     results_template = env.get_template("results.html")
     for g in available_gws:
         g_data = data if g == gw else json.loads((DERIVED / f"gw{g}.json").read_text())
@@ -219,6 +217,8 @@ def main():
                                         transfers_current=transfers_current, totw_by_pos=totw_by_pos,
                                         css_version=css_version, avatars=avatars, manager_colors=manager_colors)
         (DIST / f"{filename}.html").write_text(html)
+        if g == gw:
+            (DIST / "index.html").write_text(html)
 
     # Transfers page, plus one per gameweek that's already happened -- same
     # picker as Results; transfers.html itself always tracks gw, whichever
