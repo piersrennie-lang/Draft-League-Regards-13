@@ -4,17 +4,18 @@
 {% block content %}
 
 <section id="totw" class="section--tight">
+  <div class="gw-picker">
+    <label class="eyebrow eyebrow--sm" for="totw-select">Gameweek</label>
+    <select id="totw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
+      {% for n in available_totw_gws|reverse %}
+      <option value="{{ 'totw.html' if n == current_totw_gw else 'totw-gw' ~ n ~ '.html' }}"{% if n == totw.gameweek %} selected{% endif %}>GW{{ n }}{% if n == current_totw_gw %} &middot; current{% endif %}</option>
+      {% endfor %}
+    </select>
+    {% if totw.formation %}<span class="totw-meta__result">{{ totw.formation }} &middot; {{ totw.total_points }} pts</span>{% endif %}
+  </div>
+
   <div class="pitch">
     {{ macros.pitch_lines() }}
-    <div class="gw-picker">
-      <label class="eyebrow eyebrow--sm" for="totw-select">Gameweek</label>
-      <select id="totw-select" class="gw-select" onchange="if (this.value) location.href = this.value;">
-        {% for n in available_totw_gws|reverse %}
-        <option value="{{ 'totw.html' if n == current_totw_gw else 'totw-gw' ~ n ~ '.html' }}"{% if n == totw.gameweek %} selected{% endif %}>GW{{ n }}{% if n == current_totw_gw %} &middot; current{% endif %}</option>
-        {% endfor %}
-      </select>
-      {% if totw.formation %}<span class="totw-meta__result">{{ totw.formation }} &middot; {{ totw.total_points }} pts</span>{% endif %}
-    </div>
     {% if totw.players %}
     {% for row in [totw_by_pos.GKP, totw_by_pos.DEF, totw_by_pos.MID, totw_by_pos.FWD] %}
     <div class="pitch__row">
