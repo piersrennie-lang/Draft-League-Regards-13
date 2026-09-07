@@ -347,24 +347,31 @@ def main():
                                               swaps=block_swaps, pending=block_pending, **render_kwargs)
             (DIST / f"manager-{slug}-transfers-gw{start}-{end}.html").write_text(html)
 
-    # One live-squad page per manager for this gameweek -- starting XI and
-    # bench, with projected autosubs -- linked only from the Results page
-    # (its manager name/icon and score), not from the nav or manager profile.
+    # One squad page per manager per gameweek -- starting XI and bench,
+    # with projected autosubs on the current week -- same picker as
+    # Results; squad-{slug}.html itself always tracks gw, whichever week
+    # is current. Linked from the Results page (its manager name/icon
+    # and score) and, via the picker, browsable to any past gameweek.
     squad_template = env.get_template("squad.html")
     for le, m in data["managers"].items():
         name = m["manager"]
-        squad = data["squads"].get(le)
-        squad_by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
-        formation = None
-        if squad:
-            for p in squad["effective_xi"]:
-                if p["pos"] in squad_by_pos:
-                    squad_by_pos[p["pos"]].append(p)
-            formation = "-".join(str(len(squad_by_pos[pos])) for pos in ("DEF", "MID", "FWD"))
-        transfers = data["transfers"].get(str(le), {"in": [], "out": [], "count": 0, "source": "none"})
-        html = squad_template.render(profile_name=name, squad=squad, squad_by_pos=squad_by_pos,
-                                      formation=formation, transfers=transfers, **render_kwargs)
-        (DIST / f"squad-{manager_slug(name)}.html").write_text(html)
+        slug = manager_slug(name)
+        for n in available_gws:
+            n_data = data if n == gw else json.loads((DERIVED / f"gw{n}.json").read_text())
+            n_squad = n_data["squads"].get(le)
+            n_squad_by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+            n_formation = None
+            if n_squad:
+                for p in n_squad["effective_xi"]:
+                    if p["pos"] in n_squad_by_pos:
+                        n_squad_by_pos[p["pos"]].append(p)
+                n_formation = "-".join(str(len(n_squad_by_pos[pos])) for pos in ("DEF", "MID", "FWD"))
+            n_transfers = n_data["transfers"].get(str(le), {"in": [], "out": [], "count": 0, "source": "none"})
+            filename = f"squad-{slug}" if n == gw else f"squad-{slug}-gw{n}"
+            html = squad_template.render(profile_name=name, squad=n_squad, squad_by_pos=n_squad_by_pos,
+                                          formation=n_formation, transfers=n_transfers, squad_gw=n,
+                                          current_gw=gw, available_gws=available_gws, **render_kwargs)
+            (DIST / f"{filename}.html").write_text(html)
 
     # Single file combining everything, CSS inlined, for sending round the
     # league the way the PDF used to go round -- not part of the site nav.

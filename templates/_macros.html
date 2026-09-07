@@ -15,8 +15,8 @@
 <a class="manager-link" href="manager-{{ name|slug }}.html">{{ ph(avatars.get(name), 'ph--row', manager_colors.get(name), (name.split()[0][0] ~ name.split()[-1][0])|upper) }}{{ name|dname }}</a>
 {%- endmacro %}
 
-{% macro squad_link(name, avatars, manager_colors={}) -%}
-<a class="manager-link" href="squad-{{ name|slug }}.html">{{ ph(avatars.get(name), 'ph--row', manager_colors.get(name), (name.split()[0][0] ~ name.split()[-1][0])|upper) }}{{ name|dname }}</a>
+{% macro squad_link(name, avatars, manager_colors={}, gw=none) -%}
+<a class="manager-link" href="squad-{{ name|slug }}{{ '-gw' ~ gw if gw else '' }}.html">{{ ph(avatars.get(name), 'ph--row', manager_colors.get(name), (name.split()[0][0] ~ name.split()[-1][0])|upper) }}{{ name|dname }}</a>
 {%- endmacro %}
 
 {% macro player_photo(url, css_class, club='') -%}
