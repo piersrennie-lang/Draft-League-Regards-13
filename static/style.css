@@ -198,6 +198,7 @@ a { color: inherit; }
   gap: 14px;
   overflow-x: auto;
   scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--page-pad);
   overscroll-behavior-x: contain;
   scrollbar-width: none;
   -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
