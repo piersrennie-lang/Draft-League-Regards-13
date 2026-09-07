@@ -6,7 +6,7 @@
   "gameweek": 3,
   "next_gameweek": 4,
   "gw_fully_over": true,
-  "fetched_at": "2026-09-07T08:11:57Z",
+  "fetched_at": "2026-09-07T08:16:24Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -17,7 +17,7 @@
    "manager": "Piers Rennie",
    "team": "Mendls Macaroons",
    "short": "PR",
-   "waiver_pick": 8
+   "waiver_pick": 5
   },
   "208632": {
    "league_entry": 208632,
@@ -33,7 +33,7 @@
    "manager": "Nic Rubin",
    "team": "25/26 Champion",
    "short": "NR",
-   "waiver_pick": 4
+   "waiver_pick": 6
   },
   "242301": {
    "league_entry": 242301,
@@ -41,7 +41,7 @@
    "manager": "Mattato Alcock",
    "team": "AlcockXI",
    "short": "MA",
-   "waiver_pick": 1
+   "waiver_pick": 2
   },
   "254549": {
    "league_entry": 254549,
@@ -57,7 +57,7 @@
    "manager": "Matthew Xenakis",
    "team": "Doos",
    "short": "MX",
-   "waiver_pick": 2
+   "waiver_pick": 1
   },
   "255427": {
    "league_entry": 255427,
@@ -65,7 +65,7 @@
    "manager": "Matthew Lees",
    "team": "Go Fly a Kuyt",
    "short": "ML",
-   "waiver_pick": 5
+   "waiver_pick": 7
   },
   "259835": {
    "league_entry": 259835,
@@ -73,7 +73,7 @@
    "manager": "Michael Lavarack",
    "team": "Average",
    "short": "ML1",
-   "waiver_pick": 7
+   "waiver_pick": 8
   },
   "259872": {
    "league_entry": 259872,
@@ -81,7 +81,7 @@
    "manager": "Roscoe Hill",
    "team": "Mbeumo my Cunha",
    "short": "RH",
-   "waiver_pick": 6
+   "waiver_pick": 4
   },
   "260926": {
    "league_entry": 260926,
@@ -92,7 +92,83 @@
    "waiver_pick": 9
   }
  },
- "matches": [],
+ "matches": [
+  {
+   "home": 259835,
+   "away": 207565,
+   "home_name": "Michael Lavarack",
+   "away_name": "Piers Rennie",
+   "home_team": "Average",
+   "away_team": "Mendls Macaroons",
+   "home_points": 52,
+   "away_points": 51,
+   "margin": 1,
+   "combined": 103,
+   "winner": 259835,
+   "entertainment": 9,
+   "excitement_rank": 1
+  },
+  {
+   "home": 209435,
+   "away": 242301,
+   "home_name": "Nic Rubin",
+   "away_name": "Mattato Alcock",
+   "home_team": "25/26 Champion",
+   "away_team": "AlcockXI",
+   "home_points": 46,
+   "away_points": 40,
+   "margin": 6,
+   "combined": 86,
+   "winner": 209435,
+   "entertainment": 8,
+   "excitement_rank": 2
+  },
+  {
+   "home": 208632,
+   "away": 254549,
+   "home_name": "Stefano Babiolakis",
+   "away_name": "Brad Hill",
+   "home_team": "Iraola Coaster",
+   "away_team": "MAGA ERA",
+   "home_points": 27,
+   "away_points": 30,
+   "margin": 3,
+   "combined": 57,
+   "winner": 254549,
+   "entertainment": 7,
+   "excitement_rank": 3
+  },
+  {
+   "home": 260926,
+   "away": 254700,
+   "home_name": "Mark Stone",
+   "away_name": "Matthew Xenakis",
+   "home_team": "CHANGE NAME",
+   "away_team": "Doos",
+   "home_points": 51,
+   "away_points": 33,
+   "margin": 18,
+   "combined": 84,
+   "winner": 260926,
+   "entertainment": 5,
+   "excitement_rank": 4
+  },
+  {
+   "home": 259872,
+   "away": 255427,
+   "home_name": "Roscoe Hill",
+   "away_name": "Matthew Lees",
+   "home_team": "Mbeumo my Cunha",
+   "away_team": "Go Fly a Kuyt",
+   "home_points": 21,
+   "away_points": 42,
+   "margin": 21,
+   "combined": 63,
+   "winner": 255427,
+   "entertainment": 3,
+   "excitement_rank": 5
+  }
+ ],
  "results": [
   {
    "home": 259835,
@@ -2779,7 +2855,7 @@
    "next_tie": [],
    "score": 51,
    "cost_pct": 25.5,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 207565,
@@ -2799,7 +2875,7 @@
    ],
    "score": 51,
    "cost_pct": 23.5,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 209435,
@@ -2815,7 +2891,7 @@
    "next_tie": [],
    "score": 46,
    "cost_pct": 23.9,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 259835,
@@ -2831,7 +2907,7 @@
    "next_tie": [],
    "score": 52,
    "cost_pct": 21.2,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 254549,
@@ -2847,7 +2923,7 @@
    "next_tie": [],
    "score": 30,
    "cost_pct": 33.3,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 255427,
@@ -2863,7 +2939,7 @@
    "next_tie": [],
    "score": 42,
    "cost_pct": 23.8,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 242301,
@@ -2893,7 +2969,7 @@
    ],
    "score": 40,
    "cost_pct": 17.5,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 254700,
@@ -2920,7 +2996,7 @@
    "next_tie": [],
    "score": 33,
    "cost_pct": 18.2,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 208632,
@@ -2952,7 +3028,7 @@
    "next_tie": [],
    "score": 27,
    "cost_pct": 18.5,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 259872,
@@ -2971,7 +3047,7 @@
    ],
    "score": 21,
    "cost_pct": 19.0,
-   "h2h": null
+   "h2h": "L"
   }
  ],
  "release_efficiency": [
@@ -3003,7 +3079,7 @@
    ],
    "score": 40,
    "cost_pct": 17.5,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 254700,
@@ -3030,7 +3106,7 @@
    "next_tie": [],
    "score": 33,
    "cost_pct": 18.2,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 208632,
@@ -3062,7 +3138,7 @@
    "next_tie": [],
    "score": 27,
    "cost_pct": 18.5,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 259872,
@@ -3081,7 +3157,7 @@
    ],
    "score": 21,
    "cost_pct": 19.0,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 259835,
@@ -3097,7 +3173,7 @@
    "next_tie": [],
    "score": 52,
    "cost_pct": 21.2,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 207565,
@@ -3117,7 +3193,7 @@
    ],
    "score": 51,
    "cost_pct": 23.5,
-   "h2h": null
+   "h2h": "L"
   },
   {
    "league_entry": 255427,
@@ -3133,7 +3209,7 @@
    "next_tie": [],
    "score": 42,
    "cost_pct": 23.8,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 209435,
@@ -3149,7 +3225,7 @@
    "next_tie": [],
    "score": 46,
    "cost_pct": 23.9,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 260926,
@@ -3165,7 +3241,7 @@
    "next_tie": [],
    "score": 51,
    "cost_pct": 25.5,
-   "h2h": null
+   "h2h": "W"
   },
   {
    "league_entry": 254549,
@@ -3181,7 +3257,7 @@
    "next_tie": [],
    "score": 30,
    "cost_pct": 33.3,
-   "h2h": null
+   "h2h": "W"
   }
  ],
  "breaches": [],
