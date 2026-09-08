@@ -118,11 +118,23 @@
       {% endif %}
     </div>
     <div class="profile-panel">
-      <p class="strong">Lowest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
-      {% if profile.lowest_score %}
-      <p>{{ profile.lowest_score.points }} pts vs
-      {{ macros.manager(profile.lowest_score.opponent, avatars, manager_colors) }} &middot; GW{{ profile.lowest_score.gameweek }}
-      &middot; {{ profile.lowest_score.result }}</p>
+      <p class="strong">Lowest scores of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
+      {% if profile.lowest_scores %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
+        <thead><tr><th>#</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
+        <tbody>
+          {% for f in profile.lowest_scores %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.manager(f.opponent, avatars, manager_colors) }} <span class="mute">GW{{ f.gameweek }} &middot; {{ f.result }}</span></td>
+            <td class="num">{{ f.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
       {% else %}
       <p class="pending">Not enough data yet.</p>
       {% endif %}
@@ -166,15 +178,20 @@
   <div class="profile-grid">
     <div class="profile-panel">
       <p class="strong">Best</p>
-      {% if profile.best_transfer %}
+      {% if profile.best_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <colgroup><col style="width:74%"><col style="width:26%"></colgroup>
-      <thead><tr><th>Swap</th><th class="num">Gained</th></tr></thead>
-        <tbody><tr>
-          <td>{{ macros.swap_desc(profile.best_transfer.out_name, profile.best_transfer.in_name, profile.best_transfer.gameweek) }}</td>
-          <td class="num gain">+{{ profile.best_transfer.diff }}</td>
-        </tr></tbody>
+        <colgroup><col style="width:8%"><col style="width:66%"><col style="width:26%"></colgroup>
+      <thead><tr><th>#</th><th>Swap</th><th class="num">Gained</th></tr></thead>
+        <tbody>
+          {% for t in profile.best_transfers %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name, t.gameweek) }}</td>
+            <td class="num gain">+{{ t.diff }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
       </table>
       </div>
       {% else %}
@@ -183,15 +200,20 @@
     </div>
     <div class="profile-panel">
       <p class="strong">Worst</p>
-      {% if profile.worst_transfer %}
+      {% if profile.worst_transfers %}
       <div class="table-scroll">
       <table class="grid grid--table">
-        <colgroup><col style="width:74%"><col style="width:26%"></colgroup>
-      <thead><tr><th>Swap</th><th class="num">Lost</th></tr></thead>
-        <tbody><tr>
-          <td>{{ macros.swap_desc(profile.worst_transfer.out_name, profile.worst_transfer.in_name, profile.worst_transfer.gameweek) }}</td>
-          <td class="num cost">{{ profile.worst_transfer.diff }}</td>
-        </tr></tbody>
+        <colgroup><col style="width:8%"><col style="width:66%"><col style="width:26%"></colgroup>
+      <thead><tr><th>#</th><th>Swap</th><th class="num">Lost</th></tr></thead>
+        <tbody>
+          {% for t in profile.worst_transfers %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name, t.gameweek) }}</td>
+            <td class="num cost">{{ t.diff }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
       </table>
       </div>
       {% else %}

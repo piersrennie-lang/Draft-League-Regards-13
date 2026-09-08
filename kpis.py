@@ -1224,9 +1224,12 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         biggest_win = max(wins, key=lambda f: f["margin"], default=None)
         biggest_loss = min(losses, key=lambda f: f["margin"], default=None)
         highest_scores = sorted(fixtures[le], key=lambda f: -f["points"])[:5]
-        lowest_score = min(fixtures[le], key=lambda f: f["points"], default=None)
+        lowest_scores = sorted(fixtures[le], key=lambda f: f["points"])[:5]
         longest_win_streak = longest_streak(fixtures[le], "W")
         longest_loss_streak = longest_streak(fixtures[le], "L")
+        qualifying_transfers = [t for t in transfer_log[le] if t["diff"] != 0]
+        best_transfers = sorted((t for t in qualifying_transfers if t["diff"] > 0), key=lambda t: -t["diff"])[:5]
+        worst_transfers = sorted((t for t in qualifying_transfers if t["diff"] < 0), key=lambda t: t["diff"])[:5]
         profiles[m["manager"]] = {
             "fixtures": sorted(fixtures[le], key=lambda f: -f["gameweek"]),
             "current_fixture": current_fixture[le],
@@ -1234,7 +1237,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "biggest_win": biggest_win,
             "biggest_loss": biggest_loss,
             "highest_scores": highest_scores,
-            "lowest_score": lowest_score,
+            "lowest_scores": lowest_scores,
             "longest_win_streak": longest_win_streak,
             "longest_loss_streak": longest_loss_streak,
             "best_player": best_player[le],
@@ -1244,6 +1247,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                 if most_lost_to[0] is not None and most_lost_to[1]["l"] > 0 else None,
             "best_transfer": best_transfer[le],
             "worst_transfer": worst_transfer[le],
+            "best_transfers": best_transfers,
+            "worst_transfers": worst_transfers,
             "transfer_blocks": group_transfers_by_block(transfer_log[le]),
             "motw_wins": motw_wins[le],
             "worst_motw_wins": worst_motw_wins[le],
