@@ -1100,6 +1100,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         future_fixtures[le].sort(key=lambda f: f["gameweek"])
 
     best_player = {le: None for le in managers}
+    player_perf_log = {le: [] for le in managers}
     best_transfer = {le: None for le in managers}
     worst_transfer = {le: None for le in managers}
     transfer_log = {le: [] for le in managers}
@@ -1116,6 +1117,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         squads = build_squads(managers, g_squads_raw, g_live, players)
         for le, squad in squads.items():
             for row in squad.get("effective_xi", squad["xi"]):
+                player_perf_log[le].append({"gameweek": g, "name": row["name"],
+                                             "club": row["club"], "points": row["points"]})
                 cur = best_player[le]
                 if cur is None or row["points"] > cur["points"]:
                     best_player[le] = {"gameweek": g, "name": row["name"],
@@ -1177,6 +1180,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             for row in squad.get("effective_xi", squad["xi"]):
                 if row.get("team_id") not in finished_clubs:
                     continue
+                if gw > totw_gw:
+                    player_perf_log[le].append({"gameweek": gw, "name": row["name"],
+                                                 "club": row["club"], "points": row["points"]})
                 cur = best_player[le]
                 if cur is None or row["points"] > cur["points"]:
                     best_player[le] = {"gameweek": gw, "name": row["name"],
@@ -1241,6 +1247,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "longest_win_streak": longest_win_streak,
             "longest_loss_streak": longest_loss_streak,
             "best_player": best_player[le],
+            "player_performances": player_perf_log[le],
             "most_beaten": {"manager": managers[most_beaten[0]]["manager"], "wins": most_beaten[1]["w"]}
                 if most_beaten[0] is not None and most_beaten[1]["w"] > 0 else None,
             "most_lost_to": {"manager": managers[most_lost_to[0]]["manager"], "losses": most_lost_to[1]["l"]}
@@ -1249,6 +1256,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "worst_transfer": worst_transfer[le],
             "best_transfers": best_transfers,
             "worst_transfers": worst_transfers,
+            "qualifying_transfers": qualifying_transfers,
             "transfer_blocks": group_transfers_by_block(transfer_log[le]),
             "motw_wins": motw_wins[le],
             "worst_motw_wins": worst_motw_wins[le],
@@ -1325,6 +1333,28 @@ def build_leaders(manager_profiles, limit=5):
         pool.sort(key=lambda f: f["points"], reverse=reverse)
         return pool[:limit]
 
+    def top_n_performances(limit=limit):
+        """Every individual player performance across every manager's squad
+        all season, not just each manager's own best -- so a manager who
+        has fielded several huge scorers can take multiple spots."""
+        pool = [{"manager": name, **perf} for name, p in manager_profiles.items() for perf in p.get("player_performances", [])]
+        pool.sort(key=lambda perf: perf["points"], reverse=True)
+        return pool[:limit]
+
+    def top_n_transfers(positive, limit=limit):
+        """Every qualifying transfer swap made all season, pooled across
+        every manager -- not just each manager's own single best/worst --
+        so a manager with several great (or awful) swaps can take multiple
+        spots on the leaderboard."""
+        pool = [
+            {"manager": name, **t}
+            for name, p in manager_profiles.items()
+            for t in p.get("qualifying_transfers", [])
+            if (t["diff"] > 0) == positive
+        ]
+        pool.sort(key=lambda t: t["diff"], reverse=positive)
+        return pool[:limit]
+
     return {
         "motw_wins": top_n("motw_wins"),
         "worst_motw_wins": top_n("worst_motw_wins"),
@@ -1336,9 +1366,9 @@ def build_leaders(manager_profiles, limit=5):
         "biggest_win": top_n_by("biggest_win", "margin"),
         "highest_score": top_n_games(limit=10),
         "lowest_score": top_n_games(reverse=False, limit=10),
-        "best_player": top_n_by("best_player", "points", limit=10),
-        "best_transfers": top_n_by("best_transfer", "diff"),
-        "worst_transfers": top_n_by("worst_transfer", "diff", reverse=False),
+        "best_player": top_n_performances(limit=10),
+        "best_transfers": top_n_transfers(True, limit=10),
+        "worst_transfers": top_n_transfers(False, limit=10),
     }
 
 
@@ -1418,7 +1448,7 @@ def main():
     # scores standings already shows -- rather than waiting for the
     # gameweek to fully settle.
     transfer_swaps = build_transfer_swaps(managers, players, squads, prev_squads_raw, live, prev_live)
-    best_transfers, worst_transfers = best_and_worst_transfers(transfer_swaps)
+    best_transfers, worst_transfers = best_and_worst_transfers(transfer_swaps, limit=5)
 
     manager_of_week = build_manager_of_week(
         managers, players, gw, squads_raw, live, prev_squads_raw, prev_live)
