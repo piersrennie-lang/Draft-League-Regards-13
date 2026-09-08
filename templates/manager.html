@@ -96,11 +96,23 @@
 
   <div class="profile-grid">
     <div class="profile-panel">
-      <p class="strong">Highest score of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
-      {% if profile.highest_score %}
-      <p>{{ profile.highest_score.points }} pts vs
-      {{ macros.manager(profile.highest_score.opponent, avatars, manager_colors) }} &middot; GW{{ profile.highest_score.gameweek }}
-      &middot; {{ profile.highest_score.result }}</p>
+      <p class="strong">Highest scores of the season{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>
+      {% if profile.highest_scores %}
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:66%"><col style="width:24%"></colgroup>
+        <thead><tr><th>#</th><th>Opponent</th><th class="num">Pts</th></tr></thead>
+        <tbody>
+          {% for f in profile.highest_scores %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td>{{ macros.manager(f.opponent, avatars, manager_colors) }} <span class="mute">GW{{ f.gameweek }} &middot; {{ f.result }}</span></td>
+            <td class="num">{{ f.points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
       {% else %}
       <p class="pending">Not enough data yet.</p>
       {% endif %}

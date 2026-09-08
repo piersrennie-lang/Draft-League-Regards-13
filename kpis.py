@@ -1223,7 +1223,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
         losses = [f for f in fixtures[le] if f["result"] == "L"]
         biggest_win = max(wins, key=lambda f: f["margin"], default=None)
         biggest_loss = min(losses, key=lambda f: f["margin"], default=None)
-        highest_score = max(fixtures[le], key=lambda f: f["points"], default=None)
+        highest_scores = sorted(fixtures[le], key=lambda f: -f["points"])[:5]
         lowest_score = min(fixtures[le], key=lambda f: f["points"], default=None)
         longest_win_streak = longest_streak(fixtures[le], "W")
         longest_loss_streak = longest_streak(fixtures[le], "L")
@@ -1233,7 +1233,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "future_fixtures": future_fixtures[le],
             "biggest_win": biggest_win,
             "biggest_loss": biggest_loss,
-            "highest_score": highest_score,
+            "highest_scores": highest_scores,
             "lowest_score": lowest_score,
             "longest_win_streak": longest_win_streak,
             "longest_loss_streak": longest_loss_streak,
@@ -1311,6 +1311,15 @@ def build_leaders(manager_profiles, limit=5):
         pool.sort(key=lambda kv: kv[1][subkey], reverse=reverse)
         return [{"manager": name, **entry} for name, entry in pool[:limit]]
 
+    def top_n_games(reverse=True, limit=limit):
+        """Every individual gameweek score across every manager, not just
+        each manager's own best/worst -- so a manager with several huge
+        (or dismal) weeks can take multiple spots on the leaderboard,
+        rather than being capped at one appearance."""
+        pool = [{"manager": name, **f} for name, p in manager_profiles.items() for f in p.get("fixtures", [])]
+        pool.sort(key=lambda f: f["points"], reverse=reverse)
+        return pool[:limit]
+
     return {
         "motw_wins": top_n("motw_wins"),
         "worst_motw_wins": top_n("worst_motw_wins"),
@@ -1320,8 +1329,8 @@ def build_leaders(manager_profiles, limit=5):
         "longest_win_streak": top_n("longest_win_streak"),
         "longest_loss_streak": top_n("longest_loss_streak"),
         "biggest_win": top_n_by("biggest_win", "margin"),
-        "highest_score": top_n_by("highest_score", "points"),
-        "lowest_score": top_n_by("lowest_score", "points", reverse=False),
+        "highest_score": top_n_games(limit=10),
+        "lowest_score": top_n_games(reverse=False, limit=10),
         "best_player": top_n_by("best_player", "points", limit=10),
         "best_transfers": top_n_by("best_transfer", "diff"),
         "worst_transfers": top_n_by("worst_transfer", "diff", reverse=False),
