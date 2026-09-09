@@ -208,6 +208,8 @@ a { color: inherit; }
   z-index: 10;
   background: var(--paper);
   margin-top: 0.3rem;
+  max-width: var(--measure);
+  margin-inline: auto;
   padding: 0.85rem var(--page-pad);
   border-block: 1px solid var(--rule-strong);
   font: 600 var(--t-body)/1 var(--sans);
