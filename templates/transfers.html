@@ -121,15 +121,16 @@
 
   {% if d.ambiguous_transfers %}
   <h3 class="eyebrow eyebrow--sm">Verify swaps</h3>
-  <p class="lede lede--tight">Several of this week's swaps have more than one plausible pairing (two or
-  more same-position players in or out for one manager the same week), so the site had to guess. If you
-  know the real pairing &mdash; check the FPL Draft app &mdash; verify it below. Only the last one needs
-  picking out manually &mdash; once the rest are set, whoever's left over is worked out automatically.</p>
+  <p class="lede lede--tight">Some swaps from across the season have more than one plausible pairing (two or
+  more same-position players in or out for one manager the same week), so the site had to guess &mdash;
+  these still show a &ldquo;Guess&rdquo; badge wherever they appear. If you know the real pairing &mdash;
+  check the FPL Draft app &mdash; verify it below. Only the last one needs picking out manually &mdash;
+  once the rest are set, whoever's left over is worked out automatically.</p>
   <div class="profile-grid">
     {% for g in d.ambiguous_transfers %}
-    <div class="profile-panel verify-card" data-manager="{{ g.manager }}" data-gw="{{ gw }}"
+    <div class="profile-panel verify-card" data-manager="{{ g.manager }}" data-gw="{{ g.gameweek }}"
          data-ins="{{ g.ins|map(attribute='name')|join('|') }}">
-      <p class="strong">{{ macros.manager(g.manager, avatars, manager_colors) }} <span class="mute">&middot; {{ g.pos }}</span></p>
+      <p class="strong">{{ macros.manager(g.manager, avatars, manager_colors) }} <span class="mute">&middot; GW{{ g.gameweek }} &middot; {{ g.pos }}</span></p>
       <button class="btn verify-btn" type="button">Verify</button>
       <div class="verify-gate" hidden>
         <p class="mute" style="margin:0.6rem 0 0.4rem;">Enter code</p>
@@ -138,6 +139,7 @@
         <p class="verify-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Wrong code.</p>
       </div>
       <div class="verify-form" hidden>
+        {% if g.outs|length > 1 %}
         {% for o in g.outs[:-1] %}
         <div class="verify-row" data-out="{{ o.name }}" style="margin-top:0.6rem;">
           <span>{{ o.name }} &rarr;</span>
@@ -149,9 +151,12 @@
           </select>
         </div>
         {% endfor %}
-        {% if g.outs|length > 1 %}
         <p class="verify-remainder mute" data-out="{{ g.outs[-1].name }}" style="margin-top:0.6rem;">{{ g.outs[-1].name }} &rarr;
           <span class="verify-remainder-value" data-value="">pick the others first</span>
+        </p>
+        {% else %}
+        <p class="verify-remainder mute" data-out="{{ g.outs[0].name }}" style="margin-top:0.6rem;">{{ g.outs[0].name }} &rarr;
+          <span class="verify-remainder-value" data-value="{{ g.ins[0].name }}">{{ g.ins[0].name }}</span> &mdash; confirm this is right
         </p>
         {% endif %}
         <button class="btn verify-submit" type="button" style="margin-top:0.8rem;">Submit confirmation</button>

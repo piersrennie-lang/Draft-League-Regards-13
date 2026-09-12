@@ -778,36 +778,40 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
     return out
 
 
-def build_ambiguous_transfer_groups(transfers, managers):
-    """Groups this gameweek's still-guessed pairs by manager and position,
-    so a reviewer sees the whole pool of same-position candidates a
-    manager's moves were pulled from -- not just the heuristic's single
+def build_ambiguous_transfer_groups(manager_profiles):
+    """Groups every still-guessed swap across the WHOLE SEASON -- not just
+    the current gameweek -- by manager, gameweek and position, so a
+    reviewer sees the whole pool of same-position candidates a manager's
+    moves were pulled from that week -- not just the heuristic's single
     guess -- and can specify the real pairing for the whole group in one
-    go (see data/manual/gw{n}_transfers.json). Confirmed pairs never show
-    up here: pair_by_position pulls them out of the pool before pairing,
-    so once a group's ambiguity is fully resolved it just stops
-    appearing next time this is computed.
+    go (see data/manual/gw{n}_transfers.json). A guess from any past week
+    is exactly as reviewable as one from this week. Confirmed pairs never
+    show up here: pair_by_position pulls them out of the candidate pool
+    before pairing, so once a group's ambiguity is fully resolved it just
+    stops appearing the next time this is computed.
     """
     groups = []
-    for le, t in transfers.items():
-        manager_name = managers[le]["manager"]
-        by_pos = {}
-        for o, i in zip(t.get("out", []), t.get("in", [])):
-            if not o.get("guessed"):
-                continue
-            g = by_pos.setdefault(o["pos"], {"outs": [], "ins": []})
-            if not any(x["name"] == o["name"] for x in g["outs"]):
-                g["outs"].append(o)
-            if not any(x["name"] == i["name"] for x in g["ins"]):
-                g["ins"].append(i)
-        for pos, g in by_pos.items():
+    for manager_name, profile in manager_profiles.items():
+        by_key = {}
+        for block in profile.get("transfer_blocks", []):
+            for t in block.get("swaps", []):
+                if not t.get("guessed"):
+                    continue
+                key = (t["gameweek"], t["out_pos"])
+                g = by_key.setdefault(key, {"outs": [], "ins": []})
+                if not any(x["name"] == t["out_name"] for x in g["outs"]):
+                    g["outs"].append({"name": t["out_name"], "club": t["out_club"]})
+                if not any(x["name"] == t["in_name"] for x in g["ins"]):
+                    g["ins"].append({"name": t["in_name"], "club": t["in_club"]})
+        for (gameweek, pos), g in by_key.items():
             groups.append({
                 "manager": manager_name,
+                "gameweek": gameweek,
                 "pos": pos,
-                "outs": [{"name": x["name"], "club": x["club"], "photo": x["photo"]} for x in g["outs"]],
-                "ins": [{"name": x["name"], "club": x["club"], "photo": x["photo"]} for x in g["ins"]],
+                "outs": g["outs"],
+                "ins": g["ins"],
             })
-    groups.sort(key=lambda g: g["manager"])
+    groups.sort(key=lambda g: (-g["gameweek"], g["manager"]))
     return groups
 
 
@@ -1003,9 +1007,9 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
             swaps.append({
                 "manager": manager_name,
                 "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],
-                "out_team_id": o.get("team_id"),
+                "out_team_id": o.get("team_id"), "out_pos": o["pos"],
                 "in_name": i["name"], "in_club": i["club"], "in_points": i["points"],
-                "in_team_id": i.get("team_id"),
+                "in_team_id": i.get("team_id"), "in_pos": i["pos"],
                 "diff": i["points"] - o["points"],
                 "guessed": o["guessed"],
             })
@@ -1677,7 +1681,7 @@ def main():
         "standings": standings,
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in transfers_this_week.items()},
-        "ambiguous_transfers": build_ambiguous_transfer_groups(transfers_this_week, managers),
+        "ambiguous_transfers": build_ambiguous_transfer_groups(manager_profiles),
         "team_of_week": {
             "gameweek": totw_gw,
             "players": (team_of_week or {}).get("players", []),
