@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-12T21:31:48Z",
+  "fetched_at": "2026-09-12T21:38:47Z",
   "transaction_mode": "processing",
   "scoring": "h"
  },
@@ -3881,20 +3881,20 @@
   "242301": {
    "in": [
     {
-     "name": "Davis",
-     "club": "IPS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p455084.png",
-     "pos": "DEF",
-     "points": 14,
-     "guessed": true
-    },
-    {
      "name": "Justin",
      "club": "LEE",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p220627.png",
      "pos": "DEF",
      "points": 0,
-     "guessed": true
+     "guessed": false
+    },
+    {
+     "name": "Davis",
+     "club": "IPS",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p455084.png",
+     "pos": "DEF",
+     "points": 14,
+     "guessed": false
     },
     {
      "name": "B.Fernandes",
@@ -3912,7 +3912,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p448104.png",
      "pos": "DEF",
      "points": 0,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Pedro Porro",
@@ -3920,7 +3920,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p441164.png",
      "pos": "DEF",
      "points": 0,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Tonali",
@@ -4134,7 +4134,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p172850.png",
      "pos": "DEF",
      "points": 1,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Mendy",
@@ -4142,7 +4142,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png",
      "pos": "DEF",
      "points": 1,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Eze",
@@ -4160,7 +4160,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465351.png",
      "pos": "DEF",
      "points": 0,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Mukiele",
@@ -4168,7 +4168,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
      "pos": "DEF",
      "points": 0,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Jensen",
@@ -4337,62 +4337,6 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p463067.png"
     }
    ]
-  },
-  {
-   "manager": "Mattato Alcock",
-   "pos": "DEF",
-   "outs": [
-    {
-     "name": "Hincapie",
-     "club": "ARS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p448104.png"
-    },
-    {
-     "name": "Pedro Porro",
-     "club": "TOT",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p441164.png"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Davis",
-     "club": "IPS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p455084.png"
-    },
-    {
-     "name": "Justin",
-     "club": "LEE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p220627.png"
-    }
-   ]
-  },
-  {
-   "manager": "Roscoe Hill",
-   "pos": "DEF",
-   "outs": [
-    {
-     "name": "Matheus N.",
-     "club": "MCI",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465351.png"
-    },
-    {
-     "name": "Mukiele",
-     "club": "SUN",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Chilwell",
-     "club": "CRY",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p172850.png"
-    },
-    {
-     "name": "Mendy",
-     "club": "HUL",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png"
-    }
-   ]
   }
  ],
  "team_of_week": {
@@ -4494,20 +4438,6 @@
   "gameweek": 4,
   "best_transfers": [
    {
-    "manager": "Mattato Alcock",
-    "out_name": "Hincapie",
-    "out_club": "ARS",
-    "out_points": 0,
-    "out_team_id": 1,
-    "in_name": "Davis",
-    "in_club": "IPS",
-    "in_points": 14,
-    "in_team_id": 12,
-    "diff": 14,
-    "guessed": true,
-    "gain": 14
-   },
-   {
     "manager": "Nic Rubin",
     "out_name": "O.Dango",
     "out_club": "BRE",
@@ -4517,6 +4447,20 @@
     "in_club": "BRE",
     "in_points": 15,
     "in_team_id": 4,
+    "diff": 14,
+    "guessed": false,
+    "gain": 14
+   },
+   {
+    "manager": "Mattato Alcock",
+    "out_name": "Pedro Porro",
+    "out_club": "TOT",
+    "out_points": 0,
+    "out_team_id": 19,
+    "in_name": "Davis",
+    "in_club": "IPS",
+    "in_points": 14,
+    "in_team_id": 12,
     "diff": 14,
     "guessed": false,
     "gain": 14
@@ -7826,16 +7770,16 @@
    },
    "best_transfer": {
     "manager": "Mattato Alcock",
-    "out_name": "Hincapie",
-    "out_club": "ARS",
+    "out_name": "Pedro Porro",
+    "out_club": "TOT",
     "out_points": 0,
-    "out_team_id": 1,
+    "out_team_id": 19,
     "in_name": "Davis",
     "in_club": "IPS",
     "in_points": 14,
     "in_team_id": 12,
     "diff": 14,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 4
    },
    "worst_transfer": {
@@ -7855,16 +7799,16 @@
    "best_transfers": [
     {
      "manager": "Mattato Alcock",
-     "out_name": "Hincapie",
-     "out_club": "ARS",
+     "out_name": "Pedro Porro",
+     "out_club": "TOT",
      "out_points": 0,
-     "out_team_id": 1,
+     "out_team_id": 19,
      "in_name": "Davis",
      "in_club": "IPS",
      "in_points": 14,
      "in_team_id": 12,
      "diff": 14,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 4
     },
     {
@@ -7929,16 +7873,16 @@
     },
     {
      "manager": "Mattato Alcock",
-     "out_name": "Hincapie",
-     "out_club": "ARS",
+     "out_name": "Pedro Porro",
+     "out_club": "TOT",
      "out_points": 0,
-     "out_team_id": 1,
+     "out_team_id": 19,
      "in_name": "Davis",
      "in_club": "IPS",
      "in_points": 14,
      "in_team_id": 12,
      "diff": 14,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 4
     }
    ],
@@ -7977,16 +7921,16 @@
       },
       {
        "manager": "Mattato Alcock",
-       "out_name": "Hincapie",
-       "out_club": "ARS",
+       "out_name": "Pedro Porro",
+       "out_club": "TOT",
        "out_points": 0,
-       "out_team_id": 1,
+       "out_team_id": 19,
        "in_name": "Davis",
        "in_club": "IPS",
        "in_points": 14,
        "in_team_id": 12,
        "diff": 14,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 4
       }
      ]
@@ -8002,20 +7946,20 @@
      "gameweek": 4,
      "in": [
       {
-       "name": "Davis",
-       "club": "IPS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p455084.png",
-       "pos": "DEF",
-       "points": 14,
-       "guessed": true
-      },
-      {
        "name": "Justin",
        "club": "LEE",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p220627.png",
        "pos": "DEF",
        "points": 0,
-       "guessed": true
+       "guessed": false
+      },
+      {
+       "name": "Davis",
+       "club": "IPS",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p455084.png",
+       "pos": "DEF",
+       "points": 14,
+       "guessed": false
       },
       {
        "name": "B.Fernandes",
@@ -8033,7 +7977,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p448104.png",
        "pos": "DEF",
        "points": 0,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Pedro Porro",
@@ -8041,7 +7985,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p441164.png",
        "pos": "DEF",
        "points": 0,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Tonali",
@@ -12155,7 +12099,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p172850.png",
        "pos": "DEF",
        "points": 1,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Mendy",
@@ -12163,7 +12107,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png",
        "pos": "DEF",
        "points": 1,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Eze",
@@ -12181,7 +12125,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465351.png",
        "pos": "DEF",
        "points": 0,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Mukiele",
@@ -12189,7 +12133,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
        "pos": "DEF",
        "points": 0,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Jensen",
@@ -13693,16 +13637,16 @@
    },
    {
     "manager": "Mattato Alcock",
-    "out_name": "Hincapie",
-    "out_club": "ARS",
+    "out_name": "Pedro Porro",
+    "out_club": "TOT",
     "out_points": 0,
-    "out_team_id": 1,
+    "out_team_id": 19,
     "in_name": "Davis",
     "in_club": "IPS",
     "in_points": 14,
     "in_team_id": 12,
     "diff": 14,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 4
    },
    {
