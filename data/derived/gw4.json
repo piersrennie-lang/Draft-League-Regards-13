@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-12T21:47:55Z",
+  "fetched_at": "2026-09-12T21:58:14Z",
   "transaction_mode": "processing",
   "scoring": "h"
  },
@@ -4102,18 +4102,10 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p550615.png",
      "pos": "MID",
      "points": 3,
-     "guessed": false
+     "guessed": true
     }
    ],
    "out": [
-    {
-     "name": "James",
-     "club": "CHE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",
-     "pos": "DEF",
-     "points": 1,
-     "guessed": false
-    },
     {
      "name": "Janelt",
      "club": "BRE",
@@ -4121,6 +4113,14 @@
      "pos": "MID",
      "points": 4,
      "guessed": false
+    },
+    {
+     "name": "James",
+     "club": "CHE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",
+     "pos": "DEF",
+     "points": 1,
+     "guessed": true
     }
    ],
    "count": 2,
@@ -4271,93 +4271,7 @@
    "source": "inferred"
   }
  },
- "ambiguous_transfers": [
-  {
-   "manager": "Michael Lavarack",
-   "gameweek": 4,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "Janelt",
-     "club": "BRE"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Mitchell",
-     "club": "CRY"
-    }
-   ]
-  },
-  {
-   "manager": "Mattato Alcock",
-   "gameweek": 3,
-   "pos": "DEF",
-   "outs": [
-    {
-     "name": "Hall",
-     "club": "NEW"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Palmer",
-     "club": "CHE"
-    }
-   ]
-  },
-  {
-   "manager": "Michael Lavarack",
-   "gameweek": 3,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "Eze",
-     "club": "ARS"
-    }
-   ],
-   "ins": [
-    {
-     "name": "\u00d8degaard",
-     "club": "ARS"
-    }
-   ]
-  },
-  {
-   "manager": "Brad Hill",
-   "gameweek": 2,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "\u00d8degaard",
-     "club": "ARS"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Scott",
-     "club": "BOU"
-    }
-   ]
-  },
-  {
-   "manager": "Roscoe Hill",
-   "gameweek": 2,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "Palmer",
-     "club": "CHE"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Stach",
-     "club": "LEE"
-    }
-   ]
-  }
- ],
+ "ambiguous_transfers": [],
  "team_of_week": {
   "gameweek": 3,
   "players": [
@@ -4551,7 +4465,7 @@
     "in_team_id": 8,
     "in_pos": "DEF",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "loss": 3
    },
    {
@@ -7894,7 +7808,7 @@
     "in_team_id": 6,
     "in_pos": "MID",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 3
    },
    "best_transfers": [
@@ -7945,7 +7859,7 @@
      "in_team_id": 6,
      "in_pos": "MID",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     }
    ],
@@ -7979,7 +7893,7 @@
      "in_team_id": 6,
      "in_pos": "MID",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -8033,7 +7947,7 @@
        "in_team_id": 6,
        "in_pos": "MID",
        "diff": -3,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 3
       },
       {
@@ -8120,6 +8034,14 @@
      "gameweek": 3,
      "in": [
       {
+       "name": "Palmer",
+       "club": "CHE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
+       "pos": "MID",
+       "points": 1,
+       "guessed": false
+      },
+      {
        "name": "Giles",
        "club": "HUL",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232351.png",
@@ -8134,14 +8056,6 @@
        "pos": "DEF",
        "points": 2,
        "guessed": true
-      },
-      {
-       "name": "Palmer",
-       "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
-       "pos": "MID",
-       "points": 1,
-       "guessed": false
       }
      ],
      "out": [
@@ -8151,7 +8065,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p487838.png",
        "pos": "DEF",
        "points": 4,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "F.Kad\u0131o\u011flu",
@@ -8167,7 +8081,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p493250.png",
        "pos": "MID",
        "points": 0,
-       "guessed": false
+       "guessed": true
       }
      ]
     },
@@ -8728,7 +8642,7 @@
     "in_team_id": 3,
     "in_pos": "MID",
     "diff": 9,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 2
    },
    "worst_transfer": {
@@ -8761,7 +8675,7 @@
      "in_team_id": 3,
      "in_pos": "MID",
      "diff": 9,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -8802,6 +8716,22 @@
    "qualifying_transfers": [
     {
      "manager": "Brad Hill",
+     "out_name": "\u00d8degaard",
+     "out_club": "ARS",
+     "out_points": 3,
+     "out_team_id": 1,
+     "out_pos": "MID",
+     "in_name": "Scott",
+     "in_club": "BOU",
+     "in_points": 12,
+     "in_team_id": 3,
+     "in_pos": "MID",
+     "diff": 9,
+     "guessed": false,
+     "gameweek": 2
+    },
+    {
+     "manager": "Brad Hill",
      "out_name": "Ballard",
      "out_club": "SUN",
      "out_points": 8,
@@ -8814,22 +8744,6 @@
      "in_pos": "DEF",
      "diff": -6,
      "guessed": false,
-     "gameweek": 2
-    },
-    {
-     "manager": "Brad Hill",
-     "out_name": "\u00d8degaard",
-     "out_club": "ARS",
-     "out_points": 3,
-     "out_team_id": 1,
-     "out_pos": "MID",
-     "in_name": "Scott",
-     "in_club": "BOU",
-     "in_points": 12,
-     "in_team_id": 3,
-     "in_pos": "MID",
-     "diff": 9,
-     "guessed": true,
      "gameweek": 2
     },
     {
@@ -8856,6 +8770,22 @@
      "swaps": [
       {
        "manager": "Brad Hill",
+       "out_name": "\u00d8degaard",
+       "out_club": "ARS",
+       "out_points": 3,
+       "out_team_id": 1,
+       "out_pos": "MID",
+       "in_name": "Scott",
+       "in_club": "BOU",
+       "in_points": 12,
+       "in_team_id": 3,
+       "in_pos": "MID",
+       "diff": 9,
+       "guessed": false,
+       "gameweek": 2
+      },
+      {
+       "manager": "Brad Hill",
        "out_name": "Ballard",
        "out_club": "SUN",
        "out_points": 8,
@@ -8868,22 +8798,6 @@
        "in_pos": "DEF",
        "diff": -6,
        "guessed": false,
-       "gameweek": 2
-      },
-      {
-       "manager": "Brad Hill",
-       "out_name": "\u00d8degaard",
-       "out_club": "ARS",
-       "out_points": 3,
-       "out_team_id": 1,
-       "out_pos": "MID",
-       "in_name": "Scott",
-       "in_club": "BOU",
-       "in_points": 12,
-       "in_team_id": 3,
-       "in_pos": "MID",
-       "diff": 9,
-       "guessed": true,
        "gameweek": 2
       },
       {
@@ -9009,6 +8923,14 @@
      "gameweek": 2,
      "in": [
       {
+       "name": "Scott",
+       "club": "BOU",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png",
+       "pos": "MID",
+       "points": 12,
+       "guessed": false
+      },
+      {
        "name": "Kayode",
        "club": "BRE",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p607464.png",
@@ -9017,23 +8939,23 @@
        "guessed": false
       },
       {
-       "name": "Scott",
-       "club": "BOU",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png",
-       "pos": "MID",
-       "points": 12,
-       "guessed": true
-      },
-      {
        "name": "Armstrong",
        "club": "EVE",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p609873.png",
        "pos": "MID",
        "points": 2,
-       "guessed": true
+       "guessed": false
       }
      ],
      "out": [
+      {
+       "name": "\u00d8degaard",
+       "club": "ARS",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
+       "pos": "MID",
+       "points": 3,
+       "guessed": false
+      },
       {
        "name": "Ballard",
        "club": "SUN",
@@ -9043,20 +8965,12 @@
        "guessed": false
       },
       {
-       "name": "\u00d8degaard",
-       "club": "ARS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
-       "pos": "MID",
-       "points": 3,
-       "guessed": true
-      },
-      {
        "name": "Caicedo",
        "club": "CHE",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p486672.png",
        "pos": "MID",
        "points": 1,
-       "guessed": true
+       "guessed": false
       }
      ]
     }
@@ -11206,7 +11120,7 @@
     "in_team_id": 1,
     "in_pos": "MID",
     "diff": 10,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 3
    },
    "worst_transfer": {
@@ -11239,7 +11153,7 @@
      "in_team_id": 1,
      "in_pos": "MID",
      "diff": 10,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     }
    ],
@@ -11273,7 +11187,7 @@
      "in_team_id": 8,
      "in_pos": "DEF",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 4
     },
     {
@@ -11323,7 +11237,7 @@
      "in_team_id": 1,
      "in_pos": "MID",
      "diff": 10,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -11355,7 +11269,7 @@
      "in_team_id": 8,
      "in_pos": "DEF",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 4
     }
    ],
@@ -11393,7 +11307,7 @@
        "in_team_id": 1,
        "in_pos": "MID",
        "diff": 10,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 3
       },
       {
@@ -11425,7 +11339,7 @@
        "in_team_id": 8,
        "in_pos": "DEF",
        "diff": -3,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 4
       }
      ]
@@ -11454,18 +11368,10 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p550615.png",
        "pos": "MID",
        "points": 3,
-       "guessed": false
+       "guessed": true
       }
      ],
      "out": [
-      {
-       "name": "James",
-       "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",
-       "pos": "DEF",
-       "points": 1,
-       "guessed": false
-      },
       {
        "name": "Janelt",
        "club": "BRE",
@@ -11473,6 +11379,14 @@
        "pos": "MID",
        "points": 4,
        "guessed": false
+      },
+      {
+       "name": "James",
+       "club": "CHE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",
+       "pos": "DEF",
+       "points": 1,
+       "guessed": true
       }
      ]
     },
@@ -11485,7 +11399,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
        "pos": "MID",
        "points": 10,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Ndiaye",
@@ -11514,19 +11428,19 @@
      ],
      "out": [
       {
-       "name": "Est\u00eav\u00e3o",
-       "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p624773.png",
-       "pos": "MID",
-       "points": 1,
-       "guessed": true
-      },
-      {
        "name": "Eze",
        "club": "ARS",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232413.png",
        "pos": "MID",
        "points": 0,
+       "guessed": false
+      },
+      {
+       "name": "Est\u00eav\u00e3o",
+       "club": "CHE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p624773.png",
+       "pos": "MID",
+       "points": 1,
        "guessed": true
       },
       {
@@ -12203,7 +12117,7 @@
      "in_team_id": 13,
      "in_pos": "MID",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -12221,7 +12135,7 @@
      "in_team_id": 13,
      "in_pos": "MID",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -12275,7 +12189,7 @@
        "in_team_id": 13,
        "in_pos": "MID",
        "diff": -3,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 2
       },
       {
@@ -12406,7 +12320,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466525.png",
        "pos": "MID",
        "points": 4,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Jensen",
@@ -12414,7 +12328,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p207283.png",
        "pos": "MID",
        "points": 0,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Wood",
@@ -12432,7 +12346,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
        "pos": "MID",
        "points": 7,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Madueke",
@@ -12440,7 +12354,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p248857.png",
        "pos": "MID",
        "points": 0,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Osula",
@@ -13923,7 +13837,7 @@
     "in_team_id": 1,
     "in_pos": "MID",
     "diff": 10,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 3
    },
    {
@@ -13955,7 +13869,7 @@
     "in_team_id": 3,
     "in_pos": "MID",
     "diff": 9,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -14165,7 +14079,7 @@
     "in_team_id": 6,
     "in_pos": "MID",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 3
    },
    {
@@ -14197,7 +14111,7 @@
     "in_team_id": 8,
     "in_pos": "DEF",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 4
    }
   ]
