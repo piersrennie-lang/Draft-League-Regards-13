@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-12T17:16:50Z",
+  "fetched_at": "2026-09-12T17:26:03Z",
   "transaction_mode": "processing",
   "scoring": "h"
  },
@@ -151,7 +151,7 @@
    "away": 259835,
    "home_name": "Matthew Lees",
    "away_name": "Michael Lavarack",
-   "home_points": 6,
+   "home_points": 7,
    "away_points": 13,
    "home_remaining": 6,
    "away_remaining": 3,
@@ -1799,7 +1799,7 @@
      "club": "TOT",
      "team_id": 19,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p510281.png",
-     "points": 1
+     "points": 2
     },
     {
      "element": 12,
@@ -1829,7 +1829,7 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 6,
+   "effective_xi_points": 7,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -1841,6 +1841,15 @@
      "club": "NFO",
      "team_id": 18,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215136.png",
+     "points": 2
+    },
+    {
+     "element": 403,
+     "name": "S\u00e1vio",
+     "pos": "MID",
+     "club": "TOT",
+     "team_id": 19,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p510281.png",
      "points": 2
     },
     {
@@ -1859,15 +1868,6 @@
      "club": "TOT",
      "team_id": 19,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p469142.png",
-     "points": 1
-    },
-    {
-     "element": 403,
-     "name": "S\u00e1vio",
-     "pos": "MID",
-     "club": "TOT",
-     "team_id": 19,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p510281.png",
      "points": 1
     },
     {
@@ -1972,7 +1972,7 @@
      "points": 0
     }
    ],
-   "xi_points": 6,
+   "xi_points": 7,
    "bench_points": 0,
    "best_bench": {
     "element": 412,
@@ -2955,17 +2955,27 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215136.png",
    "release_club": "NFO",
    "release_points": 2,
-   "tie": [],
+   "tie": [
+    {
+     "name": "N.Williams",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215136.png",
+     "club": "NFO"
+    },
+    {
+     "name": "S\u00e1vio",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p510281.png",
+     "club": "TOT"
+    }
+   ],
    "next": "Petrovi\u0107",
    "next_points": 1,
    "next_tie": [
     "Petrovi\u0107",
     "Van Hecke",
-    "S\u00e1vio",
     "Thiago"
    ],
-   "score": 6,
-   "cost_pct": 33.3,
+   "score": 7,
+   "cost_pct": 28.6,
    "h2h": null
   }
  ],
@@ -3041,6 +3051,37 @@
    "h2h": null
   },
   {
+   "league_entry": 255427,
+   "manager": "Matthew Lees",
+   "team": "Go Fly a Kuyt",
+   "release": "N.Williams",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215136.png",
+   "release_club": "NFO",
+   "release_points": 2,
+   "tie": [
+    {
+     "name": "N.Williams",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215136.png",
+     "club": "NFO"
+    },
+    {
+     "name": "S\u00e1vio",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p510281.png",
+     "club": "TOT"
+    }
+   ],
+   "next": "Petrovi\u0107",
+   "next_points": 1,
+   "next_tie": [
+    "Petrovi\u0107",
+    "Van Hecke",
+    "Thiago"
+   ],
+   "score": 7,
+   "cost_pct": 28.6,
+   "h2h": null
+  },
+  {
    "league_entry": 260926,
    "manager": "Mark Stone",
    "team": "CHANGE NAME",
@@ -3058,27 +3099,6 @@
    ],
    "score": 16,
    "cost_pct": 31.2,
-   "h2h": null
-  },
-  {
-   "league_entry": 255427,
-   "manager": "Matthew Lees",
-   "team": "Go Fly a Kuyt",
-   "release": "N.Williams",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215136.png",
-   "release_club": "NFO",
-   "release_points": 2,
-   "tie": [],
-   "next": "Petrovi\u0107",
-   "next_points": 1,
-   "next_tie": [
-    "Petrovi\u0107",
-    "Van Hecke",
-    "S\u00e1vio",
-    "Thiago"
-   ],
-   "score": 6,
-   "cost_pct": 33.3,
    "h2h": null
   },
   {
@@ -3297,10 +3317,10 @@
    "d": 0,
    "l": 1,
    "for": 154,
-   "against": 153,
+   "against": 154,
    "played": 4,
    "points": 9,
-   "diff": 1,
+   "diff": 0,
    "history": [
     {
      "event": 1,
@@ -3326,7 +3346,7 @@
     {
      "event": 4,
      "pts": 13,
-     "against": 6,
+     "against": 7,
      "opp": 255427,
      "result": "W"
     }
@@ -3388,11 +3408,11 @@
    "w": 2,
    "d": 0,
    "l": 2,
-   "for": 126,
+   "for": 127,
    "against": 109,
    "played": 4,
    "points": 6,
-   "diff": 17,
+   "diff": 18,
    "history": [
     {
      "event": 1,
@@ -3417,7 +3437,7 @@
     },
     {
      "event": 4,
-     "pts": 6,
+     "pts": 7,
      "against": 13,
      "opp": 259835,
      "result": "L"
@@ -3470,8 +3490,8 @@
     }
    ],
    "live": true,
-   "pos": 5,
-   "move": 2
+   "pos": 6,
+   "move": 1
   },
   {
    "league_entry": 207565,
@@ -4289,7 +4309,7 @@
   "worst": [
    {
     "manager": "Matthew Lees",
-    "points": 5,
+    "points": 6,
     "transfer_points": -1
    },
    {
@@ -4348,14 +4368,14 @@
      "transfer_points": -1
     },
     {
+     "manager": "Matthew Lees",
+     "points": 128,
+     "transfer_points": 1
+    },
+    {
      "manager": "Mark Stone",
      "points": 128,
      "transfer_points": -11
-    },
-    {
-     "manager": "Matthew Lees",
-     "points": 127,
-     "transfer_points": 1
     },
     {
      "manager": "Matthew Xenakis",
@@ -4401,14 +4421,14 @@
     "transfer_points": -1
    },
    {
+    "manager": "Matthew Lees",
+    "points": 128,
+    "transfer_points": 1
+   },
+   {
     "manager": "Mark Stone",
     "points": 128,
     "transfer_points": -11
-   },
-   {
-    "manager": "Matthew Lees",
-    "points": 127,
-    "transfer_points": 1
    },
    {
     "manager": "Matthew Xenakis",
@@ -8897,9 +8917,9 @@
     {
      "gameweek": 4,
      "opponent": "Michael Lavarack",
-     "points": 6,
+     "points": 7,
      "against": 13,
-     "margin": -7,
+     "margin": -6,
      "result": "L"
     },
     {
@@ -8930,7 +8950,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Michael Lavarack",
-    "points": 6,
+    "points": 7,
     "against": 13,
     "started": true,
     "live": true
@@ -9084,9 +9104,9 @@
    "biggest_loss": {
     "gameweek": 4,
     "opponent": "Michael Lavarack",
-    "points": 6,
+    "points": 7,
     "against": 13,
-    "margin": -7,
+    "margin": -6,
     "result": "L"
    },
    "highest_scores": [
@@ -9117,9 +9137,9 @@
     {
      "gameweek": 4,
      "opponent": "Michael Lavarack",
-     "points": 6,
+     "points": 7,
      "against": 13,
-     "margin": -7,
+     "margin": -6,
      "result": "L"
     }
    ],
@@ -9127,9 +9147,9 @@
     {
      "gameweek": 4,
      "opponent": "Michael Lavarack",
-     "points": 6,
+     "points": 7,
      "against": 13,
-     "margin": -7,
+     "margin": -6,
      "result": "L"
     },
     {
@@ -9682,8 +9702,8 @@
      "gameweek": 4,
      "opponent": "Matthew Lees",
      "points": 13,
-     "against": 6,
-     "margin": 7,
+     "against": 7,
+     "margin": 6,
      "result": "W"
     },
     {
@@ -9715,7 +9735,7 @@
     "gameweek": 4,
     "opponent": "Matthew Lees",
     "points": 13,
-    "against": 6,
+    "against": 7,
     "started": true,
     "live": true
    },
@@ -9861,8 +9881,8 @@
     "gameweek": 4,
     "opponent": "Matthew Lees",
     "points": 13,
-    "against": 6,
-    "margin": 7,
+    "against": 7,
+    "margin": 6,
     "result": "W"
    },
    "biggest_loss": {
@@ -9902,8 +9922,8 @@
      "gameweek": 4,
      "opponent": "Matthew Lees",
      "points": 13,
-     "against": 6,
-     "margin": 7,
+     "against": 7,
+     "margin": 6,
      "result": "W"
     }
    ],
@@ -9912,8 +9932,8 @@
      "gameweek": 4,
      "opponent": "Matthew Lees",
      "points": 13,
-     "against": 6,
-     "margin": 7,
+     "against": 7,
+     "margin": 6,
      "result": "W"
     },
     {
@@ -12822,7 +12842,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "avg_against": 38.2
+    "avg_against": 38.5
    },
    {
     "manager": "Matthew Xenakis",
@@ -12837,7 +12857,7 @@
     "avg_against": 34.8
    }
   ],
-  "average": 34.7
+  "average": 34.8
  },
  "pot": {
   "base": 200,
