@@ -119,6 +119,101 @@
   </div>
   {% endif %}
 
+  {% if d.ambiguous_transfers %}
+  <h3 class="eyebrow eyebrow--sm">Verify swaps</h3>
+  <p class="lede lede--tight">Several of this week's swaps have more than one plausible pairing (two or
+  more same-position players in or out for one manager the same week), so the site had to guess. If you
+  know the real pairing &mdash; check the FPL Draft app &mdash; verify it below.</p>
+  <div class="profile-grid">
+    {% for g in d.ambiguous_transfers %}
+    <div class="profile-panel verify-card" data-manager="{{ g.manager }}">
+      <p class="strong">{{ macros.manager(g.manager, avatars, manager_colors) }} <span class="mute">&middot; {{ g.pos }}</span></p>
+      <button class="btn verify-btn" type="button">Verify</button>
+      <div class="verify-gate" hidden>
+        <p class="mute" style="margin:0.6rem 0 0.4rem;">Enter code</p>
+        <input type="password" inputmode="numeric" maxlength="4" class="gw-select verify-code" style="width:6rem;">
+        <button class="btn verify-unlock" type="button">Unlock</button>
+        <p class="verify-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Wrong code.</p>
+      </div>
+      <div class="verify-form" hidden>
+        {% for o in g.outs %}
+        <div class="verify-row" data-out="{{ o.name }}" style="margin-top:0.6rem;">
+          <span>{{ o.name }} &rarr;</span>
+          <select class="gw-select verify-select">
+            <option value="">Choose&hellip;</option>
+            {% for i in g.ins %}
+            <option value="{{ i.name }}">{{ i.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endfor %}
+        <button class="btn verify-copy" type="button" style="margin-top:0.8rem;">Copy confirmation</button>
+        <p class="verify-copy-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Pick a different &ldquo;in&rdquo; for every row first.</p>
+        <p class="verify-copied mute" hidden style="margin-top:0.4rem;">Copied &mdash; paste this to Claude to apply it.</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+  (function () {
+    var CODE = "2601";
+    document.querySelectorAll(".verify-card").forEach(function (card) {
+      var btn = card.querySelector(".verify-btn");
+      var gate = card.querySelector(".verify-gate");
+      var form = card.querySelector(".verify-form");
+      var codeInput = card.querySelector(".verify-code");
+      var unlockBtn = card.querySelector(".verify-unlock");
+      var errorEl = card.querySelector(".verify-error");
+      var copyBtn = card.querySelector(".verify-copy");
+      var copyErrorEl = card.querySelector(".verify-copy-error");
+      var copiedEl = card.querySelector(".verify-copied");
+
+      btn.addEventListener("click", function () {
+        btn.hidden = true;
+        gate.hidden = false;
+        codeInput.focus();
+      });
+
+      function tryUnlock() {
+        if (codeInput.value === CODE) {
+          gate.hidden = true;
+          form.hidden = false;
+        } else {
+          errorEl.hidden = false;
+        }
+      }
+      unlockBtn.addEventListener("click", tryUnlock);
+      codeInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") tryUnlock();
+      });
+      codeInput.addEventListener("input", function () {
+        errorEl.hidden = true;
+      });
+
+      copyBtn.addEventListener("click", function () {
+        var manager = card.dataset.manager;
+        var rows = Array.prototype.slice.call(form.querySelectorAll(".verify-row"));
+        var picks = rows.map(function (r) {
+          return { manager: manager, out: r.dataset.out, in: r.querySelector(".verify-select").value };
+        });
+        var chosenIns = picks.map(function (p) { return p.in; }).filter(Boolean);
+        var hasDupes = chosenIns.some(function (v, idx) { return chosenIns.indexOf(v) !== idx; });
+        if (picks.some(function (p) { return !p.in; }) || hasDupes) {
+          copyErrorEl.hidden = false;
+          copiedEl.hidden = true;
+          return;
+        }
+        copyErrorEl.hidden = true;
+        navigator.clipboard.writeText(JSON.stringify(picks, null, 1)).then(function () {
+          copiedEl.hidden = false;
+        });
+      });
+    });
+  })();
+  </script>
+  {% endif %}
+
   <div class="profile-grid">
     <div class="profile-panel">
       <p class="strong">Best transfers of all time{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</p>

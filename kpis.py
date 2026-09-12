@@ -778,6 +778,39 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
     return out
 
 
+def build_ambiguous_transfer_groups(transfers, managers):
+    """Groups this gameweek's still-guessed pairs by manager and position,
+    so a reviewer sees the whole pool of same-position candidates a
+    manager's moves were pulled from -- not just the heuristic's single
+    guess -- and can specify the real pairing for the whole group in one
+    go (see data/manual/gw{n}_transfers.json). Confirmed pairs never show
+    up here: pair_by_position pulls them out of the pool before pairing,
+    so once a group's ambiguity is fully resolved it just stops
+    appearing next time this is computed.
+    """
+    groups = []
+    for le, t in transfers.items():
+        manager_name = managers[le]["manager"]
+        by_pos = {}
+        for o, i in zip(t.get("out", []), t.get("in", [])):
+            if not o.get("guessed"):
+                continue
+            g = by_pos.setdefault(o["pos"], {"outs": [], "ins": []})
+            if not any(x["name"] == o["name"] for x in g["outs"]):
+                g["outs"].append(o)
+            if not any(x["name"] == i["name"] for x in g["ins"]):
+                g["ins"].append(i)
+        for pos, g in by_pos.items():
+            groups.append({
+                "manager": manager_name,
+                "pos": pos,
+                "outs": [{"name": x["name"], "club": x["club"], "photo": x["photo"]} for x in g["outs"]],
+                "ins": [{"name": x["name"], "club": x["club"], "photo": x["photo"]} for x in g["ins"]],
+            })
+    groups.sort(key=lambda g: g["manager"])
+    return groups
+
+
 def build_transfer_history(managers, players, raw_transactions, load_fn, gw):
     """Every raw transfer (in/out) each manager has made this season, one
     entry per gameweek it happened. Unlike transfer_log/best_transfer/
@@ -1617,6 +1650,10 @@ def main():
         gaps.append(f"Squad picks or live scores for gameweek {totw_gw} are not on "
                      f"disk, so Team of the Week cannot be computed.")
 
+    transfers_this_week = build_transfers(
+        managers, players, raw_transactions, gw, prev_squads_raw, squads_raw,
+        live_points(live), confirmed_transfers)
+
     payload = {
         "league": {
             "id": config.LEAGUE_ID,
@@ -1639,9 +1676,8 @@ def main():
         "breaches": detect_breaches(prev_releases, squads),
         "standings": standings,
         "next_fixtures": build_next_fixtures(details, managers, gw),
-        "transfers": {str(k): v for k, v in build_transfers(
-            managers, players, raw_transactions, gw, prev_squads_raw, squads_raw,
-            live_points(live), confirmed_transfers).items()},
+        "transfers": {str(k): v for k, v in transfers_this_week.items()},
+        "ambiguous_transfers": build_ambiguous_transfer_groups(transfers_this_week, managers),
         "team_of_week": {
             "gameweek": totw_gw,
             "players": (team_of_week or {}).get("players", []),

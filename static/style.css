@@ -121,6 +121,22 @@ a { color: inherit; }
   padding: 0.5rem 0.7rem;
 }
 
+.btn {
+  font: 600 var(--t-body)/1 var(--sans);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--ink-muted); }
+.btn:disabled { color: var(--ink-faint); cursor: not-allowed; }
+
+.verify-row { display: flex; align-items: center; gap: 0.5rem; }
+.verify-row + .verify-row { margin-top: 0.5rem; }
+
 .kicker {
   font: 600 var(--t-label)/1 var(--sans);
   letter-spacing: 0.01em;
