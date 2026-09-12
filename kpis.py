@@ -1328,7 +1328,7 @@ def build_luckiest(standings, limit=5):
     }
 
 
-def build_leaders(manager_profiles, limit=5):
+def build_leaders(manager_profiles, gw, gw_fully_over, limit=5):
     """Reduces manager_profiles down to a top-N table for every category
     also shown on an individual manager's own profile page -- one row per
     manager's own best/worst instance of that category, ranked against
@@ -1346,12 +1346,22 @@ def build_leaders(manager_profiles, limit=5):
         pool.sort(key=lambda kv: kv[1][subkey], reverse=reverse)
         return [{"manager": name, **entry} for name, entry in pool[:limit]]
 
-    def top_n_games(reverse=True, limit=limit):
+    def top_n_games(reverse=True, limit=limit, settled_only=False):
         """Every individual gameweek score across every manager, not just
         each manager's own best/worst -- so a manager with several huge
         (or dismal) weeks can take multiple spots on the leaderboard,
-        rather than being capped at one appearance."""
+        rather than being capped at one appearance.
+
+        settled_only drops the current gameweek's entry until it's fully
+        over -- a live, still-in-progress score is provisional (fixtures
+        yet to kick off can only add to it), so including it would churn
+        the "lowest score" table with scores that are just incomplete,
+        not genuinely bad. The "highest score" table has no such problem
+        (a high score already banked is real) so it stays live throughout.
+        """
         pool = [{"manager": name, **f} for name, p in manager_profiles.items() for f in p.get("fixtures", [])]
+        if settled_only and not gw_fully_over:
+            pool = [f for f in pool if f["gameweek"] != gw]
         pool.sort(key=lambda f: f["points"], reverse=reverse)
         return pool[:limit]
 
@@ -1387,7 +1397,7 @@ def build_leaders(manager_profiles, limit=5):
         "longest_loss_streak": top_n("longest_loss_streak"),
         "biggest_win": top_n_by("biggest_win", "margin"),
         "highest_score": top_n_games(limit=10),
-        "lowest_score": top_n_games(reverse=False, limit=10),
+        "lowest_score": top_n_games(reverse=False, limit=10, settled_only=True),
         "best_player": top_n_performances(limit=10),
         "best_transfers": top_n_transfers(True, limit=10),
         "worst_transfers": top_n_transfers(False, limit=10),
@@ -1485,7 +1495,7 @@ def main():
         profile = manager_profiles.get(m["manager"])
         if profile is not None:
             profile["raw_transfers"] = sorted(transfer_history[le], key=lambda t: -t["gameweek"])
-    leaders = build_leaders(manager_profiles)
+    leaders = build_leaders(manager_profiles, gw, gw_fully_over)
 
     gaps = []
     if not squads_raw:
