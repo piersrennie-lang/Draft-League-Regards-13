@@ -218,6 +218,12 @@ def build_releases(managers, squads, results_by_entry):
         if not xi:
             continue
         top = xi[0]
+        if top["points"] <= 0:
+            # Nobody's kicked off yet (or everyone's blanked) -- every
+            # starter is tied at 0, which reads as "must release your
+            # whole team" rather than a real mandate. Wait for a genuine
+            # highest scorer before this manager gets a release row.
+            continue
         tied = [r for r in xi if r["points"] == top["points"]]
         nxt = next((r for r in xi if r["points"] < top["points"]), None)
         nxt_tied = [r for r in xi if nxt and r["points"] == nxt["points"]]
