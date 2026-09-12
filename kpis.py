@@ -80,9 +80,42 @@ def player_index(bootstrap):
     }
 
 
-def describe_player(eid, players):
-    meta = players.get(eid, {"name": str(eid), "club": "", "photo": ""})
-    return {"name": meta["name"], "club": meta.get("club", ""), "photo": meta.get("photo", "")}
+def describe_player(eid, players, pts=None):
+    meta = players.get(eid, {"name": str(eid), "club": "", "photo": "", "pos": ""})
+    return {"name": meta["name"], "club": meta.get("club", ""), "photo": meta.get("photo", ""),
+            "pos": meta.get("pos", ""), "points": (pts or {}).get(eid, 0)}
+
+
+def _pair_sort_key(p):
+    return (-p.get("points", 0), p["name"])
+
+
+def pair_by_position(outs, ins):
+    """Order two {..., "pos": ..., "points": ...} lists so index i is a
+    guessed pair -- same position first (the likeliest real swap), ranked
+    by that gameweek's points same as build_transfer_swaps (so this
+    display order agrees with the scored best/worst-transfer tables
+    instead of contradicting them), any leftover paired by whatever's
+    left. Used purely to line up display order: without this, a
+    manager's "in" and "out" columns are each sorted alphabetically on
+    their own, so a striker picked up can end up sitting next to an
+    unrelated defender released that week -- lining up by coincidence,
+    not because they were actually swapped for each other.
+    """
+    pairs = []
+    rem_outs, rem_ins = list(outs), list(ins)
+    for pos in ("GKP", "DEF", "MID", "FWD"):
+        pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=_pair_sort_key)
+        pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=_pair_sort_key)
+        for o, i in zip(pos_outs, pos_ins):
+            pairs.append((o, i))
+            rem_outs.remove(o)
+            rem_ins.remove(i)
+    rem_outs.sort(key=_pair_sort_key)
+    rem_ins.sort(key=_pair_sort_key)
+    n = min(len(rem_outs), len(rem_ins))
+    pairs.extend(zip(rem_outs[:n], rem_ins[:n]))
+    return [o for o, _ in pairs] + rem_outs[n:], [i for _, i in pairs] + rem_ins[n:]
 
 
 def live_points(live):
@@ -636,7 +669,7 @@ def build_transactions(managers, raw, event, players):
     return out
 
 
-def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw):
+def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None):
     """Approximate transfers by diffing two gameweeks' full squads.
 
     The transactions endpoint is unreachable from a cloud runner, but the
@@ -645,6 +678,16 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw):
     indistinguishable here, but real, unlike the empty transactions feed.
     Requires a complete squad (>=11 picks) on both sides; a partial or
     missing snapshot is skipped rather than read as mass releases.
+
+    "in" and "out" are ordered with pair_by_position so a manager's pickup
+    lines up with the release it most likely replaced, rather than each
+    list being sorted alphabetically on its own -- which lined the two
+    columns up by coincidence, occasionally sitting a striker picked up
+    next to an unrelated defender released that week. pts (that
+    gameweek's live points, keyed by element id) lets the position-tied
+    cases rank the same way build_transfer_swaps does, so this table
+    agrees with the scored best/worst-transfer tables instead of
+    occasionally guessing a different pairing for the same real moves.
     """
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
     out = {le: {"in": [], "out": [], "count": 0} for le in managers}
@@ -663,20 +706,21 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw):
             continue
         prev_ids = {p["element"] for p in prev_picks}
         curr_ids = {p["element"] for p in curr_picks}
-        ins = curr_ids - prev_ids
-        outs = prev_ids - curr_ids
+        ins = [describe_player(e, players, pts) for e in curr_ids - prev_ids]
+        outs = [describe_player(e, players, pts) for e in prev_ids - curr_ids]
+        paired_outs, paired_ins = pair_by_position(outs, ins)
         out[le] = {
-            "in": sorted((describe_player(e, players) for e in ins), key=lambda p: p["name"]),
-            "out": sorted((describe_player(e, players) for e in outs), key=lambda p: p["name"]),
+            "in": paired_ins,
+            "out": paired_outs,
             "count": max(len(ins), len(outs)),
         }
     return out
 
 
-def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw):
+def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None):
     """Prefer FPL's own transaction record; fall back to the squad diff."""
     real = build_transactions(managers, raw_transactions, event, players)
-    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw)
+    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts)
     out = {}
     for le in managers:
         r, i = real[le], inferred[le]
@@ -702,7 +746,8 @@ def build_transfer_history(managers, players, raw_transactions, load_fn, gw):
         prev_squads_raw = load_fn(f"squads_gw{g - 1}")
         if not curr_squads_raw or not prev_squads_raw:
             continue
-        week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw)
+        week_pts = live_points(load_fn(f"live_gw{g}"))
+        week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw, week_pts)
         for le, t in week.items():
             if t["count"]:
                 history[le].append({"gameweek": g, "in": t["in"], "out": t["out"]})
@@ -868,14 +913,14 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
 
         pairs, rem_outs, rem_ins = [], list(outs), list(ins)
         for pos in ("GKP", "DEF", "MID", "FWD"):
-            pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=lambda o: -o["points"])
-            pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=lambda i: -i["points"])
+            pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=_pair_sort_key)
+            pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=_pair_sort_key)
             for o, i in zip(pos_outs, pos_ins):
                 pairs.append((o, i))
                 rem_outs.remove(o)
                 rem_ins.remove(i)
-        rem_outs.sort(key=lambda o: -o["points"])
-        rem_ins.sort(key=lambda i: -i["points"])
+        rem_outs.sort(key=_pair_sort_key)
+        rem_ins.sort(key=_pair_sort_key)
         pairs.extend(zip(rem_outs, rem_ins))
 
         for o, i in pairs:
@@ -1550,7 +1595,7 @@ def main():
         "standings": standings,
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in build_transfers(
-            managers, players, raw_transactions, gw, prev_squads_raw, squads_raw).items()},
+            managers, players, raw_transactions, gw, prev_squads_raw, squads_raw, live_points(live)).items()},
         "team_of_week": {
             "gameweek": totw_gw,
             "players": (team_of_week or {}).get("players", []),
