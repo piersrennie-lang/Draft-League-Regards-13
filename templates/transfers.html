@@ -34,10 +34,41 @@
   </div>
 
   {% if gw == 1 %}
+  <h3 class="eyebrow eyebrow--sm">Wall of shame</h3>
+  <p class="pending">Needs a full gameweek's releases to assess &mdash; this
+  will start appearing once GW{{ gw }} concludes.</p>
   <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers</h3>
   <p class="pending">Needs a full gameweek's results to assess &mdash; this
   will start appearing once GW{{ gw }} concludes.</p>
   {% else %}
+  <h3 class="eyebrow eyebrow--sm">Wall of shame{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</h3>
+  <div class="profile-grid">
+    <div class="profile-panel">
+      {% if d.breaches %}
+      <p class="lede lede--tight">Failed to release their highest (or one of their tied-highest) scorer from GW{{ gw - 1 }}.</p>
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <colgroup><col style="width:24%"><col style="width:36%"><col style="width:14%"><col style="width:14%"><col style="width:12%"></colgroup>
+        <thead><tr><th>Manager</th><th>Should have released</th><th class="num">Points</th><th>Status</th><th class="num">Fine</th></tr></thead>
+        <tbody>
+          {% for b in d.breaches %}
+          <tr>
+            <td>{{ macros.manager(b.manager, avatars, manager_colors) }}</td>
+            <td>{{ macros.release_cell(b) }}</td>
+            <td class="num">{{ b.points }}</td>
+            <td class="cost">{{ b.status }}</td>
+            <td class="num cost">&pound;{{ b.fine }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% else %}
+      <p class="pending">Nobody to shame &mdash; every mandated release from GW{{ gw - 1 }} has been made.</p>
+      {% endif %}
+    </div>
+  </div>
+
   <h3 class="eyebrow eyebrow--sm">Best &amp; worst transfers of GW{{ gw }}{% if not d.league.gw_fully_over %} <span class="live-tag">Live</span>{% endif %}</h3>
 
   <div class="profile-grid">

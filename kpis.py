@@ -284,22 +284,38 @@ def manual_releases(gw, managers, results_by_entry, players):
 
 
 def detect_breaches(prev_releases, squads):
-    """A breach is a mandated player still sitting in the active XI."""
+    """A breach is a mandated release nobody satisfied.
+
+    When several players were tied for the mandate, releasing any one of
+    them satisfies the rule (see build_releases' "tie" list, which
+    already includes the designated "release" player alongside its
+    ties) -- so this only flags a breach when every tied candidate is
+    still sitting somewhere in the squad, not just the one arbitrarily
+    named "release".
+    """
     out = []
     for row in prev_releases or []:
         squad = squads.get(row["league_entry"])
         if not squad:
             continue
-        in_xi = any(p["name"] == row["release"] for p in squad["xi"])
-        on_bench = any(p["name"] == row["release"] for p in squad["bench"])
-        if in_xi or on_bench:
-            out.append({
-                "manager": row["manager"],
-                "player": row["release"],
-                "points": row["release_points"],
-                "status": "Still in XI" if in_xi else "On bench",
-                "fine": config.FINE_NOT_RELEASED + (config.FINE_FIELDED_ANYWAY if in_xi else 0),
-            })
+        candidates = row["tie"] if row.get("tie") else [
+            {"name": row["release"], "photo": row.get("release_photo", ""), "club": row.get("release_club", "")}
+        ]
+        in_xi_names = {p["name"] for p in squad["xi"]}
+        bench_names = {p["name"] for p in squad["bench"]}
+        if any(c["name"] not in in_xi_names and c["name"] not in bench_names for c in candidates):
+            continue  # at least one tied candidate was actually released
+        any_in_xi = any(c["name"] in in_xi_names for c in candidates)
+        out.append({
+            "manager": row["manager"],
+            "release": row["release"],
+            "release_photo": row.get("release_photo", ""),
+            "release_club": row.get("release_club", ""),
+            "tie": row.get("tie", []),
+            "points": row["release_points"],
+            "status": "Still in XI" if any_in_xi else "On bench",
+            "fine": config.FINE_NOT_RELEASED + (config.FINE_FIELDED_ANYWAY if any_in_xi else 0),
+        })
     return out
 
 
