@@ -123,11 +123,16 @@
   <h3 class="eyebrow eyebrow--sm">Verify swaps</h3>
   <p class="lede lede--tight">Some swaps from across the season have more than one plausible pairing (two or
   more same-position players in or out for one manager the same week), so the site had to guess &mdash;
-  these still show a &ldquo;Guess&rdquo; badge wherever they appear. If you know the real pairing &mdash;
-  check the FPL Draft app &mdash; verify it below. Only the last one needs picking out manually &mdash;
-  once the rest are set, whoever's left over is worked out automatically.</p>
+  these still show a &ldquo;Guess&rdquo; badge wherever they appear, and every candidate that could be the
+  real pairing is offered below, not just the one guessed. If you know the real pairing &mdash; check the
+  FPL Draft app &mdash; verify it below. Where the two sides are the same size, only the last one needs
+  picking out manually &mdash; once the rest are set, whoever's left over is worked out automatically.</p>
   <div class="profile-grid">
     {% for g in d.ambiguous_transfers %}
+    {% set primary_is_out = g.outs|length <= g.ins|length %}
+    {% set primary = g.outs if primary_is_out else g.ins %}
+    {% set secondary = g.ins if primary_is_out else g.outs %}
+    {% set use_elimination = g.outs|length == g.ins|length and g.outs|length > 1 %}
     <div class="profile-panel verify-card" data-manager="{{ g.manager }}" data-gw="{{ g.gameweek }}"
          data-ins="{{ g.ins|map(attribute='name')|join('|') }}">
       <p class="strong">{{ macros.manager(g.manager, avatars, manager_colors) }} <span class="mute">&middot; GW{{ g.gameweek }} &middot; {{ g.pos }}</span></p>
@@ -139,28 +144,46 @@
         <p class="verify-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Wrong code.</p>
       </div>
       <div class="verify-form" hidden>
-        {% if g.outs|length > 1 %}
-        {% for o in g.outs[:-1] %}
-        <div class="verify-row" data-out="{{ o.name }}" style="margin-top:0.6rem;">
+        {% if use_elimination %}
+        {% for o in primary[:-1] %}
+        <div class="verify-row" data-fixed-side="out" data-fixed-name="{{ o.name }}" style="margin-top:0.6rem;">
           <span>{{ o.name }} &rarr;</span>
           <select class="gw-select verify-select">
             <option value="">Choose&hellip;</option>
-            {% for i in g.ins %}
+            {% for i in secondary %}
             <option value="{{ i.name }}">{{ i.name }}</option>
             {% endfor %}
           </select>
         </div>
         {% endfor %}
-        <p class="verify-remainder mute" data-out="{{ g.outs[-1].name }}" style="margin-top:0.6rem;">{{ g.outs[-1].name }} &rarr;
+        <p class="verify-remainder mute" data-fixed-side="out" data-fixed-name="{{ primary[-1].name }}" style="margin-top:0.6rem;">{{ primary[-1].name }} &rarr;
           <span class="verify-remainder-value" data-value="">pick the others first</span>
         </p>
         {% else %}
-        <p class="verify-remainder mute" data-out="{{ g.outs[0].name }}" style="margin-top:0.6rem;">{{ g.outs[0].name }} &rarr;
-          <span class="verify-remainder-value" data-value="{{ g.ins[0].name }}">{{ g.ins[0].name }}</span> &mdash; confirm this is right
-        </p>
+        {% for item in primary %}
+        <div class="verify-row" data-fixed-side="{{ 'out' if primary_is_out else 'in' }}" data-fixed-name="{{ item.name }}" style="margin-top:0.6rem;">
+          {% if primary_is_out %}
+          <span>{{ item.name }} &rarr;</span>
+          <select class="gw-select verify-select">
+            <option value="">Choose&hellip;</option>
+            {% for opt in secondary %}
+            <option value="{{ opt.name }}">{{ opt.name }}</option>
+            {% endfor %}
+          </select>
+          {% else %}
+          <select class="gw-select verify-select">
+            <option value="">Choose&hellip;</option>
+            {% for opt in secondary %}
+            <option value="{{ opt.name }}">{{ opt.name }}</option>
+            {% endfor %}
+          </select>
+          <span>&rarr; {{ item.name }}</span>
+          {% endif %}
+        </div>
+        {% endfor %}
         {% endif %}
         <button class="btn verify-submit" type="button" style="margin-top:0.8rem;">Submit confirmation</button>
-        <p class="verify-copy-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Pick a different &ldquo;in&rdquo; for every row first.</p>
+        <p class="verify-copy-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Pick a different option for every row first.</p>
         <p class="verify-submitted mute" hidden style="margin-top:0.4rem;">Opened a GitHub issue &mdash; hit
         &ldquo;Submit new issue&rdquo; there and the site will pick it up within a couple of minutes.</p>
       </div>
@@ -223,25 +246,38 @@
       }
       selects.forEach(function (s) { s.addEventListener("change", updateRemainder); });
 
+      function buildPick(fixedSide, fixedName, otherValue) {
+        var pick = { manager: card.dataset.manager, gw: Number(card.dataset.gw) };
+        if (fixedSide === "out") {
+          pick.out = fixedName;
+          pick.in = otherValue;
+        } else {
+          pick.in = fixedName;
+          pick.out = otherValue;
+        }
+        return pick;
+      }
+
       submitBtn.addEventListener("click", function () {
-        var manager = card.dataset.manager;
-        var gw = card.dataset.gw;
         var rows = Array.prototype.slice.call(form.querySelectorAll(".verify-row"));
         var picks = rows.map(function (r) {
-          return { manager: manager, out: r.dataset.out, in: r.querySelector(".verify-select").value, gw: Number(gw) };
+          return buildPick(r.dataset.fixedSide, r.dataset.fixedName, r.querySelector(".verify-select").value);
         });
         if (remainderEl) {
-          picks.push({ manager: manager, out: remainderEl.dataset.out, in: remainderValueEl.dataset.value, gw: Number(gw) });
+          picks.push(buildPick(remainderEl.dataset.fixedSide, remainderEl.dataset.fixedName, remainderValueEl.dataset.value));
         }
-        var chosenIns = picks.map(function (p) { return p.in; }).filter(Boolean);
-        var hasDupes = chosenIns.some(function (v, idx) { return chosenIns.indexOf(v) !== idx; });
-        if (picks.some(function (p) { return !p.in; }) || hasDupes) {
+        var outs = picks.map(function (p) { return p.out; });
+        var ins = picks.map(function (p) { return p.in; });
+        var missing = picks.some(function (p) { return !p.out || !p.in; });
+        var dupOuts = outs.some(function (v, idx) { return outs.indexOf(v) !== idx; });
+        var dupIns = ins.some(function (v, idx) { return ins.indexOf(v) !== idx; });
+        if (missing || dupOuts || dupIns) {
           copyErrorEl.hidden = false;
           submittedEl.hidden = true;
           return;
         }
         copyErrorEl.hidden = true;
-        var title = "Transfer confirmation: GW" + gw + " " + manager;
+        var title = "Transfer confirmation: GW" + card.dataset.gw + " " + card.dataset.manager;
         var body = "```json\n" + JSON.stringify(picks, null, 1) + "\n```";
         var url = "https://github.com/" + REPO + "/issues/new?title=" + encodeURIComponent(title) +
                    "&body=" + encodeURIComponent(body);

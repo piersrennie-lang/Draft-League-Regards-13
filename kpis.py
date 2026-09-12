@@ -103,13 +103,22 @@ def pair_by_position(outs, ins, confirmed=None):
     since the transactions endpoint itself is unreachable from a cloud
     runner. Those pairs are pulled out first and used exactly as given.
 
-    Returns (pairs, extra_outs, extra_ins): pairs is a list of (out, in)
-    dicts, each with a "guessed" flag added -- False for a confirmed pair
-    or a position group with exactly one out and one in that week
-    (nothing to guess between), True anywhere the heuristic had to pick
-    among multiple same-position candidates or pair across positions.
-    extra_outs/extra_ins are any leftover, unmatched entries when the
-    real counts of outs and ins this week weren't equal.
+    Returns (pairs, extra_outs, extra_ins, ambiguous_groups): pairs is a
+    list of (out, in) dicts, each with a "guessed" flag added -- False for
+    a confirmed pair, or wherever there was only ever one real candidate
+    on each side of a pairing decision (nothing to actually choose
+    between, whether that's a same-position group or a leftover forced
+    across positions -- if there's exactly one out and one in left, that's
+    the only possible pairing, guess or not). True wherever the heuristic
+    had to pick among multiple candidates on either side. extra_outs/
+    extra_ins are any leftover, unmatched entries when the real counts of
+    outs and ins this week weren't equal. ambiguous_groups is a list of
+    {"pos", "outs", "ins"} dicts, one per decision point that was
+    genuinely ambiguous (more than one candidate on at least one side),
+    carrying the FULL candidate pool for that decision -- not just
+    whichever one the heuristic picked -- so a reviewer can see (and
+    correct) every real alternative, not only the guess that made it into
+    a reported pair.
     """
     rem_outs, rem_ins = list(outs), list(ins)
     pairs = []
@@ -121,10 +130,13 @@ def pair_by_position(outs, ins, confirmed=None):
             rem_outs.remove(o)
             rem_ins.remove(i)
 
+    ambiguous_groups = []
     for pos in ("GKP", "DEF", "MID", "FWD"):
         pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=_pair_sort_key)
         pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=_pair_sort_key)
         guessed = len(pos_outs) > 1 or len(pos_ins) > 1
+        if guessed and pos_outs and pos_ins:
+            ambiguous_groups.append({"pos": pos, "outs": list(pos_outs), "ins": list(pos_ins)})
         for o, i in zip(pos_outs, pos_ins):
             pairs.append((o, i, guessed))
             rem_outs.remove(o)
@@ -132,12 +144,15 @@ def pair_by_position(outs, ins, confirmed=None):
     rem_outs.sort(key=_pair_sort_key)
     rem_ins.sort(key=_pair_sort_key)
     n = min(len(rem_outs), len(rem_ins))
-    pairs.extend((o, i, True) for o, i in zip(rem_outs[:n], rem_ins[:n]))
+    guessed_leftover = len(rem_outs) > 1 or len(rem_ins) > 1
+    if guessed_leftover and rem_outs and rem_ins:
+        ambiguous_groups.append({"pos": "Mixed", "outs": list(rem_outs), "ins": list(rem_ins)})
+    pairs.extend((o, i, guessed_leftover) for o, i in zip(rem_outs[:n], rem_ins[:n]))
 
     tagged_pairs = [({**o, "guessed": g}, {**i, "guessed": g}) for o, i, g in pairs]
     extra_outs = [{**o, "guessed": True} for o in rem_outs[n:]]
     extra_ins = [{**i, "guessed": True} for i in rem_ins[n:]]
-    return tagged_pairs, extra_outs, extra_ins
+    return tagged_pairs, extra_outs, extra_ins, ambiguous_groups
 
 
 def load_transfer_confirmations(gw):
@@ -753,7 +768,7 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
         ins = [describe_player(e, players, pts) for e in curr_ids - prev_ids]
         outs = [describe_player(e, players, pts) for e in prev_ids - curr_ids]
         confirmed = (confirmed_by_manager or {}).get(managers[le]["manager"])
-        pairs, extra_outs, extra_ins = pair_by_position(outs, ins, confirmed)
+        pairs, extra_outs, extra_ins, _ambiguous = pair_by_position(outs, ins, confirmed)
         out[le] = {
             "in": [i for _, i in pairs] + extra_ins,
             "out": [o for o, _ in pairs] + extra_outs,
@@ -779,37 +794,37 @@ def build_transfers(managers, players, raw_transactions, event, prev_squads_raw,
 
 
 def build_ambiguous_transfer_groups(manager_profiles):
-    """Groups every still-guessed swap across the WHOLE SEASON -- not just
-    the current gameweek -- by manager, gameweek and position, so a
-    reviewer sees the whole pool of same-position candidates a manager's
-    moves were pulled from that week -- not just the heuristic's single
-    guess -- and can specify the real pairing for the whole group in one
-    go (see data/manual/gw{n}_transfers.json). A guess from any past week
-    is exactly as reviewable as one from this week. Confirmed pairs never
-    show up here: pair_by_position pulls them out of the candidate pool
-    before pairing, so once a group's ambiguity is fully resolved it just
-    stops appearing the next time this is computed.
+    """Every still-genuinely-ambiguous pairing decision across the WHOLE
+    SEASON -- not just the current gameweek -- one card per manager,
+    gameweek and position group (see profile["ambiguous_pool"], built
+    alongside transfer_log in build_manager_profiles).
+
+    "Genuinely ambiguous" means pair_by_position actually had more than
+    one candidate to choose between on at least one side -- a single out
+    forced to pair with a single leftover in (even across positions) is
+    the only possible pairing either way, so there's nothing to verify
+    there and it never entered the pool in the first place. Only real
+    multi-candidate guesses (two defenders in for one out, three
+    midfielders changing hands the same week, etc.) show up here, and the
+    full candidate pool is shown -- not just whichever one the heuristic
+    picked -- so a same-position rival that lost out and never made it
+    into a reported swap is still visible and pickable.
+
+    Confirmed pairs never show up here: pair_by_position pulls them out
+    of the candidate pool before pairing, so once a group's ambiguity is
+    fully resolved it just stops appearing the next time this is
+    computed. A guess from any past week is exactly as reviewable as one
+    from this week.
     """
     groups = []
     for manager_name, profile in manager_profiles.items():
-        by_key = {}
-        for block in profile.get("transfer_blocks", []):
-            for t in block.get("swaps", []):
-                if not t.get("guessed"):
-                    continue
-                key = (t["gameweek"], t["out_pos"])
-                g = by_key.setdefault(key, {"outs": [], "ins": []})
-                if not any(x["name"] == t["out_name"] for x in g["outs"]):
-                    g["outs"].append({"name": t["out_name"], "club": t["out_club"]})
-                if not any(x["name"] == t["in_name"] for x in g["ins"]):
-                    g["ins"].append({"name": t["in_name"], "club": t["in_club"]})
-        for (gameweek, pos), g in by_key.items():
+        for entry in profile.get("ambiguous_pool", []):
             groups.append({
                 "manager": manager_name,
-                "gameweek": gameweek,
-                "pos": pos,
-                "outs": g["outs"],
-                "ins": g["ins"],
+                "gameweek": entry["gameweek"],
+                "pos": entry["pos"],
+                "outs": [{"name": o["name"], "club": o["club"]} for o in entry["outs"]],
+                "ins": [{"name": i["name"], "club": i["club"]} for i in entry["ins"]],
             })
     groups.sort(key=lambda g: (-g["gameweek"], g["manager"]))
     return groups
@@ -896,9 +911,17 @@ def build_team_of_week(managers, totw_squads):
     }
 
 
-def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_live, prev_live, confirmed_by_manager=None):
+def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_live, prev_live, confirmed_by_manager=None, ambiguous_out=None):
     """Every qualifying transfer swap for the team-of-week gameweek, each
     with the point swing it produced.
+
+    If ambiguous_out is given (a list), every genuinely ambiguous pairing
+    decision this call makes (see pair_by_position) is appended to it as
+    {"manager", "pos", "outs", "ins"} -- the full real candidate pool for
+    that decision, not just whichever pairing got reported below. This is
+    how the Verify swaps panel sees every outstanding guess, including
+    same-position candidates that lost out to a rival guess and never
+    made it into a reported swap at all.
 
     A swap counts regardless of whether the release was mandated by the
     Highest Scorer Rule or entirely voluntary -- what decides whether it
@@ -999,7 +1022,9 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
             continue
 
         confirmed = (confirmed_by_manager or {}).get(manager_name)
-        pairs, _extra_outs, _extra_ins = pair_by_position(outs, ins, confirmed)
+        pairs, _extra_outs, _extra_ins, ambiguous_groups = pair_by_position(outs, ins, confirmed)
+        if ambiguous_out is not None:
+            ambiguous_out.extend({"manager": manager_name, **grp} for grp in ambiguous_groups)
 
         for o, i in pairs:
             if o.get("team_id") not in finished_clubs or i.get("team_id") not in finished_clubs:
@@ -1265,6 +1290,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
     best_transfer = {le: None for le in managers}
     worst_transfer = {le: None for le in managers}
     transfer_log = {le: [] for le in managers}
+    ambiguous_pool = {le: [] for le in managers}
     motw_wins = {le: 0 for le in managers}
     worst_motw_wins = {le: 0 for le in managers}
     totw_appearances = {le: 0 for le in managers}
@@ -1308,8 +1334,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             continue
         if not g_prev_squads_raw:
             continue
+        week_ambiguous = []
         swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live, g_prev_live,
-                                      load_transfer_confirmations(g))
+                                      load_transfer_confirmations(g), week_ambiguous)
         for s in swaps:
             le = by_manager.get(s["manager"])
             if le is None:
@@ -1320,6 +1347,10 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                 best_transfer[le] = tagged
             if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
                 worst_transfer[le] = tagged
+        for entry in week_ambiguous:
+            le = by_manager.get(entry["manager"])
+            if le is not None:
+                ambiguous_pool[le].append({**entry, "gameweek": g})
 
     # Best individual performance, and best/worst transfer, are running
     # records, not a once-a-week competition like Team of the Week or Manager
@@ -1360,8 +1391,9 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             g_prev_squads_raw = load_fn(f"squads_gw{gw - 1}")
             g_prev_live = load_fn(f"live_gw{gw - 1}")
             if g_prev_squads_raw:
+                live_ambiguous = []
                 swaps = build_transfer_swaps(managers, players, live_squads, g_prev_squads_raw, live_gw_data, g_prev_live,
-                                              load_transfer_confirmations(gw))
+                                              load_transfer_confirmations(gw), live_ambiguous)
                 for s in swaps:
                     le = by_manager.get(s["manager"])
                     if le is None:
@@ -1372,6 +1404,10 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
                         best_transfer[le] = tagged
                     if s["diff"] < 0 and (worst_transfer[le] is None or s["diff"] < worst_transfer[le]["diff"]):
                         worst_transfer[le] = tagged
+                for entry in live_ambiguous:
+                    le = by_manager.get(entry["manager"])
+                    if le is not None:
+                        ambiguous_pool[le].append({**entry, "gameweek": gw})
 
     mom_wins = {le: 0 for le in managers}
     worst_mom_wins = {le: 0 for le in managers}
@@ -1421,6 +1457,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             "worst_transfers": worst_transfers,
             "qualifying_transfers": qualifying_transfers,
             "transfer_blocks": group_transfers_by_block(transfer_log[le]),
+            "ambiguous_pool": ambiguous_pool[le],
             "motw_wins": motw_wins[le],
             "worst_motw_wins": worst_motw_wins[le],
             "mom_wins": mom_wins[le],

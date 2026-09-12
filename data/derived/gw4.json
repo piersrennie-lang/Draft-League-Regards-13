@@ -4222,7 +4222,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60307.png",
      "pos": "MID",
      "points": 0,
-     "guessed": true
+     "guessed": false
     }
    ],
    "out": [
@@ -4264,7 +4264,7 @@
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p75115.png",
      "pos": "FWD",
      "points": 0,
-     "guessed": true
+     "guessed": false
     }
    ],
    "count": 5,
@@ -4273,30 +4273,17 @@
  },
  "ambiguous_transfers": [
   {
-   "manager": "Michael Lavarack",
-   "gameweek": 4,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "Janelt",
-     "club": "BRE"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Mitchell",
-     "club": "CRY"
-    }
-   ]
-  },
-  {
    "manager": "Mattato Alcock",
    "gameweek": 3,
-   "pos": "DEF",
+   "pos": "Mixed",
    "outs": [
     {
      "name": "Hall",
      "club": "NEW"
+    },
+    {
+     "name": "F.Kad\u0131o\u011flu",
+     "club": "BHA"
     }
    ],
    "ins": [
@@ -4320,6 +4307,10 @@
     {
      "name": "\u00d8degaard",
      "club": "ARS"
+    },
+    {
+     "name": "Ndiaye",
+     "club": "MCI"
     }
    ]
   },
@@ -4337,6 +4328,10 @@
     {
      "name": "Scott",
      "club": "BOU"
+    },
+    {
+     "name": "Armstrong",
+     "club": "EVE"
     }
    ]
   },
@@ -4348,6 +4343,10 @@
     {
      "name": "Palmer",
      "club": "CHE"
+    },
+    {
+     "name": "Madueke",
+     "club": "ARS"
     }
    ],
    "ins": [
@@ -4551,7 +4550,7 @@
     "in_team_id": 8,
     "in_pos": "DEF",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "loss": 3
    },
    {
@@ -5417,6 +5416,7 @@
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -6191,6 +6191,7 @@
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 1,
    "mom_wins": 0,
@@ -7143,6 +7144,7 @@
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 1,
    "mom_wins": 0,
@@ -8055,6 +8057,42 @@
      ]
     }
    ],
+   "ambiguous_pool": [
+    {
+     "manager": "Mattato Alcock",
+     "pos": "Mixed",
+     "outs": [
+      {
+       "element": 449,
+       "name": "Hall",
+       "pos": "DEF",
+       "club": "NEW",
+       "team_id": 17,
+       "points": 4
+      },
+      {
+       "element": 113,
+       "name": "F.Kad\u0131o\u011flu",
+       "pos": "DEF",
+       "club": "BHA",
+       "team_id": 5,
+       "points": 2
+      }
+     ],
+     "ins": [
+      {
+       "element": 154,
+       "name": "Palmer",
+       "pos": "MID",
+       "club": "CHE",
+       "team_id": 6,
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
+       "points": 1
+      }
+     ],
+     "gameweek": 3
+    }
+   ],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -8921,6 +8959,43 @@
      ]
     }
    ],
+   "ambiguous_pool": [
+    {
+     "manager": "Brad Hill",
+     "pos": "MID",
+     "outs": [
+      {
+       "element": 15,
+       "name": "\u00d8degaard",
+       "pos": "MID",
+       "club": "ARS",
+       "team_id": 1,
+       "points": 3
+      }
+     ],
+     "ins": [
+      {
+       "element": 69,
+       "name": "Scott",
+       "pos": "MID",
+       "club": "BOU",
+       "team_id": 3,
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png",
+       "points": 12
+      },
+      {
+       "element": 244,
+       "name": "Armstrong",
+       "pos": "MID",
+       "club": "EVE",
+       "team_id": 9,
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p609873.png",
+       "points": 2
+      }
+     ],
+     "gameweek": 2
+    }
+   ],
    "motw_wins": 2,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -9647,6 +9722,7 @@
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -10533,6 +10609,7 @@
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -11273,7 +11350,7 @@
      "in_team_id": 8,
      "in_pos": "DEF",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 4
     },
     {
@@ -11355,7 +11432,7 @@
      "in_team_id": 8,
      "in_pos": "DEF",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 4
     }
    ],
@@ -11425,10 +11502,47 @@
        "in_team_id": 8,
        "in_pos": "DEF",
        "diff": -3,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 4
       }
      ]
+    }
+   ],
+   "ambiguous_pool": [
+    {
+     "manager": "Michael Lavarack",
+     "pos": "MID",
+     "outs": [
+      {
+       "element": 14,
+       "name": "Eze",
+       "pos": "MID",
+       "club": "ARS",
+       "team_id": 1,
+       "points": 0
+      }
+     ],
+     "ins": [
+      {
+       "element": 15,
+       "name": "\u00d8degaard",
+       "pos": "MID",
+       "club": "ARS",
+       "team_id": 1,
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
+       "points": 10
+      },
+      {
+       "element": 237,
+       "name": "Ndiaye",
+       "pos": "MID",
+       "club": "MCI",
+       "team_id": 15,
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png",
+       "points": 3
+      }
+     ],
+     "gameweek": 3
     }
    ],
    "motw_wins": 1,
@@ -12311,6 +12425,42 @@
        "gameweek": 4
       }
      ]
+    }
+   ],
+   "ambiguous_pool": [
+    {
+     "manager": "Roscoe Hill",
+     "pos": "MID",
+     "outs": [
+      {
+       "element": 154,
+       "name": "Palmer",
+       "pos": "MID",
+       "club": "CHE",
+       "team_id": 6,
+       "points": 7
+      },
+      {
+       "element": 16,
+       "name": "Madueke",
+       "pos": "MID",
+       "club": "ARS",
+       "team_id": 1,
+       "points": 0
+      }
+     ],
+     "ins": [
+      {
+       "element": 335,
+       "name": "Stach",
+       "pos": "MID",
+       "club": "LEE",
+       "team_id": 13,
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466525.png",
+       "points": 4
+      }
+     ],
+     "gameweek": 2
     }
    ],
    "motw_wins": 0,
@@ -13209,6 +13359,7 @@
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -13256,7 +13407,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60307.png",
        "pos": "MID",
        "points": 0,
-       "guessed": true
+       "guessed": false
       }
      ],
      "out": [
@@ -13298,7 +13449,7 @@
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p75115.png",
        "pos": "FWD",
        "points": 0,
-       "guessed": true
+       "guessed": false
       }
      ]
     },
@@ -14197,7 +14348,7 @@
     "in_team_id": 8,
     "in_pos": "DEF",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 4
    }
   ]
