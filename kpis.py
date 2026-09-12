@@ -812,7 +812,12 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
     A manager who made several swaps at once can't be traced to which in
     replaced which out -- the picks endpoint doesn't carry that, only the
     before/after squad. Paired same position first (the likeliest real
-    swap), any leftover by score rank.
+    swap), any leftover by score rank -- using every real out/in that
+    week regardless of finished status, so a still-in-progress leg
+    doesn't get excluded from pairing and cause its genuine partner to
+    be force-paired with an unrelated leftover instead. Only once a
+    pair is formed does each side's own finished-club check decide
+    whether that pair is ready to report yet.
     """
     if not prev_squads_raw or not totw_squads:
         return []
@@ -844,12 +849,20 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         prev_xi_ids = {p["element"] for p in prev_picks if p.get("position", 99) <= 11}
         curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
 
+        # Pairing uses every real out/in this manager made this week,
+        # regardless of whether each side's club fixture has finished yet --
+        # the position-first heuristic below needs the whole picture to
+        # have a chance at guessing the true pairing correctly. Gating on
+        # finished_clubs here (before pairing) would silently drop a
+        # still-in-progress leg from the pool, leaving its genuine partner
+        # to get force-paired with some unrelated leftover from a
+        # different swap instead (a real "Mateta -> Emerson" reading as
+        # "Fernandes -> Emerson" because Mateta's own match just hadn't
+        # finished yet). Whether a pair is actually ready to report is
+        # decided afterwards, once pairing is done.
         outs = [describe(eid) for eid in prev_ids - curr_ids
-                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0
-                and players.get(eid, {}).get("team_id") in finished_clubs]
-        ins = [row for row in squad["xi"]
-               if row["element"] not in prev_ids
-               and row.get("team_id") in finished_clubs]
+                if eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0]
+        ins = [row for row in squad["xi"] if row["element"] not in prev_ids]
         if not outs or not ins:
             continue
 
@@ -866,6 +879,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         pairs.extend(zip(rem_outs, rem_ins))
 
         for o, i in pairs:
+            if o.get("team_id") not in finished_clubs or i.get("team_id") not in finished_clubs:
+                continue  # not both sides final yet -- not ready to report
             swaps.append({
                 "manager": manager_name,
                 "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],
