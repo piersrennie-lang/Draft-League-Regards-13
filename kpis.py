@@ -90,32 +90,74 @@ def _pair_sort_key(p):
     return (-p.get("points", 0), p["name"])
 
 
-def pair_by_position(outs, ins):
-    """Order two {..., "pos": ..., "points": ...} lists so index i is a
-    guessed pair -- same position first (the likeliest real swap), ranked
-    by that gameweek's points same as build_transfer_swaps (so this
-    display order agrees with the scored best/worst-transfer tables
-    instead of contradicting them), any leftover paired by whatever's
-    left. Used purely to line up display order: without this, a
-    manager's "in" and "out" columns are each sorted alphabetically on
-    their own, so a striker picked up can end up sitting next to an
-    unrelated defender released that week -- lining up by coincidence,
-    not because they were actually swapped for each other.
+def pair_by_position(outs, ins, confirmed=None):
+    """Guess which "out" paired with which "in", same position first (the
+    likeliest real swap), ranked by that gameweek's points, any leftover
+    paired by whatever's left -- used both to order the transfers-page
+    display and, via build_transfer_swaps, to decide which specific swap
+    a points swing gets credited to.
+
+    confirmed is an optional list of (out_name, in_name) tuples already
+    verified against the FPL Draft app's own trade/waiver history (see
+    load_transfer_confirmations) -- the one source of truth for this,
+    since the transactions endpoint itself is unreachable from a cloud
+    runner. Those pairs are pulled out first and used exactly as given.
+
+    Returns (pairs, extra_outs, extra_ins): pairs is a list of (out, in)
+    dicts, each with a "guessed" flag added -- False for a confirmed pair
+    or a position group with exactly one out and one in that week
+    (nothing to guess between), True anywhere the heuristic had to pick
+    among multiple same-position candidates or pair across positions.
+    extra_outs/extra_ins are any leftover, unmatched entries when the
+    real counts of outs and ins this week weren't equal.
     """
-    pairs = []
     rem_outs, rem_ins = list(outs), list(ins)
+    pairs = []
+    for out_name, in_name in (confirmed or []):
+        o = next((x for x in rem_outs if x["name"] == out_name), None)
+        i = next((x for x in rem_ins if x["name"] == in_name), None)
+        if o is not None and i is not None:
+            pairs.append((o, i, False))
+            rem_outs.remove(o)
+            rem_ins.remove(i)
+
     for pos in ("GKP", "DEF", "MID", "FWD"):
         pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=_pair_sort_key)
         pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=_pair_sort_key)
+        guessed = len(pos_outs) > 1 or len(pos_ins) > 1
         for o, i in zip(pos_outs, pos_ins):
-            pairs.append((o, i))
+            pairs.append((o, i, guessed))
             rem_outs.remove(o)
             rem_ins.remove(i)
     rem_outs.sort(key=_pair_sort_key)
     rem_ins.sort(key=_pair_sort_key)
     n = min(len(rem_outs), len(rem_ins))
-    pairs.extend(zip(rem_outs[:n], rem_ins[:n]))
-    return [o for o, _ in pairs] + rem_outs[n:], [i for _, i in pairs] + rem_ins[n:]
+    pairs.extend((o, i, True) for o, i in zip(rem_outs[:n], rem_ins[:n]))
+
+    tagged_pairs = [({**o, "guessed": g}, {**i, "guessed": g}) for o, i, g in pairs]
+    extra_outs = [{**o, "guessed": True} for o in rem_outs[n:]]
+    extra_ins = [{**i, "guessed": True} for i in rem_ins[n:]]
+    return tagged_pairs, extra_outs, extra_ins
+
+
+def load_transfer_confirmations(gw):
+    """Manually confirmed real transfer pairings for one gameweek, for
+    whenever the position-matching heuristic above had to guess among
+    several same-position candidates. The FPL Draft app's own trade/
+    waiver history is the one source of truth here -- unreachable from a
+    cloud runner (see build_transactions), so this has to be checked by
+    hand and dropped into data/manual/gw{n}_transfers.json as a list of
+    {"manager", "out", "in"}. Once an entry exists for a pair, it's used
+    exactly as given and its "guessed" flag clears, whether it turns out
+    to confirm the heuristic's original guess or correct it.
+    """
+    path = ROOT / "data" / "manual" / f"gw{gw}_transfers.json"
+    if not path.exists():
+        return {}
+    by_manager = {}
+    for r in json.loads(path.read_text()):
+        by_manager.setdefault(r["manager"], []).append((r["out"], r["in"]))
+    return by_manager
 
 
 def live_points(live):
@@ -669,7 +711,7 @@ def build_transactions(managers, raw, event, players):
     return out
 
 
-def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None):
+def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None):
     """Approximate transfers by diffing two gameweeks' full squads.
 
     The transactions endpoint is unreachable from a cloud runner, but the
@@ -688,6 +730,8 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
     cases rank the same way build_transfer_swaps does, so this table
     agrees with the scored best/worst-transfer tables instead of
     occasionally guessing a different pairing for the same real moves.
+    confirmed_by_manager (see load_transfer_confirmations) pins any
+    pairing that's been manually verified against the real thing.
     """
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
     out = {le: {"in": [], "out": [], "count": 0} for le in managers}
@@ -708,19 +752,20 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
         curr_ids = {p["element"] for p in curr_picks}
         ins = [describe_player(e, players, pts) for e in curr_ids - prev_ids]
         outs = [describe_player(e, players, pts) for e in prev_ids - curr_ids]
-        paired_outs, paired_ins = pair_by_position(outs, ins)
+        confirmed = (confirmed_by_manager or {}).get(managers[le]["manager"])
+        pairs, extra_outs, extra_ins = pair_by_position(outs, ins, confirmed)
         out[le] = {
-            "in": paired_ins,
-            "out": paired_outs,
+            "in": [i for _, i in pairs] + extra_ins,
+            "out": [o for o, _ in pairs] + extra_outs,
             "count": max(len(ins), len(outs)),
         }
     return out
 
 
-def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None):
+def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None):
     """Prefer FPL's own transaction record; fall back to the squad diff."""
     real = build_transactions(managers, raw_transactions, event, players)
-    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts)
+    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts, confirmed_by_manager)
     out = {}
     for le in managers:
         r, i = real[le], inferred[le]
@@ -747,7 +792,8 @@ def build_transfer_history(managers, players, raw_transactions, load_fn, gw):
         if not curr_squads_raw or not prev_squads_raw:
             continue
         week_pts = live_points(load_fn(f"live_gw{g}"))
-        week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw, week_pts)
+        week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw,
+                                week_pts, load_transfer_confirmations(g))
         for le, t in week.items():
             if t["count"]:
                 history[le].append({"gameweek": g, "in": t["in"], "out": t["out"]})
@@ -813,7 +859,7 @@ def build_team_of_week(managers, totw_squads):
     }
 
 
-def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_live, prev_live):
+def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_live, prev_live, confirmed_by_manager=None):
     """Every qualifying transfer swap for the team-of-week gameweek, each
     with the point swing it produced.
 
@@ -856,13 +902,17 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
 
     A manager who made several swaps at once can't be traced to which in
     replaced which out -- the picks endpoint doesn't carry that, only the
-    before/after squad. Paired same position first (the likeliest real
-    swap), any leftover by score rank -- using every real out/in that
-    week regardless of finished status, so a still-in-progress leg
-    doesn't get excluded from pairing and cause its genuine partner to
-    be force-paired with an unrelated leftover instead. Only once a
-    pair is formed does each side's own finished-club check decide
-    whether that pair is ready to report yet.
+    before/after squad. pair_by_position guesses (same position first,
+    the likeliest real swap; any leftover by score rank), using every
+    real out/in that week regardless of finished status, so a still-
+    in-progress leg doesn't get excluded from pairing and cause its
+    genuine partner to be force-paired with an unrelated leftover
+    instead. Only once a pair is formed does each side's own
+    finished-club check decide whether that pair is ready to report
+    yet. Each reported swap carries the same "guessed" flag
+    pair_by_position produces, and confirmed_by_manager (see
+    load_transfer_confirmations) pins any pairing that's been manually
+    verified against the real thing.
     """
     if not prev_squads_raw or not totw_squads:
         return []
@@ -911,17 +961,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         if not outs or not ins:
             continue
 
-        pairs, rem_outs, rem_ins = [], list(outs), list(ins)
-        for pos in ("GKP", "DEF", "MID", "FWD"):
-            pos_outs = sorted((o for o in rem_outs if o["pos"] == pos), key=_pair_sort_key)
-            pos_ins = sorted((i for i in rem_ins if i["pos"] == pos), key=_pair_sort_key)
-            for o, i in zip(pos_outs, pos_ins):
-                pairs.append((o, i))
-                rem_outs.remove(o)
-                rem_ins.remove(i)
-        rem_outs.sort(key=_pair_sort_key)
-        rem_ins.sort(key=_pair_sort_key)
-        pairs.extend(zip(rem_outs, rem_ins))
+        confirmed = (confirmed_by_manager or {}).get(manager_name)
+        pairs, _extra_outs, _extra_ins = pair_by_position(outs, ins, confirmed)
 
         for o, i in pairs:
             if o.get("team_id") not in finished_clubs or i.get("team_id") not in finished_clubs:
@@ -933,6 +974,7 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
                 "in_name": i["name"], "in_club": i["club"], "in_points": i["points"],
                 "in_team_id": i.get("team_id"),
                 "diff": i["points"] - o["points"],
+                "guessed": o["guessed"],
             })
     return swaps
 
@@ -1229,7 +1271,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             continue
         if not g_prev_squads_raw:
             continue
-        swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live, g_prev_live)
+        swaps = build_transfer_swaps(managers, players, squads, g_prev_squads_raw, g_live, g_prev_live,
+                                      load_transfer_confirmations(g))
         for s in swaps:
             le = by_manager.get(s["manager"])
             if le is None:
@@ -1280,7 +1323,8 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
             g_prev_squads_raw = load_fn(f"squads_gw{gw - 1}")
             g_prev_live = load_fn(f"live_gw{gw - 1}")
             if g_prev_squads_raw:
-                swaps = build_transfer_swaps(managers, players, live_squads, g_prev_squads_raw, live_gw_data, g_prev_live)
+                swaps = build_transfer_swaps(managers, players, live_squads, g_prev_squads_raw, live_gw_data, g_prev_live,
+                                              load_transfer_confirmations(gw))
                 for s in swaps:
                     le = by_manager.get(s["manager"])
                     if le is None:
@@ -1539,7 +1583,8 @@ def main():
     # the Week track gw directly and live -- using the same live/projected
     # scores standings already shows -- rather than waiting for the
     # gameweek to fully settle.
-    transfer_swaps = build_transfer_swaps(managers, players, squads, prev_squads_raw, live, prev_live)
+    confirmed_transfers = load_transfer_confirmations(gw)
+    transfer_swaps = build_transfer_swaps(managers, players, squads, prev_squads_raw, live, prev_live, confirmed_transfers)
     best_transfers, worst_transfers = best_and_worst_transfers(transfer_swaps, limit=5)
 
     manager_of_week = build_manager_of_week(
@@ -1595,7 +1640,8 @@ def main():
         "standings": standings,
         "next_fixtures": build_next_fixtures(details, managers, gw),
         "transfers": {str(k): v for k, v in build_transfers(
-            managers, players, raw_transactions, gw, prev_squads_raw, squads_raw, live_points(live)).items()},
+            managers, players, raw_transactions, gw, prev_squads_raw, squads_raw,
+            live_points(live), confirmed_transfers).items()},
         "team_of_week": {
             "gameweek": totw_gw,
             "players": (team_of_week or {}).get("players", []),

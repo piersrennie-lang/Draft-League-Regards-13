@@ -187,7 +187,7 @@
           {% for t in profile.best_transfers %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.swap_desc(t.out_name, t.in_name, t.gameweek) }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name, t.gameweek, t.guessed) }}</td>
             <td class="num gain">+{{ t.diff }}</td>
           </tr>
           {% endfor %}
@@ -209,7 +209,7 @@
           {% for t in profile.worst_transfers %}
           <tr>
             <td class="mute">{{ loop.index }}</td>
-            <td>{{ macros.swap_desc(t.out_name, t.in_name, t.gameweek) }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name, t.gameweek, t.guessed) }}</td>
             <td class="num cost">{{ t.diff }}</td>
           </tr>
           {% endfor %}

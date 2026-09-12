@@ -82,7 +82,7 @@
           {% for t in d.transfers_of_week.best_transfers %}
           <tr>
             <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
-            <td>{{ macros.swap_desc(t.out_name, t.in_name) }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name, none, t.guessed) }}</td>
             <td class="num gain">+{{ t.diff }}</td>
           </tr>
           {% endfor %}
@@ -105,7 +105,7 @@
           {% for t in d.transfers_of_week.worst_transfers %}
           <tr>
             <td>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
-            <td>{{ macros.swap_desc(t.out_name, t.in_name) }}</td>
+            <td>{{ macros.swap_desc(t.out_name, t.in_name, none, t.guessed) }}</td>
             <td class="num cost">{{ t.diff }}</td>
           </tr>
           {% endfor %}
@@ -132,7 +132,7 @@
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
-            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
+            <td class="wrap">{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek, row.guessed) }}</td>
             <td class="num gain">+{{ row.diff }}</td>
           </tr>
           {% endfor %}
@@ -155,7 +155,7 @@
           <tr>
             <td class="mute">{{ loop.index }}</td>
             <td>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
-            <td>{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek) }}</td>
+            <td class="wrap">{{ macros.swap_desc(row.out_name, row.in_name, row.gameweek, row.guessed) }}</td>
             <td class="num cost">{{ row.diff }}</td>
           </tr>
           {% endfor %}

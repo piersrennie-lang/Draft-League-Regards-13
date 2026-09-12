@@ -507,13 +507,15 @@ p.strong { margin: 0 0 8px; font-weight: 600; font-size: var(--t-body); }
 }
 
 .flag {
-  margin-left: 0.4rem;
+  margin-top: 0.2rem;
   padding: 0.1rem 0.3rem;
   font: 500 var(--t-meta) var(--sans);
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--down);
   border: 1px solid currentColor;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 /* --------------------------------------------------------------- breach */

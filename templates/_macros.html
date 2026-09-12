@@ -43,8 +43,8 @@
 <td class="num {{ 'gain' if n > 0 else 'cost' if n < 0 else 'mute' }}">{% if manager_name %}<a class="manager-link" href="manager-{{ manager_name|slug }}-transfers{{ '-' ~ page_suffix if page_suffix else '' }}.html">{% endif %}{{ '+' if n > 0 }}{{ n }}{% if manager_name %}</a>{% endif %}</td>
 {%- endmacro %}
 
-{% macro swap_desc(out_name, in_name, gameweek=none) -%}
-{{ out_name }} &rarr; {{ in_name }}{% if gameweek %} &middot; GW{{ gameweek }}{% endif %}
+{% macro swap_desc(out_name, in_name, gameweek=none, guessed=false) -%}
+{{ out_name }} &rarr; {{ in_name }}{% if gameweek %} &middot; GW{{ gameweek }}{% endif %}{% if guessed %}<div class="flag" title="Position-matched guess -- FPL Draft doesn't expose which release paired with which pickup, so this isn't confirmed.">Guess</div>{% endif %}
 {%- endmacro %}
 
 {% macro transfer_swap_table(swaps) -%}
@@ -55,7 +55,7 @@
   <tbody>
     {% for s in swaps %}
     <tr>
-      <td>{{ swap_desc(s.out_name, s.in_name, s.gameweek) }}</td>
+      <td>{{ swap_desc(s.out_name, s.in_name, s.gameweek, s.guessed) }}</td>
       {{ transfer_points_cell(s.diff) }}
     </tr>
     {% endfor %}
