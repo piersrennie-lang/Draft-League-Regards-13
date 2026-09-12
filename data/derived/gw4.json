@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-12T19:23:08Z",
+  "fetched_at": "2026-09-12T19:31:18Z",
   "transaction_mode": "processing",
   "scoring": "h"
  },
@@ -113,7 +113,7 @@
    "home_name": "Mattato Alcock",
    "away_name": "Stefano Babiolakis",
    "home_points": 29,
-   "away_points": 9,
+   "away_points": 14,
    "home_remaining": 5,
    "away_remaining": 5,
    "started": true,
@@ -475,7 +475,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 1
+     "points": 4
     },
     {
      "element": 338,
@@ -529,10 +529,10 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
-     "points": 1
+     "points": 3
     }
    ],
-   "effective_xi_points": 9,
+   "effective_xi_points": 14,
    "autosubs": [
     {
      "player_out": 198,
@@ -553,6 +553,15 @@
      "points": 4
     },
     {
+     "element": 13,
+     "name": "Rice",
+     "pos": "MID",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
+     "points": 4
+    },
+    {
      "element": 401,
      "name": "Marmoush",
      "pos": "FWD",
@@ -568,15 +577,6 @@
      "club": "HUL",
      "team_id": 11,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p146426.png",
-     "points": 1
-    },
-    {
-     "element": 13,
-     "name": "Rice",
-     "pos": "MID",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
      "points": 1
     },
     {
@@ -651,7 +651,7 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
-     "points": 1
+     "points": 3
     },
     {
      "element": 452,
@@ -681,8 +681,8 @@
      "points": 0
     }
    ],
-   "xi_points": 8,
-   "bench_points": 1,
+   "xi_points": 11,
+   "bench_points": 3,
    "best_bench": {
     "element": 529,
     "name": "Roefs",
@@ -690,10 +690,10 @@
     "club": "SUN",
     "team_id": 20,
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
-    "points": 1
+    "points": 3
    },
    "blanks": 7,
-   "wasted": 1
+   "wasted": 3
   },
   "209435": {
    "effective_xi": [
@@ -1946,7 +1946,7 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png",
-     "points": 1
+     "points": 2
     },
     {
      "element": 552,
@@ -1977,7 +1977,7 @@
     }
    ],
    "xi_points": 17,
-   "bench_points": 2,
+   "bench_points": 3,
    "best_bench": {
     "element": 544,
     "name": "Xhaka",
@@ -1985,10 +1985,10 @@
     "club": "SUN",
     "team_id": 20,
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png",
-    "points": 1
+    "points": 2
    },
    "blanks": 4,
-   "wasted": 2
+   "wasted": 3
   },
   "259835": {
    "effective_xi": [
@@ -2941,12 +2941,23 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
    "release_club": "BRE",
    "release_points": 4,
-   "tie": [],
+   "tie": [
+    {
+     "name": "M.Sangar\u00e9",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+     "club": "BRE"
+    },
+    {
+     "name": "Rice",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
+     "club": "ARS"
+    }
+   ],
    "next": "Marmoush",
    "next_points": 2,
    "next_tie": [],
-   "score": 8,
-   "cost_pct": 50.0,
+   "score": 11,
+   "cost_pct": 36.4,
    "h2h": null
   }
  ],
@@ -3043,6 +3054,33 @@
    "h2h": null
   },
   {
+   "league_entry": 208632,
+   "manager": "Stefano Babiolakis",
+   "team": "Iraola Coaster",
+   "release": "M.Sangar\u00e9",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+   "release_club": "BRE",
+   "release_points": 4,
+   "tie": [
+    {
+     "name": "M.Sangar\u00e9",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+     "club": "BRE"
+    },
+    {
+     "name": "Rice",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
+     "club": "ARS"
+    }
+   ],
+   "next": "Marmoush",
+   "next_points": 2,
+   "next_tie": [],
+   "score": 11,
+   "cost_pct": 36.4,
+   "h2h": null
+  },
+  {
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
@@ -3106,22 +3144,6 @@
    "next_points": 6,
    "next_tie": [],
    "score": 24,
-   "cost_pct": 50.0,
-   "h2h": null
-  },
-  {
-   "league_entry": 208632,
-   "manager": "Stefano Babiolakis",
-   "team": "Iraola Coaster",
-   "release": "M.Sangar\u00e9",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
-   "release_club": "BRE",
-   "release_points": 4,
-   "tie": [],
-   "next": "Marmoush",
-   "next_points": 2,
-   "next_tie": [],
-   "score": 8,
    "cost_pct": 50.0,
    "h2h": null
   }
@@ -3485,10 +3507,10 @@
    "d": 0,
    "l": 3,
    "for": 139,
-   "against": 138,
+   "against": 143,
    "played": 4,
    "points": 3,
-   "diff": 1,
+   "diff": -4,
    "history": [
     {
      "event": 1,
@@ -3514,7 +3536,7 @@
     {
      "event": 4,
      "pts": 29,
-     "against": 9,
+     "against": 14,
      "opp": 208632,
      "result": "W"
     }
@@ -3530,11 +3552,11 @@
    "w": 0,
    "d": 1,
    "l": 3,
-   "for": 107,
+   "for": 112,
    "against": 140,
    "played": 4,
    "points": 1,
-   "diff": -33,
+   "diff": -28,
    "history": [
     {
      "event": 1,
@@ -3559,7 +3581,7 @@
     },
     {
      "event": 4,
-     "pts": 9,
+     "pts": 14,
      "against": 29,
      "opp": 242301,
      "result": "L"
@@ -4273,7 +4295,7 @@
   "worst": [
    {
     "manager": "Stefano Babiolakis",
-    "points": 9,
+    "points": 14,
     "transfer_points": 0
    },
    {
@@ -4353,7 +4375,7 @@
     },
     {
      "manager": "Stefano Babiolakis",
-     "points": 99,
+     "points": 104,
      "transfer_points": -8
     }
    ]
@@ -4406,7 +4428,7 @@
    },
    {
     "manager": "Stefano Babiolakis",
-    "points": 99,
+    "points": 104,
     "transfer_points": -8
    }
   ],
@@ -5141,9 +5163,9 @@
     {
      "gameweek": 4,
      "opponent": "Mattato Alcock",
-     "points": 9,
+     "points": 14,
      "against": 29,
-     "margin": -20,
+     "margin": -15,
      "result": "L"
     },
     {
@@ -5174,7 +5196,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Mattato Alcock",
-    "points": 9,
+    "points": 14,
     "against": 29,
     "started": true,
     "live": true
@@ -5321,9 +5343,9 @@
    "biggest_loss": {
     "gameweek": 4,
     "opponent": "Mattato Alcock",
-    "points": 9,
+    "points": 14,
     "against": 29,
-    "margin": -20,
+    "margin": -15,
     "result": "L"
    },
    "highest_scores": [
@@ -5354,9 +5376,9 @@
     {
      "gameweek": 4,
      "opponent": "Mattato Alcock",
-     "points": 9,
+     "points": 14,
      "against": 29,
-     "margin": -20,
+     "margin": -15,
      "result": "L"
     }
    ],
@@ -5364,9 +5386,9 @@
     {
      "gameweek": 4,
      "opponent": "Mattato Alcock",
-     "points": 9,
+     "points": 14,
      "against": 29,
-     "margin": -20,
+     "margin": -15,
      "result": "L"
     },
     {
@@ -6734,8 +6756,8 @@
      "gameweek": 4,
      "opponent": "Stefano Babiolakis",
      "points": 29,
-     "against": 9,
-     "margin": 20,
+     "against": 14,
+     "margin": 15,
      "result": "W"
     },
     {
@@ -6767,7 +6789,7 @@
     "gameweek": 4,
     "opponent": "Stefano Babiolakis",
     "points": 29,
-    "against": 9,
+    "against": 14,
     "started": true,
     "live": true
    },
@@ -6913,8 +6935,8 @@
     "gameweek": 4,
     "opponent": "Stefano Babiolakis",
     "points": 29,
-    "against": 9,
-    "margin": 20,
+    "against": 14,
+    "margin": 15,
     "result": "W"
    },
    "biggest_loss": {
@@ -6954,8 +6976,8 @@
      "gameweek": 4,
      "opponent": "Stefano Babiolakis",
      "points": 29,
-     "against": 9,
-     "margin": 20,
+     "against": 14,
+     "margin": 15,
      "result": "W"
     }
    ],
@@ -6964,8 +6986,8 @@
      "gameweek": 4,
      "opponent": "Stefano Babiolakis",
      "points": 29,
-     "against": 9,
-     "margin": 20,
+     "against": 14,
+     "margin": 15,
      "result": "W"
     },
     {
@@ -12385,21 +12407,21 @@
     "result": "W"
    },
    {
-    "manager": "Mattato Alcock",
-    "gameweek": 4,
-    "opponent": "Stefano Babiolakis",
-    "points": 29,
-    "against": 9,
-    "margin": 20,
-    "result": "W"
-   },
-   {
     "manager": "Mark Stone",
     "gameweek": 3,
     "opponent": "Matthew Xenakis",
     "points": 51,
     "against": 33,
     "margin": 18,
+    "result": "W"
+   },
+   {
+    "manager": "Mattato Alcock",
+    "gameweek": 4,
+    "opponent": "Stefano Babiolakis",
+    "points": 29,
+    "against": 14,
+    "margin": 15,
     "result": "W"
    },
    {
@@ -12948,12 +12970,12 @@
     "avg_against": 34.2
    },
    {
-    "manager": "Mattato Alcock",
-    "avg_against": 34.5
-   },
-   {
     "manager": "Brad Hill",
     "avg_against": 34.8
+   },
+   {
+    "manager": "Stefano Babiolakis",
+    "avg_against": 35.0
    }
   ],
   "unluckiest": [
@@ -12974,11 +12996,11 @@
     "avg_against": 36.2
    },
    {
-    "manager": "Stefano Babiolakis",
-    "avg_against": 35.0
+    "manager": "Mattato Alcock",
+    "avg_against": 35.8
    }
   ],
-  "average": 36.0
+  "average": 36.2
  },
  "pot": {
   "base": 200,
