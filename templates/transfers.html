@@ -123,10 +123,12 @@
   <h3 class="eyebrow eyebrow--sm">Verify swaps</h3>
   <p class="lede lede--tight">Several of this week's swaps have more than one plausible pairing (two or
   more same-position players in or out for one manager the same week), so the site had to guess. If you
-  know the real pairing &mdash; check the FPL Draft app &mdash; verify it below.</p>
+  know the real pairing &mdash; check the FPL Draft app &mdash; verify it below. Only the last one needs
+  picking out manually &mdash; once the rest are set, whoever's left over is worked out automatically.</p>
   <div class="profile-grid">
     {% for g in d.ambiguous_transfers %}
-    <div class="profile-panel verify-card" data-manager="{{ g.manager }}">
+    <div class="profile-panel verify-card" data-manager="{{ g.manager }}" data-gw="{{ gw }}"
+         data-ins="{{ g.ins|map(attribute='name')|join('|') }}">
       <p class="strong">{{ macros.manager(g.manager, avatars, manager_colors) }} <span class="mute">&middot; {{ g.pos }}</span></p>
       <button class="btn verify-btn" type="button">Verify</button>
       <div class="verify-gate" hidden>
@@ -136,7 +138,7 @@
         <p class="verify-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Wrong code.</p>
       </div>
       <div class="verify-form" hidden>
-        {% for o in g.outs %}
+        {% for o in g.outs[:-1] %}
         <div class="verify-row" data-out="{{ o.name }}" style="margin-top:0.6rem;">
           <span>{{ o.name }} &rarr;</span>
           <select class="gw-select verify-select">
@@ -147,9 +149,15 @@
           </select>
         </div>
         {% endfor %}
-        <button class="btn verify-copy" type="button" style="margin-top:0.8rem;">Copy confirmation</button>
+        {% if g.outs|length > 1 %}
+        <p class="verify-remainder mute" data-out="{{ g.outs[-1].name }}" style="margin-top:0.6rem;">{{ g.outs[-1].name }} &rarr;
+          <span class="verify-remainder-value" data-value="">pick the others first</span>
+        </p>
+        {% endif %}
+        <button class="btn verify-submit" type="button" style="margin-top:0.8rem;">Submit confirmation</button>
         <p class="verify-copy-error mute" hidden style="color:var(--down); margin-top:0.4rem;">Pick a different &ldquo;in&rdquo; for every row first.</p>
-        <p class="verify-copied mute" hidden style="margin-top:0.4rem;">Copied &mdash; paste this to Claude to apply it.</p>
+        <p class="verify-submitted mute" hidden style="margin-top:0.4rem;">Opened a GitHub issue &mdash; hit
+        &ldquo;Submit new issue&rdquo; there and the site will pick it up within a couple of minutes.</p>
       </div>
     </div>
     {% endfor %}
@@ -158,6 +166,7 @@
   <script>
   (function () {
     var CODE = "2601";
+    var REPO = "piersrennie-lang/Draft-League-Regards-13";
     document.querySelectorAll(".verify-card").forEach(function (card) {
       var btn = card.querySelector(".verify-btn");
       var gate = card.querySelector(".verify-gate");
@@ -165,9 +174,13 @@
       var codeInput = card.querySelector(".verify-code");
       var unlockBtn = card.querySelector(".verify-unlock");
       var errorEl = card.querySelector(".verify-error");
-      var copyBtn = card.querySelector(".verify-copy");
+      var submitBtn = card.querySelector(".verify-submit");
       var copyErrorEl = card.querySelector(".verify-copy-error");
-      var copiedEl = card.querySelector(".verify-copied");
+      var submittedEl = card.querySelector(".verify-submitted");
+      var remainderEl = card.querySelector(".verify-remainder");
+      var remainderValueEl = card.querySelector(".verify-remainder-value");
+      var allIns = card.dataset.ins.split("|");
+      var selects = Array.prototype.slice.call(card.querySelectorAll(".verify-select"));
 
       btn.addEventListener("click", function () {
         btn.hidden = true;
@@ -191,23 +204,44 @@
         errorEl.hidden = true;
       });
 
-      copyBtn.addEventListener("click", function () {
+      function updateRemainder() {
+        if (!remainderEl) return;
+        var chosen = selects.map(function (s) { return s.value; }).filter(Boolean);
+        var remaining = allIns.filter(function (v) { return chosen.indexOf(v) === -1; });
+        if (chosen.length === selects.length && remaining.length === 1) {
+          remainderValueEl.textContent = remaining[0];
+          remainderValueEl.dataset.value = remaining[0];
+        } else {
+          remainderValueEl.textContent = "pick the others first";
+          remainderValueEl.dataset.value = "";
+        }
+      }
+      selects.forEach(function (s) { s.addEventListener("change", updateRemainder); });
+
+      submitBtn.addEventListener("click", function () {
         var manager = card.dataset.manager;
+        var gw = card.dataset.gw;
         var rows = Array.prototype.slice.call(form.querySelectorAll(".verify-row"));
         var picks = rows.map(function (r) {
-          return { manager: manager, out: r.dataset.out, in: r.querySelector(".verify-select").value };
+          return { manager: manager, out: r.dataset.out, in: r.querySelector(".verify-select").value, gw: Number(gw) };
         });
+        if (remainderEl) {
+          picks.push({ manager: manager, out: remainderEl.dataset.out, in: remainderValueEl.dataset.value, gw: Number(gw) });
+        }
         var chosenIns = picks.map(function (p) { return p.in; }).filter(Boolean);
         var hasDupes = chosenIns.some(function (v, idx) { return chosenIns.indexOf(v) !== idx; });
         if (picks.some(function (p) { return !p.in; }) || hasDupes) {
           copyErrorEl.hidden = false;
-          copiedEl.hidden = true;
+          submittedEl.hidden = true;
           return;
         }
         copyErrorEl.hidden = true;
-        navigator.clipboard.writeText(JSON.stringify(picks, null, 1)).then(function () {
-          copiedEl.hidden = false;
-        });
+        var title = "Transfer confirmation: GW" + gw + " " + manager;
+        var body = "```json\n" + JSON.stringify(picks, null, 1) + "\n```";
+        var url = "https://github.com/" + REPO + "/issues/new?title=" + encodeURIComponent(title) +
+                   "&body=" + encodeURIComponent(body);
+        window.open(url, "_blank");
+        submittedEl.hidden = false;
       });
     });
   })();

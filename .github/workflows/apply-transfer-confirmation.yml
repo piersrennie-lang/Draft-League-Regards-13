@@ -1,0 +1,104 @@
+name: Apply transfer confirmation
+
+# Fired by the "Verify swaps" panel on the Transfers page: clicking Submit
+# there opens a pre-filled GitHub issue (title "Transfer confirmation: GW...")
+# with a ```json block of {manager, out, in, gw} entries. This workflow
+# applies them straight into data/manual/gw{n}_transfers.json and closes the
+# issue -- no manual step, no exposed credential (only the default,
+# repo-scoped GITHUB_TOKEN is used, entirely server-side).
+#
+# The normal roundup.yml cron (every ~2 minutes) picks up the updated manual
+# file on its own next run and rebuilds/redeploys, so nothing here needs to
+# trigger a build itself.
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  apply:
+    if: startsWith(github.event.issue.title, 'Transfer confirmation:')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate author, parse, and apply
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            // Only the league organiser can submit a confirmation -- this
+            // repo is public, so anyone could otherwise open a similarly
+            // titled issue.
+            const allowed = ["piersrennie-lang"];
+
+            async function reject(msg) {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: issue.number, body: msg });
+              await github.rest.issues.update({ ...context.repo, issue_number: issue.number, state: "closed" });
+            }
+
+            if (!allowed.includes(issue.user.login)) {
+              await reject(`Not applied: only ${allowed.join(", ")} can submit transfer confirmations.`);
+              return;
+            }
+
+            const match = issue.body.match(/```json\s*([\s\S]*?)```/);
+            if (!match) {
+              await reject("Not applied: could not find a ```json block in the issue body.");
+              return;
+            }
+
+            let entries;
+            try {
+              entries = JSON.parse(match[1]);
+            } catch (e) {
+              await reject(`Not applied: invalid JSON (${e.message}).`);
+              return;
+            }
+
+            const byGw = {};
+            for (const e of entries || []) {
+              if (!e || !e.manager || !e.out || !e.in || !e.gw) continue;
+              (byGw[e.gw] = byGw[e.gw] || []).push({ manager: e.manager, out: e.out, in: e.in });
+            }
+            if (Object.keys(byGw).length === 0) {
+              await reject("Not applied: no valid {manager, out, in, gw} entries found.");
+              return;
+            }
+
+            const summaryLines = [];
+            for (const [gw, adds] of Object.entries(byGw)) {
+              const path = `data/manual/gw${gw}_transfers.json`;
+              let current = [];
+              let sha;
+              try {
+                const res = await github.rest.repos.getContent({ ...context.repo, path, ref: "main" });
+                sha = res.data.sha;
+                current = JSON.parse(Buffer.from(res.data.content, "base64").toString("utf8"));
+              } catch (e) {
+                if (e.status !== 404) throw e;
+              }
+              for (const add of adds) {
+                current = current.filter((c) => !(c.manager === add.manager && c.out === add.out));
+                current.push(add);
+                summaryLines.push(`GW${gw}: ${add.manager} — ${add.out} → ${add.in}`);
+              }
+              const content = Buffer.from(JSON.stringify(current, null, 1) + "\n").toString("base64");
+              await github.rest.repos.createOrUpdateFileContents({
+                ...context.repo,
+                path,
+                message: `Apply transfer confirmation from issue #${issue.number}`,
+                content,
+                sha,
+                branch: "main",
+              });
+            }
+
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: issue.number,
+              body: `Applied:\n\n${summaryLines.map((l) => "- " + l).join("\n")}\n\nThe site will pick this up on its next refresh (within a couple of minutes).`,
+            });
+            await github.rest.issues.update({ ...context.repo, issue_number: issue.number, state: "closed" });
