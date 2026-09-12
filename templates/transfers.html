@@ -48,15 +48,14 @@
       <p class="lede lede--tight">Failed to release their highest (or one of their tied-highest) scorer from GW{{ gw - 1 }}.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
-        <colgroup><col style="width:24%"><col style="width:36%"><col style="width:14%"><col style="width:14%"><col style="width:12%"></colgroup>
-        <thead><tr><th>Manager</th><th>Should have released</th><th class="num">Points</th><th>Status</th><th class="num">Fine</th></tr></thead>
+        <colgroup><col style="width:26%"><col style="width:40%"><col style="width:14%"><col style="width:20%"></colgroup>
+        <thead><tr><th>Manager</th><th>Must release</th><th class="num">Pts</th><th class="num">Fine</th></tr></thead>
         <tbody>
           {% for b in d.breaches %}
           <tr>
             <td>{{ macros.manager(b.manager, avatars, manager_colors) }}</td>
-            <td>{{ macros.release_cell(b) }}</td>
+            <td>{{ macros.release_cell(b) }}<div class="mute">{{ b.status }}</div></td>
             <td class="num">{{ b.points }}</td>
-            <td class="cost">{{ b.status }}</td>
             <td class="num cost">&pound;{{ b.fine }}</td>
           </tr>
           {% endfor %}
