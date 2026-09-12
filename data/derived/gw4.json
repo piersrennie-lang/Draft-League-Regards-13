@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-12T20:10:05Z",
+  "fetched_at": "2026-09-12T20:18:26Z",
   "transaction_mode": "processing",
   "scoring": "h"
  },
@@ -99,7 +99,7 @@
    "away": 209435,
    "home_name": "Piers Rennie",
    "away_name": "Nic Rubin",
-   "home_points": 36,
+   "home_points": 34,
    "away_points": 60,
    "home_remaining": 3,
    "away_remaining": 1,
@@ -113,7 +113,7 @@
    "home_name": "Mattato Alcock",
    "away_name": "Stefano Babiolakis",
    "home_points": 29,
-   "away_points": 12,
+   "away_points": 9,
    "home_remaining": 5,
    "away_remaining": 5,
    "started": true,
@@ -152,7 +152,7 @@
    "home_name": "Matthew Lees",
    "away_name": "Michael Lavarack",
    "home_points": 17,
-   "away_points": 30,
+   "away_points": 29,
    "home_remaining": 4,
    "away_remaining": 2,
    "started": true,
@@ -225,7 +225,7 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p484420.png",
-     "points": 1
+     "points": -1
     },
     {
      "element": 70,
@@ -273,7 +273,7 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 36,
+   "effective_xi_points": 34,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -342,15 +342,6 @@
      "points": 1
     },
     {
-     "element": 542,
-     "name": "E.Le F\u00e9e",
-     "pos": "MID",
-     "club": "SUN",
-     "team_id": 20,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p484420.png",
-     "points": 1
-    },
-    {
      "element": 427,
      "name": "Mbeumo",
      "pos": "MID",
@@ -376,6 +367,15 @@
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p216646.png",
      "points": 0
+    },
+    {
+     "element": 542,
+     "name": "E.Le F\u00e9e",
+     "pos": "MID",
+     "club": "SUN",
+     "team_id": 20,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p484420.png",
+     "points": -1
     }
    ],
    "bench": [
@@ -416,7 +416,7 @@
      "points": 0
     }
    ],
-   "xi_points": 36,
+   "xi_points": 34,
    "bench_points": 2,
    "best_bench": {
     "element": 277,
@@ -428,7 +428,7 @@
     "points": 2
    },
    "blanks": 3,
-   "wasted": 2
+   "wasted": 3
   },
   "208632": {
    "effective_xi": [
@@ -475,7 +475,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 3
+     "points": 1
     },
     {
      "element": 338,
@@ -529,10 +529,10 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
-     "points": 2
+     "points": 1
     }
    ],
-   "effective_xi_points": 12,
+   "effective_xi_points": 9,
    "autosubs": [
     {
      "player_out": 198,
@@ -553,15 +553,6 @@
      "points": 4
     },
     {
-     "element": 13,
-     "name": "Rice",
-     "pos": "MID",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 3
-    },
-    {
      "element": 401,
      "name": "Marmoush",
      "pos": "FWD",
@@ -577,6 +568,15 @@
      "club": "HUL",
      "team_id": 11,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p146426.png",
+     "points": 1
+    },
+    {
+     "element": 13,
+     "name": "Rice",
+     "pos": "MID",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
      "points": 1
     },
     {
@@ -645,21 +645,21 @@
    ],
    "bench": [
     {
-     "element": 529,
-     "name": "Roefs",
-     "pos": "GKP",
-     "club": "SUN",
-     "team_id": 20,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
-     "points": 2
-    },
-    {
      "element": 452,
      "name": "Bruno G.",
      "pos": "MID",
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p208706.png",
+     "points": 9
+    },
+    {
+     "element": 529,
+     "name": "Roefs",
+     "pos": "GKP",
+     "club": "SUN",
+     "team_id": 20,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
      "points": 1
     },
     {
@@ -681,19 +681,19 @@
      "points": 0
     }
    ],
-   "xi_points": 10,
-   "bench_points": 3,
+   "xi_points": 8,
+   "bench_points": 10,
    "best_bench": {
-    "element": 529,
-    "name": "Roefs",
-    "pos": "GKP",
-    "club": "SUN",
-    "team_id": 20,
-    "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
-    "points": 2
+    "element": 452,
+    "name": "Bruno G.",
+    "pos": "MID",
+    "club": "ARS",
+    "team_id": 1,
+    "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p208706.png",
+    "points": 9
    },
    "blanks": 7,
-   "wasted": 3
+   "wasted": 10
   },
   "209435": {
    "effective_xi": [
@@ -1946,7 +1946,7 @@
      "club": "SUN",
      "team_id": 20,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png",
-     "points": 2
+     "points": 1
     },
     {
      "element": 552,
@@ -1977,7 +1977,7 @@
     }
    ],
    "xi_points": 17,
-   "bench_points": 3,
+   "bench_points": 2,
    "best_bench": {
     "element": 544,
     "name": "Xhaka",
@@ -1985,10 +1985,10 @@
     "club": "SUN",
     "team_id": 20,
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png",
-    "points": 2
+    "points": 1
    },
    "blanks": 4,
-   "wasted": 3
+   "wasted": 2
   },
   "259835": {
    "effective_xi": [
@@ -2062,7 +2062,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
-     "points": 4
+     "points": 3
     },
     {
      "element": 237,
@@ -2092,7 +2092,7 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 30,
+   "effective_xi_points": 29,
    "autosubs": [
     {
      "player_out": 224,
@@ -2137,7 +2137,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
-     "points": 4
+     "points": 3
     },
     {
      "element": 571,
@@ -2241,7 +2241,7 @@
      "points": 0
     }
    ],
-   "xi_points": 29,
+   "xi_points": 28,
    "bench_points": 4,
    "best_bench": {
     "element": 242,
@@ -2470,7 +2470,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p154561.png",
-     "points": 1
+     "points": 7
     },
     {
      "element": 81,
@@ -2501,7 +2501,7 @@
     }
    ],
    "xi_points": 23,
-   "bench_points": 3,
+   "bench_points": 9,
    "best_bench": {
     "element": 1,
     "name": "Raya",
@@ -2509,10 +2509,10 @@
     "club": "ARS",
     "team_id": 1,
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p154561.png",
-    "points": 1
+    "points": 7
    },
    "blanks": 2,
-   "wasted": 2
+   "wasted": 8
   },
   "260926": {
    "effective_xi": [
@@ -2841,8 +2841,8 @@
     "Virgil",
     "Kluivert"
    ],
-   "score": 36,
-   "cost_pct": 25.0,
+   "score": 34,
+   "cost_pct": 26.5,
    "h2h": null
   },
   {
@@ -2889,8 +2889,8 @@
    "next": "Van de Ven",
    "next_points": 6,
    "next_tie": [],
-   "score": 29,
-   "cost_pct": 27.6,
+   "score": 28,
+   "cost_pct": 28.6,
    "h2h": null
   },
   {
@@ -2942,11 +2942,11 @@
    "release_club": "BRE",
    "release_points": 4,
    "tie": [],
-   "next": "Rice",
-   "next_points": 3,
+   "next": "Marmoush",
+   "next_points": 2,
    "next_tie": [],
-   "score": 10,
-   "cost_pct": 40.0,
+   "score": 8,
+   "cost_pct": 50.0,
    "h2h": null
   }
  ],
@@ -2964,25 +2964,6 @@
    "next_points": 12,
    "next_tie": [],
    "score": 60,
-   "cost_pct": 25.0,
-   "h2h": null
-  },
-  {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
-   "release": "A.Becker",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png",
-   "release_club": "LIV",
-   "release_points": 9,
-   "tie": [],
-   "next": "Virgil",
-   "next_points": 8,
-   "next_tie": [
-    "Virgil",
-    "Kluivert"
-   ],
-   "score": 36,
    "cost_pct": 25.0,
    "h2h": null
   },
@@ -3007,6 +2988,25 @@
    "h2h": null
   },
   {
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
+   "release": "A.Becker",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p116535.png",
+   "release_club": "LIV",
+   "release_points": 9,
+   "tie": [],
+   "next": "Virgil",
+   "next_points": 8,
+   "next_tie": [
+    "Virgil",
+    "Kluivert"
+   ],
+   "score": 34,
+   "cost_pct": 26.5,
+   "h2h": null
+  },
+  {
    "league_entry": 259835,
    "manager": "Michael Lavarack",
    "team": "Average",
@@ -3018,8 +3018,8 @@
    "next": "Van de Ven",
    "next_points": 6,
    "next_tie": [],
-   "score": 29,
-   "cost_pct": 27.6,
+   "score": 28,
+   "cost_pct": 28.6,
    "h2h": null
   },
   {
@@ -3055,22 +3055,6 @@
    "next_points": 7,
    "next_tie": [],
    "score": 20,
-   "cost_pct": 40.0,
-   "h2h": null
-  },
-  {
-   "league_entry": 208632,
-   "manager": "Stefano Babiolakis",
-   "team": "Iraola Coaster",
-   "release": "M.Sangar\u00e9",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
-   "release_club": "BRE",
-   "release_points": 4,
-   "tie": [],
-   "next": "Rice",
-   "next_points": 3,
-   "next_tie": [],
-   "score": 10,
    "cost_pct": 40.0,
    "h2h": null
   },
@@ -3122,6 +3106,22 @@
    "next_points": 6,
    "next_tie": [],
    "score": 24,
+   "cost_pct": 50.0,
+   "h2h": null
+  },
+  {
+   "league_entry": 208632,
+   "manager": "Stefano Babiolakis",
+   "team": "Iraola Coaster",
+   "release": "M.Sangar\u00e9",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+   "release_club": "BRE",
+   "release_points": 4,
+   "tie": [],
+   "next": "Marmoush",
+   "next_points": 2,
+   "next_tie": [],
+   "score": 8,
    "cost_pct": 50.0,
    "h2h": null
   }
@@ -3208,11 +3208,11 @@
    "w": 3,
    "d": 0,
    "l": 1,
-   "for": 171,
+   "for": 170,
    "against": 164,
    "played": 4,
    "points": 9,
-   "diff": 7,
+   "diff": 6,
    "history": [
     {
      "event": 1,
@@ -3237,7 +3237,7 @@
     },
     {
      "event": 4,
-     "pts": 30,
+     "pts": 29,
      "against": 17,
      "opp": 255427,
      "result": "W"
@@ -3255,10 +3255,10 @@
    "d": 0,
    "l": 1,
    "for": 165,
-   "against": 137,
+   "against": 135,
    "played": 4,
    "points": 9,
-   "diff": 28,
+   "diff": 30,
    "history": [
     {
      "event": 1,
@@ -3284,7 +3284,7 @@
     {
      "event": 4,
      "pts": 60,
-     "against": 36,
+     "against": 34,
      "opp": 207565,
      "result": "W"
     }
@@ -3347,10 +3347,10 @@
    "d": 0,
    "l": 2,
    "for": 137,
-   "against": 126,
+   "against": 125,
    "played": 4,
    "points": 6,
-   "diff": 11,
+   "diff": 12,
    "history": [
     {
      "event": 1,
@@ -3376,7 +3376,7 @@
     {
      "event": 4,
      "pts": 17,
-     "against": 30,
+     "against": 29,
      "opp": 259835,
      "result": "L"
     }
@@ -3438,11 +3438,11 @@
    "w": 1,
    "d": 1,
    "l": 2,
-   "for": 165,
+   "for": 163,
    "against": 186,
    "played": 4,
    "points": 4,
-   "diff": -21,
+   "diff": -23,
    "history": [
     {
      "event": 1,
@@ -3467,7 +3467,7 @@
     },
     {
      "event": 4,
-     "pts": 36,
+     "pts": 34,
      "against": 60,
      "opp": 209435,
      "result": "L"
@@ -3485,10 +3485,10 @@
    "d": 0,
    "l": 3,
    "for": 139,
-   "against": 141,
+   "against": 138,
    "played": 4,
    "points": 3,
-   "diff": -2,
+   "diff": 1,
    "history": [
     {
      "event": 1,
@@ -3514,7 +3514,7 @@
     {
      "event": 4,
      "pts": 29,
-     "against": 12,
+     "against": 9,
      "opp": 208632,
      "result": "W"
     }
@@ -3530,11 +3530,11 @@
    "w": 0,
    "d": 1,
    "l": 3,
-   "for": 110,
+   "for": 107,
    "against": 140,
    "played": 4,
    "points": 1,
-   "diff": -30,
+   "diff": -33,
    "history": [
     {
      "event": 1,
@@ -3559,7 +3559,7 @@
     },
     {
      "event": 4,
-     "pts": 12,
+     "pts": 9,
      "against": 29,
      "opp": 242301,
      "result": "L"
@@ -4256,7 +4256,7 @@
    },
    {
     "manager": "Piers Rennie",
-    "points": 36,
+    "points": 34,
     "transfer_points": 0
    },
    {
@@ -4266,14 +4266,14 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 27,
+    "points": 26,
     "transfer_points": -3
    }
   ],
   "worst": [
    {
     "manager": "Stefano Babiolakis",
-    "points": 12,
+    "points": 9,
     "transfer_points": 0
    },
    {
@@ -4318,12 +4318,12 @@
     },
     {
      "manager": "Michael Lavarack",
-     "points": 172,
+     "points": 171,
      "transfer_points": 1
     },
     {
      "manager": "Piers Rennie",
-     "points": 162,
+     "points": 160,
      "transfer_points": -3
     },
     {
@@ -4353,7 +4353,7 @@
     },
     {
      "manager": "Stefano Babiolakis",
-     "points": 102,
+     "points": 99,
      "transfer_points": -8
     }
    ]
@@ -4371,12 +4371,12 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 172,
+    "points": 171,
     "transfer_points": 1
    },
    {
     "manager": "Piers Rennie",
-    "points": 162,
+    "points": 160,
     "transfer_points": -3
    },
    {
@@ -4406,7 +4406,7 @@
    },
    {
     "manager": "Stefano Babiolakis",
-    "points": 102,
+    "points": 99,
     "transfer_points": -8
    }
   ],
@@ -4420,9 +4420,9 @@
     {
      "gameweek": 4,
      "opponent": "Nic Rubin",
-     "points": 36,
+     "points": 34,
      "against": 60,
-     "margin": -24,
+     "margin": -26,
      "result": "L"
     },
     {
@@ -4453,7 +4453,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Nic Rubin",
-    "points": 36,
+    "points": 34,
     "against": 60,
     "started": true,
     "live": true
@@ -4607,9 +4607,9 @@
    "biggest_loss": {
     "gameweek": 4,
     "opponent": "Nic Rubin",
-    "points": 36,
+    "points": 34,
     "against": 60,
-    "margin": -24,
+    "margin": -26,
     "result": "L"
    },
    "highest_scores": [
@@ -4630,38 +4630,38 @@
      "result": "D"
     },
     {
-     "gameweek": 4,
-     "opponent": "Nic Rubin",
-     "points": 36,
-     "against": 60,
-     "margin": -24,
-     "result": "L"
-    },
-    {
      "gameweek": 1,
      "opponent": "Matthew Lees",
      "points": 35,
      "against": 31,
      "margin": 4,
      "result": "W"
+    },
+    {
+     "gameweek": 4,
+     "opponent": "Nic Rubin",
+     "points": 34,
+     "against": 60,
+     "margin": -26,
+     "result": "L"
     }
    ],
    "lowest_scores": [
     {
+     "gameweek": 4,
+     "opponent": "Nic Rubin",
+     "points": 34,
+     "against": 60,
+     "margin": -26,
+     "result": "L"
+    },
+    {
      "gameweek": 1,
      "opponent": "Matthew Lees",
      "points": 35,
      "against": 31,
      "margin": 4,
      "result": "W"
-    },
-    {
-     "gameweek": 4,
-     "opponent": "Nic Rubin",
-     "points": 36,
-     "against": 60,
-     "margin": -24,
-     "result": "L"
     },
     {
      "gameweek": 2,
@@ -5141,9 +5141,9 @@
     {
      "gameweek": 4,
      "opponent": "Mattato Alcock",
-     "points": 12,
+     "points": 9,
      "against": 29,
-     "margin": -17,
+     "margin": -20,
      "result": "L"
     },
     {
@@ -5174,7 +5174,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Mattato Alcock",
-    "points": 12,
+    "points": 9,
     "against": 29,
     "started": true,
     "live": true
@@ -5321,9 +5321,9 @@
    "biggest_loss": {
     "gameweek": 4,
     "opponent": "Mattato Alcock",
-    "points": 12,
+    "points": 9,
     "against": 29,
-    "margin": -17,
+    "margin": -20,
     "result": "L"
    },
    "highest_scores": [
@@ -5354,9 +5354,9 @@
     {
      "gameweek": 4,
      "opponent": "Mattato Alcock",
-     "points": 12,
+     "points": 9,
      "against": 29,
-     "margin": -17,
+     "margin": -20,
      "result": "L"
     }
    ],
@@ -5364,9 +5364,9 @@
     {
      "gameweek": 4,
      "opponent": "Mattato Alcock",
-     "points": 12,
+     "points": 9,
      "against": 29,
-     "margin": -17,
+     "margin": -20,
      "result": "L"
     },
     {
@@ -5831,8 +5831,8 @@
      "gameweek": 4,
      "opponent": "Piers Rennie",
      "points": 60,
-     "against": 36,
-     "margin": 24,
+     "against": 34,
+     "margin": 26,
      "result": "W"
     },
     {
@@ -5864,7 +5864,7 @@
     "gameweek": 4,
     "opponent": "Piers Rennie",
     "points": 60,
-    "against": 36,
+    "against": 34,
     "started": true,
     "live": true
    },
@@ -6010,8 +6010,8 @@
     "gameweek": 4,
     "opponent": "Piers Rennie",
     "points": 60,
-    "against": 36,
-    "margin": 24,
+    "against": 34,
+    "margin": 26,
     "result": "W"
    },
    "biggest_loss": {
@@ -6027,8 +6027,8 @@
      "gameweek": 4,
      "opponent": "Piers Rennie",
      "points": 60,
-     "against": 36,
-     "margin": 24,
+     "against": 34,
+     "margin": 26,
      "result": "W"
     },
     {
@@ -6085,8 +6085,8 @@
      "gameweek": 4,
      "opponent": "Piers Rennie",
      "points": 60,
-     "against": 36,
-     "margin": 24,
+     "against": 34,
+     "margin": 26,
      "result": "W"
     }
    ],
@@ -6734,8 +6734,8 @@
      "gameweek": 4,
      "opponent": "Stefano Babiolakis",
      "points": 29,
-     "against": 12,
-     "margin": 17,
+     "against": 9,
+     "margin": 20,
      "result": "W"
     },
     {
@@ -6767,7 +6767,7 @@
     "gameweek": 4,
     "opponent": "Stefano Babiolakis",
     "points": 29,
-    "against": 12,
+    "against": 9,
     "started": true,
     "live": true
    },
@@ -6913,8 +6913,8 @@
     "gameweek": 4,
     "opponent": "Stefano Babiolakis",
     "points": 29,
-    "against": 12,
-    "margin": 17,
+    "against": 9,
+    "margin": 20,
     "result": "W"
    },
    "biggest_loss": {
@@ -6954,8 +6954,8 @@
      "gameweek": 4,
      "opponent": "Stefano Babiolakis",
      "points": 29,
-     "against": 12,
-     "margin": 17,
+     "against": 9,
+     "margin": 20,
      "result": "W"
     }
    ],
@@ -6964,8 +6964,8 @@
      "gameweek": 4,
      "opponent": "Stefano Babiolakis",
      "points": 29,
-     "against": 12,
-     "margin": 17,
+     "against": 9,
+     "margin": 20,
      "result": "W"
     },
     {
@@ -8984,8 +8984,8 @@
      "gameweek": 4,
      "opponent": "Michael Lavarack",
      "points": 17,
-     "against": 30,
-     "margin": -13,
+     "against": 29,
+     "margin": -12,
      "result": "L"
     },
     {
@@ -9017,7 +9017,7 @@
     "gameweek": 4,
     "opponent": "Michael Lavarack",
     "points": 17,
-    "against": 30,
+    "against": 29,
     "started": true,
     "live": true
    },
@@ -9171,8 +9171,8 @@
     "gameweek": 4,
     "opponent": "Michael Lavarack",
     "points": 17,
-    "against": 30,
-    "margin": -13,
+    "against": 29,
+    "margin": -12,
     "result": "L"
    },
    "highest_scores": [
@@ -9204,8 +9204,8 @@
      "gameweek": 4,
      "opponent": "Michael Lavarack",
      "points": 17,
-     "against": 30,
-     "margin": -13,
+     "against": 29,
+     "margin": -12,
      "result": "L"
     }
    ],
@@ -9214,8 +9214,8 @@
      "gameweek": 4,
      "opponent": "Michael Lavarack",
      "points": 17,
-     "against": 30,
-     "margin": -13,
+     "against": 29,
+     "margin": -12,
      "result": "L"
     },
     {
@@ -9779,9 +9779,9 @@
     {
      "gameweek": 4,
      "opponent": "Matthew Lees",
-     "points": 30,
+     "points": 29,
      "against": 17,
-     "margin": 13,
+     "margin": 12,
      "result": "W"
     },
     {
@@ -9812,7 +9812,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Matthew Lees",
-    "points": 30,
+    "points": 29,
     "against": 17,
     "started": true,
     "live": true
@@ -9958,9 +9958,9 @@
    "biggest_win": {
     "gameweek": 4,
     "opponent": "Matthew Lees",
-    "points": 30,
+    "points": 29,
     "against": 17,
-    "margin": 13,
+    "margin": 12,
     "result": "W"
    },
    "biggest_loss": {
@@ -9999,9 +9999,9 @@
     {
      "gameweek": 4,
      "opponent": "Matthew Lees",
-     "points": 30,
+     "points": 29,
      "against": 17,
-     "margin": 13,
+     "margin": 12,
      "result": "W"
     }
    ],
@@ -10009,9 +10009,9 @@
     {
      "gameweek": 4,
      "opponent": "Matthew Lees",
-     "points": 30,
+     "points": 29,
      "against": 17,
-     "margin": 13,
+     "margin": 12,
      "result": "W"
     },
     {
@@ -12371,8 +12371,8 @@
     "gameweek": 4,
     "opponent": "Piers Rennie",
     "points": 60,
-    "against": 36,
-    "margin": 24,
+    "against": 34,
+    "margin": 26,
     "result": "W"
    },
    {
@@ -12385,6 +12385,15 @@
     "result": "W"
    },
    {
+    "manager": "Mattato Alcock",
+    "gameweek": 4,
+    "opponent": "Stefano Babiolakis",
+    "points": 29,
+    "against": 9,
+    "margin": 20,
+    "result": "W"
+   },
+   {
     "manager": "Mark Stone",
     "gameweek": 3,
     "opponent": "Matthew Xenakis",
@@ -12394,21 +12403,12 @@
     "result": "W"
    },
    {
-    "manager": "Mattato Alcock",
-    "gameweek": 4,
-    "opponent": "Stefano Babiolakis",
-    "points": 29,
-    "against": 12,
-    "margin": 17,
-    "result": "W"
-   },
-   {
     "manager": "Michael Lavarack",
     "gameweek": 4,
     "opponent": "Matthew Lees",
-    "points": 30,
+    "points": 29,
     "against": 17,
-    "margin": 13,
+    "margin": 12,
     "result": "W"
    }
   ],
@@ -12427,8 +12427,8 @@
     "gameweek": 4,
     "opponent": "Piers Rennie",
     "points": 60,
-    "against": 36,
-    "margin": 24,
+    "against": 34,
+    "margin": 26,
     "result": "W"
    },
    {
@@ -12941,19 +12941,19 @@
    },
    {
     "manager": "Matthew Lees",
-    "avg_against": 31.5
+    "avg_against": 31.2
    },
    {
     "manager": "Nic Rubin",
-    "avg_against": 34.2
+    "avg_against": 33.8
+   },
+   {
+    "manager": "Mattato Alcock",
+    "avg_against": 34.5
    },
    {
     "manager": "Brad Hill",
     "avg_against": 34.8
-   },
-   {
-    "manager": "Stefano Babiolakis",
-    "avg_against": 35.0
    }
   ],
   "unluckiest": [
@@ -12974,11 +12974,11 @@
     "avg_against": 36.2
    },
    {
-    "manager": "Mattato Alcock",
-    "avg_against": 35.2
+    "manager": "Stefano Babiolakis",
+    "avg_against": 35.0
    }
   ],
-  "average": 36.2
+  "average": 36.0
  },
  "pot": {
   "base": 200,
