@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-13T17:01:50Z",
+  "fetched_at": "2026-09-13T17:12:29Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -125,8 +125,8 @@
    "away": 260926,
    "home_name": "Brad Hill",
    "away_name": "Mark Stone",
-   "home_points": 41,
-   "away_points": 51,
+   "home_points": 42,
+   "away_points": 50,
    "home_remaining": 0,
    "away_remaining": 2,
    "started": true,
@@ -1240,7 +1240,7 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p209036.png",
-     "points": 7
+     "points": 6
     },
     {
      "element": 202,
@@ -1294,7 +1294,7 @@
      "club": "MUN",
      "team_id": 16,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p516895.png",
-     "points": 2
+     "points": 4
     },
     {
      "element": 512,
@@ -1315,7 +1315,7 @@
      "points": 12
     }
    ],
-   "effective_xi_points": 41,
+   "effective_xi_points": 42,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -1328,15 +1328,6 @@
      "team_id": 12,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png",
      "points": 12
-    },
-    {
-     "element": 388,
-     "name": "Gu\u00e9hi",
-     "pos": "DEF",
-     "club": "MCI",
-     "team_id": 15,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p209036.png",
-     "points": 7
     },
     {
      "element": 226,
@@ -1357,6 +1348,24 @@
      "points": 6
     },
     {
+     "element": 388,
+     "name": "Gu\u00e9hi",
+     "pos": "DEF",
+     "club": "MCI",
+     "team_id": 15,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p209036.png",
+     "points": 6
+    },
+    {
+     "element": 432,
+     "name": "Mainoo",
+     "pos": "MID",
+     "club": "MUN",
+     "team_id": 16,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p516895.png",
+     "points": 4
+    },
+    {
      "element": 127,
      "name": "Gomez",
      "pos": "MID",
@@ -1372,15 +1381,6 @@
      "club": "CRY",
      "team_id": 8,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p427623.png",
-     "points": 2
-    },
-    {
-     "element": 432,
-     "name": "Mainoo",
-     "pos": "MID",
-     "club": "MUN",
-     "team_id": 16,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p516895.png",
      "points": 2
     },
     {
@@ -1458,7 +1458,7 @@
      "points": 0
     }
    ],
-   "xi_points": 41,
+   "xi_points": 42,
    "bench_points": 6,
    "best_bench": {
     "element": 244,
@@ -2541,7 +2541,7 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477424.png",
-     "points": 12
+     "points": 11
     },
     {
      "element": 358,
@@ -2616,7 +2616,7 @@
      "points": 5
     }
    ],
-   "effective_xi_points": 51,
+   "effective_xi_points": 50,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2637,7 +2637,7 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477424.png",
-     "points": 12
+     "points": 11
     },
     {
      "element": 504,
@@ -2759,7 +2759,7 @@
      "points": 0
     }
    ],
-   "xi_points": 51,
+   "xi_points": 50,
    "bench_points": 3,
    "best_bench": {
     "element": 428,
@@ -2785,10 +2785,10 @@
    "release_points": 17,
    "tie": [],
    "next": "Gvardiol",
-   "next_points": 12,
+   "next_points": 11,
    "next_tie": [],
-   "score": 51,
-   "cost_pct": 33.3,
+   "score": 50,
+   "cost_pct": 34.0,
    "h2h": null
   },
   {
@@ -2832,11 +2832,15 @@
    "release_club": "IPS",
    "release_points": 12,
    "tie": [],
-   "next": "Gu\u00e9hi",
-   "next_points": 7,
-   "next_tie": [],
-   "score": 41,
-   "cost_pct": 29.3,
+   "next": "Pickford",
+   "next_points": 6,
+   "next_tie": [
+    "Pickford",
+    "Calafiori",
+    "Gu\u00e9hi"
+   ],
+   "score": 42,
+   "cost_pct": 28.6,
    "h2h": null
   },
   {
@@ -3082,6 +3086,26 @@
    "h2h": null
   },
   {
+   "league_entry": 254549,
+   "manager": "Brad Hill",
+   "team": "MAGA ERA",
+   "release": "Emersonn",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png",
+   "release_club": "IPS",
+   "release_points": 12,
+   "tie": [],
+   "next": "Pickford",
+   "next_points": 6,
+   "next_tie": [
+    "Pickford",
+    "Calafiori",
+    "Gu\u00e9hi"
+   ],
+   "score": 42,
+   "cost_pct": 28.6,
+   "h2h": null
+  },
+  {
    "league_entry": 242301,
    "manager": "Mattato Alcock",
    "team": "AlcockXI",
@@ -3095,22 +3119,6 @@
    "next_tie": [],
    "score": 48,
    "cost_pct": 29.2,
-   "h2h": null
-  },
-  {
-   "league_entry": 254549,
-   "manager": "Brad Hill",
-   "team": "MAGA ERA",
-   "release": "Emersonn",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png",
-   "release_club": "IPS",
-   "release_points": 12,
-   "tie": [],
-   "next": "Gu\u00e9hi",
-   "next_points": 7,
-   "next_tie": [],
-   "score": 41,
-   "cost_pct": 29.3,
    "h2h": null
   },
   {
@@ -3139,10 +3147,10 @@
    "release_points": 17,
    "tie": [],
    "next": "Gvardiol",
-   "next_points": 12,
+   "next_points": 11,
    "next_tie": [],
-   "score": 51,
-   "cost_pct": 33.3,
+   "score": 50,
+   "cost_pct": 34.0,
    "h2h": null
   },
   {
@@ -3198,11 +3206,11 @@
    "w": 4,
    "d": 0,
    "l": 0,
-   "for": 174,
-   "against": 129,
+   "for": 173,
+   "against": 130,
    "played": 4,
    "points": 12,
-   "diff": 45,
+   "diff": 43,
    "history": [
     {
      "event": 1,
@@ -3227,8 +3235,8 @@
     },
     {
      "event": 4,
-     "pts": 51,
-     "against": 41,
+     "pts": 50,
+     "against": 42,
      "opp": 254549,
      "result": "W"
     }
@@ -3244,11 +3252,11 @@
    "w": 3,
    "d": 0,
    "l": 1,
-   "for": 180,
-   "against": 174,
+   "for": 181,
+   "against": 173,
    "played": 4,
    "points": 9,
-   "diff": 6,
+   "diff": 8,
    "history": [
     {
      "event": 1,
@@ -3273,8 +3281,8 @@
     },
     {
      "event": 4,
-     "pts": 41,
-     "against": 51,
+     "pts": 42,
+     "against": 50,
      "opp": 260926,
      "result": "L"
     }
@@ -3763,7 +3771,7 @@
      "club": "MCI",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p448047.png",
      "pos": "MID",
-     "points": 3,
+     "points": 2,
      "guessed": false
     }
    ],
@@ -3929,7 +3937,7 @@
      "club": "MUN",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p516895.png",
      "pos": "MID",
-     "points": 2,
+     "points": 4,
      "guessed": false
     },
     {
@@ -4139,7 +4147,7 @@
      "club": "MCI",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465351.png",
      "pos": "DEF",
-     "points": 6,
+     "points": 9,
      "guessed": false
     },
     {
@@ -4508,7 +4516,7 @@
    },
    {
     "manager": "Mark Stone",
-    "points": 70,
+    "points": 69,
     "transfer_points": 19
    },
    {
@@ -4518,7 +4526,7 @@
    },
    {
     "manager": "Brad Hill",
-    "points": 39,
+    "points": 40,
     "transfer_points": -2
    },
    {
@@ -4570,12 +4578,12 @@
     },
     {
      "manager": "Brad Hill",
-     "points": 181,
+     "points": 182,
      "transfer_points": 1
     },
     {
      "manager": "Mark Stone",
-     "points": 179,
+     "points": 178,
      "transfer_points": 5
     },
     {
@@ -4623,12 +4631,12 @@
    },
    {
     "manager": "Brad Hill",
-    "points": 181,
+    "points": 182,
     "transfer_points": 1
    },
    {
     "manager": "Mark Stone",
-    "points": 179,
+    "points": 178,
     "transfer_points": 5
    },
    {
@@ -6187,7 +6195,7 @@
        "club": "MCI",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p448047.png",
        "pos": "MID",
-       "points": 3,
+       "points": 2,
        "guessed": false
       }
      ]
@@ -8235,9 +8243,9 @@
     {
      "gameweek": 4,
      "opponent": "Mark Stone",
-     "points": 41,
-     "against": 51,
-     "margin": -10,
+     "points": 42,
+     "against": 50,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -8268,8 +8276,8 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Mark Stone",
-    "points": 41,
-    "against": 51,
+    "points": 42,
+    "against": 50,
     "started": true,
     "live": true
    },
@@ -8422,9 +8430,9 @@
    "biggest_loss": {
     "gameweek": 4,
     "opponent": "Mark Stone",
-    "points": 41,
-    "against": 51,
-    "margin": -10,
+    "points": 42,
+    "against": 50,
+    "margin": -8,
     "result": "L"
    },
    "highest_scores": [
@@ -8447,9 +8455,9 @@
     {
      "gameweek": 4,
      "opponent": "Mark Stone",
-     "points": 41,
-     "against": 51,
-     "margin": -10,
+     "points": 42,
+     "against": 50,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -8473,9 +8481,9 @@
     {
      "gameweek": 4,
      "opponent": "Mark Stone",
-     "points": 41,
-     "against": 51,
-     "margin": -10,
+     "points": 42,
+     "against": 50,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -8994,7 +9002,7 @@
        "club": "MUN",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p516895.png",
        "pos": "MID",
-       "points": 2,
+       "points": 4,
        "guessed": false
       },
       {
@@ -12424,7 +12432,7 @@
        "club": "MCI",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465351.png",
        "pos": "DEF",
-       "points": 6,
+       "points": 9,
        "guessed": false
       },
       {
@@ -12530,9 +12538,9 @@
     {
      "gameweek": 4,
      "opponent": "Brad Hill",
-     "points": 51,
-     "against": 41,
-     "margin": 10,
+     "points": 50,
+     "against": 42,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -12563,8 +12571,8 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Brad Hill",
-    "points": 51,
-    "against": 41,
+    "points": 50,
+    "against": 42,
     "started": true,
     "live": true
    },
@@ -12727,9 +12735,9 @@
     {
      "gameweek": 4,
      "opponent": "Brad Hill",
-     "points": 51,
-     "against": 41,
-     "margin": 10,
+     "points": 50,
+     "against": 42,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -12767,19 +12775,19 @@
      "result": "W"
     },
     {
+     "gameweek": 4,
+     "opponent": "Brad Hill",
+     "points": 50,
+     "against": 42,
+     "margin": 8,
+     "result": "W"
+    },
+    {
      "gameweek": 3,
      "opponent": "Matthew Xenakis",
      "points": 51,
      "against": 33,
      "margin": 18,
-     "result": "W"
-    },
-    {
-     "gameweek": 4,
-     "opponent": "Brad Hill",
-     "points": 51,
-     "against": 41,
-     "margin": 10,
      "result": "W"
     }
    ],
@@ -13791,20 +13799,20 @@
    },
    {
     "manager": "Mark Stone",
-    "gameweek": 4,
-    "opponent": "Brad Hill",
-    "points": 51,
-    "against": 41,
-    "margin": 10,
-    "result": "W"
-   },
-   {
-    "manager": "Mark Stone",
     "gameweek": 3,
     "opponent": "Matthew Xenakis",
     "points": 51,
     "against": 33,
     "margin": 18,
+    "result": "W"
+   },
+   {
+    "manager": "Mark Stone",
+    "gameweek": 4,
+    "opponent": "Brad Hill",
+    "points": 50,
+    "against": 42,
+    "margin": 8,
     "result": "W"
    },
    {
@@ -14332,7 +14340,7 @@
    },
    {
     "manager": "Mark Stone",
-    "avg_against": 32.2
+    "avg_against": 32.5
    },
    {
     "manager": "Nic Rubin",
@@ -14358,7 +14366,7 @@
    },
    {
     "manager": "Brad Hill",
-    "avg_against": 43.5
+    "avg_against": 43.2
    },
    {
     "manager": "Matthew Xenakis",
