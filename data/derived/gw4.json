@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-13T17:12:29Z",
+  "fetched_at": "2026-09-13T17:22:21Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -138,8 +138,8 @@
    "away": 259872,
    "home_name": "Matthew Xenakis",
    "away_name": "Roscoe Hill",
-   "home_points": 29,
-   "away_points": 25,
+   "home_points": 30,
+   "away_points": 27,
    "home_remaining": 2,
    "away_remaining": 1,
    "started": true,
@@ -1490,7 +1490,7 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p472769.png",
-     "points": 0
+     "points": 1
     },
     {
      "element": 502,
@@ -1574,7 +1574,7 @@
      "points": 8
     }
    ],
-   "effective_xi_points": 29,
+   "effective_xi_points": 30,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -1614,6 +1614,15 @@
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p247632.png",
      "points": 2
+    },
+    {
+     "element": 387,
+     "name": "O'Reilly",
+     "pos": "DEF",
+     "club": "MCI",
+     "team_id": 15,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p472769.png",
+     "points": 1
     },
     {
      "element": 149,
@@ -1658,15 +1667,6 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p470551.png",
-     "points": 0
-    },
-    {
-     "element": 387,
-     "name": "O'Reilly",
-     "pos": "DEF",
-     "club": "MCI",
-     "team_id": 15,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p472769.png",
      "points": 0
     },
     {
@@ -1717,7 +1717,7 @@
      "points": 1
     }
    ],
-   "xi_points": 29,
+   "xi_points": 30,
    "bench_points": 14,
    "best_bench": {
     "element": 250,
@@ -1728,8 +1728,8 @@
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p80201.png",
     "points": 9
    },
-   "blanks": 3,
-   "wasted": 13
+   "blanks": 2,
+   "wasted": 12
   },
   "255427": {
    "effective_xi": [
@@ -2336,7 +2336,7 @@
      "club": "MUN",
      "team_id": 16,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p596777.png",
-     "points": 2
+     "points": 4
     },
     {
      "element": 490,
@@ -2357,7 +2357,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 25,
+   "effective_xi_points": 27,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2370,6 +2370,15 @@
      "team_id": 9,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p480455.png",
      "points": 6
+    },
+    {
+     "element": 415,
+     "name": "Dorgu",
+     "pos": "MID",
+     "club": "MUN",
+     "team_id": 16,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p596777.png",
+     "points": 4
     },
     {
      "element": 82,
@@ -2414,15 +2423,6 @@
      "club": "BOU",
      "team_id": 3,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p499604.png",
-     "points": 2
-    },
-    {
-     "element": 415,
-     "name": "Dorgu",
-     "pos": "MID",
-     "club": "MUN",
-     "team_id": 16,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p596777.png",
      "points": 2
     },
     {
@@ -2500,7 +2500,7 @@
      "points": 1
     }
    ],
-   "xi_points": 25,
+   "xi_points": 27,
    "bench_points": 17,
    "best_bench": {
     "element": 1,
@@ -2931,8 +2931,8 @@
    "next": "Robertson",
    "next_points": 7,
    "next_tie": [],
-   "score": 29,
-   "cost_pct": 27.6,
+   "score": 30,
+   "cost_pct": 26.7,
    "h2h": null
   },
   {
@@ -2960,15 +2960,11 @@
    "release_club": "EVE",
    "release_points": 6,
    "tie": [],
-   "next": "Kelleher",
-   "next_points": 3,
-   "next_tie": [
-    "Kelleher",
-    "Truffert",
-    "Szoboszlai"
-   ],
-   "score": 25,
-   "cost_pct": 24.0,
+   "next": "Dorgu",
+   "next_points": 4,
+   "next_tie": [],
+   "score": 27,
+   "cost_pct": 22.2,
    "h2h": null
   }
  ],
@@ -3028,34 +3024,11 @@
    "release_club": "EVE",
    "release_points": 6,
    "tie": [],
-   "next": "Kelleher",
-   "next_points": 3,
-   "next_tie": [
-    "Kelleher",
-    "Truffert",
-    "Szoboszlai"
-   ],
-   "score": 25,
-   "cost_pct": 24.0,
-   "h2h": null
-  },
-  {
-   "league_entry": 255427,
-   "manager": "Matthew Lees",
-   "team": "Go Fly a Kuyt",
-   "release": "De Cuyper",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465730.png",
-   "release_club": "BHA",
-   "release_points": 11,
-   "tie": [],
-   "next": "Van Hecke",
-   "next_points": 8,
-   "next_tie": [
-    "Van Hecke",
-    "Saka"
-   ],
-   "score": 40,
-   "cost_pct": 27.5,
+   "next": "Dorgu",
+   "next_points": 4,
+   "next_tie": [],
+   "score": 27,
+   "cost_pct": 22.2,
    "h2h": null
   },
   {
@@ -3081,8 +3054,27 @@
    "next": "Robertson",
    "next_points": 7,
    "next_tie": [],
-   "score": 29,
-   "cost_pct": 27.6,
+   "score": 30,
+   "cost_pct": 26.7,
+   "h2h": null
+  },
+  {
+   "league_entry": 255427,
+   "manager": "Matthew Lees",
+   "team": "Go Fly a Kuyt",
+   "release": "De Cuyper",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465730.png",
+   "release_club": "BHA",
+   "release_points": 11,
+   "tie": [],
+   "next": "Van Hecke",
+   "next_points": 8,
+   "next_tie": [
+    "Van Hecke",
+    "Saka"
+   ],
+   "score": 40,
+   "cost_pct": 27.5,
    "h2h": null
   },
   {
@@ -3528,11 +3520,11 @@
    "w": 1,
    "d": 0,
    "l": 3,
-   "for": 136,
-   "against": 160,
+   "for": 137,
+   "against": 162,
    "played": 4,
    "points": 3,
-   "diff": -24,
+   "diff": -25,
    "history": [
     {
      "event": 1,
@@ -3557,8 +3549,8 @@
     },
     {
      "event": 4,
-     "pts": 29,
-     "against": 25,
+     "pts": 30,
+     "against": 27,
      "opp": 259872,
      "result": "W"
     }
@@ -3574,11 +3566,11 @@
    "w": 1,
    "d": 0,
    "l": 3,
-   "for": 134,
-   "against": 154,
+   "for": 136,
+   "against": 155,
    "played": 4,
    "points": 3,
-   "diff": -20,
+   "diff": -19,
    "history": [
     {
      "event": 1,
@@ -3603,8 +3595,8 @@
     },
     {
      "event": 4,
-     "pts": 25,
-     "against": 29,
+     "pts": 27,
+     "against": 30,
      "opp": 254700,
      "result": "L"
     }
@@ -4542,18 +4534,18 @@
     "transfer_points": -3
    },
    {
-    "manager": "Roscoe Hill",
-    "points": 26,
-    "transfer_points": 1
-   },
-   {
     "manager": "Stefano Babiolakis",
     "points": 26,
     "transfer_points": 0
    },
    {
+    "manager": "Roscoe Hill",
+    "points": 28,
+    "transfer_points": 1
+   },
+   {
     "manager": "Matthew Xenakis",
-    "points": 29,
+    "points": 30,
     "transfer_points": 0
    },
    {
@@ -4608,12 +4600,12 @@
     },
     {
      "manager": "Matthew Xenakis",
-     "points": 134,
+     "points": 135,
      "transfer_points": -2
     },
     {
      "manager": "Roscoe Hill",
-     "points": 127,
+     "points": 129,
      "transfer_points": -7
     },
     {
@@ -4661,12 +4653,12 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 134,
+    "points": 135,
     "transfer_points": -2
    },
    {
     "manager": "Roscoe Hill",
-    "points": 127,
+    "points": 129,
     "transfer_points": -7
    },
    {
@@ -9126,9 +9118,9 @@
     {
      "gameweek": 4,
      "opponent": "Roscoe Hill",
-     "points": 29,
-     "against": 25,
-     "margin": 4,
+     "points": 30,
+     "against": 27,
+     "margin": 3,
      "result": "W"
     },
     {
@@ -9159,8 +9151,8 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Roscoe Hill",
-    "points": 29,
-    "against": 25,
+    "points": 30,
+    "against": 27,
     "started": true,
     "live": true
    },
@@ -9305,9 +9297,9 @@
    "biggest_win": {
     "gameweek": 4,
     "opponent": "Roscoe Hill",
-    "points": 29,
-    "against": 25,
-    "margin": 4,
+    "points": 30,
+    "against": 27,
+    "margin": 3,
     "result": "W"
    },
    "biggest_loss": {
@@ -9346,9 +9338,9 @@
     {
      "gameweek": 4,
      "opponent": "Roscoe Hill",
-     "points": 29,
-     "against": 25,
-     "margin": 4,
+     "points": 30,
+     "against": 27,
+     "margin": 3,
      "result": "W"
     }
    ],
@@ -9356,9 +9348,9 @@
     {
      "gameweek": 4,
      "opponent": "Roscoe Hill",
-     "points": 29,
-     "against": 25,
-     "margin": 4,
+     "points": 30,
+     "against": 27,
+     "margin": 3,
      "result": "W"
     },
     {
@@ -11671,9 +11663,9 @@
     {
      "gameweek": 4,
      "opponent": "Matthew Xenakis",
-     "points": 25,
-     "against": 29,
-     "margin": -4,
+     "points": 27,
+     "against": 30,
+     "margin": -3,
      "result": "L"
     },
     {
@@ -11704,8 +11696,8 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Matthew Xenakis",
-    "points": 25,
-    "against": 29,
+    "points": 27,
+    "against": 30,
     "started": true,
     "live": true
    },
@@ -11883,9 +11875,9 @@
     {
      "gameweek": 4,
      "opponent": "Matthew Xenakis",
-     "points": 25,
-     "against": 29,
-     "margin": -4,
+     "points": 27,
+     "against": 30,
+     "margin": -3,
      "result": "L"
     },
     {
@@ -11909,9 +11901,9 @@
     {
      "gameweek": 4,
      "opponent": "Matthew Xenakis",
-     "points": 25,
-     "against": 29,
-     "margin": -4,
+     "points": 27,
+     "against": 30,
+     "margin": -3,
      "result": "L"
     },
     {
@@ -14347,11 +14339,11 @@
     "avg_against": 36.0
    },
    {
-    "manager": "Roscoe Hill",
-    "avg_against": 38.5
+    "manager": "Mattato Alcock",
+    "avg_against": 38.8
    },
    {
-    "manager": "Mattato Alcock",
+    "manager": "Roscoe Hill",
     "avg_against": 38.8
    }
   ],
@@ -14370,14 +14362,14 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "avg_against": 40.0
+    "avg_against": 40.5
    },
    {
     "manager": "Stefano Babiolakis",
     "avg_against": 39.8
    }
   ],
-  "average": 39.6
+  "average": 39.7
  },
  "pot": {
   "base": 200,
