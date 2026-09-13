@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-13T15:58:09Z",
+  "fetched_at": "2026-09-13T16:06:23Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -126,7 +126,7 @@
    "home_name": "Brad Hill",
    "away_name": "Mark Stone",
    "home_points": 34,
-   "away_points": 40,
+   "away_points": 42,
    "home_remaining": 0,
    "away_remaining": 2,
    "started": true,
@@ -2541,7 +2541,7 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477424.png",
-     "points": 1
+     "points": 3
     },
     {
      "element": 358,
@@ -2616,7 +2616,7 @@
      "points": 5
     }
    ],
-   "effective_xi_points": 40,
+   "effective_xi_points": 42,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2658,6 +2658,15 @@
      "points": 3
     },
     {
+     "element": 391,
+     "name": "Gvardiol",
+     "pos": "DEF",
+     "club": "MCI",
+     "team_id": 15,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477424.png",
+     "points": 3
+    },
+    {
      "element": 366,
      "name": "Wirtz",
      "pos": "MID",
@@ -2682,15 +2691,6 @@
      "club": "LIV",
      "team_id": 14,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p216094.png",
-     "points": 1
-    },
-    {
-     "element": 391,
-     "name": "Gvardiol",
-     "pos": "DEF",
-     "club": "MCI",
-     "team_id": 15,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477424.png",
      "points": 1
     },
     {
@@ -2759,7 +2759,7 @@
      "points": 0
     }
    ],
-   "xi_points": 40,
+   "xi_points": 42,
    "bench_points": 2,
    "best_bench": {
     "element": 564,
@@ -2787,8 +2787,8 @@
    "next": "Vuskovic",
    "next_points": 6,
    "next_tie": [],
-   "score": 40,
-   "cost_pct": 42.5,
+   "score": 42,
+   "cost_pct": 40.5,
    "h2h": null
   },
   {
@@ -3114,6 +3114,22 @@
    "h2h": null
   },
   {
+   "league_entry": 260926,
+   "manager": "Mark Stone",
+   "team": "CHANGE NAME",
+   "release": "Gro\u00df",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60307.png",
+   "release_club": "BHA",
+   "release_points": 17,
+   "tie": [],
+   "next": "Vuskovic",
+   "next_points": 6,
+   "next_tie": [],
+   "score": 42,
+   "cost_pct": 40.5,
+   "h2h": null
+  },
+  {
    "league_entry": 208632,
    "manager": "Stefano Babiolakis",
    "team": "Iraola Coaster",
@@ -3127,22 +3143,6 @@
    "next_tie": [],
    "score": 24,
    "cost_pct": 41.7,
-   "h2h": null
-  },
-  {
-   "league_entry": 260926,
-   "manager": "Mark Stone",
-   "team": "CHANGE NAME",
-   "release": "Gro\u00df",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60307.png",
-   "release_club": "BHA",
-   "release_points": 17,
-   "tie": [],
-   "next": "Vuskovic",
-   "next_points": 6,
-   "next_tie": [],
-   "score": 40,
-   "cost_pct": 42.5,
    "h2h": null
   }
  ],
@@ -3182,11 +3182,11 @@
    "w": 4,
    "d": 0,
    "l": 0,
-   "for": 163,
+   "for": 165,
    "against": 122,
    "played": 4,
    "points": 12,
-   "diff": 41,
+   "diff": 43,
    "history": [
     {
      "event": 1,
@@ -3211,7 +3211,7 @@
     },
     {
      "event": 4,
-     "pts": 40,
+     "pts": 42,
      "against": 34,
      "opp": 254549,
      "result": "W"
@@ -3275,10 +3275,10 @@
    "d": 0,
    "l": 1,
    "for": 173,
-   "against": 163,
+   "against": 165,
    "played": 4,
    "points": 9,
-   "diff": 10,
+   "diff": 8,
    "history": [
     {
      "event": 1,
@@ -3304,7 +3304,7 @@
     {
      "event": 4,
      "pts": 34,
-     "against": 40,
+     "against": 42,
      "opp": 260926,
      "result": "L"
     }
@@ -4492,7 +4492,7 @@
    },
    {
     "manager": "Mark Stone",
-    "points": 59,
+    "points": 61,
     "transfer_points": 19
    },
    {
@@ -4558,14 +4558,14 @@
      "transfer_points": 0
     },
     {
+     "manager": "Mark Stone",
+     "points": 170,
+     "transfer_points": 5
+    },
+    {
      "manager": "Michael Lavarack",
      "points": 169,
      "transfer_points": 1
-    },
-    {
-     "manager": "Mark Stone",
-     "points": 168,
-     "transfer_points": 5
     },
     {
      "manager": "Mattato Alcock",
@@ -4611,14 +4611,14 @@
     "transfer_points": 0
    },
    {
+    "manager": "Mark Stone",
+    "points": 170,
+    "transfer_points": 5
+   },
+   {
     "manager": "Michael Lavarack",
     "points": 169,
     "transfer_points": 1
-   },
-   {
-    "manager": "Mark Stone",
-    "points": 168,
-    "transfer_points": 5
    },
    {
     "manager": "Mattato Alcock",
@@ -8220,8 +8220,8 @@
      "gameweek": 4,
      "opponent": "Mark Stone",
      "points": 34,
-     "against": 40,
-     "margin": -6,
+     "against": 42,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -8253,7 +8253,7 @@
     "gameweek": 4,
     "opponent": "Mark Stone",
     "points": 34,
-    "against": 40,
+    "against": 42,
     "started": true,
     "live": true
    },
@@ -8407,8 +8407,8 @@
     "gameweek": 4,
     "opponent": "Mark Stone",
     "points": 34,
-    "against": 40,
-    "margin": -6,
+    "against": 42,
+    "margin": -8,
     "result": "L"
    },
    "highest_scores": [
@@ -8432,8 +8432,8 @@
      "gameweek": 4,
      "opponent": "Mark Stone",
      "points": 34,
-     "against": 40,
-     "margin": -6,
+     "against": 42,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -8458,8 +8458,8 @@
      "gameweek": 4,
      "opponent": "Mark Stone",
      "points": 34,
-     "against": 40,
-     "margin": -6,
+     "against": 42,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -12504,9 +12504,9 @@
     {
      "gameweek": 4,
      "opponent": "Brad Hill",
-     "points": 40,
+     "points": 42,
      "against": 34,
-     "margin": 6,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -12537,7 +12537,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Brad Hill",
-    "points": 40,
+    "points": 42,
     "against": 34,
     "started": true,
     "live": true
@@ -12701,9 +12701,9 @@
     {
      "gameweek": 4,
      "opponent": "Brad Hill",
-     "points": 40,
+     "points": 42,
      "against": 34,
-     "margin": 6,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -12743,9 +12743,9 @@
     {
      "gameweek": 4,
      "opponent": "Brad Hill",
-     "points": 40,
+     "points": 42,
      "against": 34,
-     "margin": 6,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -14332,7 +14332,7 @@
    },
    {
     "manager": "Brad Hill",
-    "avg_against": 40.8
+    "avg_against": 41.2
    },
    {
     "manager": "Matthew Xenakis",
@@ -14343,7 +14343,7 @@
     "avg_against": 38.8
    }
   ],
-  "average": 38.7
+  "average": 38.8
  },
  "pot": {
   "base": 200,
