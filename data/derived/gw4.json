@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-13T20:11:28Z",
+  "fetched_at": "2026-09-13T20:23:22Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -138,7 +138,7 @@
    "away": 259872,
    "home_name": "Matthew Xenakis",
    "away_name": "Roscoe Hill",
-   "home_points": 30,
+   "home_points": 31,
    "away_points": 27,
    "home_remaining": 2,
    "away_remaining": 1,
@@ -1573,23 +1573,14 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
-     "points": 8
+     "points": 9
     }
    ],
-   "effective_xi_points": 30,
+   "effective_xi_points": 31,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
    "xi": [
-    {
-     "element": 40,
-     "name": "Rogers",
-     "pos": "MID",
-     "club": "CHE",
-     "team_id": 6,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-     "points": 8
-    },
     {
      "element": 411,
      "name": "Haaland",
@@ -1597,6 +1588,15 @@
      "club": "MCI",
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
+     "points": 9
+    },
+    {
+     "element": 40,
+     "name": "Rogers",
+     "pos": "MID",
+     "club": "CHE",
+     "team_id": 6,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
      "points": 8
     },
     {
@@ -1719,7 +1719,7 @@
      "points": 1
     }
    ],
-   "xi_points": 30,
+   "xi_points": 31,
    "bench_points": 14,
    "best_bench": {
     "element": 250,
@@ -2914,27 +2914,16 @@
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
-   "release": "Rogers",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-   "release_club": "CHE",
-   "release_points": 8,
-   "tie": [
-    {
-     "name": "Rogers",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-     "club": "CHE"
-    },
-    {
-     "name": "Haaland",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
-     "club": "MCI"
-    }
-   ],
-   "next": "Robertson",
-   "next_points": 7,
+   "release": "Haaland",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
+   "release_club": "MCI",
+   "release_points": 9,
+   "tie": [],
+   "next": "Rogers",
+   "next_points": 8,
    "next_tie": [],
-   "score": 30,
-   "cost_pct": 26.7,
+   "score": 31,
+   "cost_pct": 29.0,
    "h2h": null
   },
   {
@@ -3053,33 +3042,6 @@
    "h2h": null
   },
   {
-   "league_entry": 254700,
-   "manager": "Matthew Xenakis",
-   "team": "Doos",
-   "release": "Rogers",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-   "release_club": "CHE",
-   "release_points": 8,
-   "tie": [
-    {
-     "name": "Rogers",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244850.png",
-     "club": "CHE"
-    },
-    {
-     "name": "Haaland",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
-     "club": "MCI"
-    }
-   ],
-   "next": "Robertson",
-   "next_points": 7,
-   "next_tie": [],
-   "score": 30,
-   "cost_pct": 26.7,
-   "h2h": null
-  },
-  {
    "league_entry": 254549,
    "manager": "Brad Hill",
    "team": "MAGA ERA",
@@ -3097,6 +3059,22 @@
    ],
    "score": 42,
    "cost_pct": 28.6,
+   "h2h": null
+  },
+  {
+   "league_entry": 254700,
+   "manager": "Matthew Xenakis",
+   "team": "Doos",
+   "release": "Haaland",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
+   "release_club": "MCI",
+   "release_points": 9,
+   "tie": [],
+   "next": "Rogers",
+   "next_points": 8,
+   "next_tie": [],
+   "score": 31,
+   "cost_pct": 29.0,
    "h2h": null
   },
   {
@@ -3522,11 +3500,11 @@
    "w": 1,
    "d": 0,
    "l": 3,
-   "for": 137,
+   "for": 138,
    "against": 162,
    "played": 4,
    "points": 3,
-   "diff": -25,
+   "diff": -24,
    "history": [
     {
      "event": 1,
@@ -3551,7 +3529,7 @@
     },
     {
      "event": 4,
-     "pts": 30,
+     "pts": 31,
      "against": 27,
      "opp": 259872,
      "result": "W"
@@ -3569,10 +3547,10 @@
    "d": 0,
    "l": 3,
    "for": 136,
-   "against": 155,
+   "against": 156,
    "played": 4,
    "points": 3,
-   "diff": -19,
+   "diff": -20,
    "history": [
     {
      "event": 1,
@@ -3598,7 +3576,7 @@
     {
      "event": 4,
      "pts": 27,
-     "against": 30,
+     "against": 31,
      "opp": 254700,
      "result": "L"
     }
@@ -3995,7 +3973,7 @@
      "club": "MCI",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
      "pos": "FWD",
-     "points": 8,
+     "points": 9,
      "guessed": false
     }
    ],
@@ -4563,7 +4541,7 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 30,
+    "points": 31,
     "transfer_points": 0
    },
    {
@@ -4618,7 +4596,7 @@
     },
     {
      "manager": "Matthew Xenakis",
-     "points": 135,
+     "points": 136,
      "transfer_points": -2
     },
     {
@@ -4671,7 +4649,7 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 135,
+    "points": 136,
     "transfer_points": -2
    },
    {
@@ -9328,9 +9306,9 @@
     {
      "gameweek": 4,
      "opponent": "Roscoe Hill",
-     "points": 30,
+     "points": 31,
      "against": 27,
-     "margin": 3,
+     "margin": 4,
      "result": "W"
     },
     {
@@ -9361,7 +9339,7 @@
    "current_fixture": {
     "gameweek": 4,
     "opponent": "Roscoe Hill",
-    "points": 30,
+    "points": 31,
     "against": 27,
     "started": true,
     "live": true
@@ -9507,9 +9485,9 @@
    "biggest_win": {
     "gameweek": 4,
     "opponent": "Roscoe Hill",
-    "points": 30,
+    "points": 31,
     "against": 27,
-    "margin": 3,
+    "margin": 4,
     "result": "W"
    },
    "biggest_loss": {
@@ -9548,9 +9526,9 @@
     {
      "gameweek": 4,
      "opponent": "Roscoe Hill",
-     "points": 30,
+     "points": 31,
      "against": 27,
-     "margin": 3,
+     "margin": 4,
      "result": "W"
     }
    ],
@@ -9558,9 +9536,9 @@
     {
      "gameweek": 4,
      "opponent": "Roscoe Hill",
-     "points": 30,
+     "points": 31,
      "against": 27,
-     "margin": 3,
+     "margin": 4,
      "result": "W"
     },
     {
@@ -9847,7 +9825,7 @@
      "gameweek": 4,
      "name": "Haaland",
      "club": "MCI",
-     "points": 8
+     "points": 9
     }
    ],
    "most_beaten": {
@@ -9967,7 +9945,7 @@
        "club": "MCI",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
        "pos": "FWD",
-       "points": 8,
+       "points": 9,
        "guessed": false
       }
      ],
@@ -11910,8 +11888,8 @@
      "gameweek": 4,
      "opponent": "Matthew Xenakis",
      "points": 27,
-     "against": 30,
-     "margin": -3,
+     "against": 31,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -11943,7 +11921,7 @@
     "gameweek": 4,
     "opponent": "Matthew Xenakis",
     "points": 27,
-    "against": 30,
+    "against": 31,
     "started": true,
     "live": true
    },
@@ -12122,8 +12100,8 @@
      "gameweek": 4,
      "opponent": "Matthew Xenakis",
      "points": 27,
-     "against": 30,
-     "margin": -3,
+     "against": 31,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -12148,8 +12126,8 @@
      "gameweek": 4,
      "opponent": "Matthew Xenakis",
      "points": 27,
-     "against": 30,
-     "margin": -3,
+     "against": 31,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -14602,7 +14580,7 @@
    },
    {
     "manager": "Roscoe Hill",
-    "avg_against": 38.8
+    "avg_against": 39.0
    }
   ],
   "unluckiest": [
