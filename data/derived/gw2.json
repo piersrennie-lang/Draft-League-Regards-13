@@ -6,8 +6,8 @@
   "gameweek": 2,
   "next_gameweek": 3,
   "gw_fully_over": true,
-  "fetched_at": "2026-09-08T08:17:48Z",
-  "transaction_mode": "waivers",
+  "fetched_at": "2026-09-12T22:06:31Z",
+  "transaction_mode": "processing",
   "scoring": "h"
  },
  "managers": {
@@ -3584,24 +3584,36 @@
     {
      "name": "McBurnie",
      "club": "HUL",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
+     "pos": "FWD",
+     "points": 1,
+     "guessed": true
     },
     {
      "name": "Simms",
      "club": "COV",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p218997.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p218997.png",
+     "pos": "FWD",
+     "points": 0,
+     "guessed": true
     }
    ],
    "out": [
     {
-     "name": "Gonzalo",
-     "club": "FUL",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551466.png"
-    },
-    {
      "name": "Woltemade",
      "club": "NEW",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p470313.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p470313.png",
+     "pos": "FWD",
+     "points": 4,
+     "guessed": true
+    },
+    {
+     "name": "Gonzalo",
+     "club": "FUL",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551466.png",
+     "pos": "FWD",
+     "points": 2,
+     "guessed": true
     }
    ],
    "count": 2,
@@ -3612,24 +3624,36 @@
     {
      "name": "Bijol",
      "club": "LEE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p434752.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p434752.png",
+     "pos": "DEF",
+     "points": 1,
+     "guessed": false
     },
     {
      "name": "M.Sangar\u00e9",
      "club": "BRE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+     "pos": "MID",
+     "points": 4,
+     "guessed": false
     }
    ],
    "out": [
     {
      "name": "J.Timber",
      "club": "ARS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445122.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445122.png",
+     "pos": "DEF",
+     "points": 0,
+     "guessed": false
     },
     {
      "name": "Saka",
      "club": "ARS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223340.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223340.png",
+     "pos": "MID",
+     "points": 11,
+     "guessed": false
     }
    ],
    "count": 2,
@@ -3640,34 +3664,52 @@
     {
      "name": "Ajer",
      "club": "BRE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png"
-    },
-    {
-     "name": "Emersonn",
-     "club": "IPS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png",
+     "pos": "DEF",
+     "points": 3,
+     "guessed": false
     },
     {
      "name": "Mac Allister",
      "club": "LIV",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243016.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243016.png",
+     "pos": "MID",
+     "points": 2,
+     "guessed": false
+    },
+    {
+     "name": "Emersonn",
+     "club": "IPS",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png",
+     "pos": "FWD",
+     "points": 1,
+     "guessed": false
     }
    ],
    "out": [
     {
-     "name": "Jo\u00e3o Pedro",
-     "club": "CHE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p475168.png"
-    },
-    {
      "name": "Palestra",
      "club": "CHE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p620109.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p620109.png",
+     "pos": "DEF",
+     "points": 0,
+     "guessed": false
     },
     {
      "name": "Sarr",
      "club": "CRY",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232185.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232185.png",
+     "pos": "MID",
+     "points": 0,
+     "guessed": false
+    },
+    {
+     "name": "Jo\u00e3o Pedro",
+     "club": "CHE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p475168.png",
+     "pos": "FWD",
+     "points": 9,
+     "guessed": false
     }
    ],
    "count": 3,
@@ -3678,14 +3720,20 @@
     {
      "name": "Munoz",
      "club": "LIV",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551499.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551499.png",
+     "pos": "MID",
+     "points": 6,
+     "guessed": false
     }
    ],
    "out": [
     {
      "name": "Ndiaye",
      "club": "MCI",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png",
+     "pos": "MID",
+     "points": 4,
+     "guessed": false
     }
    ],
    "count": 1,
@@ -3694,36 +3742,54 @@
   "254549": {
    "in": [
     {
-     "name": "Armstrong",
-     "club": "EVE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p609873.png"
+     "name": "Scott",
+     "club": "BOU",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png",
+     "pos": "MID",
+     "points": 12,
+     "guessed": false
     },
     {
      "name": "Kayode",
      "club": "BRE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p607464.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p607464.png",
+     "pos": "DEF",
+     "points": 2,
+     "guessed": false
     },
     {
-     "name": "Scott",
-     "club": "BOU",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png"
+     "name": "Armstrong",
+     "club": "EVE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p609873.png",
+     "pos": "MID",
+     "points": 2,
+     "guessed": false
     }
    ],
    "out": [
     {
+     "name": "\u00d8degaard",
+     "club": "ARS",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
+     "pos": "MID",
+     "points": 3,
+     "guessed": false
+    },
+    {
      "name": "Ballard",
      "club": "SUN",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223827.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223827.png",
+     "pos": "DEF",
+     "points": 8,
+     "guessed": false
     },
     {
      "name": "Caicedo",
      "club": "CHE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p486672.png"
-    },
-    {
-     "name": "\u00d8degaard",
-     "club": "ARS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p486672.png",
+     "pos": "MID",
+     "points": 1,
+     "guessed": false
     }
    ],
    "count": 3,
@@ -3734,14 +3800,20 @@
     {
      "name": "Lewis-Potter",
      "club": "BRE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p249231.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p249231.png",
+     "pos": "MID",
+     "points": 6,
+     "guessed": false
     }
    ],
    "out": [
     {
      "name": "Gakpo",
      "club": "LIV",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243298.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243298.png",
+     "pos": "MID",
+     "points": 5,
+     "guessed": false
     }
    ],
    "count": 1,
@@ -3752,14 +3824,20 @@
     {
      "name": "Xhaka",
      "club": "SUN",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png",
+     "pos": "MID",
+     "points": 6,
+     "guessed": false
     }
    ],
    "out": [
     {
      "name": "Szoboszlai",
      "club": "LIV",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png",
+     "pos": "MID",
+     "points": 4,
+     "guessed": false
     }
    ],
    "count": 1,
@@ -3768,26 +3846,38 @@
   "259835": {
    "in": [
     {
-     "name": "Janelt",
-     "club": "BRE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204580.png"
-    },
-    {
      "name": "Tzolakis",
      "club": "HUL",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p473284.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p473284.png",
+     "pos": "GKP",
+     "points": 10,
+     "guessed": false
+    },
+    {
+     "name": "Janelt",
+     "club": "BRE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204580.png",
+     "pos": "MID",
+     "points": 1,
+     "guessed": false
     }
    ],
    "out": [
     {
-     "name": "Dewsbury-Hall",
-     "club": "EVE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215413.png"
-    },
-    {
      "name": "Vicario",
      "club": "TOT",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184254.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184254.png",
+     "pos": "GKP",
+     "points": 0,
+     "guessed": false
+    },
+    {
+     "name": "Dewsbury-Hall",
+     "club": "EVE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215413.png",
+     "pos": "MID",
+     "points": 2,
+     "guessed": false
     }
    ],
    "count": 2,
@@ -3796,36 +3886,54 @@
   "259872": {
    "in": [
     {
-     "name": "Jensen",
-     "club": "BRE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p207283.png"
-    },
-    {
      "name": "Stach",
      "club": "LEE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466525.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466525.png",
+     "pos": "MID",
+     "points": 4,
+     "guessed": false
+    },
+    {
+     "name": "Jensen",
+     "club": "BRE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p207283.png",
+     "pos": "MID",
+     "points": 0,
+     "guessed": false
     },
     {
      "name": "Wood",
      "club": "NFO",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60689.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60689.png",
+     "pos": "FWD",
+     "points": 0,
+     "guessed": false
     }
    ],
    "out": [
     {
+     "name": "Palmer",
+     "club": "CHE",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
+     "pos": "MID",
+     "points": 7,
+     "guessed": false
+    },
+    {
      "name": "Madueke",
      "club": "ARS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p248857.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p248857.png",
+     "pos": "MID",
+     "points": 0,
+     "guessed": false
     },
     {
      "name": "Osula",
      "club": "NEW",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p538207.png"
-    },
-    {
-     "name": "Palmer",
-     "club": "CHE",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p538207.png",
+     "pos": "FWD",
+     "points": 0,
+     "guessed": false
     }
    ],
    "count": 3,
@@ -3834,32 +3942,45 @@
   "260926": {
    "in": [
     {
-     "name": "Mendy",
-     "club": "HUL",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png"
-    },
-    {
      "name": "Scherpen",
      "club": "IPS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p240514.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p240514.png",
+     "pos": "GKP",
+     "points": 2,
+     "guessed": false
+    },
+    {
+     "name": "Mendy",
+     "club": "HUL",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png",
+     "pos": "DEF",
+     "points": 1,
+     "guessed": false
     }
    ],
    "out": [
     {
      "name": "Pope",
      "club": "NEW",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p98747.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p98747.png",
+     "pos": "GKP",
+     "points": 0,
+     "guessed": false
     },
     {
      "name": "White",
      "club": "ARS",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p198869.png"
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p198869.png",
+     "pos": "DEF",
+     "points": 7,
+     "guessed": false
     }
    ],
    "count": 2,
    "source": "inferred"
   }
  },
+ "ambiguous_transfers": [],
  "team_of_week": {
   "gameweek": 2,
   "players": [
@@ -3894,6 +4015,14 @@
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p487838.png",
     "points": 11,
     "manager": "Mattato Alcock"
+   },
+   {
+    "name": "Mukiele",
+    "pos": "DEF",
+    "club": "SUN",
+    "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200834.png",
+    "points": 9,
+    "manager": "Roscoe Hill"
    },
    {
     "name": "B.Fernandes",
@@ -3936,14 +4065,6 @@
     "manager": "Brad Hill"
    },
    {
-    "name": "Mbeumo",
-    "pos": "MID",
-    "club": "MUN",
-    "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p446008.png",
-    "points": 11,
-    "manager": "Roscoe Hill"
-   },
-   {
     "name": "Haaland",
     "pos": "FWD",
     "club": "MCI",
@@ -3952,8 +4073,8 @@
     "manager": "Michael Lavarack"
    }
   ],
-  "formation": "3-6-1",
-  "total_points": 143
+  "formation": "4-5-1",
+  "total_points": 141
  },
  "transfers_of_week": {
   "gameweek": 2,
@@ -3964,11 +4085,14 @@
     "out_club": "ARS",
     "out_points": 3,
     "out_team_id": 1,
+    "out_pos": "MID",
     "in_name": "Scott",
     "in_club": "BOU",
     "in_points": 12,
     "in_team_id": 3,
+    "in_pos": "MID",
     "diff": 9,
+    "guessed": false,
     "gain": 9
    },
    {
@@ -3977,11 +4101,14 @@
     "out_club": "MCI",
     "out_points": 4,
     "out_team_id": 15,
+    "out_pos": "MID",
     "in_name": "Munoz",
     "in_club": "LIV",
     "in_points": 6,
     "in_team_id": 14,
+    "in_pos": "MID",
     "diff": 2,
+    "guessed": false,
     "gain": 2
    },
    {
@@ -3990,11 +4117,14 @@
     "out_club": "LIV",
     "out_points": 4,
     "out_team_id": 14,
+    "out_pos": "MID",
     "in_name": "Xhaka",
     "in_club": "SUN",
     "in_points": 6,
     "in_team_id": 20,
+    "in_pos": "MID",
     "diff": 2,
+    "guessed": false,
     "gain": 2
    }
   ],
@@ -4005,11 +4135,14 @@
     "out_club": "CHE",
     "out_points": 9,
     "out_team_id": 6,
+    "out_pos": "FWD",
     "in_name": "Emersonn",
     "in_club": "IPS",
     "in_points": 1,
     "in_team_id": 12,
+    "in_pos": "FWD",
     "diff": -8,
+    "guessed": false,
     "loss": 8
    },
    {
@@ -4018,11 +4151,14 @@
     "out_club": "ARS",
     "out_points": 11,
     "out_team_id": 1,
+    "out_pos": "MID",
     "in_name": "M.Sangar\u00e9",
     "in_club": "BRE",
     "in_points": 4,
     "in_team_id": 4,
+    "in_pos": "MID",
     "diff": -7,
+    "guessed": false,
     "loss": 7
    },
    {
@@ -4031,11 +4167,14 @@
     "out_club": "SUN",
     "out_points": 8,
     "out_team_id": 20,
+    "out_pos": "DEF",
     "in_name": "Kayode",
     "in_club": "BRE",
     "in_points": 2,
     "in_team_id": 4,
+    "in_pos": "DEF",
     "diff": -6,
+    "guessed": false,
     "loss": 6
    },
    {
@@ -4044,11 +4183,14 @@
     "out_club": "ARS",
     "out_points": 7,
     "out_team_id": 1,
+    "out_pos": "DEF",
     "in_name": "Mendy",
     "in_club": "HUL",
     "in_points": 1,
     "in_team_id": 11,
+    "in_pos": "DEF",
     "diff": -6,
+    "guessed": false,
     "loss": 6
    },
    {
@@ -4057,11 +4199,14 @@
     "out_club": "CHE",
     "out_points": 7,
     "out_team_id": 6,
+    "out_pos": "MID",
     "in_name": "Stach",
     "in_club": "LEE",
     "in_points": 4,
     "in_team_id": 13,
+    "in_pos": "MID",
     "diff": -3,
+    "guessed": false,
     "loss": 3
    }
   ]
@@ -4612,11 +4757,14 @@
     "out_club": "FUL",
     "out_points": 2,
     "out_team_id": 10,
+    "out_pos": "FWD",
     "in_name": "McBurnie",
     "in_club": "HUL",
     "in_points": 1,
     "in_team_id": 11,
+    "in_pos": "FWD",
     "diff": -1,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -4627,11 +4775,14 @@
      "out_club": "FUL",
      "out_points": 2,
      "out_team_id": 10,
+     "out_pos": "FWD",
      "in_name": "McBurnie",
      "in_club": "HUL",
      "in_points": 1,
      "in_team_id": 11,
+     "in_pos": "FWD",
      "diff": -1,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -4642,11 +4793,14 @@
      "out_club": "FUL",
      "out_points": 2,
      "out_team_id": 10,
+     "out_pos": "FWD",
      "in_name": "McBurnie",
      "in_club": "HUL",
      "in_points": 1,
      "in_team_id": 11,
+     "in_pos": "FWD",
      "diff": -1,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -4661,16 +4815,20 @@
        "out_club": "FUL",
        "out_points": 2,
        "out_team_id": 10,
+       "out_pos": "FWD",
        "in_name": "McBurnie",
        "in_club": "HUL",
        "in_points": 1,
        "in_team_id": 11,
+       "in_pos": "FWD",
        "diff": -1,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -4683,24 +4841,36 @@
       {
        "name": "McBurnie",
        "club": "HUL",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
+       "pos": "FWD",
+       "points": 1,
+       "guessed": true
       },
       {
        "name": "Simms",
        "club": "COV",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p218997.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p218997.png",
+       "pos": "FWD",
+       "points": 0,
+       "guessed": true
       }
      ],
      "out": [
       {
-       "name": "Gonzalo",
-       "club": "FUL",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551466.png"
-      },
-      {
        "name": "Woltemade",
        "club": "NEW",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p470313.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p470313.png",
+       "pos": "FWD",
+       "points": 4,
+       "guessed": true
+      },
+      {
+       "name": "Gonzalo",
+       "club": "FUL",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551466.png",
+       "pos": "FWD",
+       "points": 2,
+       "guessed": true
       }
      ]
     }
@@ -5078,11 +5248,14 @@
     "out_club": "ARS",
     "out_points": 11,
     "out_team_id": 1,
+    "out_pos": "MID",
     "in_name": "M.Sangar\u00e9",
     "in_club": "BRE",
     "in_points": 4,
     "in_team_id": 4,
+    "in_pos": "MID",
     "diff": -7,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -5093,11 +5266,14 @@
      "out_club": "ARS",
      "out_points": 11,
      "out_team_id": 1,
+     "out_pos": "MID",
      "in_name": "M.Sangar\u00e9",
      "in_club": "BRE",
      "in_points": 4,
      "in_team_id": 4,
+     "in_pos": "MID",
      "diff": -7,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -5108,11 +5284,14 @@
      "out_club": "ARS",
      "out_points": 11,
      "out_team_id": 1,
+     "out_pos": "MID",
      "in_name": "M.Sangar\u00e9",
      "in_club": "BRE",
      "in_points": 4,
      "in_team_id": 4,
+     "in_pos": "MID",
      "diff": -7,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -5127,16 +5306,20 @@
        "out_club": "ARS",
        "out_points": 11,
        "out_team_id": 1,
+       "out_pos": "MID",
        "in_name": "M.Sangar\u00e9",
        "in_club": "BRE",
        "in_points": 4,
        "in_team_id": 4,
+       "in_pos": "MID",
        "diff": -7,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 1,
    "mom_wins": 0,
@@ -5149,24 +5332,36 @@
       {
        "name": "Bijol",
        "club": "LEE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p434752.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p434752.png",
+       "pos": "DEF",
+       "points": 1,
+       "guessed": false
       },
       {
        "name": "M.Sangar\u00e9",
        "club": "BRE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+       "pos": "MID",
+       "points": 4,
+       "guessed": false
       }
      ],
      "out": [
       {
        "name": "J.Timber",
        "club": "ARS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445122.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445122.png",
+       "pos": "DEF",
+       "points": 0,
+       "guessed": false
       },
       {
        "name": "Saka",
        "club": "ARS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223340.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223340.png",
+       "pos": "MID",
+       "points": 11,
+       "guessed": false
       }
      ]
     }
@@ -5554,11 +5749,14 @@
     "out_club": "CHE",
     "out_points": 9,
     "out_team_id": 6,
+    "out_pos": "FWD",
     "in_name": "Emersonn",
     "in_club": "IPS",
     "in_points": 1,
     "in_team_id": 12,
+    "in_pos": "FWD",
     "diff": -8,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -5569,11 +5767,14 @@
      "out_club": "CHE",
      "out_points": 9,
      "out_team_id": 6,
+     "out_pos": "FWD",
      "in_name": "Emersonn",
      "in_club": "IPS",
      "in_points": 1,
      "in_team_id": 12,
+     "in_pos": "FWD",
      "diff": -8,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -5584,11 +5785,14 @@
      "out_club": "CHE",
      "out_points": 9,
      "out_team_id": 6,
+     "out_pos": "FWD",
      "in_name": "Emersonn",
      "in_club": "IPS",
      "in_points": 1,
      "in_team_id": 12,
+     "in_pos": "FWD",
      "diff": -8,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -5603,16 +5807,20 @@
        "out_club": "CHE",
        "out_points": 9,
        "out_team_id": 6,
+       "out_pos": "FWD",
        "in_name": "Emersonn",
        "in_club": "IPS",
        "in_points": 1,
        "in_team_id": 12,
+       "in_pos": "FWD",
        "diff": -8,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 1,
    "mom_wins": 0,
@@ -5625,34 +5833,52 @@
       {
        "name": "Ajer",
        "club": "BRE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png"
-      },
-      {
-       "name": "Emersonn",
-       "club": "IPS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png",
+       "pos": "DEF",
+       "points": 3,
+       "guessed": false
       },
       {
        "name": "Mac Allister",
        "club": "LIV",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243016.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243016.png",
+       "pos": "MID",
+       "points": 2,
+       "guessed": false
+      },
+      {
+       "name": "Emersonn",
+       "club": "IPS",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p543968.png",
+       "pos": "FWD",
+       "points": 1,
+       "guessed": false
       }
      ],
      "out": [
       {
-       "name": "Jo\u00e3o Pedro",
-       "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p475168.png"
-      },
-      {
        "name": "Palestra",
        "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p620109.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p620109.png",
+       "pos": "DEF",
+       "points": 0,
+       "guessed": false
       },
       {
        "name": "Sarr",
        "club": "CRY",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232185.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232185.png",
+       "pos": "MID",
+       "points": 0,
+       "guessed": false
+      },
+      {
+       "name": "Jo\u00e3o Pedro",
+       "club": "CHE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p475168.png",
+       "pos": "FWD",
+       "points": 9,
+       "guessed": false
       }
      ]
     }
@@ -6029,11 +6255,14 @@
     "out_club": "MCI",
     "out_points": 4,
     "out_team_id": 15,
+    "out_pos": "MID",
     "in_name": "Munoz",
     "in_club": "LIV",
     "in_points": 6,
     "in_team_id": 14,
+    "in_pos": "MID",
     "diff": 2,
+    "guessed": false,
     "gameweek": 2
    },
    "worst_transfer": null,
@@ -6044,11 +6273,14 @@
      "out_club": "MCI",
      "out_points": 4,
      "out_team_id": 15,
+     "out_pos": "MID",
      "in_name": "Munoz",
      "in_club": "LIV",
      "in_points": 6,
      "in_team_id": 14,
+     "in_pos": "MID",
      "diff": 2,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -6060,11 +6292,14 @@
      "out_club": "MCI",
      "out_points": 4,
      "out_team_id": 15,
+     "out_pos": "MID",
      "in_name": "Munoz",
      "in_club": "LIV",
      "in_points": 6,
      "in_team_id": 14,
+     "in_pos": "MID",
      "diff": 2,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -6079,16 +6314,20 @@
        "out_club": "MCI",
        "out_points": 4,
        "out_team_id": 15,
+       "out_pos": "MID",
        "in_name": "Munoz",
        "in_club": "LIV",
        "in_points": 6,
        "in_team_id": 14,
+       "in_pos": "MID",
        "diff": 2,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -6101,14 +6340,20 @@
       {
        "name": "Munoz",
        "club": "LIV",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551499.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p551499.png",
+       "pos": "MID",
+       "points": 6,
+       "guessed": false
       }
      ],
      "out": [
       {
        "name": "Ndiaye",
        "club": "MCI",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png",
+       "pos": "MID",
+       "points": 4,
+       "guessed": false
       }
      ]
     }
@@ -6485,11 +6730,14 @@
     "out_club": "ARS",
     "out_points": 3,
     "out_team_id": 1,
+    "out_pos": "MID",
     "in_name": "Scott",
     "in_club": "BOU",
     "in_points": 12,
     "in_team_id": 3,
+    "in_pos": "MID",
     "diff": 9,
+    "guessed": false,
     "gameweek": 2
    },
    "worst_transfer": {
@@ -6498,11 +6746,14 @@
     "out_club": "SUN",
     "out_points": 8,
     "out_team_id": 20,
+    "out_pos": "DEF",
     "in_name": "Kayode",
     "in_club": "BRE",
     "in_points": 2,
     "in_team_id": 4,
+    "in_pos": "DEF",
     "diff": -6,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [
@@ -6512,11 +6763,14 @@
      "out_club": "ARS",
      "out_points": 3,
      "out_team_id": 1,
+     "out_pos": "MID",
      "in_name": "Scott",
      "in_club": "BOU",
      "in_points": 12,
      "in_team_id": 3,
+     "in_pos": "MID",
      "diff": 9,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -6527,39 +6781,48 @@
      "out_club": "SUN",
      "out_points": 8,
      "out_team_id": 20,
+     "out_pos": "DEF",
      "in_name": "Kayode",
      "in_club": "BRE",
      "in_points": 2,
      "in_team_id": 4,
+     "in_pos": "DEF",
      "diff": -6,
+     "guessed": false,
      "gameweek": 2
     }
    ],
    "qualifying_transfers": [
     {
      "manager": "Brad Hill",
-     "out_name": "Ballard",
-     "out_club": "SUN",
-     "out_points": 8,
-     "out_team_id": 20,
-     "in_name": "Kayode",
-     "in_club": "BRE",
-     "in_points": 2,
-     "in_team_id": 4,
-     "diff": -6,
-     "gameweek": 2
-    },
-    {
-     "manager": "Brad Hill",
      "out_name": "\u00d8degaard",
      "out_club": "ARS",
      "out_points": 3,
      "out_team_id": 1,
+     "out_pos": "MID",
      "in_name": "Scott",
      "in_club": "BOU",
      "in_points": 12,
      "in_team_id": 3,
+     "in_pos": "MID",
      "diff": 9,
+     "guessed": false,
+     "gameweek": 2
+    },
+    {
+     "manager": "Brad Hill",
+     "out_name": "Ballard",
+     "out_club": "SUN",
+     "out_points": 8,
+     "out_team_id": 20,
+     "out_pos": "DEF",
+     "in_name": "Kayode",
+     "in_club": "BRE",
+     "in_points": 2,
+     "in_team_id": 4,
+     "in_pos": "DEF",
+     "diff": -6,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -6570,33 +6833,40 @@
      "swaps": [
       {
        "manager": "Brad Hill",
-       "out_name": "Ballard",
-       "out_club": "SUN",
-       "out_points": 8,
-       "out_team_id": 20,
-       "in_name": "Kayode",
-       "in_club": "BRE",
-       "in_points": 2,
-       "in_team_id": 4,
-       "diff": -6,
-       "gameweek": 2
-      },
-      {
-       "manager": "Brad Hill",
        "out_name": "\u00d8degaard",
        "out_club": "ARS",
        "out_points": 3,
        "out_team_id": 1,
+       "out_pos": "MID",
        "in_name": "Scott",
        "in_club": "BOU",
        "in_points": 12,
        "in_team_id": 3,
+       "in_pos": "MID",
        "diff": 9,
+       "guessed": false,
+       "gameweek": 2
+      },
+      {
+       "manager": "Brad Hill",
+       "out_name": "Ballard",
+       "out_club": "SUN",
+       "out_points": 8,
+       "out_team_id": 20,
+       "out_pos": "DEF",
+       "in_name": "Kayode",
+       "in_club": "BRE",
+       "in_points": 2,
+       "in_team_id": 4,
+       "in_pos": "DEF",
+       "diff": -6,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 2,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -6607,36 +6877,54 @@
      "gameweek": 2,
      "in": [
       {
-       "name": "Armstrong",
-       "club": "EVE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p609873.png"
+       "name": "Scott",
+       "club": "BOU",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png",
+       "pos": "MID",
+       "points": 12,
+       "guessed": false
       },
       {
        "name": "Kayode",
        "club": "BRE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p607464.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p607464.png",
+       "pos": "DEF",
+       "points": 2,
+       "guessed": false
       },
       {
-       "name": "Scott",
-       "club": "BOU",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p503139.png"
+       "name": "Armstrong",
+       "club": "EVE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p609873.png",
+       "pos": "MID",
+       "points": 2,
+       "guessed": false
       }
      ],
      "out": [
       {
+       "name": "\u00d8degaard",
+       "club": "ARS",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png",
+       "pos": "MID",
+       "points": 3,
+       "guessed": false
+      },
+      {
        "name": "Ballard",
        "club": "SUN",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223827.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223827.png",
+       "pos": "DEF",
+       "points": 8,
+       "guessed": false
       },
       {
        "name": "Caicedo",
        "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p486672.png"
-      },
-      {
-       "name": "\u00d8degaard",
-       "club": "ARS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184029.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p486672.png",
+       "pos": "MID",
+       "points": 1,
+       "guessed": false
       }
      ]
     }
@@ -7013,6 +7301,7 @@
    "worst_transfers": [],
    "qualifying_transfers": [],
    "transfer_blocks": [],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -7025,14 +7314,20 @@
       {
        "name": "Lewis-Potter",
        "club": "BRE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p249231.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p249231.png",
+       "pos": "MID",
+       "points": 6,
+       "guessed": false
       }
      ],
      "out": [
       {
        "name": "Gakpo",
        "club": "LIV",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243298.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p243298.png",
+       "pos": "MID",
+       "points": 5,
+       "guessed": false
       }
      ]
     }
@@ -7419,11 +7714,14 @@
     "out_club": "LIV",
     "out_points": 4,
     "out_team_id": 14,
+    "out_pos": "MID",
     "in_name": "Xhaka",
     "in_club": "SUN",
     "in_points": 6,
     "in_team_id": 20,
+    "in_pos": "MID",
     "diff": 2,
+    "guessed": false,
     "gameweek": 2
    },
    "worst_transfer": null,
@@ -7434,11 +7732,14 @@
      "out_club": "LIV",
      "out_points": 4,
      "out_team_id": 14,
+     "out_pos": "MID",
      "in_name": "Xhaka",
      "in_club": "SUN",
      "in_points": 6,
      "in_team_id": 20,
+     "in_pos": "MID",
      "diff": 2,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -7450,11 +7751,14 @@
      "out_club": "LIV",
      "out_points": 4,
      "out_team_id": 14,
+     "out_pos": "MID",
      "in_name": "Xhaka",
      "in_club": "SUN",
      "in_points": 6,
      "in_team_id": 20,
+     "in_pos": "MID",
      "diff": 2,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -7469,16 +7773,20 @@
        "out_club": "LIV",
        "out_points": 4,
        "out_team_id": 14,
+       "out_pos": "MID",
        "in_name": "Xhaka",
        "in_club": "SUN",
        "in_points": 6,
        "in_team_id": 20,
+       "in_pos": "MID",
        "diff": 2,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -7491,14 +7799,20 @@
       {
        "name": "Xhaka",
        "club": "SUN",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p84450.png",
+       "pos": "MID",
+       "points": 6,
+       "guessed": false
       }
      ],
      "out": [
       {
        "name": "Szoboszlai",
        "club": "LIV",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p424876.png",
+       "pos": "MID",
+       "points": 4,
+       "guessed": false
       }
      ]
     }
@@ -7886,11 +8200,14 @@
     "out_club": "EVE",
     "out_points": 2,
     "out_team_id": 9,
+    "out_pos": "MID",
     "in_name": "Janelt",
     "in_club": "BRE",
     "in_points": 1,
     "in_team_id": 4,
+    "in_pos": "MID",
     "diff": -1,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -7901,11 +8218,14 @@
      "out_club": "EVE",
      "out_points": 2,
      "out_team_id": 9,
+     "out_pos": "MID",
      "in_name": "Janelt",
      "in_club": "BRE",
      "in_points": 1,
      "in_team_id": 4,
+     "in_pos": "MID",
      "diff": -1,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -7916,11 +8236,14 @@
      "out_club": "EVE",
      "out_points": 2,
      "out_team_id": 9,
+     "out_pos": "MID",
      "in_name": "Janelt",
      "in_club": "BRE",
      "in_points": 1,
      "in_team_id": 4,
+     "in_pos": "MID",
      "diff": -1,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -7935,16 +8258,20 @@
        "out_club": "EVE",
        "out_points": 2,
        "out_team_id": 9,
+       "out_pos": "MID",
        "in_name": "Janelt",
        "in_club": "BRE",
        "in_points": 1,
        "in_team_id": 4,
+       "in_pos": "MID",
        "diff": -1,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -7955,26 +8282,38 @@
      "gameweek": 2,
      "in": [
       {
-       "name": "Janelt",
-       "club": "BRE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204580.png"
-      },
-      {
        "name": "Tzolakis",
        "club": "HUL",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p473284.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p473284.png",
+       "pos": "GKP",
+       "points": 10,
+       "guessed": false
+      },
+      {
+       "name": "Janelt",
+       "club": "BRE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204580.png",
+       "pos": "MID",
+       "points": 1,
+       "guessed": false
       }
      ],
      "out": [
       {
-       "name": "Dewsbury-Hall",
-       "club": "EVE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215413.png"
-      },
-      {
        "name": "Vicario",
        "club": "TOT",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184254.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p184254.png",
+       "pos": "GKP",
+       "points": 0,
+       "guessed": false
+      },
+      {
+       "name": "Dewsbury-Hall",
+       "club": "EVE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p215413.png",
+       "pos": "MID",
+       "points": 2,
+       "guessed": false
       }
      ]
     }
@@ -8362,11 +8701,14 @@
     "out_club": "CHE",
     "out_points": 7,
     "out_team_id": 6,
+    "out_pos": "MID",
     "in_name": "Stach",
     "in_club": "LEE",
     "in_points": 4,
     "in_team_id": 13,
+    "in_pos": "MID",
     "diff": -3,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -8377,11 +8719,14 @@
      "out_club": "CHE",
      "out_points": 7,
      "out_team_id": 6,
+     "out_pos": "MID",
      "in_name": "Stach",
      "in_club": "LEE",
      "in_points": 4,
      "in_team_id": 13,
+     "in_pos": "MID",
      "diff": -3,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -8392,11 +8737,14 @@
      "out_club": "CHE",
      "out_points": 7,
      "out_team_id": 6,
+     "out_pos": "MID",
      "in_name": "Stach",
      "in_club": "LEE",
      "in_points": 4,
      "in_team_id": 13,
+     "in_pos": "MID",
      "diff": -3,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -8411,16 +8759,20 @@
        "out_club": "CHE",
        "out_points": 7,
        "out_team_id": 6,
+       "out_pos": "MID",
        "in_name": "Stach",
        "in_club": "LEE",
        "in_points": 4,
        "in_team_id": 13,
+       "in_pos": "MID",
        "diff": -3,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -8431,36 +8783,54 @@
      "gameweek": 2,
      "in": [
       {
-       "name": "Jensen",
-       "club": "BRE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p207283.png"
-      },
-      {
        "name": "Stach",
        "club": "LEE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466525.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466525.png",
+       "pos": "MID",
+       "points": 4,
+       "guessed": false
+      },
+      {
+       "name": "Jensen",
+       "club": "BRE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p207283.png",
+       "pos": "MID",
+       "points": 0,
+       "guessed": false
       },
       {
        "name": "Wood",
        "club": "NFO",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60689.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p60689.png",
+       "pos": "FWD",
+       "points": 0,
+       "guessed": false
       }
      ],
      "out": [
       {
+       "name": "Palmer",
+       "club": "CHE",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
+       "pos": "MID",
+       "points": 7,
+       "guessed": false
+      },
+      {
        "name": "Madueke",
        "club": "ARS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p248857.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p248857.png",
+       "pos": "MID",
+       "points": 0,
+       "guessed": false
       },
       {
        "name": "Osula",
        "club": "NEW",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p538207.png"
-      },
-      {
-       "name": "Palmer",
-       "club": "CHE",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p538207.png",
+       "pos": "FWD",
+       "points": 0,
+       "guessed": false
       }
      ]
     }
@@ -8838,11 +9208,14 @@
     "out_club": "ARS",
     "out_points": 7,
     "out_team_id": 1,
+    "out_pos": "DEF",
     "in_name": "Mendy",
     "in_club": "HUL",
     "in_points": 1,
     "in_team_id": 11,
+    "in_pos": "DEF",
     "diff": -6,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -8853,11 +9226,14 @@
      "out_club": "ARS",
      "out_points": 7,
      "out_team_id": 1,
+     "out_pos": "DEF",
      "in_name": "Mendy",
      "in_club": "HUL",
      "in_points": 1,
      "in_team_id": 11,
+     "in_pos": "DEF",
      "diff": -6,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -8868,11 +9244,14 @@
      "out_club": "ARS",
      "out_points": 7,
      "out_team_id": 1,
+     "out_pos": "DEF",
      "in_name": "Mendy",
      "in_club": "HUL",
      "in_points": 1,
      "in_team_id": 11,
+     "in_pos": "DEF",
      "diff": -6,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -8887,16 +9266,20 @@
        "out_club": "ARS",
        "out_points": 7,
        "out_team_id": 1,
+       "out_pos": "DEF",
        "in_name": "Mendy",
        "in_club": "HUL",
        "in_points": 1,
        "in_team_id": 11,
+       "in_pos": "DEF",
        "diff": -6,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -8907,26 +9290,38 @@
      "gameweek": 2,
      "in": [
       {
-       "name": "Mendy",
-       "club": "HUL",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png"
-      },
-      {
        "name": "Scherpen",
        "club": "IPS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p240514.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p240514.png",
+       "pos": "GKP",
+       "points": 2,
+       "guessed": false
+      },
+      {
+       "name": "Mendy",
+       "club": "HUL",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606930.png",
+       "pos": "DEF",
+       "points": 1,
+       "guessed": false
       }
      ],
      "out": [
       {
        "name": "Pope",
        "club": "NEW",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p98747.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p98747.png",
+       "pos": "GKP",
+       "points": 0,
+       "guessed": false
       },
       {
        "name": "White",
        "club": "ARS",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p198869.png"
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p198869.png",
+       "pos": "DEF",
+       "points": 7,
+       "guessed": false
       }
      ]
     }
@@ -9418,11 +9813,14 @@
     "out_club": "ARS",
     "out_points": 3,
     "out_team_id": 1,
+    "out_pos": "MID",
     "in_name": "Scott",
     "in_club": "BOU",
     "in_points": 12,
     "in_team_id": 3,
+    "in_pos": "MID",
     "diff": 9,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9431,11 +9829,14 @@
     "out_club": "MCI",
     "out_points": 4,
     "out_team_id": 15,
+    "out_pos": "MID",
     "in_name": "Munoz",
     "in_club": "LIV",
     "in_points": 6,
     "in_team_id": 14,
+    "in_pos": "MID",
     "diff": 2,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9444,11 +9845,14 @@
     "out_club": "LIV",
     "out_points": 4,
     "out_team_id": 14,
+    "out_pos": "MID",
     "in_name": "Xhaka",
     "in_club": "SUN",
     "in_points": 6,
     "in_team_id": 20,
+    "in_pos": "MID",
     "diff": 2,
+    "guessed": false,
     "gameweek": 2
    }
   ],
@@ -9459,11 +9863,14 @@
     "out_club": "CHE",
     "out_points": 9,
     "out_team_id": 6,
+    "out_pos": "FWD",
     "in_name": "Emersonn",
     "in_club": "IPS",
     "in_points": 1,
     "in_team_id": 12,
+    "in_pos": "FWD",
     "diff": -8,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9472,11 +9879,14 @@
     "out_club": "ARS",
     "out_points": 11,
     "out_team_id": 1,
+    "out_pos": "MID",
     "in_name": "M.Sangar\u00e9",
     "in_club": "BRE",
     "in_points": 4,
     "in_team_id": 4,
+    "in_pos": "MID",
     "diff": -7,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9485,11 +9895,14 @@
     "out_club": "SUN",
     "out_points": 8,
     "out_team_id": 20,
+    "out_pos": "DEF",
     "in_name": "Kayode",
     "in_club": "BRE",
     "in_points": 2,
     "in_team_id": 4,
+    "in_pos": "DEF",
     "diff": -6,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9498,11 +9911,14 @@
     "out_club": "ARS",
     "out_points": 7,
     "out_team_id": 1,
+    "out_pos": "DEF",
     "in_name": "Mendy",
     "in_club": "HUL",
     "in_points": 1,
     "in_team_id": 11,
+    "in_pos": "DEF",
     "diff": -6,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9511,11 +9927,14 @@
     "out_club": "CHE",
     "out_points": 7,
     "out_team_id": 6,
+    "out_pos": "MID",
     "in_name": "Stach",
     "in_club": "LEE",
     "in_points": 4,
     "in_team_id": 13,
+    "in_pos": "MID",
     "diff": -3,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9524,11 +9943,14 @@
     "out_club": "FUL",
     "out_points": 2,
     "out_team_id": 10,
+    "out_pos": "FWD",
     "in_name": "McBurnie",
     "in_club": "HUL",
     "in_points": 1,
     "in_team_id": 11,
+    "in_pos": "FWD",
     "diff": -1,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -9537,11 +9959,14 @@
     "out_club": "EVE",
     "out_points": 2,
     "out_team_id": 9,
+    "out_pos": "MID",
     "in_name": "Janelt",
     "in_club": "BRE",
     "in_points": 1,
     "in_team_id": 4,
+    "in_pos": "MID",
     "diff": -1,
+    "guessed": false,
     "gameweek": 2
    }
   ]

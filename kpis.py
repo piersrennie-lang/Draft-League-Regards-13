@@ -11,6 +11,7 @@ Usage:
 import argparse
 import json
 import pathlib
+from itertools import accumulate
 
 import config
 from autosub import calculate_effective_lineup, _fixture_over
@@ -859,13 +860,18 @@ def build_team_of_week(managers, totw_squads):
     is eligible. Bench players don't qualify -- same convention as the
     Highest Scorer Rule elsewhere in this file, where bench points are
     exempt: a manager didn't play a benched player, whatever that player
-    did in their real match. Formation minimums (1 GK, 3 DEF, 2 MID, 1
-    FWD) are filled with the best at each position; the four remaining
-    slots go to whoever scored highest among what's left, regardless of
-    position. That greedy fill is optimal here -- there's no upper bound
-    on any outfield position, only lower bounds, so nothing is ever
-    gained by holding back a high scorer to satisfy a minimum a lower
-    scorer could have met instead.
+    did in their real match.
+
+    A valid formation is exactly 1 GK plus 10 outfield players within
+    real FPL squad limits -- 3-5 DEF, 2-5 MID, 1-3 FWD (a 15-man squad is
+    only ever 2 GK/5 DEF/5 MID/3 FWD, so those are the hard ceilings, not
+    just floors). Every combination of (DEF, MID, FWD) counts that fits
+    those bounds and sums to 10 is tried; for a fixed count at each
+    position the best possible picks are simply that position's top N by
+    points (each pool is pre-sorted, so there's never a reason to skip a
+    higher scorer for a lower one at a fixed count), so the formation
+    with the highest total across its three prefix sums is the true
+    optimum, not just a greedy approximation.
     """
     if not totw_squads:
         return None
@@ -884,18 +890,29 @@ def build_team_of_week(managers, totw_squads):
     for group in by_pos.values():
         group.sort(key=lambda p: (-p["points"], p["name"]))
 
-    minimums = {"GKP": 1, "DEF": 3, "MID": 2, "FWD": 1}
-    selected, selected_ids = [], set()
-    for pos, n in minimums.items():
-        for p in by_pos[pos][:n]:
-            selected.append(p)
-            selected_ids.add(p["element"])
+    bounds = {"DEF": (3, 5), "MID": (2, 5), "FWD": (1, 3)}
+    prefix = {
+        pos: [0] + list(accumulate(p["points"] for p in group))
+        for pos, group in by_pos.items() if pos in bounds
+    }
 
-    remaining = [p for p in by_pos["DEF"] + by_pos["MID"] + by_pos["FWD"]
-                 if p["element"] not in selected_ids]
-    remaining.sort(key=lambda p: (-p["points"], p["name"]))
-    flex_needed = 11 - len(selected)
-    selected.extend(remaining[:flex_needed])
+    best_score, best_counts = None, None
+    def_lo, def_hi = bounds["DEF"]
+    mid_lo, mid_hi = bounds["MID"]
+    fwd_lo, fwd_hi = bounds["FWD"]
+    for d in range(def_lo, min(def_hi, len(by_pos["DEF"])) + 1):
+        for m in range(mid_lo, min(mid_hi, len(by_pos["MID"])) + 1):
+            f = 10 - d - m
+            if not (fwd_lo <= f <= min(fwd_hi, len(by_pos["FWD"]))):
+                continue
+            score = prefix["DEF"][d] + prefix["MID"][m] + prefix["FWD"][f]
+            if best_score is None or score > best_score:
+                best_score, best_counts = score, {"DEF": d, "MID": m, "FWD": f}
+
+    selected = list(by_pos["GKP"][:1])
+    if best_counts:
+        for pos, n in best_counts.items():
+            selected.extend(by_pos[pos][:n])
 
     order = {"GKP": 0, "DEF": 1, "MID": 2, "FWD": 3}
     selected.sort(key=lambda p: (order[p["pos"]], -p["points"]))
