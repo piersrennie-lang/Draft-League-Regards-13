@@ -1172,8 +1172,15 @@ def build_manager_of_month(managers, players, gw, gw_fully_over, load_fn):
 
     season_standings = _block_standings(managers, players, load_fn, 1, gw)
 
+    # A block that's just gone final (gw itself lands exactly on its last
+    # gameweek, fully over) belongs in history immediately -- it stays
+    # "current" too, shown live-turned-final in that widget, until gw
+    # actually ticks into the next block, but the record book (history,
+    # wins leaderboard) shouldn't have to wait for that to happen before
+    # crediting a month that's already decided.
+    history_through = current_end if (current and current["is_final"]) else current_end - 4
     history = []
-    for block_end in range(4, current_end, 4):
+    for block_end in range(4, history_through + 1, 4):
         block_start = block_end - 3
         standings = _block_standings(managers, players, load_fn, block_start, block_end)
         if standings:
