@@ -59,7 +59,7 @@
    "player_first_name": "Stefano",
    "player_last_name": "Babiolakis",
    "short_name": "SB",
-   "waiver_pick": 3
+   "waiver_pick": 1
   },
   {
    "entry_id": 208225,
@@ -69,7 +69,7 @@
    "player_first_name": "Nicolas",
    "player_last_name": "Rubin",
    "short_name": "NR",
-   "waiver_pick": 6
+   "waiver_pick": 8
   },
   {
    "entry_id": 240520,
@@ -79,7 +79,7 @@
    "player_first_name": "Mattato",
    "player_last_name": "Alcock",
    "short_name": "MA",
-   "waiver_pick": 2
+   "waiver_pick": 4
   },
   {
    "entry_id": 252346,
@@ -89,7 +89,7 @@
    "player_first_name": "Brad",
    "player_last_name": "Hill",
    "short_name": "BH",
-   "waiver_pick": 10
+   "waiver_pick": 9
   },
   {
    "entry_id": 252496,
@@ -99,7 +99,7 @@
    "player_first_name": "Matthew",
    "player_last_name": "Xenakis",
    "short_name": "MX",
-   "waiver_pick": 1
+   "waiver_pick": 3
   },
   {
    "entry_id": 253221,
@@ -119,7 +119,7 @@
    "player_first_name": "Michael",
    "player_last_name": "Lavarack",
    "short_name": "ML1",
-   "waiver_pick": 8
+   "waiver_pick": 6
   },
   {
    "entry_id": 257630,
@@ -129,7 +129,7 @@
    "player_first_name": "Roscoe",
    "player_last_name": "Hill",
    "short_name": "RH",
-   "waiver_pick": 4
+   "waiver_pick": 2
   },
   {
    "entry_id": 258681,
@@ -139,7 +139,7 @@
    "player_first_name": "Mark",
    "player_last_name": "Stone",
    "short_name": "MS",
-   "waiver_pick": 9
+   "waiver_pick": 10
   }
  ],
  "matches": [
@@ -310,7 +310,7 @@
   },
   {
    "event": 4,
-   "finished": false,
+   "finished": true,
    "league_entry_1": 207565,
    "league_entry_1_points": 45,
    "league_entry_2": 209435,
@@ -321,18 +321,18 @@
   },
   {
    "event": 4,
-   "finished": false,
+   "finished": true,
    "league_entry_1": 242301,
    "league_entry_1_points": 50,
    "league_entry_2": 208632,
-   "league_entry_2_points": 33,
+   "league_entry_2_points": 35,
    "started": true,
    "winning_league_entry": null,
    "winning_method": null
   },
   {
    "event": 4,
-   "finished": false,
+   "finished": true,
    "league_entry_1": 254549,
    "league_entry_1_points": 42,
    "league_entry_2": 260926,
@@ -343,7 +343,7 @@
   },
   {
    "event": 4,
-   "finished": false,
+   "finished": true,
    "league_entry_1": 254700,
    "league_entry_1_points": 47,
    "league_entry_2": 259872,
@@ -354,11 +354,11 @@
   },
   {
    "event": 4,
-   "finished": false,
+   "finished": true,
    "league_entry_1": 255427,
    "league_entry_1_points": 52,
    "league_entry_2": 259835,
-   "league_entry_2_points": 27,
+   "league_entry_2_points": 28,
    "started": true,
    "winning_league_entry": null,
    "winning_method": null
@@ -2236,56 +2236,30 @@
  ],
  "standings": [
   {
-   "last_rank": 1,
-   "league_entry": 254549,
-   "matches_drawn": 0,
-   "matches_lost": 0,
-   "matches_played": 38,
-   "matches_won": 3,
-   "points_against": 123,
-   "points_for": 139,
-   "rank": 1,
-   "rank_sort": 1,
-   "total": 9
-  },
-  {
    "last_rank": 2,
    "league_entry": 260926,
    "matches_drawn": 0,
    "matches_lost": 0,
    "matches_played": 38,
+   "matches_won": 4,
+   "points_against": 130,
+   "points_for": 174,
+   "rank": 1,
+   "rank_sort": 1,
+   "total": 12
+  },
+  {
+   "last_rank": 1,
+   "league_entry": 254549,
+   "matches_drawn": 0,
+   "matches_lost": 1,
+   "matches_played": 38,
    "matches_won": 3,
-   "points_against": 88,
-   "points_for": 123,
+   "points_against": 174,
+   "points_for": 181,
    "rank": 2,
    "rank_sort": 2,
    "total": 9
-  },
-  {
-   "last_rank": 3,
-   "league_entry": 259835,
-   "matches_drawn": 0,
-   "matches_lost": 1,
-   "matches_played": 38,
-   "matches_won": 2,
-   "points_against": 147,
-   "points_for": 141,
-   "rank": 3,
-   "rank_sort": 3,
-   "total": 6
-  },
-  {
-   "last_rank": 4,
-   "league_entry": 255427,
-   "matches_drawn": 0,
-   "matches_lost": 1,
-   "matches_played": 38,
-   "matches_won": 2,
-   "points_against": 96,
-   "points_for": 120,
-   "rank": 4,
-   "rank_sort": 4,
-   "total": 6
   },
   {
    "last_rank": 5,
@@ -2293,9 +2267,35 @@
    "matches_drawn": 0,
    "matches_lost": 1,
    "matches_played": 38,
+   "matches_won": 3,
+   "points_against": 146,
+   "points_for": 178,
+   "rank": 3,
+   "rank_sort": 3,
+   "total": 9
+  },
+  {
+   "last_rank": 4,
+   "league_entry": 255427,
+   "matches_drawn": 0,
+   "matches_lost": 1,
+   "matches_played": 38,
+   "matches_won": 3,
+   "points_against": 124,
+   "points_for": 172,
+   "rank": 4,
+   "rank_sort": 4,
+   "total": 9
+  },
+  {
+   "last_rank": 3,
+   "league_entry": 259835,
+   "matches_drawn": 0,
+   "matches_lost": 2,
+   "matches_played": 38,
    "matches_won": 2,
-   "points_against": 101,
-   "points_for": 105,
+   "points_against": 199,
+   "points_for": 169,
    "rank": 5,
    "rank_sort": 5,
    "total": 6
@@ -2304,40 +2304,14 @@
    "last_rank": 6,
    "league_entry": 207565,
    "matches_drawn": 1,
-   "matches_lost": 1,
+   "matches_lost": 2,
    "matches_played": 38,
    "matches_won": 1,
-   "points_against": 126,
-   "points_for": 129,
+   "points_against": 199,
+   "points_for": 174,
    "rank": 6,
    "rank_sort": 6,
    "total": 4
-  },
-  {
-   "last_rank": 7,
-   "league_entry": 259872,
-   "matches_drawn": 0,
-   "matches_lost": 2,
-   "matches_played": 38,
-   "matches_won": 1,
-   "points_against": 125,
-   "points_for": 109,
-   "rank": 7,
-   "rank_sort": 7,
-   "total": 3
-  },
-  {
-   "last_rank": 8,
-   "league_entry": 208632,
-   "matches_drawn": 1,
-   "matches_lost": 2,
-   "matches_played": 38,
-   "matches_won": 0,
-   "points_against": 111,
-   "points_for": 98,
-   "rank": 8,
-   "rank_sort": 8,
-   "total": 1
   },
   {
    "last_rank": 9,
@@ -2345,12 +2319,12 @@
    "matches_drawn": 0,
    "matches_lost": 3,
    "matches_played": 38,
-   "matches_won": 0,
-   "points_against": 129,
-   "points_for": 110,
-   "rank": 9,
-   "rank_sort": 9,
-   "total": 0
+   "matches_won": 1,
+   "points_against": 164,
+   "points_for": 160,
+   "rank": 7,
+   "rank_sort": 7,
+   "total": 3
   },
   {
    "last_rank": 10,
@@ -2358,12 +2332,38 @@
    "matches_drawn": 0,
    "matches_lost": 3,
    "matches_played": 38,
+   "matches_won": 1,
+   "points_against": 165,
+   "points_for": 154,
+   "rank": 8,
+   "rank_sort": 8,
+   "total": 3
+  },
+  {
+   "last_rank": 7,
+   "league_entry": 259872,
+   "matches_drawn": 0,
+   "matches_lost": 3,
+   "matches_played": 38,
+   "matches_won": 1,
+   "points_against": 172,
+   "points_for": 139,
+   "rank": 9,
+   "rank_sort": 9,
+   "total": 3
+  },
+  {
+   "last_rank": 8,
+   "league_entry": 208632,
+   "matches_drawn": 1,
+   "matches_lost": 3,
+   "matches_played": 38,
    "matches_won": 0,
-   "points_against": 135,
-   "points_for": 107,
+   "points_against": 161,
+   "points_for": 133,
    "rank": 10,
    "rank_sort": 10,
-   "total": 0
+   "total": 1
   }
  ]
 }
