@@ -3879,6 +3879,12 @@
        "points": 1,
        "value": 45,
        "stat": "minutes"
+      },
+      {
+       "name": "Bonus",
+       "points": 2,
+       "value": 2,
+       "stat": "bonus"
       }
      ],
      41
@@ -3896,8 +3902,8 @@
     "yellow_cards": 0,
     "red_cards": 0,
     "saves": 0,
-    "bonus": 0,
-    "bps": 10,
+    "bonus": 2,
+    "bps": 11,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -3908,10 +3914,10 @@
     "expected_goal_involvements": 0.02,
     "expected_goals_conceded": 0.39,
     "clearances_blocks_interceptions": 4,
-    "recoveries": 2,
+    "recoveries": 3,
     "tackles": 0,
     "defensive_contribution": 4,
-    "total_points": 1,
+    "total_points": 3,
     "in_dreamteam": true
    }
   },
@@ -4392,7 +4398,7 @@
     "red_cards": 0,
     "saves": 0,
     "bonus": 0,
-    "bps": 4,
+    "bps": 5,
     "influence": 0.0,
     "creativity": 0.0,
     "threat": 0.0,
@@ -29733,6 +29739,10 @@
      "s": "bonus",
      "h": [
       {
+       "element": 87,
+       "value": 2
+      },
+      {
        "element": 102,
        "value": 2
       }
@@ -29752,15 +29762,15 @@
      "s": "bps",
      "h": [
       {
+       "element": 87,
+       "value": 11
+      },
+      {
        "element": 102,
        "value": 11
       },
       {
        "element": 82,
-       "value": 10
-      },
-      {
-       "element": 87,
        "value": 10
       },
       {
@@ -29781,7 +29791,7 @@
       },
       {
        "element": 98,
-       "value": 4
+       "value": 5
       },
       {
        "element": 88,
