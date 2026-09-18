@@ -6,7 +6,7 @@
   "gameweek": 5,
   "next_gameweek": 6,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-18T20:22:50Z",
+  "fetched_at": "2026-09-18T20:33:00Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -113,7 +113,7 @@
    "home_name": "Mark Stone",
    "away_name": "Michael Lavarack",
    "home_points": 0,
-   "away_points": 2,
+   "away_points": 4,
    "home_remaining": 11,
    "away_remaining": 10,
    "started": true,
@@ -125,7 +125,7 @@
    "away": 255427,
    "home_name": "Stefano Babiolakis",
    "away_name": "Matthew Lees",
-   "home_points": 0,
+   "home_points": 1,
    "away_points": 2,
    "home_remaining": 9,
    "away_remaining": 10,
@@ -475,7 +475,7 @@
      "club": "BRE",
      "team_id": 4,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
-     "points": 0
+     "points": 1
     },
     {
      "element": 13,
@@ -532,11 +532,20 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 0,
+   "effective_xi_points": 1,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
    "xi": [
+    {
+     "element": 556,
+     "name": "M.Sangar\u00e9",
+     "pos": "MID",
+     "club": "BRE",
+     "team_id": 4,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+     "points": 1
+    },
     {
      "element": 198,
      "name": "Henderson",
@@ -571,15 +580,6 @@
      "club": "HUL",
      "team_id": 11,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p146426.png",
-     "points": 0
-    },
-    {
-     "element": 556,
-     "name": "M.Sangar\u00e9",
-     "pos": "MID",
-     "club": "BRE",
-     "team_id": 4,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
      "points": 0
     },
     {
@@ -675,7 +675,7 @@
      "points": 0
     }
    ],
-   "xi_points": 0,
+   "xi_points": 1,
    "bench_points": 0,
    "best_bench": {
     "element": 529,
@@ -686,7 +686,7 @@
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p498016.png",
     "points": 0
    },
-   "blanks": 11,
+   "blanks": 10,
    "wasted": 0
   },
   "209435": {
@@ -1681,7 +1681,7 @@
      "club": "BRE",
      "team_id": 4,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png",
-     "points": 7
+     "points": 6
     },
     {
      "element": 149,
@@ -1712,7 +1712,7 @@
     }
    ],
    "xi_points": 7,
-   "bench_points": 9,
+   "bench_points": 8,
    "best_bench": {
     "element": 87,
     "name": "Ajer",
@@ -1720,10 +1720,10 @@
     "club": "BRE",
     "team_id": 4,
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png",
-    "points": 7
+    "points": 6
    },
    "blanks": 8,
-   "wasted": 9
+   "wasted": 8
   },
   "255427": {
    "effective_xi": [
@@ -2002,7 +2002,7 @@
      "club": "CHE",
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
-     "points": 2
+     "points": 4
     },
     {
      "element": 204,
@@ -2086,7 +2086,7 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 2,
+   "effective_xi_points": 4,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2098,7 +2098,7 @@
      "club": "CHE",
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
-     "points": 2
+     "points": 4
     },
     {
      "element": 571,
@@ -2229,7 +2229,7 @@
      "points": 0
     }
    ],
-   "xi_points": 2,
+   "xi_points": 4,
    "bench_points": 2,
    "best_bench": {
     "element": 136,
@@ -2458,7 +2458,7 @@
      "club": "BRE",
      "team_id": 4,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200720.png",
-     "points": 6
+     "points": 7
     },
     {
      "element": 490,
@@ -2489,7 +2489,7 @@
     }
    ],
    "xi_points": 0,
-   "bench_points": 6,
+   "bench_points": 7,
    "best_bench": {
     "element": 82,
     "name": "Kelleher",
@@ -2497,10 +2497,10 @@
     "club": "BRE",
     "team_id": 4,
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p200720.png",
-    "points": 6
+    "points": 7
    },
    "blanks": 11,
-   "wasted": 6
+   "wasted": 7
   },
   "260926": {
    "effective_xi": [
@@ -2764,6 +2764,33 @@
  },
  "releases": [
   {
+   "league_entry": 259835,
+   "manager": "Michael Lavarack",
+   "team": "Average",
+   "release": "Lacroix",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
+   "release_club": "CHE",
+   "release_points": 4,
+   "tie": [],
+   "next": "Tzolakis",
+   "next_points": 0,
+   "next_tie": [
+    "Tzolakis",
+    "Mitchell",
+    "Thomas",
+    "Van de Ven",
+    "Scott",
+    "Dewsbury-Hall",
+    "\u00d8degaard",
+    "Ndiaye",
+    "Nketiah",
+    "Delap"
+   ],
+   "score": 4,
+   "cost_pct": 100.0,
+   "h2h": null
+  },
+  {
    "league_entry": 254549,
    "manager": "Brad Hill",
    "team": "MAGA ERA",
@@ -2864,29 +2891,29 @@
    "h2h": null
   },
   {
-   "league_entry": 259835,
-   "manager": "Michael Lavarack",
-   "team": "Average",
-   "release": "Lacroix",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
-   "release_club": "CHE",
-   "release_points": 2,
+   "league_entry": 208632,
+   "manager": "Stefano Babiolakis",
+   "team": "Iraola Coaster",
+   "release": "M.Sangar\u00e9",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+   "release_club": "BRE",
+   "release_points": 1,
    "tie": [],
-   "next": "Tzolakis",
+   "next": "Henderson",
    "next_points": 0,
    "next_tie": [
-    "Tzolakis",
-    "Mitchell",
-    "Thomas",
-    "Van de Ven",
-    "Scott",
-    "Dewsbury-Hall",
-    "\u00d8degaard",
-    "Ndiaye",
-    "Nketiah",
-    "Delap"
+    "Henderson",
+    "Thiaw",
+    "Khusanov",
+    "Ajayi",
+    "Rice",
+    "Ampadu",
+    "Cherki",
+    "N.Jackson",
+    "Wilson",
+    "Marmoush"
    ],
-   "score": 2,
+   "score": 1,
    "cost_pct": 100.0,
    "h2h": null
   }
@@ -2912,6 +2939,33 @@
    "h2h": null
   },
   {
+   "league_entry": 259835,
+   "manager": "Michael Lavarack",
+   "team": "Average",
+   "release": "Lacroix",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
+   "release_club": "CHE",
+   "release_points": 4,
+   "tie": [],
+   "next": "Tzolakis",
+   "next_points": 0,
+   "next_tie": [
+    "Tzolakis",
+    "Mitchell",
+    "Thomas",
+    "Van de Ven",
+    "Scott",
+    "Dewsbury-Hall",
+    "\u00d8degaard",
+    "Ndiaye",
+    "Nketiah",
+    "Delap"
+   ],
+   "score": 4,
+   "cost_pct": 100.0,
+   "h2h": null
+  },
+  {
    "league_entry": 254549,
    "manager": "Brad Hill",
    "team": "MAGA ERA",
@@ -2993,29 +3047,29 @@
    "h2h": null
   },
   {
-   "league_entry": 259835,
-   "manager": "Michael Lavarack",
-   "team": "Average",
-   "release": "Lacroix",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p437499.png",
-   "release_club": "CHE",
-   "release_points": 2,
+   "league_entry": 208632,
+   "manager": "Stefano Babiolakis",
+   "team": "Iraola Coaster",
+   "release": "M.Sangar\u00e9",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p513545.png",
+   "release_club": "BRE",
+   "release_points": 1,
    "tie": [],
-   "next": "Tzolakis",
+   "next": "Henderson",
    "next_points": 0,
    "next_tie": [
-    "Tzolakis",
-    "Mitchell",
-    "Thomas",
-    "Van de Ven",
-    "Scott",
-    "Dewsbury-Hall",
-    "\u00d8degaard",
-    "Ndiaye",
-    "Nketiah",
-    "Delap"
+    "Henderson",
+    "Thiaw",
+    "Khusanov",
+    "Ajayi",
+    "Rice",
+    "Ampadu",
+    "Cherki",
+    "N.Jackson",
+    "Wilson",
+    "Marmoush"
    ],
-   "score": 2,
+   "score": 1,
    "cost_pct": 100.0,
    "h2h": null
   }
@@ -3083,10 +3137,10 @@
    "d": 0,
    "l": 1,
    "for": 174,
-   "against": 124,
+   "against": 125,
    "played": 5,
    "points": 12,
-   "diff": 50,
+   "diff": 49,
    "history": [
     {
      "event": 1,
@@ -3119,7 +3173,7 @@
     {
      "event": 5,
      "pts": 2,
-     "against": 0,
+     "against": 1,
      "opp": 208632,
      "result": "W"
     }
@@ -3136,10 +3190,10 @@
    "d": 0,
    "l": 1,
    "for": 174,
-   "against": 132,
+   "against": 134,
    "played": 5,
    "points": 12,
-   "diff": 42,
+   "diff": 40,
    "history": [
     {
      "event": 1,
@@ -3172,7 +3226,7 @@
     {
      "event": 5,
      "pts": 0,
-     "against": 2,
+     "against": 4,
      "opp": 259835,
      "result": "L"
     }
@@ -3241,11 +3295,11 @@
    "w": 3,
    "d": 0,
    "l": 2,
-   "for": 171,
+   "for": 173,
    "against": 199,
    "played": 5,
    "points": 9,
-   "diff": -28,
+   "diff": -26,
    "history": [
     {
      "event": 1,
@@ -3277,7 +3331,7 @@
     },
     {
      "event": 5,
-     "pts": 2,
+     "pts": 4,
      "against": 0,
      "opp": 260926,
      "result": "W"
@@ -3506,11 +3560,11 @@
    "w": 0,
    "d": 1,
    "l": 4,
-   "for": 133,
+   "for": 134,
    "against": 163,
    "played": 5,
    "points": 1,
-   "diff": -30,
+   "diff": -29,
    "history": [
     {
      "event": 1,
@@ -3542,7 +3596,7 @@
     },
     {
      "event": 5,
-     "pts": 0,
+     "pts": 1,
      "against": 2,
      "opp": 255427,
      "result": "L"
@@ -3918,7 +3972,7 @@
      "club": "BRE",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png",
      "pos": "DEF",
-     "points": 7,
+     "points": 6,
      "guessed": false
     },
     {
@@ -4326,6 +4380,11 @@
     "transfer_points": 0
    },
    {
+    "manager": "Michael Lavarack",
+    "points": 4,
+    "transfer_points": 0
+   },
+   {
     "manager": "Brad Hill",
     "points": 3,
     "transfer_points": 0
@@ -4337,11 +4396,6 @@
    },
    {
     "manager": "Matthew Lees",
-    "points": 2,
-    "transfer_points": 0
-   },
-   {
-    "manager": "Michael Lavarack",
     "points": 2,
     "transfer_points": 0
    }
@@ -4363,13 +4417,13 @@
     "transfer_points": 0
    },
    {
-    "manager": "Stefano Babiolakis",
+    "manager": "Piers Rennie",
     "points": 0,
     "transfer_points": 0
    },
    {
-    "manager": "Piers Rennie",
-    "points": 0,
+    "manager": "Stefano Babiolakis",
+    "points": 1,
     "transfer_points": 0
    }
   ]
@@ -4388,6 +4442,11 @@
      "transfer_points": 0
     },
     {
+     "manager": "Michael Lavarack",
+     "points": 4,
+     "transfer_points": 0
+    },
+    {
      "manager": "Brad Hill",
      "points": 3,
      "transfer_points": 0
@@ -4403,17 +4462,12 @@
      "transfer_points": 0
     },
     {
-     "manager": "Michael Lavarack",
-     "points": 2,
+     "manager": "Stefano Babiolakis",
+     "points": 1,
      "transfer_points": 0
     },
     {
      "manager": "Piers Rennie",
-     "points": 0,
-     "transfer_points": 0
-    },
-    {
-     "manager": "Stefano Babiolakis",
      "points": 0,
      "transfer_points": 0
     },
@@ -4462,7 +4516,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 172,
+    "points": 174,
     "transfer_points": 1
    },
    {
@@ -4482,7 +4536,7 @@
    },
    {
     "manager": "Stefano Babiolakis",
-    "points": 124,
+    "points": 125,
     "transfer_points": -9
    }
   ],
@@ -5519,9 +5573,9 @@
     {
      "gameweek": 5,
      "opponent": "Matthew Lees",
-     "points": 0,
+     "points": 1,
      "against": 2,
-     "margin": -2,
+     "margin": -1,
      "result": "L"
     },
     {
@@ -5560,7 +5614,7 @@
    "current_fixture": {
     "gameweek": 5,
     "opponent": "Matthew Lees",
-    "points": 0,
+    "points": 1,
     "against": 2,
     "started": true,
     "live": true
@@ -5744,9 +5798,9 @@
     {
      "gameweek": 5,
      "opponent": "Matthew Lees",
-     "points": 0,
+     "points": 1,
      "against": 2,
-     "margin": -2,
+     "margin": -1,
      "result": "L"
     }
    ],
@@ -5754,9 +5808,9 @@
     {
      "gameweek": 5,
      "opponent": "Matthew Lees",
-     "points": 0,
+     "points": 1,
      "against": 2,
-     "margin": -2,
+     "margin": -1,
      "result": "L"
     },
     {
@@ -10404,7 +10458,7 @@
        "club": "BRE",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p191866.png",
        "pos": "DEF",
-       "points": 7,
+       "points": 6,
        "guessed": false
       },
       {
@@ -10584,8 +10638,8 @@
      "gameweek": 5,
      "opponent": "Stefano Babiolakis",
      "points": 2,
-     "against": 0,
-     "margin": 2,
+     "against": 1,
+     "margin": 1,
      "result": "W"
     },
     {
@@ -10625,7 +10679,7 @@
     "gameweek": 5,
     "opponent": "Stefano Babiolakis",
     "points": 2,
-    "against": 0,
+    "against": 1,
     "started": true,
     "live": true
    },
@@ -10816,8 +10870,8 @@
      "gameweek": 5,
      "opponent": "Stefano Babiolakis",
      "points": 2,
-     "against": 0,
-     "margin": 2,
+     "against": 1,
+     "margin": 1,
      "result": "W"
     }
    ],
@@ -10826,8 +10880,8 @@
      "gameweek": 5,
      "opponent": "Stefano Babiolakis",
      "points": 2,
-     "against": 0,
-     "margin": 2,
+     "against": 1,
+     "margin": 1,
      "result": "W"
     },
     {
@@ -11537,9 +11591,9 @@
     {
      "gameweek": 5,
      "opponent": "Mark Stone",
-     "points": 2,
+     "points": 4,
      "against": 0,
-     "margin": 2,
+     "margin": 4,
      "result": "W"
     },
     {
@@ -11578,7 +11632,7 @@
    "current_fixture": {
     "gameweek": 5,
     "opponent": "Mark Stone",
-    "points": 2,
+    "points": 4,
     "against": 0,
     "started": true,
     "live": true
@@ -11718,11 +11772,11 @@
     }
    ],
    "biggest_win": {
-    "gameweek": 1,
-    "opponent": "Matthew Xenakis",
-    "points": 37,
-    "against": 34,
-    "margin": 3,
+    "gameweek": 5,
+    "opponent": "Mark Stone",
+    "points": 4,
+    "against": 0,
+    "margin": 4,
     "result": "W"
    },
    "biggest_loss": {
@@ -11769,9 +11823,9 @@
     {
      "gameweek": 5,
      "opponent": "Mark Stone",
-     "points": 2,
+     "points": 4,
      "against": 0,
-     "margin": 2,
+     "margin": 4,
      "result": "W"
     }
    ],
@@ -11779,9 +11833,9 @@
     {
      "gameweek": 5,
      "opponent": "Mark Stone",
-     "points": 2,
+     "points": 4,
      "against": 0,
-     "margin": 2,
+     "margin": 4,
      "result": "W"
     },
     {
@@ -13558,8 +13612,8 @@
      "gameweek": 5,
      "opponent": "Michael Lavarack",
      "points": 0,
-     "against": 2,
-     "margin": -2,
+     "against": 4,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -13599,7 +13653,7 @@
     "gameweek": 5,
     "opponent": "Michael Lavarack",
     "points": 0,
-    "against": 2,
+    "against": 4,
     "started": true,
     "live": true
    },
@@ -13749,8 +13803,8 @@
     "gameweek": 5,
     "opponent": "Michael Lavarack",
     "points": 0,
-    "against": 2,
-    "margin": -2,
+    "against": 4,
+    "margin": -4,
     "result": "L"
    },
    "highest_scores": [
@@ -13790,8 +13844,8 @@
      "gameweek": 5,
      "opponent": "Michael Lavarack",
      "points": 0,
-     "against": 2,
-     "margin": -2,
+     "against": 4,
+     "margin": -4,
      "result": "L"
     }
    ],
@@ -13800,8 +13854,8 @@
      "gameweek": 5,
      "opponent": "Michael Lavarack",
      "points": 0,
-     "against": 2,
-     "margin": -2,
+     "against": 4,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -15506,11 +15560,11 @@
   "luckiest": [
    {
     "manager": "Matthew Lees",
-    "avg_against": 24.8
+    "avg_against": 25.0
    },
    {
     "manager": "Mark Stone",
-    "avg_against": 26.4
+    "avg_against": 26.8
    },
    {
     "manager": "Nic Rubin",
@@ -15547,7 +15601,7 @@
     "avg_against": 33.4
    }
   ],
-  "average": 33.0
+  "average": 33.1
  },
  "pot": {
   "base": 200,
