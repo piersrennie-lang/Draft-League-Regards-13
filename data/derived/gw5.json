@@ -6,7 +6,7 @@
   "gameweek": 5,
   "next_gameweek": 6,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-19T12:47:24Z",
+  "fetched_at": "2026-09-19T12:55:56Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -139,7 +139,7 @@
    "home_name": "Nic Rubin",
    "away_name": "Matthew Xenakis",
    "home_points": 0,
-   "away_points": 9,
+   "away_points": 10,
    "home_remaining": 11,
    "away_remaining": 6,
    "started": true,
@@ -1477,7 +1477,7 @@
      "club": "TOT",
      "team_id": 19,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
-     "points": 1
+     "points": 2
     },
     {
      "element": 387,
@@ -1570,7 +1570,7 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 9,
+   "effective_xi_points": 10,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -1583,6 +1583,15 @@
      "team_id": 4,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p249231.png",
      "points": 3
+    },
+    {
+     "element": 496,
+     "name": "Kinsky",
+     "pos": "GKP",
+     "club": "TOT",
+     "team_id": 19,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
+     "points": 2
     },
     {
      "element": 40,
@@ -1601,15 +1610,6 @@
      "team_id": 6,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p247632.png",
      "points": 2
-    },
-    {
-     "element": 496,
-     "name": "Kinsky",
-     "pos": "GKP",
-     "club": "TOT",
-     "team_id": 19,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
-     "points": 1
     },
     {
      "element": 502,
@@ -1713,7 +1713,7 @@
      "points": 0
     }
    ],
-   "xi_points": 9,
+   "xi_points": 10,
    "bench_points": 8,
    "best_bench": {
     "element": 87,
@@ -2837,14 +2837,15 @@
    "release_club": "BRE",
    "release_points": 3,
    "tie": [],
-   "next": "Rogers",
+   "next": "Kinsky",
    "next_points": 2,
    "next_tie": [
+    "Kinsky",
     "Rogers",
     "Neto"
    ],
-   "score": 9,
-   "cost_pct": 33.3,
+   "score": 10,
+   "cost_pct": 30.0,
    "h2h": null
   },
   {
@@ -2928,14 +2929,15 @@
    "release_club": "BRE",
    "release_points": 3,
    "tie": [],
-   "next": "Rogers",
+   "next": "Kinsky",
    "next_points": 2,
    "next_tie": [
+    "Kinsky",
     "Rogers",
     "Neto"
    ],
-   "score": 9,
-   "cost_pct": 33.3,
+   "score": 10,
+   "cost_pct": 30.0,
    "h2h": null
   },
   {
@@ -3241,10 +3243,10 @@
    "d": 0,
    "l": 2,
    "for": 178,
-   "against": 155,
+   "against": 156,
    "played": 5,
    "points": 9,
-   "diff": 23,
+   "diff": 22,
    "history": [
     {
      "event": 1,
@@ -3277,7 +3279,7 @@
     {
      "event": 5,
      "pts": 0,
-     "against": 9,
+     "against": 10,
      "opp": 254700,
      "result": "L"
     }
@@ -3399,11 +3401,11 @@
    "w": 2,
    "d": 0,
    "l": 3,
-   "for": 163,
+   "for": 164,
    "against": 165,
    "played": 5,
    "points": 6,
-   "diff": -2,
+   "diff": -1,
    "history": [
     {
      "event": 1,
@@ -3435,7 +3437,7 @@
     },
     {
      "event": 5,
-     "pts": 9,
+     "pts": 10,
      "against": 0,
      "opp": 209435,
      "result": "W"
@@ -3962,7 +3964,7 @@
      "club": "TOT",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
      "pos": "GKP",
-     "points": 1,
+     "points": 2,
      "guessed": false
     },
     {
@@ -4374,7 +4376,7 @@
   "top": [
    {
     "manager": "Matthew Xenakis",
-    "points": 9,
+    "points": 10,
     "transfer_points": 0
    },
    {
@@ -4432,11 +4434,11 @@
    "block_end": 8,
    "is_final": false,
    "manager": "Matthew Xenakis",
-   "points": 9,
+   "points": 10,
    "standings": [
     {
      "manager": "Matthew Xenakis",
-     "points": 9,
+     "points": 10,
      "transfer_points": 0
     },
     {
@@ -4524,7 +4526,7 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 155,
+    "points": 156,
     "transfer_points": -8
    },
    {
@@ -6480,8 +6482,8 @@
      "gameweek": 5,
      "opponent": "Matthew Xenakis",
      "points": 0,
-     "against": 9,
-     "margin": -9,
+     "against": 10,
+     "margin": -10,
      "result": "L"
     },
     {
@@ -6521,7 +6523,7 @@
     "gameweek": 5,
     "opponent": "Matthew Xenakis",
     "points": 0,
-    "against": 9,
+    "against": 10,
     "started": true,
     "live": true
    },
@@ -6712,8 +6714,8 @@
      "gameweek": 5,
      "opponent": "Matthew Xenakis",
      "points": 0,
-     "against": 9,
-     "margin": -9,
+     "against": 10,
+     "margin": -10,
      "result": "L"
     }
    ],
@@ -6722,8 +6724,8 @@
      "gameweek": 5,
      "opponent": "Matthew Xenakis",
      "points": 0,
-     "against": 9,
-     "margin": -9,
+     "against": 10,
+     "margin": -10,
      "result": "L"
     },
     {
@@ -9769,9 +9771,9 @@
     {
      "gameweek": 5,
      "opponent": "Nic Rubin",
-     "points": 9,
+     "points": 10,
      "against": 0,
-     "margin": 9,
+     "margin": 10,
      "result": "W"
     },
     {
@@ -9810,7 +9812,7 @@
    "current_fixture": {
     "gameweek": 5,
     "opponent": "Nic Rubin",
-    "points": 9,
+    "points": 10,
     "against": 0,
     "started": true,
     "live": true
@@ -10001,9 +10003,9 @@
     {
      "gameweek": 5,
      "opponent": "Nic Rubin",
-     "points": 9,
+     "points": 10,
      "against": 0,
-     "margin": 9,
+     "margin": 10,
      "result": "W"
     }
    ],
@@ -10011,9 +10013,9 @@
     {
      "gameweek": 5,
      "opponent": "Nic Rubin",
-     "points": 9,
+     "points": 10,
      "against": 0,
-     "margin": 9,
+     "margin": 10,
      "result": "W"
     },
     {
@@ -10490,7 +10492,7 @@
        "club": "TOT",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p485055.png",
        "pos": "GKP",
-       "points": 1,
+       "points": 2,
        "guessed": false
       },
       {
@@ -15620,7 +15622,7 @@
    },
    {
     "manager": "Nic Rubin",
-    "avg_against": 31.0
+    "avg_against": 31.2
    },
    {
     "manager": "Matthew Xenakis",
