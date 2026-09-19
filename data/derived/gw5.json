@@ -6,7 +6,7 @@
   "gameweek": 5,
   "next_gameweek": 6,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-19T15:50:24Z",
+  "fetched_at": "2026-09-19T15:56:10Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -100,7 +100,7 @@
    "home_name": "Roscoe Hill",
    "away_name": "Piers Rennie",
    "home_points": 13,
-   "away_points": 21,
+   "away_points": 20,
    "home_remaining": 8,
    "away_remaining": 6,
    "started": true,
@@ -112,7 +112,7 @@
    "away": 259835,
    "home_name": "Mark Stone",
    "away_name": "Michael Lavarack",
-   "home_points": 12,
+   "home_points": 11,
    "away_points": 15,
    "home_remaining": 7,
    "away_remaining": 6,
@@ -252,7 +252,7 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
-     "points": 10
+     "points": 9
     },
     {
      "element": 569,
@@ -273,7 +273,7 @@
      "points": 0
     }
    ],
-   "effective_xi_points": 21,
+   "effective_xi_points": 20,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -285,7 +285,7 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
-     "points": 10
+     "points": 9
     },
     {
      "element": 637,
@@ -416,7 +416,7 @@
      "points": 0
     }
    ],
-   "xi_points": 21,
+   "xi_points": 20,
    "bench_points": 1,
    "best_bench": {
     "element": 277,
@@ -2607,10 +2607,10 @@
      "club": "IPS",
      "team_id": 12,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p431639.png",
-     "points": 1
+     "points": 0
     }
    ],
-   "effective_xi_points": 12,
+   "effective_xi_points": 11,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -2641,15 +2641,6 @@
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p613221.png",
      "points": 2
-    },
-    {
-     "element": 646,
-     "name": "Flemming",
-     "pos": "FWD",
-     "club": "IPS",
-     "team_id": 12,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p431639.png",
-     "points": 1
     },
     {
      "element": 467,
@@ -2713,6 +2704,15 @@
      "team_id": 14,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p482616.png",
      "points": 0
+    },
+    {
+     "element": 646,
+     "name": "Flemming",
+     "pos": "FWD",
+     "club": "IPS",
+     "team_id": 12,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p431639.png",
+     "points": 0
     }
    ],
    "bench": [
@@ -2753,7 +2753,7 @@
      "points": 0
     }
    ],
-   "xi_points": 12,
+   "xi_points": 11,
    "bench_points": 1,
    "best_bench": {
     "element": 125,
@@ -2764,27 +2764,11 @@
     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p463067.png",
     "points": 1
    },
-   "blanks": 7,
+   "blanks": 8,
    "wasted": 1
   }
  },
  "releases": [
-  {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
-   "release": "Barnes",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
-   "release_club": "NEW",
-   "release_points": 10,
-   "tie": [],
-   "next": "Maitland-Niles",
-   "next_points": 8,
-   "next_tie": [],
-   "score": 21,
-   "cost_pct": 47.6,
-   "h2h": null
-  },
   {
    "league_entry": 255427,
    "manager": "Matthew Lees",
@@ -2799,6 +2783,22 @@
    "next_tie": [],
    "score": 31,
    "cost_pct": 32.3,
+   "h2h": null
+  },
+  {
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
+   "release": "Barnes",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+   "release_club": "NEW",
+   "release_points": 9,
+   "tie": [],
+   "next": "Maitland-Niles",
+   "next_points": 8,
+   "next_tie": [],
+   "score": 20,
+   "cost_pct": 45.0,
    "h2h": null
   },
   {
@@ -2894,8 +2894,8 @@
    "next": "Garner",
    "next_points": 3,
    "next_tie": [],
-   "score": 12,
-   "cost_pct": 50.0,
+   "score": 11,
+   "cost_pct": 54.5,
    "h2h": null
   },
   {
@@ -3067,6 +3067,22 @@
    "h2h": null
   },
   {
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
+   "release": "Barnes",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+   "release_club": "NEW",
+   "release_points": 9,
+   "tie": [],
+   "next": "Maitland-Niles",
+   "next_points": 8,
+   "next_tie": [],
+   "score": 20,
+   "cost_pct": 45.0,
+   "h2h": null
+  },
+  {
    "league_entry": 259872,
    "manager": "Roscoe Hill",
    "team": "Mbeumo my Cunha",
@@ -3091,38 +3107,6 @@
    "next_tie": [],
    "score": 13,
    "cost_pct": 46.2,
-   "h2h": null
-  },
-  {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
-   "release": "Barnes",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
-   "release_club": "NEW",
-   "release_points": 10,
-   "tie": [],
-   "next": "Maitland-Niles",
-   "next_points": 8,
-   "next_tie": [],
-   "score": 21,
-   "cost_pct": 47.6,
-   "h2h": null
-  },
-  {
-   "league_entry": 260926,
-   "manager": "Mark Stone",
-   "team": "CHANGE NAME",
-   "release": "Vuskovic",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p610799.png",
-   "release_club": "BHA",
-   "release_points": 6,
-   "tie": [],
-   "next": "Garner",
-   "next_points": 3,
-   "next_tie": [],
-   "score": 12,
-   "cost_pct": 50.0,
    "h2h": null
   },
   {
@@ -3160,6 +3144,22 @@
    ],
    "score": 4,
    "cost_pct": 50.0,
+   "h2h": null
+  },
+  {
+   "league_entry": 260926,
+   "manager": "Mark Stone",
+   "team": "CHANGE NAME",
+   "release": "Vuskovic",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p610799.png",
+   "release_club": "BHA",
+   "release_points": 6,
+   "tie": [],
+   "next": "Garner",
+   "next_points": 3,
+   "next_tie": [],
+   "score": 11,
+   "cost_pct": 54.5,
    "h2h": null
   },
   {
@@ -3305,11 +3305,11 @@
    "w": 4,
    "d": 0,
    "l": 1,
-   "for": 186,
+   "for": 185,
    "against": 145,
    "played": 5,
    "points": 12,
-   "diff": 41,
+   "diff": 40,
    "history": [
     {
      "event": 1,
@@ -3341,7 +3341,7 @@
     },
     {
      "event": 5,
-     "pts": 12,
+     "pts": 11,
      "against": 15,
      "opp": 259835,
      "result": "L"
@@ -3359,10 +3359,10 @@
    "d": 0,
    "l": 2,
    "for": 184,
-   "against": 211,
+   "against": 210,
    "played": 5,
    "points": 9,
-   "diff": -27,
+   "diff": -26,
    "history": [
     {
      "event": 1,
@@ -3395,7 +3395,7 @@
     {
      "event": 5,
      "pts": 15,
-     "against": 12,
+     "against": 11,
      "opp": 260926,
      "result": "W"
     }
@@ -3464,11 +3464,11 @@
    "w": 2,
    "d": 1,
    "l": 2,
-   "for": 195,
+   "for": 194,
    "against": 212,
    "played": 5,
    "points": 7,
-   "diff": -17,
+   "diff": -18,
    "history": [
     {
      "event": 1,
@@ -3500,7 +3500,7 @@
     },
     {
      "event": 5,
-     "pts": 21,
+     "pts": 20,
      "against": 13,
      "opp": 259872,
      "result": "W"
@@ -3624,10 +3624,10 @@
    "d": 0,
    "l": 4,
    "for": 152,
-   "against": 193,
+   "against": 192,
    "played": 5,
    "points": 3,
-   "diff": -41,
+   "diff": -40,
    "history": [
     {
      "event": 1,
@@ -3660,7 +3660,7 @@
     {
      "event": 5,
      "pts": 13,
-     "against": 21,
+     "against": 20,
      "opp": 207565,
      "result": "L"
     }
@@ -3784,7 +3784,7 @@
      "club": "NEW",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
      "pos": "MID",
-     "points": 10,
+     "points": 9,
      "guessed": false
     }
    ],
@@ -4162,7 +4162,7 @@
      "club": "BHA",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465730.png",
      "pos": "DEF",
-     "points": 7,
+     "points": 5,
      "guessed": false
     }
    ],
@@ -4514,7 +4514,7 @@
    },
    {
     "manager": "Piers Rennie",
-    "points": 21,
+    "points": 20,
     "transfer_points": 0
    },
    {
@@ -4546,7 +4546,7 @@
    },
    {
     "manager": "Mark Stone",
-    "points": 12,
+    "points": 11,
     "transfer_points": 0
    },
    {
@@ -4576,7 +4576,7 @@
     },
     {
      "manager": "Piers Rennie",
-     "points": 21,
+     "points": 20,
      "transfer_points": 0
     },
     {
@@ -4606,7 +4606,7 @@
     },
     {
      "manager": "Mark Stone",
-     "points": 12,
+     "points": 11,
      "transfer_points": 0
     },
     {
@@ -4639,12 +4639,12 @@
    },
    {
     "manager": "Mark Stone",
-    "points": 192,
+    "points": 191,
     "transfer_points": 6
    },
    {
     "manager": "Piers Rennie",
-    "points": 186,
+    "points": 185,
     "transfer_points": -9
    },
    {
@@ -4752,9 +4752,9 @@
     {
      "gameweek": 5,
      "opponent": "Roscoe Hill",
-     "points": 21,
+     "points": 20,
      "against": 13,
-     "margin": 8,
+     "margin": 7,
      "result": "W"
     },
     {
@@ -4793,7 +4793,7 @@
    "current_fixture": {
     "gameweek": 5,
     "opponent": "Roscoe Hill",
-    "points": 21,
+    "points": 20,
     "against": 13,
     "started": true,
     "live": true
@@ -4935,9 +4935,9 @@
    "biggest_win": {
     "gameweek": 5,
     "opponent": "Roscoe Hill",
-    "points": 21,
+    "points": 20,
     "against": 13,
-    "margin": 8,
+    "margin": 7,
     "result": "W"
    },
    "biggest_loss": {
@@ -4984,9 +4984,9 @@
     {
      "gameweek": 5,
      "opponent": "Roscoe Hill",
-     "points": 21,
+     "points": 20,
      "against": 13,
-     "margin": 8,
+     "margin": 7,
      "result": "W"
     }
    ],
@@ -4994,9 +4994,9 @@
     {
      "gameweek": 5,
      "opponent": "Roscoe Hill",
-     "points": 21,
+     "points": 20,
      "against": 13,
-     "margin": 8,
+     "margin": 7,
      "result": "W"
     },
     {
@@ -5541,7 +5541,7 @@
        "club": "NEW",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
        "pos": "MID",
-       "points": 10,
+       "points": 9,
        "guessed": false
       }
      ],
@@ -11751,7 +11751,7 @@
        "club": "BHA",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p465730.png",
        "pos": "DEF",
-       "points": 7,
+       "points": 5,
        "guessed": false
       }
      ]
@@ -11881,8 +11881,8 @@
      "gameweek": 5,
      "opponent": "Mark Stone",
      "points": 15,
-     "against": 12,
-     "margin": 3,
+     "against": 11,
+     "margin": 4,
      "result": "W"
     },
     {
@@ -11922,7 +11922,7 @@
     "gameweek": 5,
     "opponent": "Mark Stone",
     "points": 15,
-    "against": 12,
+    "against": 11,
     "started": true,
     "live": true
    },
@@ -12061,11 +12061,11 @@
     }
    ],
    "biggest_win": {
-    "gameweek": 1,
-    "opponent": "Matthew Xenakis",
-    "points": 37,
-    "against": 34,
-    "margin": 3,
+    "gameweek": 5,
+    "opponent": "Mark Stone",
+    "points": 15,
+    "against": 11,
+    "margin": 4,
     "result": "W"
    },
    "biggest_loss": {
@@ -12113,8 +12113,8 @@
      "gameweek": 5,
      "opponent": "Mark Stone",
      "points": 15,
-     "against": 12,
-     "margin": 3,
+     "against": 11,
+     "margin": 4,
      "result": "W"
     }
    ],
@@ -12123,8 +12123,8 @@
      "gameweek": 5,
      "opponent": "Mark Stone",
      "points": 15,
-     "against": 12,
-     "margin": 3,
+     "against": 11,
+     "margin": 4,
      "result": "W"
     },
     {
@@ -12911,8 +12911,8 @@
      "gameweek": 5,
      "opponent": "Piers Rennie",
      "points": 13,
-     "against": 21,
-     "margin": -8,
+     "against": 20,
+     "margin": -7,
      "result": "L"
     },
     {
@@ -12952,7 +12952,7 @@
     "gameweek": 5,
     "opponent": "Piers Rennie",
     "points": 13,
-    "against": 21,
+    "against": 20,
     "started": true,
     "live": true
    },
@@ -13143,8 +13143,8 @@
      "gameweek": 5,
      "opponent": "Piers Rennie",
      "points": 13,
-     "against": 21,
-     "margin": -8,
+     "against": 20,
+     "margin": -7,
      "result": "L"
     }
    ],
@@ -13153,8 +13153,8 @@
      "gameweek": 5,
      "opponent": "Piers Rennie",
      "points": 13,
-     "against": 21,
-     "margin": -8,
+     "against": 20,
+     "margin": -7,
      "result": "L"
     },
     {
@@ -13912,9 +13912,9 @@
     {
      "gameweek": 5,
      "opponent": "Michael Lavarack",
-     "points": 12,
+     "points": 11,
      "against": 15,
-     "margin": -3,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -13953,7 +13953,7 @@
    "current_fixture": {
     "gameweek": 5,
     "opponent": "Michael Lavarack",
-    "points": 12,
+    "points": 11,
     "against": 15,
     "started": true,
     "live": true
@@ -14103,9 +14103,9 @@
    "biggest_loss": {
     "gameweek": 5,
     "opponent": "Michael Lavarack",
-    "points": 12,
+    "points": 11,
     "against": 15,
-    "margin": -3,
+    "margin": -4,
     "result": "L"
    },
    "highest_scores": [
@@ -14144,9 +14144,9 @@
     {
      "gameweek": 5,
      "opponent": "Michael Lavarack",
-     "points": 12,
+     "points": 11,
      "against": 15,
-     "margin": -3,
+     "margin": -4,
      "result": "L"
     }
    ],
@@ -14154,9 +14154,9 @@
     {
      "gameweek": 5,
      "opponent": "Michael Lavarack",
-     "points": 12,
+     "points": 11,
      "against": 15,
-     "margin": -3,
+     "margin": -4,
      "result": "L"
     },
     {
@@ -15887,14 +15887,14 @@
    },
    {
     "manager": "Michael Lavarack",
-    "avg_against": 42.2
-   },
-   {
-    "manager": "Roscoe Hill",
-    "avg_against": 38.6
+    "avg_against": 42.0
    },
    {
     "manager": "Stefano Babiolakis",
+    "avg_against": 38.4
+   },
+   {
+    "manager": "Roscoe Hill",
     "avg_against": 38.4
    },
    {
@@ -15902,7 +15902,7 @@
     "avg_against": 37.4
    }
   ],
-  "average": 35.7
+  "average": 35.6
  },
  "pot": {
   "base": 200,
