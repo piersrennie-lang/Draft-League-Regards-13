@@ -44,6 +44,32 @@ def manager_slug(name):
     return name.lower().replace("'", "").replace(".", "").strip().replace(" ", "-")
 
 
+def split_unresolved_transfers(in_list, out_list, is_closed):
+    """Split a week's still-unqualified in/out legs into two honest
+    buckets: pending_in/out (this leg could still get a real swing) and
+    no_swing_in/out (it never will).
+
+    A leg is only ever "still pending" while its own gameweek is genuinely
+    live AND it passes the "scoreable" flag infer_transfers attaches (the
+    same started-the-active-XI test build_transfer_swaps applies) -- a
+    bench pickup or a drop that was never in the starting XI has nothing
+    real to compare, whatever its match does. is_closed (the gameweek has
+    fully finished) forces everything still unresolved into no_swing
+    regardless of that flag: a scoreable leg whose pairing partner turned
+    out to be permanently excluded (e.g. two releases, only one a genuine
+    XI drop) will never actually get paired into a swap either, and once
+    the whole gameweek is done there is nothing left to wait on.
+    """
+    if is_closed:
+        return {"pending_in": [], "pending_out": [], "no_swing_in": in_list, "no_swing_out": out_list}
+    return {
+        "pending_in": [p for p in in_list if p.get("scoreable", True)],
+        "pending_out": [p for p in out_list if p.get("scoreable", True)],
+        "no_swing_in": [p for p in in_list if not p.get("scoreable", True)],
+        "no_swing_out": [p for p in out_list if not p.get("scoreable", True)],
+    }
+
+
 # First-name nicknames that differ from the registered FPL name -- only
 # needs an entry when the nickname itself isn't just name.split()[0].
 NICKNAMES = {
@@ -319,11 +345,13 @@ def main():
             qualified = qualified_by_gw.get(week["gameweek"], [])
             qualified_in_names = {s["in_name"] for s in qualified}
             qualified_out_names = {s["out_name"] for s in qualified}
+            remaining_in = [p for p in week["in"] if p["name"] not in qualified_in_names]
+            remaining_out = [p for p in week["out"] if p["name"] not in qualified_out_names]
+            is_closed = week["gameweek"] < gw or (week["gameweek"] == gw and data["league"]["gw_fully_over"])
             season_weeks.append({
                 "gameweek": week["gameweek"],
                 "swaps": qualified,
-                "pending_in": [p for p in week["in"] if p["name"] not in qualified_in_names],
-                "pending_out": [p for p in week["out"] if p["name"] not in qualified_out_names],
+                **split_unresolved_transfers(remaining_in, remaining_out, is_closed),
             })
 
         html = transfers_template.render(profile_name=name, scope="season", raw_transfers=season_weeks, **render_kwargs)
@@ -331,7 +359,9 @@ def main():
 
         for n in available_gws:
             n_swaps = [s for block in blocks for s in block["swaps"] if s["gameweek"] == n]
-            n_pending = [t for t in raw_transfers
+            n_is_closed = n < gw or (n == gw and data["league"]["gw_fully_over"])
+            n_pending = [{"gameweek": t["gameweek"], **split_unresolved_transfers(t["in"], t["out"], n_is_closed)}
+                         for t in raw_transfers
                          if t["gameweek"] == n and t["gameweek"] not in {s["gameweek"] for s in n_swaps}]
             html = transfers_template.render(profile_name=name, scope="week", week=n,
                                               swaps=n_swaps, pending=n_pending, **render_kwargs)
@@ -341,7 +371,10 @@ def main():
             block_swaps = next((b["swaps"] for b in blocks
                                  if b["block_start"] == start and b["block_end"] == end), [])
             qualifying_gws = {s["gameweek"] for s in block_swaps}
-            block_pending = [t for t in raw_transfers
+            block_pending = [{"gameweek": t["gameweek"],
+                              **split_unresolved_transfers(t["in"], t["out"],
+                                                            t["gameweek"] < gw or (t["gameweek"] == gw and data["league"]["gw_fully_over"]))}
+                             for t in raw_transfers
                              if start <= t["gameweek"] <= end and t["gameweek"] not in qualifying_gws]
             html = transfers_template.render(profile_name=name, scope="block", block_start=start, block_end=end,
                                               swaps=block_swaps, pending=block_pending, **render_kwargs)

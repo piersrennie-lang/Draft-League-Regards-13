@@ -727,7 +727,7 @@ def build_transactions(managers, raw, event, players):
     return out
 
 
-def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None):
+def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None, prev_minutes=None):
     """Approximate transfers by diffing two gameweeks' full squads.
 
     The transactions endpoint is unreachable from a cloud runner, but the
@@ -748,6 +748,18 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
     occasionally guessing a different pairing for the same real moves.
     confirmed_by_manager (see load_transfer_confirmations) pins any
     pairing that's been manually verified against the real thing.
+
+    If prev_minutes is given (that gameweek's minutes, keyed by element
+    id, from the PREVIOUS gameweek's live data), each out/in dict also
+    gets a "scoreable" flag -- the same started-the-active-XI test
+    build_transfer_swaps applies before a leg can ever contribute to a
+    points swing (an outgoing pick must have started the manager's prev-
+    week XI and actually played; an incoming pick must have started this
+    week's XI). A move that fails this is excluded from scoring for good,
+    not just until its own match finishes -- a bench pickup or a benched
+    drop has nothing to compare, whatever the scoreline turns out to be --
+    so callers can tell a still-genuinely-pending leg from one that will
+    never get a swing, rather than treating every unscored leg alike.
     """
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
     out = {le: {"in": [], "out": [], "count": 0} for le in managers}
@@ -766,8 +778,17 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
             continue
         prev_ids = {p["element"] for p in prev_picks}
         curr_ids = {p["element"] for p in curr_picks}
-        ins = [describe_player(e, players, pts) for e in curr_ids - prev_ids]
-        outs = [describe_player(e, players, pts) for e in prev_ids - curr_ids]
+        out_ids = prev_ids - curr_ids
+        in_ids = curr_ids - prev_ids
+        outs = [describe_player(e, players, pts) for e in out_ids]
+        ins = [describe_player(e, players, pts) for e in in_ids]
+        if prev_minutes is not None:
+            prev_xi_ids = {p["element"] for p in prev_picks if p.get("position", 99) <= 11}
+            curr_xi_ids = {p["element"] for p in curr_picks if p.get("position", 99) <= 11}
+            for eid, o in zip(out_ids, outs):
+                o["scoreable"] = eid in prev_xi_ids and prev_minutes.get(eid, 0) > 0
+            for eid, i in zip(in_ids, ins):
+                i["scoreable"] = eid in curr_xi_ids
         confirmed = (confirmed_by_manager or {}).get(managers[le]["manager"])
         pairs, extra_outs, extra_ins, _ambiguous = pair_by_position(outs, ins, confirmed)
         out[le] = {
@@ -778,10 +799,10 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
     return out
 
 
-def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None):
+def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None, prev_minutes=None):
     """Prefer FPL's own transaction record; fall back to the squad diff."""
     real = build_transactions(managers, raw_transactions, event, players)
-    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts, confirmed_by_manager)
+    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts, confirmed_by_manager, prev_minutes)
     out = {}
     for le in managers:
         r, i = real[le], inferred[le]
@@ -845,8 +866,9 @@ def build_transfer_history(managers, players, raw_transactions, load_fn, gw):
         if not curr_squads_raw or not prev_squads_raw:
             continue
         week_pts = live_points(load_fn(f"live_gw{g}"))
+        prev_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(load_fn(f"live_gw{g - 1}")).items()}
         week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw,
-                                week_pts, load_transfer_confirmations(g))
+                                week_pts, load_transfer_confirmations(g), prev_minutes)
         for le, t in week.items():
             if t["count"]:
                 history[le].append({"gameweek": g, "in": t["in"], "out": t["out"]})
