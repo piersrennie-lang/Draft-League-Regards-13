@@ -4037,7 +4037,7 @@
      "pos": "MID",
      "points": 4,
      "team_id": 11,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Janelt",
@@ -4046,7 +4046,7 @@
      "pos": "MID",
      "points": 3,
      "team_id": 4,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Muniz",
@@ -4093,7 +4093,7 @@
      "pos": "MID",
      "points": 8,
      "team_id": 5,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Armstrong",
@@ -4102,7 +4102,7 @@
      "pos": "MID",
      "points": 2,
      "team_id": 9,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Emersonn",
@@ -4464,33 +4464,7 @@
    "source": "inferred"
   }
  },
- "ambiguous_transfers": [
-  {
-   "manager": "Brad Hill",
-   "gameweek": 5,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "Gomez",
-     "club": "BHA"
-    },
-    {
-     "name": "Armstrong",
-     "club": "EVE"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Belloumi",
-     "club": "HUL"
-    },
-    {
-     "name": "Janelt",
-     "club": "BRE"
-    }
-   ]
-  }
- ],
+ "ambiguous_transfers": [],
  "team_of_week": {
   "gameweek": 4,
   "players": [
@@ -4618,7 +4592,7 @@
     "in_team_id": 4,
     "in_pos": "MID",
     "diff": 1,
-    "guessed": true,
+    "guessed": false,
     "gain": 1
    },
    {
@@ -4716,7 +4690,7 @@
     "in_team_id": 11,
     "in_pos": "MID",
     "diff": -4,
-    "guessed": true,
+    "guessed": false,
     "loss": 4
    }
   ]
@@ -10677,7 +10651,7 @@
      "in_team_id": 4,
      "in_pos": "MID",
      "diff": 1,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 5
     }
    ],
@@ -10727,7 +10701,7 @@
      "in_team_id": 11,
      "in_pos": "MID",
      "diff": -4,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 5
     },
     {
@@ -10873,7 +10847,7 @@
      "in_team_id": 11,
      "in_pos": "MID",
      "diff": -4,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 5
     },
     {
@@ -10889,7 +10863,7 @@
      "in_team_id": 4,
      "in_pos": "MID",
      "diff": 1,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 5
     }
    ],
@@ -10927,7 +10901,7 @@
        "in_team_id": 11,
        "in_pos": "MID",
        "diff": -4,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 5
       },
       {
@@ -10943,7 +10917,7 @@
        "in_team_id": 4,
        "in_pos": "MID",
        "diff": 1,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 5
       }
      ]
@@ -11067,49 +11041,7 @@
      ]
     }
    ],
-   "ambiguous_pool": [
-    {
-     "manager": "Brad Hill",
-     "pos": "MID",
-     "outs": [
-      {
-       "element": 127,
-       "name": "Gomez",
-       "pos": "MID",
-       "club": "BHA",
-       "team_id": 5,
-       "points": 8
-      },
-      {
-       "element": 244,
-       "name": "Armstrong",
-       "pos": "MID",
-       "club": "EVE",
-       "team_id": 9,
-       "points": 2
-      }
-     ],
-     "ins": [
-      {
-       "element": 286,
-       "name": "Belloumi",
-       "pos": "MID",
-       "club": "HUL",
-       "team_id": 11,
-       "points": 4
-      },
-      {
-       "element": 98,
-       "name": "Janelt",
-       "pos": "MID",
-       "club": "BRE",
-       "team_id": 4,
-       "points": 3
-      }
-     ],
-     "gameweek": 5
-    }
-   ],
+   "ambiguous_pool": [],
    "motw_wins": 2,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -11153,7 +11085,7 @@
        "pos": "MID",
        "points": 4,
        "team_id": 11,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Janelt",
@@ -11162,7 +11094,7 @@
        "pos": "MID",
        "points": 3,
        "team_id": 4,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Muniz",
@@ -11209,7 +11141,7 @@
        "pos": "MID",
        "points": 8,
        "team_id": 5,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Armstrong",
@@ -11218,7 +11150,7 @@
        "pos": "MID",
        "points": 2,
        "team_id": 9,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Emersonn",
