@@ -6,7 +6,7 @@
   "gameweek": 5,
   "next_gameweek": 6,
   "gw_fully_over": false,
-  "fetched_at": "2026-09-20T10:10:07Z",
+  "fetched_at": "2026-09-20T10:21:30Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -151,7 +151,7 @@
    "away": 254549,
    "home_name": "Mattato Alcock",
    "away_name": "Brad Hill",
-   "home_points": 4,
+   "home_points": 3,
    "away_points": 24,
    "home_remaining": 9,
    "away_remaining": 3,
@@ -1053,10 +1053,10 @@
      "club": "HUL",
      "team_id": 11,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
-     "points": 2
+     "points": 1
     }
    ],
-   "effective_xi_points": 4,
+   "effective_xi_points": 3,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -1077,7 +1077,7 @@
      "club": "HUL",
      "team_id": 11,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
-     "points": 2
+     "points": 1
     },
     {
      "element": 384,
@@ -1199,7 +1199,7 @@
      "points": 0
     }
    ],
-   "xi_points": 4,
+   "xi_points": 3,
    "bench_points": 6,
    "best_bench": {
     "element": 109,
@@ -2957,33 +2957,12 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
    "release_club": "CHE",
    "release_points": 2,
-   "tie": [
-    {
-     "name": "Palmer",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
-     "club": "CHE"
-    },
-    {
-     "name": "McBurnie",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
-     "club": "HUL"
-    }
-   ],
-   "next": "Donnarumma",
-   "next_points": 0,
-   "next_tie": [
-    "Donnarumma",
-    "Araujo",
-    "R\u00faben",
-    "Justin",
-    "Semenyo",
-    "Munoz",
-    "B.Fernandes",
-    "King",
-    "Strand Larsen"
-   ],
-   "score": 4,
-   "cost_pct": 50.0,
+   "tie": [],
+   "next": "McBurnie",
+   "next_points": 1,
+   "next_tie": [],
+   "score": 3,
+   "cost_pct": 66.7,
    "h2h": null
   }
  ],
@@ -3147,43 +3126,6 @@
    "h2h": null
   },
   {
-   "league_entry": 242301,
-   "manager": "Mattato Alcock",
-   "team": "AlcockXI",
-   "release": "Palmer",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
-   "release_club": "CHE",
-   "release_points": 2,
-   "tie": [
-    {
-     "name": "Palmer",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
-     "club": "CHE"
-    },
-    {
-     "name": "McBurnie",
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
-     "club": "HUL"
-    }
-   ],
-   "next": "Donnarumma",
-   "next_points": 0,
-   "next_tie": [
-    "Donnarumma",
-    "Araujo",
-    "R\u00faben",
-    "Justin",
-    "Semenyo",
-    "Munoz",
-    "B.Fernandes",
-    "King",
-    "Strand Larsen"
-   ],
-   "score": 4,
-   "cost_pct": 50.0,
-   "h2h": null
-  },
-  {
    "league_entry": 260926,
    "manager": "Mark Stone",
    "team": "CHANGE NAME",
@@ -3197,6 +3139,22 @@
    "next_tie": [],
    "score": 15,
    "cost_pct": 53.3,
+   "h2h": null
+  },
+  {
+   "league_entry": 242301,
+   "manager": "Mattato Alcock",
+   "team": "AlcockXI",
+   "release": "Palmer",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p244851.png",
+   "release_club": "CHE",
+   "release_points": 2,
+   "tie": [],
+   "next": "McBurnie",
+   "next_points": 1,
+   "next_tie": [],
+   "score": 3,
+   "cost_pct": 66.7,
    "h2h": null
   }
  ],
@@ -3263,10 +3221,10 @@
    "d": 0,
    "l": 1,
    "for": 205,
-   "against": 178,
+   "against": 177,
    "played": 5,
    "points": 12,
-   "diff": 27,
+   "diff": 28,
    "history": [
     {
      "event": 1,
@@ -3299,7 +3257,7 @@
     {
      "event": 5,
      "pts": 24,
-     "against": 4,
+     "against": 3,
      "opp": 242301,
      "result": "W"
     }
@@ -3580,11 +3538,11 @@
    "w": 1,
    "d": 0,
    "l": 4,
-   "for": 164,
+   "for": 163,
    "against": 188,
    "played": 5,
    "points": 3,
-   "diff": -24,
+   "diff": -25,
    "history": [
     {
      "event": 1,
@@ -3616,7 +3574,7 @@
     },
     {
      "event": 5,
-     "pts": 4,
+     "pts": 3,
      "against": 24,
      "opp": 254549,
      "result": "L"
@@ -3973,7 +3931,7 @@
      "club": "HUL",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
      "pos": "FWD",
-     "points": 2,
+     "points": 1,
      "team_id": 11,
      "guessed": false
     }
@@ -4578,22 +4536,6 @@
     "diff": 1,
     "guessed": false,
     "gain": 1
-   },
-   {
-    "manager": "Mattato Alcock",
-    "out_name": "Gy\u00f6keres",
-    "out_club": "ARS",
-    "out_points": 1,
-    "out_team_id": 1,
-    "out_pos": "FWD",
-    "in_name": "McBurnie",
-    "in_club": "HUL",
-    "in_points": 2,
-    "in_team_id": 11,
-    "in_pos": "FWD",
-    "diff": 1,
-    "guessed": false,
-    "gain": 1
    }
   ],
   "worst_transfers": [
@@ -4710,14 +4652,14 @@
   ],
   "worst": [
    {
+    "manager": "Mattato Alcock",
+    "points": 3,
+    "transfer_points": 0
+   },
+   {
     "manager": "Mark Stone",
     "points": 4,
     "transfer_points": -11
-   },
-   {
-    "manager": "Mattato Alcock",
-    "points": 5,
-    "transfer_points": 1
    },
    {
     "manager": "Nic Rubin",
@@ -4785,14 +4727,14 @@
      "transfer_points": 0
     },
     {
-     "manager": "Mattato Alcock",
-     "points": 5,
-     "transfer_points": 1
-    },
-    {
      "manager": "Mark Stone",
      "points": 4,
      "transfer_points": -11
+    },
+    {
+     "manager": "Mattato Alcock",
+     "points": 3,
+     "transfer_points": 0
     }
    ]
   },
@@ -4829,8 +4771,8 @@
    },
    {
     "manager": "Mattato Alcock",
-    "points": 170,
-    "transfer_points": 6
+    "points": 168,
+    "transfer_points": 5
    },
    {
     "manager": "Matthew Xenakis",
@@ -8241,9 +8183,9 @@
     {
      "gameweek": 5,
      "opponent": "Brad Hill",
-     "points": 4,
+     "points": 3,
      "against": 24,
-     "margin": -20,
+     "margin": -21,
      "result": "L"
     },
     {
@@ -8282,7 +8224,7 @@
    "current_fixture": {
     "gameweek": 5,
     "opponent": "Brad Hill",
-    "points": 4,
+    "points": 3,
     "against": 24,
     "started": true,
     "live": true
@@ -8432,9 +8374,9 @@
    "biggest_loss": {
     "gameweek": 5,
     "opponent": "Brad Hill",
-    "points": 4,
+    "points": 3,
     "against": 24,
-    "margin": -20,
+    "margin": -21,
     "result": "L"
    },
    "highest_scores": [
@@ -8473,9 +8415,9 @@
     {
      "gameweek": 5,
      "opponent": "Brad Hill",
-     "points": 4,
+     "points": 3,
      "against": 24,
-     "margin": -20,
+     "margin": -21,
      "result": "L"
     }
    ],
@@ -8483,9 +8425,9 @@
     {
      "gameweek": 5,
      "opponent": "Brad Hill",
-     "points": 4,
+     "points": 3,
      "against": 24,
-     "margin": -20,
+     "margin": -21,
      "result": "L"
     },
     {
@@ -8804,7 +8746,7 @@
      "gameweek": 5,
      "name": "McBurnie",
      "club": "HUL",
-     "points": 2
+     "points": 1
     }
    ],
    "most_beaten": {
@@ -8863,22 +8805,6 @@
      "diff": 2,
      "guessed": false,
      "gameweek": 2
-    },
-    {
-     "manager": "Mattato Alcock",
-     "out_name": "Gy\u00f6keres",
-     "out_club": "ARS",
-     "out_points": 1,
-     "out_team_id": 1,
-     "out_pos": "FWD",
-     "in_name": "McBurnie",
-     "in_club": "HUL",
-     "in_points": 2,
-     "in_team_id": 11,
-     "in_pos": "FWD",
-     "diff": 1,
-     "guessed": false,
-     "gameweek": 5
     }
    ],
    "worst_transfers": [
@@ -8963,22 +8889,6 @@
      "diff": -1,
      "guessed": false,
      "gameweek": 4
-    },
-    {
-     "manager": "Mattato Alcock",
-     "out_name": "Gy\u00f6keres",
-     "out_club": "ARS",
-     "out_points": 1,
-     "out_team_id": 1,
-     "out_pos": "FWD",
-     "in_name": "McBurnie",
-     "in_club": "HUL",
-     "in_points": 2,
-     "in_team_id": 11,
-     "in_pos": "FWD",
-     "diff": 1,
-     "guessed": false,
-     "gameweek": 5
     }
    ],
    "transfer_blocks": [
@@ -8995,10 +8905,10 @@
        "out_pos": "FWD",
        "in_name": "McBurnie",
        "in_club": "HUL",
-       "in_points": 2,
+       "in_points": 1,
        "in_team_id": 11,
        "in_pos": "FWD",
-       "diff": 1,
+       "diff": 0,
        "guessed": false,
        "gameweek": 5
       }
@@ -9099,7 +9009,7 @@
        "club": "HUL",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p169432.png",
        "pos": "FWD",
-       "points": 2,
+       "points": 1,
        "team_id": 11,
        "guessed": false
       }
@@ -9280,8 +9190,8 @@
      "gameweek": 5,
      "opponent": "Mattato Alcock",
      "points": 24,
-     "against": 4,
-     "margin": 20,
+     "against": 3,
+     "margin": 21,
      "result": "W"
     },
     {
@@ -9321,7 +9231,7 @@
     "gameweek": 5,
     "opponent": "Mattato Alcock",
     "points": 24,
-    "against": 4,
+    "against": 3,
     "started": true,
     "live": true
    },
@@ -9463,8 +9373,8 @@
     "gameweek": 5,
     "opponent": "Mattato Alcock",
     "points": 24,
-    "against": 4,
-    "margin": 20,
+    "against": 3,
+    "margin": 21,
     "result": "W"
    },
    "biggest_loss": {
@@ -9512,8 +9422,8 @@
      "gameweek": 5,
      "opponent": "Mattato Alcock",
      "points": 24,
-     "against": 4,
-     "margin": 20,
+     "against": 3,
+     "margin": 21,
      "result": "W"
     }
    ],
@@ -9522,8 +9432,8 @@
      "gameweek": 5,
      "opponent": "Mattato Alcock",
      "points": 24,
-     "against": 4,
-     "margin": 20,
+     "against": 3,
+     "margin": 21,
      "result": "W"
     },
     {
@@ -16490,8 +16400,8 @@
     "gameweek": 5,
     "opponent": "Mattato Alcock",
     "points": 24,
-    "against": 4,
-    "margin": 20,
+    "against": 3,
+    "margin": 21,
     "result": "W"
    },
    {
@@ -17114,7 +17024,7 @@
    },
    {
     "manager": "Brad Hill",
-    "avg_against": 35.6
+    "avg_against": 35.4
    }
   ],
   "unluckiest": [
