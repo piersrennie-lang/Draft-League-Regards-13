@@ -50,23 +50,25 @@ def split_unresolved_transfers(in_list, out_list, is_closed):
     no_swing_in/out (it never will).
 
     A leg is only ever "still pending" while its own gameweek is genuinely
-    live AND it passes the "scoreable" flag infer_transfers attaches (the
-    same started-the-active-XI test build_transfer_swaps applies) -- a
-    bench pickup or a drop that was never in the starting XI has nothing
-    real to compare, whatever its match does. is_closed (the gameweek has
-    fully finished) forces everything still unresolved into no_swing
-    regardless of that flag: a scoreable leg whose pairing partner turned
-    out to be permanently excluded (e.g. two releases, only one a genuine
-    XI drop) will never actually get paired into a swap either, and once
-    the whole gameweek is done there is nothing left to wait on.
+    live AND it hasn't already been confirmed unscoreable via the
+    "no_swing" flag infer_transfers attaches (the same real-minutes test
+    build_transfer_swaps applies: a leg is only ruled out once its own
+    club's fixture has actually finished with it on 0 minutes -- earlier
+    than that a 0 just means "hasn't played yet", not "never will"). Once
+    is_closed (the whole gameweek has fully finished), everything still
+    unresolved moves to no_swing regardless of that flag: a leg that DID
+    play but whose pairing partner turned out to be permanently excluded
+    (e.g. two releases, only one who actually played) will never actually
+    get paired into a swap either, and once the whole gameweek is done
+    there is nothing left to wait on.
     """
     if is_closed:
         return {"pending_in": [], "pending_out": [], "no_swing_in": in_list, "no_swing_out": out_list}
     return {
-        "pending_in": [p for p in in_list if p.get("scoreable", True)],
-        "pending_out": [p for p in out_list if p.get("scoreable", True)],
-        "no_swing_in": [p for p in in_list if not p.get("scoreable", True)],
-        "no_swing_out": [p for p in out_list if not p.get("scoreable", True)],
+        "pending_in": [p for p in in_list if not p.get("no_swing", False)],
+        "pending_out": [p for p in out_list if not p.get("no_swing", False)],
+        "no_swing_in": [p for p in in_list if p.get("no_swing", False)],
+        "no_swing_out": [p for p in out_list if p.get("no_swing", False)],
     }
 
 

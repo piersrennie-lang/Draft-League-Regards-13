@@ -82,9 +82,9 @@ def player_index(bootstrap):
 
 
 def describe_player(eid, players, pts=None):
-    meta = players.get(eid, {"name": str(eid), "club": "", "photo": "", "pos": ""})
+    meta = players.get(eid, {"name": str(eid), "club": "", "photo": "", "pos": "", "team_id": None})
     return {"name": meta["name"], "club": meta.get("club", ""), "photo": meta.get("photo", ""),
-            "pos": meta.get("pos", ""), "points": (pts or {}).get(eid, 0)}
+            "pos": meta.get("pos", ""), "points": (pts or {}).get(eid, 0), "team_id": meta.get("team_id")}
 
 
 def _pair_sort_key(p):
@@ -727,7 +727,7 @@ def build_transactions(managers, raw, event, players):
     return out
 
 
-def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None, prev_minutes=None, curr_minutes=None):
+def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None, curr_minutes=None, finished_clubs=None):
     """Approximate transfers by diffing two gameweeks' full squads.
 
     The transactions endpoint is unreachable from a cloud runner, but the
@@ -749,19 +749,21 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
     confirmed_by_manager (see load_transfer_confirmations) pins any
     pairing that's been manually verified against the real thing.
 
-    If prev_minutes/curr_minutes are given (that gameweek's real minutes,
-    keyed by element id, from the previous/current gameweek's live data),
-    each out/in dict also gets a "scoreable" flag -- the same real-minutes
-    test build_transfer_swaps applies before a leg can ever contribute to
-    a points swing. What the *fantasy* manager did with a player --
-    started them or left them on the bench -- plays no part in this: it's
-    purely whether the player themselves took the field for their real
-    club (an outgoing pick must have played minutes the week before being
-    dropped; an incoming pick must have played minutes the week they were
-    picked up). A move that fails this is excluded from scoring for good,
-    not just until its own match finishes -- there's no real contribution
-    to compare, whatever the scoreline turns out to be -- so callers can
-    tell a still-genuinely-pending leg from one that will never get a
+    If curr_minutes and finished_clubs are given (this gameweek's real
+    minutes keyed by element id, and the set of team ids whose fixture
+    this gameweek has actually finished), each out/in dict also gets a
+    "no_swing" flag -- true once we KNOW for certain the leg can never
+    contribute to a points swing: its own club's fixture is over and it
+    played 0 minutes, the same test build_transfer_swaps applies before
+    reporting a swap. What the *fantasy* manager did with a player --
+    started them or benched them -- plays no part in this, and neither
+    does any earlier gameweek: it's purely whether the player themselves
+    took the field for their real club THIS gameweek. A 0 minutes reading
+    only means "didn't feature" once the match is actually over --
+    earlier than that it just means "hasn't played yet" -- so no_swing
+    is only ever set once finished_clubs confirms it, letting callers
+    tell a still-genuinely-pending leg (its club hasn't finished, or it
+    already has minutes on the board) from one that will never get a
     swing, rather than treating every unscored leg alike.
     """
     by_entry = {m["entry_id"]: le for le, m in managers.items()}
@@ -785,12 +787,11 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
         in_ids = curr_ids - prev_ids
         outs = [describe_player(e, players, pts) for e in out_ids]
         ins = [describe_player(e, players, pts) for e in in_ids]
-        if prev_minutes is not None:
+        if curr_minutes is not None and finished_clubs is not None:
             for eid, o in zip(out_ids, outs):
-                o["scoreable"] = prev_minutes.get(eid, 0) > 0
-        if curr_minutes is not None:
+                o["no_swing"] = o.get("team_id") in finished_clubs and curr_minutes.get(eid, 0) == 0
             for eid, i in zip(in_ids, ins):
-                i["scoreable"] = curr_minutes.get(eid, 0) > 0
+                i["no_swing"] = i.get("team_id") in finished_clubs and curr_minutes.get(eid, 0) == 0
         confirmed = (confirmed_by_manager or {}).get(managers[le]["manager"])
         pairs, extra_outs, extra_ins, _ambiguous = pair_by_position(outs, ins, confirmed)
         out[le] = {
@@ -801,10 +802,10 @@ def infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts=Non
     return out
 
 
-def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None, prev_minutes=None, curr_minutes=None):
+def build_transfers(managers, players, raw_transactions, event, prev_squads_raw, curr_squads_raw, pts=None, confirmed_by_manager=None, curr_minutes=None, finished_clubs=None):
     """Prefer FPL's own transaction record; fall back to the squad diff."""
     real = build_transactions(managers, raw_transactions, event, players)
-    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts, confirmed_by_manager, prev_minutes, curr_minutes)
+    inferred = infer_transfers(managers, players, prev_squads_raw, curr_squads_raw, pts, confirmed_by_manager, curr_minutes, finished_clubs)
     out = {}
     for le in managers:
         r, i = real[le], inferred[le]
@@ -867,11 +868,16 @@ def build_transfer_history(managers, players, raw_transactions, load_fn, gw):
         prev_squads_raw = load_fn(f"squads_gw{g - 1}")
         if not curr_squads_raw or not prev_squads_raw:
             continue
-        week_pts = live_points(load_fn(f"live_gw{g}"))
-        prev_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(load_fn(f"live_gw{g - 1}")).items()}
-        curr_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(load_fn(f"live_gw{g}")).items()}
+        week_live = load_fn(f"live_gw{g}")
+        week_pts = live_points(week_live)
+        curr_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(week_live).items()}
+        finished_clubs = {
+            team_id
+            for f in ((week_live or {}).get("fixtures") or []) if _fixture_over(f)
+            for team_id in (f.get("team_h"), f.get("team_a"))
+        }
         week = build_transfers(managers, players, raw_transactions, g, prev_squads_raw, curr_squads_raw,
-                                week_pts, load_transfer_confirmations(g), prev_minutes, curr_minutes)
+                                week_pts, load_transfer_confirmations(g), curr_minutes, finished_clubs)
         for le, t in week.items():
             if t["count"]:
                 history[le].append({"gameweek": g, "in": t["in"], "out": t["out"]})
@@ -972,33 +978,33 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
 
     Eligibility is about the real player, not the fantasy squad slot the
     manager put them in: whether a leg counts turns purely on whether
-    that player actually took the field for their real club, never on
-    whether the manager started or benched them in the fantasy XI. The
-    outgoing player must have played minutes > 0 for their club the
-    gameweek before being dropped -- that's what makes them a genuine
-    release rather than someone who never took the field at all. Once
-    released, though, whether they go on to play for their club THIS
-    gameweek is no longer gatekept: a blank because they picked up an
-    injury, got dropped, or simply didn't feature is still a real, final
-    result once their club's match is over, and it's exactly the "you
-    dropped him and he blanked" (or "he still delivered anyway") story
-    this table exists to tell.
+    that player actually took the field for their real club THIS
+    gameweek -- the one the swing itself is measured on -- never on
+    whether the manager started or benched them, and never on what they
+    did in any earlier gameweek. A released player who blanks this week
+    because they were genuinely rested or dropped by their real club has
+    nothing to compare (out_points would be a hollow zero, not a real
+    result); the same is true of an incoming pick who doesn't feature at
+    all this week. Once a player DOES take the field, though, their
+    result is real and counts as-is, good or bad: a manager who benches a
+    promising pickup that blanks while the player they dropped delivers
+    is still a genuine, often painful, worst transfer -- benching them
+    doesn't undo the swap, and a real appearance that ends in a blank
+    still reads as a blank.
 
-    The incoming player must have played minutes > 0 for their club the
-    gameweek they were picked up -- a real acquisition, not a name added
-    to the roster who never featured. Whether the fantasy manager started
-    or benched that pickup makes no difference to whether it counts here:
-    a manager who benches a promising pickup that blanks while the player
-    they dropped delivers is still a genuine, often painful, worst
-    transfer -- benching them doesn't undo the swap.
-
-    And since the score being compared for both is this gameweek's, not
-    last week's, a swap only counts once BOTH players' own real-world
-    club fixtures this gameweek have actually finished (not just kicked
-    off) -- a 0 only reads as final once the match is over; bonus points
-    aren't final and a match still in progress can still swing, until the
-    final whistle, so a swap assessed mid-match could read as a "best
-    transfer" that later isn't.
+    And since a 0 minutes reading only means "didn't feature" once the
+    match is actually over -- earlier than that it just means "hasn't
+    played yet" -- this eligibility check is applied at the same point as
+    the finished-club check below, never before: a swap only counts once
+    BOTH players' own real-world club fixtures this gameweek have
+    actually finished (not just kicked off) AND both of them actually
+    played minutes > 0. Checking minutes before a fixture is over would
+    wrongly disqualify someone whose match just hasn't happened yet; a 0
+    only reads as final -- whether as a real blank or as never having
+    featured at all -- once the match is over. Bonus points aren't final
+    either and a match still in progress can still swing, until the final
+    whistle, so a swap assessed mid-match could read as a "best transfer"
+    that later isn't.
 
     diff = in_points - out_points, using each player's real score that
     gameweek independent of who rostered them. Positive is a gain, a
@@ -1022,7 +1028,6 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         return []
 
     pts = live_points(totw_live)
-    prev_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(prev_live).items()}
     curr_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(totw_live).items()}
     finished_clubs = {
         team_id
@@ -1049,18 +1054,18 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
 
         # Pairing uses every real out/in this manager made this week,
-        # regardless of whether each side's club fixture has finished yet --
-        # the position-first heuristic below needs the whole picture to
-        # have a chance at guessing the true pairing correctly. Gating on
-        # finished_clubs here (before pairing) would silently drop a
-        # still-in-progress leg from the pool, leaving its genuine partner
-        # to get force-paired with some unrelated leftover from a
-        # different swap instead (a real "Mateta -> Emerson" reading as
-        # "Fernandes -> Emerson" because Mateta's own match just hadn't
-        # finished yet). Whether a pair is actually ready to report is
-        # decided afterwards, once pairing is done.
-        outs = [describe(eid) for eid in prev_ids - curr_ids if prev_minutes.get(eid, 0) > 0]
-        ins = [describe(eid) for eid in curr_ids - prev_ids if curr_minutes.get(eid, 0) > 0]
+        # regardless of whether each side's club fixture has finished yet
+        # or whether either player has actually featured -- the position-
+        # first heuristic below needs the whole picture to have a chance
+        # at guessing the true pairing correctly. Gating on eligibility
+        # here (before pairing) would silently drop a still-in-progress
+        # leg from the pool, leaving its genuine partner to get force-
+        # paired with an unrelated leftover instead (a real "Mateta ->
+        # Emerson" reading as "Fernandes -> Emerson" because Mateta's own
+        # match just hadn't finished yet). Whether a pair is actually
+        # ready to report is decided afterwards, once pairing is done.
+        outs = [describe(eid) for eid in prev_ids - curr_ids]
+        ins = [describe(eid) for eid in curr_ids - prev_ids]
         if not outs or not ins:
             continue
 
@@ -1072,6 +1077,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         for o, i in pairs:
             if o.get("team_id") not in finished_clubs or i.get("team_id") not in finished_clubs:
                 continue  # not both sides final yet -- not ready to report
+            if curr_minutes.get(o["element"], 0) == 0 or curr_minutes.get(i["element"], 0) == 0:
+                continue  # one side never actually took the field this gameweek -- nothing real to compare
             swaps.append({
                 "manager": manager_name,
                 "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],
