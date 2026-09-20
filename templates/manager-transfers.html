@@ -40,9 +40,8 @@
       </div>
       {% endif %}
       {% if week.no_swing_in or week.no_swing_out %}
-      <p class="mute">No points swing to show &mdash; a pick only scores a swing once it's actually started a
-      gameweek (an incoming bench pickup, or a release that was never in the starting XI, has nothing real
-      to compare).</p>
+      <p class="mute">No points swing to show &mdash; a pick only scores a swing once it's actually played
+      minutes for its real club that gameweek, whether or not it was started here.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
@@ -90,8 +89,8 @@
       {% endif %}
       {% if p.no_swing_in or p.no_swing_out %}
       <p class="mute">GW{{ p.gameweek }} &middot; no points swing to show &mdash; a pick only scores a swing
-      once it's actually started a gameweek (an incoming bench pickup, or a release that was never in the
-      starting XI, has nothing real to compare).</p>
+      once it's actually played minutes for its real club that gameweek, whether or not it was started
+      here.</p>
       <div class="table-scroll">
       <table class="grid grid--table">
         <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
