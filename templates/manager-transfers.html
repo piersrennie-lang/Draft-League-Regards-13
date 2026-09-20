@@ -27,7 +27,12 @@
       {{ macros.transfer_swap_table(week.swaps) }}
       {% endif %}
       {% if week.pending_in or week.pending_out %}
+      {% if week.gameweek < gw or (week.gameweek == gw and d.league.gw_fully_over) %}
+      <p class="mute">No points swing to show &mdash; a pick only scores a swing once it's actually played
+      minutes for its real club that gameweek.</p>
+      {% else %}
       <p class="mute">Not yet assessed &mdash; waiting for both players' matches to finish.</p>
+      {% endif %}
       <div class="table-scroll">
       <table class="grid grid--table">
         <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
@@ -60,7 +65,12 @@
   {% for p in pending %}
   <div class="profile-grid">
     <div class="profile-panel">
+      {% if p.gameweek < gw or (p.gameweek == gw and d.league.gw_fully_over) %}
+      <p class="mute">GW{{ p.gameweek }} &middot; no points swing to show &mdash; a pick only scores a swing
+      once it's actually played minutes for its real club that gameweek.</p>
+      {% else %}
       <p class="mute">GW{{ p.gameweek }} &middot; not yet assessed &mdash; waiting for both players' matches to finish.</p>
+      {% endif %}
       <div class="table-scroll">
       <table class="grid grid--table">
         <colgroup><col style="width:50%"><col style="width:50%"></colgroup>

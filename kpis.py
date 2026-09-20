@@ -946,19 +946,23 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
     reads as a best or worst transfer is purely the points swing, not why
     the swap happened.
 
-    Which real moves count is about the player, not the fantasy squad
-    slot the manager put them in -- started or benched makes no
-    difference, only whether they were genuinely dropped or picked up.
-    Their score that gameweek is whatever it really was, including a
-    genuine 0 for not featuring at all; no separate case is made for
-    that, it's just this week's real result like any other.
-
-    A swap only counts once BOTH players' own real-world club fixtures
-    this gameweek have actually finished (not just kicked off) -- a 0
-    only reads as final once the match is over; bonus points aren't
-    final either and a match still in progress can still swing, until
-    the final whistle, so a swap assessed mid-match could read as a
-    "best transfer" that later isn't.
+    Which real moves are candidates for pairing is about the player, not
+    the fantasy squad slot the manager put them in -- started or benched
+    makes no difference, only whether they were genuinely dropped or
+    picked up. But once paired, a swap only counts once BOTH players'
+    own real-world club fixtures this gameweek have actually finished
+    (not just kicked off) AND both of them actually played minutes > 0
+    that gameweek -- a leg that never took the field has nothing real to
+    compare, whatever the scoreline says, so it's excluded rather than
+    reported with a hollow 0. A 0 minutes reading only means "didn't
+    feature" once the match is actually over -- earlier than that it
+    just means "hasn't played yet" -- so this check happens at the same
+    point as the finished-club check, never before it: checking minutes
+    too early would wrongly disqualify someone whose fixture simply
+    hasn't happened yet today. Bonus points aren't final either and a
+    match still in progress can still swing, until the final whistle, so
+    a swap assessed mid-match could read as a "best transfer" that later
+    isn't.
 
     diff = in_points - out_points, using each player's real score that
     gameweek independent of who rostered them. Positive is a gain, a
@@ -982,6 +986,7 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         return []
 
     pts = live_points(totw_live)
+    curr_minutes = {eid: s.get("minutes", 0) for eid, s in live_stats(totw_live).items()}
     finished_clubs = {
         team_id
         for f in ((totw_live or {}).get("fixtures") or []) if _fixture_over(f)
@@ -1030,6 +1035,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         for o, i in pairs:
             if o.get("team_id") not in finished_clubs or i.get("team_id") not in finished_clubs:
                 continue  # not both sides final yet -- not ready to report
+            if curr_minutes.get(o["element"], 0) == 0 or curr_minutes.get(i["element"], 0) == 0:
+                continue  # one side never actually took the field this gameweek -- nothing real to compare
             swaps.append({
                 "manager": manager_name,
                 "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],

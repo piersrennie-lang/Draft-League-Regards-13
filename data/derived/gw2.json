@@ -4120,22 +4120,6 @@
   "gameweek": 2,
   "best_transfers": [
    {
-    "manager": "Michael Lavarack",
-    "out_name": "Vicario",
-    "out_club": "TOT",
-    "out_points": 0,
-    "out_team_id": 19,
-    "out_pos": "GKP",
-    "in_name": "Tzolakis",
-    "in_club": "HUL",
-    "in_points": 10,
-    "in_team_id": 11,
-    "in_pos": "GKP",
-    "diff": 10,
-    "guessed": false,
-    "gain": 10
-   },
-   {
     "manager": "Brad Hill",
     "out_name": "\u00d8degaard",
     "out_club": "ARS",
@@ -4150,22 +4134,6 @@
     "diff": 9,
     "guessed": false,
     "gain": 9
-   },
-   {
-    "manager": "Nic Rubin",
-    "out_name": "Palestra",
-    "out_club": "CHE",
-    "out_points": 0,
-    "out_team_id": 6,
-    "out_pos": "DEF",
-    "in_name": "Ajer",
-    "in_club": "BRE",
-    "in_points": 3,
-    "in_team_id": 4,
-    "in_pos": "DEF",
-    "diff": 3,
-    "guessed": false,
-    "gain": 3
    },
    {
     "manager": "Mattato Alcock",
@@ -4184,20 +4152,52 @@
     "gain": 2
    },
    {
-    "manager": "Mark Stone",
-    "out_name": "Pope",
-    "out_club": "NEW",
-    "out_points": 0,
-    "out_team_id": 17,
-    "out_pos": "GKP",
-    "in_name": "Scherpen",
-    "in_club": "IPS",
-    "in_points": 2,
-    "in_team_id": 12,
-    "in_pos": "GKP",
+    "manager": "Matthew Lees",
+    "out_name": "Szoboszlai",
+    "out_club": "LIV",
+    "out_points": 4,
+    "out_team_id": 14,
+    "out_pos": "MID",
+    "in_name": "Xhaka",
+    "in_club": "SUN",
+    "in_points": 6,
+    "in_team_id": 20,
+    "in_pos": "MID",
     "diff": 2,
     "guessed": false,
     "gain": 2
+   },
+   {
+    "manager": "Brad Hill",
+    "out_name": "Caicedo",
+    "out_club": "CHE",
+    "out_points": 1,
+    "out_team_id": 6,
+    "out_pos": "MID",
+    "in_name": "Armstrong",
+    "in_club": "EVE",
+    "in_points": 2,
+    "in_team_id": 9,
+    "in_pos": "MID",
+    "diff": 1,
+    "guessed": false,
+    "gain": 1
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "out_name": "Gakpo",
+    "out_club": "LIV",
+    "out_points": 5,
+    "out_team_id": 14,
+    "out_pos": "MID",
+    "in_name": "Lewis-Potter",
+    "in_club": "BRE",
+    "in_points": 6,
+    "in_team_id": 4,
+    "in_pos": "MID",
+    "diff": 1,
+    "guessed": false,
+    "gain": 1
    }
   ],
   "worst_transfers": [
@@ -4293,8 +4293,8 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 61,
-    "transfer_points": 9
+    "points": 51,
+    "transfer_points": -1
    },
    {
     "manager": "Matthew Lees",
@@ -4315,18 +4315,18 @@
   "worst": [
    {
     "manager": "Nic Rubin",
-    "points": 18,
-    "transfer_points": -3
+    "points": 13,
+    "transfer_points": -8
    },
    {
     "manager": "Mark Stone",
-    "points": 29,
-    "transfer_points": -4
+    "points": 27,
+    "transfer_points": -6
    },
    {
     "manager": "Stefano Babiolakis",
-    "points": 37,
-    "transfer_points": -6
+    "points": 36,
+    "transfer_points": -7
    },
    {
     "manager": "Mattato Alcock",
@@ -4335,8 +4335,8 @@
    },
    {
     "manager": "Piers Rennie",
-    "points": 38,
-    "transfer_points": -5
+    "points": 40,
+    "transfer_points": -3
    }
   ]
  },
@@ -4355,8 +4355,8 @@
     },
     {
      "manager": "Michael Lavarack",
-     "points": 98,
-     "transfer_points": 9
+     "points": 88,
+     "transfer_points": -1
     },
     {
      "manager": "Roscoe Hill",
@@ -4369,14 +4369,14 @@
      "transfer_points": 2
     },
     {
+     "manager": "Piers Rennie",
+     "points": 75,
+     "transfer_points": -3
+    },
+    {
      "manager": "Matthew Xenakis",
      "points": 75,
      "transfer_points": 1
-    },
-    {
-     "manager": "Piers Rennie",
-     "points": 73,
-     "transfer_points": -5
     },
     {
      "manager": "Mattato Alcock",
@@ -4385,18 +4385,18 @@
     },
     {
      "manager": "Mark Stone",
-     "points": 68,
-     "transfer_points": -4
-    },
-    {
-     "manager": "Stefano Babiolakis",
-     "points": 65,
+     "points": 66,
      "transfer_points": -6
     },
     {
+     "manager": "Stefano Babiolakis",
+     "points": 64,
+     "transfer_points": -7
+    },
+    {
      "manager": "Nic Rubin",
-     "points": 56,
-     "transfer_points": -3
+     "points": 51,
+     "transfer_points": -8
     }
    ]
   },
@@ -4408,8 +4408,8 @@
    },
    {
     "manager": "Michael Lavarack",
-    "points": 98,
-    "transfer_points": 9
+    "points": 88,
+    "transfer_points": -1
    },
    {
     "manager": "Roscoe Hill",
@@ -4422,14 +4422,14 @@
     "transfer_points": 2
    },
    {
+    "manager": "Piers Rennie",
+    "points": 75,
+    "transfer_points": -3
+   },
+   {
     "manager": "Matthew Xenakis",
     "points": 75,
     "transfer_points": 1
-   },
-   {
-    "manager": "Piers Rennie",
-    "points": 73,
-    "transfer_points": -5
    },
    {
     "manager": "Mattato Alcock",
@@ -4438,18 +4438,18 @@
    },
    {
     "manager": "Mark Stone",
-    "points": 68,
-    "transfer_points": -4
-   },
-   {
-    "manager": "Stefano Babiolakis",
-    "points": 65,
+    "points": 66,
     "transfer_points": -6
    },
    {
+    "manager": "Stefano Babiolakis",
+    "points": 64,
+    "transfer_points": -7
+   },
+   {
     "manager": "Nic Rubin",
-    "points": 56,
-    "transfer_points": -3
+    "points": 51,
+    "transfer_points": -8
    }
   ],
   "history": [],
@@ -4856,22 +4856,6 @@
      "diff": -3,
      "guessed": false,
      "gameweek": 2
-    },
-    {
-     "manager": "Piers Rennie",
-     "out_name": "Gonzalo",
-     "out_club": "FUL",
-     "out_points": 2,
-     "out_team_id": 10,
-     "out_pos": "FWD",
-     "in_name": "Simms",
-     "in_club": "COV",
-     "in_points": 0,
-     "in_team_id": 7,
-     "in_pos": "FWD",
-     "diff": -2,
-     "guessed": false,
-     "gameweek": 2
     }
    ],
    "qualifying_transfers": [
@@ -4888,22 +4872,6 @@
      "in_team_id": 11,
      "in_pos": "FWD",
      "diff": -3,
-     "guessed": false,
-     "gameweek": 2
-    },
-    {
-     "manager": "Piers Rennie",
-     "out_name": "Gonzalo",
-     "out_club": "FUL",
-     "out_points": 2,
-     "out_team_id": 10,
-     "out_pos": "FWD",
-     "in_name": "Simms",
-     "in_club": "COV",
-     "in_points": 0,
-     "in_team_id": 7,
-     "in_pos": "FWD",
-     "diff": -2,
      "guessed": false,
      "gameweek": 2
     }
@@ -4926,22 +4894,6 @@
        "in_team_id": 11,
        "in_pos": "FWD",
        "diff": -3,
-       "guessed": false,
-       "gameweek": 2
-      },
-      {
-       "manager": "Piers Rennie",
-       "out_name": "Gonzalo",
-       "out_club": "FUL",
-       "out_points": 2,
-       "out_team_id": 10,
-       "out_pos": "FWD",
-       "in_name": "Simms",
-       "in_club": "COV",
-       "in_points": 0,
-       "in_team_id": 7,
-       "in_pos": "FWD",
-       "diff": -2,
        "guessed": false,
        "gameweek": 2
       }
@@ -5365,22 +5317,7 @@
     "manager": "Nic Rubin",
     "losses": 1
    },
-   "best_transfer": {
-    "manager": "Stefano Babiolakis",
-    "out_name": "J.Timber",
-    "out_club": "ARS",
-    "out_points": 0,
-    "out_team_id": 1,
-    "out_pos": "DEF",
-    "in_name": "Bijol",
-    "in_club": "LEE",
-    "in_points": 1,
-    "in_team_id": 13,
-    "in_pos": "DEF",
-    "diff": 1,
-    "guessed": false,
-    "gameweek": 2
-   },
+   "best_transfer": null,
    "worst_transfer": {
     "manager": "Stefano Babiolakis",
     "out_name": "Saka",
@@ -5397,24 +5334,7 @@
     "guessed": false,
     "gameweek": 2
    },
-   "best_transfers": [
-    {
-     "manager": "Stefano Babiolakis",
-     "out_name": "J.Timber",
-     "out_club": "ARS",
-     "out_points": 0,
-     "out_team_id": 1,
-     "out_pos": "DEF",
-     "in_name": "Bijol",
-     "in_club": "LEE",
-     "in_points": 1,
-     "in_team_id": 13,
-     "in_pos": "DEF",
-     "diff": 1,
-     "guessed": false,
-     "gameweek": 2
-    }
-   ],
+   "best_transfers": [],
    "worst_transfers": [
     {
      "manager": "Stefano Babiolakis",
@@ -5434,22 +5354,6 @@
     }
    ],
    "qualifying_transfers": [
-    {
-     "manager": "Stefano Babiolakis",
-     "out_name": "J.Timber",
-     "out_club": "ARS",
-     "out_points": 0,
-     "out_team_id": 1,
-     "out_pos": "DEF",
-     "in_name": "Bijol",
-     "in_club": "LEE",
-     "in_points": 1,
-     "in_team_id": 13,
-     "in_pos": "DEF",
-     "diff": 1,
-     "guessed": false,
-     "gameweek": 2
-    },
     {
      "manager": "Stefano Babiolakis",
      "out_name": "Saka",
@@ -5472,22 +5376,6 @@
      "block_start": 1,
      "block_end": 4,
      "swaps": [
-      {
-       "manager": "Stefano Babiolakis",
-       "out_name": "J.Timber",
-       "out_club": "ARS",
-       "out_points": 0,
-       "out_team_id": 1,
-       "out_pos": "DEF",
-       "in_name": "Bijol",
-       "in_club": "LEE",
-       "in_points": 1,
-       "in_team_id": 13,
-       "in_pos": "DEF",
-       "diff": 1,
-       "guessed": false,
-       "gameweek": 2
-      },
       {
        "manager": "Stefano Babiolakis",
        "out_name": "Saka",
@@ -5934,22 +5822,7 @@
     "manager": "Mark Stone",
     "losses": 1
    },
-   "best_transfer": {
-    "manager": "Nic Rubin",
-    "out_name": "Palestra",
-    "out_club": "CHE",
-    "out_points": 0,
-    "out_team_id": 6,
-    "out_pos": "DEF",
-    "in_name": "Ajer",
-    "in_club": "BRE",
-    "in_points": 3,
-    "in_team_id": 4,
-    "in_pos": "DEF",
-    "diff": 3,
-    "guessed": false,
-    "gameweek": 2
-   },
+   "best_transfer": null,
    "worst_transfer": {
     "manager": "Nic Rubin",
     "out_name": "Jo\u00e3o Pedro",
@@ -5966,40 +5839,7 @@
     "guessed": false,
     "gameweek": 2
    },
-   "best_transfers": [
-    {
-     "manager": "Nic Rubin",
-     "out_name": "Palestra",
-     "out_club": "CHE",
-     "out_points": 0,
-     "out_team_id": 6,
-     "out_pos": "DEF",
-     "in_name": "Ajer",
-     "in_club": "BRE",
-     "in_points": 3,
-     "in_team_id": 4,
-     "in_pos": "DEF",
-     "diff": 3,
-     "guessed": false,
-     "gameweek": 2
-    },
-    {
-     "manager": "Nic Rubin",
-     "out_name": "Sarr",
-     "out_club": "CRY",
-     "out_points": 0,
-     "out_team_id": 8,
-     "out_pos": "MID",
-     "in_name": "Mac Allister",
-     "in_club": "LIV",
-     "in_points": 2,
-     "in_team_id": 14,
-     "in_pos": "MID",
-     "diff": 2,
-     "guessed": false,
-     "gameweek": 2
-    }
-   ],
+   "best_transfers": [],
    "worst_transfers": [
     {
      "manager": "Nic Rubin",
@@ -6019,38 +5859,6 @@
     }
    ],
    "qualifying_transfers": [
-    {
-     "manager": "Nic Rubin",
-     "out_name": "Palestra",
-     "out_club": "CHE",
-     "out_points": 0,
-     "out_team_id": 6,
-     "out_pos": "DEF",
-     "in_name": "Ajer",
-     "in_club": "BRE",
-     "in_points": 3,
-     "in_team_id": 4,
-     "in_pos": "DEF",
-     "diff": 3,
-     "guessed": false,
-     "gameweek": 2
-    },
-    {
-     "manager": "Nic Rubin",
-     "out_name": "Sarr",
-     "out_club": "CRY",
-     "out_points": 0,
-     "out_team_id": 8,
-     "out_pos": "MID",
-     "in_name": "Mac Allister",
-     "in_club": "LIV",
-     "in_points": 2,
-     "in_team_id": 14,
-     "in_pos": "MID",
-     "diff": 2,
-     "guessed": false,
-     "gameweek": 2
-    },
     {
      "manager": "Nic Rubin",
      "out_name": "Jo\u00e3o Pedro",
@@ -6073,38 +5881,6 @@
      "block_start": 1,
      "block_end": 4,
      "swaps": [
-      {
-       "manager": "Nic Rubin",
-       "out_name": "Palestra",
-       "out_club": "CHE",
-       "out_points": 0,
-       "out_team_id": 6,
-       "out_pos": "DEF",
-       "in_name": "Ajer",
-       "in_club": "BRE",
-       "in_points": 3,
-       "in_team_id": 4,
-       "in_pos": "DEF",
-       "diff": 3,
-       "guessed": false,
-       "gameweek": 2
-      },
-      {
-       "manager": "Nic Rubin",
-       "out_name": "Sarr",
-       "out_club": "CRY",
-       "out_points": 0,
-       "out_team_id": 8,
-       "out_pos": "MID",
-       "in_name": "Mac Allister",
-       "in_club": "LIV",
-       "in_points": 2,
-       "in_team_id": 14,
-       "in_pos": "MID",
-       "diff": 2,
-       "guessed": false,
-       "gameweek": 2
-      },
       {
        "manager": "Nic Rubin",
        "out_name": "Jo\u00e3o Pedro",
@@ -8635,22 +8411,7 @@
     "manager": "Brad Hill",
     "losses": 1
    },
-   "best_transfer": {
-    "manager": "Michael Lavarack",
-    "out_name": "Vicario",
-    "out_club": "TOT",
-    "out_points": 0,
-    "out_team_id": 19,
-    "out_pos": "GKP",
-    "in_name": "Tzolakis",
-    "in_club": "HUL",
-    "in_points": 10,
-    "in_team_id": 11,
-    "in_pos": "GKP",
-    "diff": 10,
-    "guessed": false,
-    "gameweek": 2
-   },
+   "best_transfer": null,
    "worst_transfer": {
     "manager": "Michael Lavarack",
     "out_name": "Dewsbury-Hall",
@@ -8667,24 +8428,7 @@
     "guessed": false,
     "gameweek": 2
    },
-   "best_transfers": [
-    {
-     "manager": "Michael Lavarack",
-     "out_name": "Vicario",
-     "out_club": "TOT",
-     "out_points": 0,
-     "out_team_id": 19,
-     "out_pos": "GKP",
-     "in_name": "Tzolakis",
-     "in_club": "HUL",
-     "in_points": 10,
-     "in_team_id": 11,
-     "in_pos": "GKP",
-     "diff": 10,
-     "guessed": false,
-     "gameweek": 2
-    }
-   ],
+   "best_transfers": [],
    "worst_transfers": [
     {
      "manager": "Michael Lavarack",
@@ -8704,22 +8448,6 @@
     }
    ],
    "qualifying_transfers": [
-    {
-     "manager": "Michael Lavarack",
-     "out_name": "Vicario",
-     "out_club": "TOT",
-     "out_points": 0,
-     "out_team_id": 19,
-     "out_pos": "GKP",
-     "in_name": "Tzolakis",
-     "in_club": "HUL",
-     "in_points": 10,
-     "in_team_id": 11,
-     "in_pos": "GKP",
-     "diff": 10,
-     "guessed": false,
-     "gameweek": 2
-    },
     {
      "manager": "Michael Lavarack",
      "out_name": "Dewsbury-Hall",
@@ -8742,22 +8470,6 @@
      "block_start": 1,
      "block_end": 4,
      "swaps": [
-      {
-       "manager": "Michael Lavarack",
-       "out_name": "Vicario",
-       "out_club": "TOT",
-       "out_points": 0,
-       "out_team_id": 19,
-       "out_pos": "GKP",
-       "in_name": "Tzolakis",
-       "in_club": "HUL",
-       "in_points": 10,
-       "in_team_id": 11,
-       "in_pos": "GKP",
-       "diff": 10,
-       "guessed": false,
-       "gameweek": 2
-      },
       {
        "manager": "Michael Lavarack",
        "out_name": "Dewsbury-Hall",
@@ -9278,38 +8990,6 @@
        "diff": -3,
        "guessed": false,
        "gameweek": 2
-      },
-      {
-       "manager": "Roscoe Hill",
-       "out_name": "Madueke",
-       "out_club": "ARS",
-       "out_points": 0,
-       "out_team_id": 1,
-       "out_pos": "MID",
-       "in_name": "Jensen",
-       "in_club": "BRE",
-       "in_points": 0,
-       "in_team_id": 4,
-       "in_pos": "MID",
-       "diff": 0,
-       "guessed": false,
-       "gameweek": 2
-      },
-      {
-       "manager": "Roscoe Hill",
-       "out_name": "Osula",
-       "out_club": "NEW",
-       "out_points": 0,
-       "out_team_id": 17,
-       "out_pos": "FWD",
-       "in_name": "Wood",
-       "in_club": "NFO",
-       "in_points": 0,
-       "in_team_id": 18,
-       "in_pos": "FWD",
-       "diff": 0,
-       "guessed": false,
-       "gameweek": 2
       }
      ]
     }
@@ -9749,22 +9429,7 @@
     "wins": 1
    },
    "most_lost_to": null,
-   "best_transfer": {
-    "manager": "Mark Stone",
-    "out_name": "Pope",
-    "out_club": "NEW",
-    "out_points": 0,
-    "out_team_id": 17,
-    "out_pos": "GKP",
-    "in_name": "Scherpen",
-    "in_club": "IPS",
-    "in_points": 2,
-    "in_team_id": 12,
-    "in_pos": "GKP",
-    "diff": 2,
-    "guessed": false,
-    "gameweek": 2
-   },
+   "best_transfer": null,
    "worst_transfer": {
     "manager": "Mark Stone",
     "out_name": "White",
@@ -9781,24 +9446,7 @@
     "guessed": false,
     "gameweek": 2
    },
-   "best_transfers": [
-    {
-     "manager": "Mark Stone",
-     "out_name": "Pope",
-     "out_club": "NEW",
-     "out_points": 0,
-     "out_team_id": 17,
-     "out_pos": "GKP",
-     "in_name": "Scherpen",
-     "in_club": "IPS",
-     "in_points": 2,
-     "in_team_id": 12,
-     "in_pos": "GKP",
-     "diff": 2,
-     "guessed": false,
-     "gameweek": 2
-    }
-   ],
+   "best_transfers": [],
    "worst_transfers": [
     {
      "manager": "Mark Stone",
@@ -9818,22 +9466,6 @@
     }
    ],
    "qualifying_transfers": [
-    {
-     "manager": "Mark Stone",
-     "out_name": "Pope",
-     "out_club": "NEW",
-     "out_points": 0,
-     "out_team_id": 17,
-     "out_pos": "GKP",
-     "in_name": "Scherpen",
-     "in_club": "IPS",
-     "in_points": 2,
-     "in_team_id": 12,
-     "in_pos": "GKP",
-     "diff": 2,
-     "guessed": false,
-     "gameweek": 2
-    },
     {
      "manager": "Mark Stone",
      "out_name": "White",
@@ -9856,22 +9488,6 @@
      "block_start": 1,
      "block_end": 4,
      "swaps": [
-      {
-       "manager": "Mark Stone",
-       "out_name": "Pope",
-       "out_club": "NEW",
-       "out_points": 0,
-       "out_team_id": 17,
-       "out_pos": "GKP",
-       "in_name": "Scherpen",
-       "in_club": "IPS",
-       "in_points": 2,
-       "in_team_id": 12,
-       "in_pos": "GKP",
-       "diff": 2,
-       "guessed": false,
-       "gameweek": 2
-      },
       {
        "manager": "Mark Stone",
        "out_name": "White",
@@ -10424,22 +10040,6 @@
   ],
   "best_transfers": [
    {
-    "manager": "Michael Lavarack",
-    "out_name": "Vicario",
-    "out_club": "TOT",
-    "out_points": 0,
-    "out_team_id": 19,
-    "out_pos": "GKP",
-    "in_name": "Tzolakis",
-    "in_club": "HUL",
-    "in_points": 10,
-    "in_team_id": 11,
-    "in_pos": "GKP",
-    "diff": 10,
-    "guessed": false,
-    "gameweek": 2
-   },
-   {
     "manager": "Brad Hill",
     "out_name": "\u00d8degaard",
     "out_club": "ARS",
@@ -10452,38 +10052,6 @@
     "in_team_id": 3,
     "in_pos": "MID",
     "diff": 9,
-    "guessed": false,
-    "gameweek": 2
-   },
-   {
-    "manager": "Nic Rubin",
-    "out_name": "Palestra",
-    "out_club": "CHE",
-    "out_points": 0,
-    "out_team_id": 6,
-    "out_pos": "DEF",
-    "in_name": "Ajer",
-    "in_club": "BRE",
-    "in_points": 3,
-    "in_team_id": 4,
-    "in_pos": "DEF",
-    "diff": 3,
-    "guessed": false,
-    "gameweek": 2
-   },
-   {
-    "manager": "Nic Rubin",
-    "out_name": "Sarr",
-    "out_club": "CRY",
-    "out_points": 0,
-    "out_team_id": 8,
-    "out_pos": "MID",
-    "in_name": "Mac Allister",
-    "in_club": "LIV",
-    "in_points": 2,
-    "in_team_id": 14,
-    "in_pos": "MID",
-    "diff": 2,
     "guessed": false,
     "gameweek": 2
    },
@@ -10516,38 +10084,6 @@
     "in_team_id": 20,
     "in_pos": "MID",
     "diff": 2,
-    "guessed": false,
-    "gameweek": 2
-   },
-   {
-    "manager": "Mark Stone",
-    "out_name": "Pope",
-    "out_club": "NEW",
-    "out_points": 0,
-    "out_team_id": 17,
-    "out_pos": "GKP",
-    "in_name": "Scherpen",
-    "in_club": "IPS",
-    "in_points": 2,
-    "in_team_id": 12,
-    "in_pos": "GKP",
-    "diff": 2,
-    "guessed": false,
-    "gameweek": 2
-   },
-   {
-    "manager": "Stefano Babiolakis",
-    "out_name": "J.Timber",
-    "out_club": "ARS",
-    "out_points": 0,
-    "out_team_id": 1,
-    "out_pos": "DEF",
-    "in_name": "Bijol",
-    "in_club": "LEE",
-    "in_points": 1,
-    "in_team_id": 13,
-    "in_pos": "DEF",
-    "diff": 1,
     "guessed": false,
     "gameweek": 2
    },
@@ -10678,22 +10214,6 @@
     "in_team_id": 13,
     "in_pos": "MID",
     "diff": -3,
-    "guessed": false,
-    "gameweek": 2
-   },
-   {
-    "manager": "Piers Rennie",
-    "out_name": "Gonzalo",
-    "out_club": "FUL",
-    "out_points": 2,
-    "out_team_id": 10,
-    "out_pos": "FWD",
-    "in_name": "Simms",
-    "in_club": "COV",
-    "in_points": 0,
-    "in_team_id": 7,
-    "in_pos": "FWD",
-    "diff": -2,
     "guessed": false,
     "gameweek": 2
    },
