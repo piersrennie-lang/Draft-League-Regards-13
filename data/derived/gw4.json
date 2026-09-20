@@ -6,7 +6,7 @@
   "gameweek": 4,
   "next_gameweek": 5,
   "gw_fully_over": true,
-  "fetched_at": "2026-09-20T07:17:29Z",
+  "fetched_at": "2026-09-20T07:37:15Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -4349,79 +4349,7 @@
    "source": "inferred"
   }
  },
- "ambiguous_transfers": [
-  {
-   "manager": "Mattato Alcock",
-   "gameweek": 3,
-   "pos": "DEF",
-   "outs": [
-    {
-     "name": "F.Kad\u0131o\u011flu",
-     "club": "BHA"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Giles",
-     "club": "HUL"
-    },
-    {
-     "name": "White",
-     "club": "ARS"
-    }
-   ]
-  },
-  {
-   "manager": "Michael Lavarack",
-   "gameweek": 3,
-   "pos": "MID",
-   "outs": [
-    {
-     "name": "Est\u00eav\u00e3o",
-     "club": "CHE"
-    },
-    {
-     "name": "Maddison",
-     "club": "TOT"
-    }
-   ],
-   "ins": [
-    {
-     "name": "Ndiaye",
-     "club": "MCI"
-    },
-    {
-     "name": "Dewsbury-Hall",
-     "club": "EVE"
-    }
-   ]
-  },
-  {
-   "manager": "Piers Rennie",
-   "gameweek": 2,
-   "pos": "FWD",
-   "outs": [
-    {
-     "name": "Woltemade",
-     "club": "NEW"
-    },
-    {
-     "name": "Gonzalo",
-     "club": "FUL"
-    }
-   ],
-   "ins": [
-    {
-     "name": "McBurnie",
-     "club": "HUL"
-    },
-    {
-     "name": "Simms",
-     "club": "COV"
-    }
-   ]
-  }
- ],
+ "ambiguous_transfers": [],
  "team_of_week": {
   "gameweek": 4,
   "players": [
@@ -5554,7 +5482,7 @@
      "in_team_id": 11,
      "in_pos": "FWD",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -5570,7 +5498,7 @@
      "in_team_id": 7,
      "in_pos": "FWD",
      "diff": -2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -5620,7 +5548,7 @@
      "in_team_id": 11,
      "in_pos": "FWD",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -5636,7 +5564,7 @@
      "in_team_id": 7,
      "in_pos": "FWD",
      "diff": -2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -5722,7 +5650,7 @@
        "in_team_id": 11,
        "in_pos": "FWD",
        "diff": -3,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 2
       },
       {
@@ -5738,7 +5666,7 @@
        "in_team_id": 7,
        "in_pos": "FWD",
        "diff": -2,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 2
       },
       {
@@ -5824,49 +5752,7 @@
      ]
     }
    ],
-   "ambiguous_pool": [
-    {
-     "manager": "Piers Rennie",
-     "pos": "FWD",
-     "outs": [
-      {
-       "element": 463,
-       "name": "Woltemade",
-       "pos": "FWD",
-       "club": "NEW",
-       "team_id": 17,
-       "points": 4
-      },
-      {
-       "element": 569,
-       "name": "Gonzalo",
-       "pos": "FWD",
-       "club": "FUL",
-       "team_id": 10,
-       "points": 2
-      }
-     ],
-     "ins": [
-      {
-       "element": 295,
-       "name": "McBurnie",
-       "pos": "FWD",
-       "club": "HUL",
-       "team_id": 11,
-       "points": 1
-      },
-      {
-       "element": 195,
-       "name": "Simms",
-       "pos": "FWD",
-       "club": "COV",
-       "team_id": 7,
-       "points": 0
-      }
-     ],
-     "gameweek": 2
-    }
-   ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -5987,7 +5873,7 @@
        "pos": "FWD",
        "points": 1,
        "team_id": 11,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Simms",
@@ -5996,7 +5882,7 @@
        "pos": "FWD",
        "points": 0,
        "team_id": 7,
-       "guessed": true
+       "guessed": false
       }
      ],
      "out": [
@@ -6007,7 +5893,7 @@
        "pos": "FWD",
        "points": 4,
        "team_id": 17,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Gonzalo",
@@ -6016,7 +5902,7 @@
        "pos": "FWD",
        "points": 2,
        "team_id": 10,
-       "guessed": true
+       "guessed": false
       }
      ]
     }
@@ -8914,18 +8800,18 @@
     },
     {
      "manager": "Mattato Alcock",
-     "out_name": "F.Kad\u0131o\u011flu",
-     "out_club": "BHA",
-     "out_points": 2,
-     "out_team_id": 5,
-     "out_pos": "DEF",
+     "out_name": "Amad",
+     "out_club": "MUN",
+     "out_points": 0,
+     "out_team_id": 16,
+     "out_pos": "MID",
      "in_name": "Giles",
      "in_club": "HUL",
      "in_points": 8,
      "in_team_id": 11,
      "in_pos": "DEF",
-     "diff": 6,
-     "guessed": true,
+     "diff": 8,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -8943,22 +8829,6 @@
      "diff": 2,
      "guessed": false,
      "gameweek": 2
-    },
-    {
-     "manager": "Mattato Alcock",
-     "out_name": "Amad",
-     "out_club": "MUN",
-     "out_points": 0,
-     "out_team_id": 16,
-     "out_pos": "MID",
-     "in_name": "White",
-     "in_club": "ARS",
-     "in_points": 2,
-     "in_team_id": 1,
-     "in_pos": "DEF",
-     "diff": 2,
-     "guessed": false,
-     "gameweek": 3
     },
     {
      "manager": "Mattato Alcock",
@@ -9046,33 +8916,17 @@
     },
     {
      "manager": "Mattato Alcock",
-     "out_name": "F.Kad\u0131o\u011flu",
-     "out_club": "BHA",
-     "out_points": 2,
-     "out_team_id": 5,
-     "out_pos": "DEF",
-     "in_name": "Giles",
-     "in_club": "HUL",
-     "in_points": 8,
-     "in_team_id": 11,
-     "in_pos": "DEF",
-     "diff": 6,
-     "guessed": true,
-     "gameweek": 3
-    },
-    {
-     "manager": "Mattato Alcock",
      "out_name": "Amad",
      "out_club": "MUN",
      "out_points": 0,
      "out_team_id": 16,
      "out_pos": "MID",
-     "in_name": "White",
-     "in_club": "ARS",
-     "in_points": 2,
-     "in_team_id": 1,
+     "in_name": "Giles",
+     "in_club": "HUL",
+     "in_points": 8,
+     "in_team_id": 11,
      "in_pos": "DEF",
-     "diff": 2,
+     "diff": 8,
      "guessed": false,
      "gameweek": 3
     },
@@ -9169,13 +9023,13 @@
        "out_points": 2,
        "out_team_id": 5,
        "out_pos": "DEF",
-       "in_name": "Giles",
-       "in_club": "HUL",
-       "in_points": 8,
-       "in_team_id": 11,
+       "in_name": "White",
+       "in_club": "ARS",
+       "in_points": 2,
+       "in_team_id": 1,
        "in_pos": "DEF",
-       "diff": 6,
-       "guessed": true,
+       "diff": 0,
+       "guessed": false,
        "gameweek": 3
       },
       {
@@ -9185,12 +9039,12 @@
        "out_points": 0,
        "out_team_id": 16,
        "out_pos": "MID",
-       "in_name": "White",
-       "in_club": "ARS",
-       "in_points": 2,
-       "in_team_id": 1,
+       "in_name": "Giles",
+       "in_club": "HUL",
+       "in_points": 8,
+       "in_team_id": 11,
        "in_pos": "DEF",
-       "diff": 2,
+       "diff": 8,
        "guessed": false,
        "gameweek": 3
       },
@@ -9245,41 +9099,7 @@
      ]
     }
    ],
-   "ambiguous_pool": [
-    {
-     "manager": "Mattato Alcock",
-     "pos": "DEF",
-     "outs": [
-      {
-       "element": 113,
-       "name": "F.Kad\u0131o\u011flu",
-       "pos": "DEF",
-       "club": "BHA",
-       "team_id": 5,
-       "points": 2
-      }
-     ],
-     "ins": [
-      {
-       "element": 282,
-       "name": "Giles",
-       "pos": "DEF",
-       "club": "HUL",
-       "team_id": 11,
-       "points": 8
-      },
-      {
-       "element": 10,
-       "name": "White",
-       "pos": "DEF",
-       "club": "ARS",
-       "team_id": 1,
-       "points": 2
-      }
-     ],
-     "gameweek": 3
-    }
-   ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -9360,21 +9180,21 @@
        "guessed": false
       },
       {
-       "name": "Giles",
-       "club": "HUL",
-       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232351.png",
-       "pos": "DEF",
-       "points": 8,
-       "team_id": 11,
-       "guessed": true
-      },
-      {
        "name": "White",
        "club": "ARS",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p198869.png",
        "pos": "DEF",
        "points": 2,
        "team_id": 1,
+       "guessed": false
+      },
+      {
+       "name": "Giles",
+       "club": "HUL",
+       "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p232351.png",
+       "pos": "DEF",
+       "points": 8,
+       "team_id": 11,
        "guessed": false
       }
      ],
@@ -9395,7 +9215,7 @@
        "pos": "DEF",
        "points": 2,
        "team_id": 5,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Amad",
@@ -13119,7 +12939,7 @@
      "in_team_id": 15,
      "in_pos": "MID",
      "diff": 2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -13135,7 +12955,7 @@
      "in_team_id": 9,
      "in_pos": "MID",
      "diff": 2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -13267,7 +13087,7 @@
      "in_team_id": 15,
      "in_pos": "MID",
      "diff": 2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -13283,7 +13103,7 @@
      "in_team_id": 9,
      "in_pos": "MID",
      "diff": 2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 3
     },
     {
@@ -13401,7 +13221,7 @@
        "in_team_id": 15,
        "in_pos": "MID",
        "diff": 2,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 3
       },
       {
@@ -13417,7 +13237,7 @@
        "in_team_id": 9,
        "in_pos": "MID",
        "diff": 2,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 3
       },
       {
@@ -13471,49 +13291,7 @@
      ]
     }
    ],
-   "ambiguous_pool": [
-    {
-     "manager": "Michael Lavarack",
-     "pos": "MID",
-     "outs": [
-      {
-       "element": 157,
-       "name": "Est\u00eav\u00e3o",
-       "pos": "MID",
-       "club": "CHE",
-       "team_id": 6,
-       "points": 1
-      },
-      {
-       "element": 515,
-       "name": "Maddison",
-       "pos": "MID",
-       "club": "TOT",
-       "team_id": 19,
-       "points": 0
-      }
-     ],
-     "ins": [
-      {
-       "element": 237,
-       "name": "Ndiaye",
-       "pos": "MID",
-       "club": "MCI",
-       "team_id": 15,
-       "points": 3
-      },
-      {
-       "element": 236,
-       "name": "Dewsbury-Hall",
-       "pos": "MID",
-       "club": "EVE",
-       "team_id": 9,
-       "points": 2
-      }
-     ],
-     "gameweek": 3
-    }
-   ],
+   "ambiguous_pool": [],
    "motw_wins": 1,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -13582,7 +13360,7 @@
        "pos": "MID",
        "points": 3,
        "team_id": 15,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Dewsbury-Hall",
@@ -13591,7 +13369,7 @@
        "pos": "MID",
        "points": 2,
        "team_id": 9,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Nketiah",
@@ -13620,7 +13398,7 @@
        "pos": "MID",
        "points": 1,
        "team_id": 6,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Maddison",
@@ -13629,7 +13407,7 @@
        "pos": "MID",
        "points": 0,
        "team_id": 19,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Haaland",

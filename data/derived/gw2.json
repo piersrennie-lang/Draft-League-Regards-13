@@ -6,7 +6,7 @@
   "gameweek": 2,
   "next_gameweek": 3,
   "gw_fully_over": true,
-  "fetched_at": "2026-09-20T07:17:29Z",
+  "fetched_at": "2026-09-20T07:37:15Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -3588,7 +3588,7 @@
      "pos": "FWD",
      "points": 1,
      "team_id": 11,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Simms",
@@ -3597,7 +3597,7 @@
      "pos": "FWD",
      "points": 0,
      "team_id": 7,
-     "guessed": true
+     "guessed": false
     }
    ],
    "out": [
@@ -3608,7 +3608,7 @@
      "pos": "FWD",
      "points": 4,
      "team_id": 17,
-     "guessed": true
+     "guessed": false
     },
     {
      "name": "Gonzalo",
@@ -3617,7 +3617,7 @@
      "pos": "FWD",
      "points": 2,
      "team_id": 10,
-     "guessed": true
+     "guessed": false
     }
    ],
    "count": 2,
@@ -4020,33 +4020,7 @@
    "source": "inferred"
   }
  },
- "ambiguous_transfers": [
-  {
-   "manager": "Piers Rennie",
-   "gameweek": 2,
-   "pos": "FWD",
-   "outs": [
-    {
-     "name": "Woltemade",
-     "club": "NEW"
-    },
-    {
-     "name": "Gonzalo",
-     "club": "FUL"
-    }
-   ],
-   "ins": [
-    {
-     "name": "McBurnie",
-     "club": "HUL"
-    },
-    {
-     "name": "Simms",
-     "club": "COV"
-    }
-   ]
-  }
- ],
+ "ambiguous_transfers": [],
  "team_of_week": {
   "gameweek": 2,
   "players": [
@@ -4862,7 +4836,7 @@
     "in_team_id": 11,
     "in_pos": "FWD",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 2
    },
    "best_transfers": [],
@@ -4880,7 +4854,7 @@
      "in_team_id": 11,
      "in_pos": "FWD",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -4896,7 +4870,7 @@
      "in_team_id": 7,
      "in_pos": "FWD",
      "diff": -2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -4914,7 +4888,7 @@
      "in_team_id": 11,
      "in_pos": "FWD",
      "diff": -3,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     },
     {
@@ -4930,7 +4904,7 @@
      "in_team_id": 7,
      "in_pos": "FWD",
      "diff": -2,
-     "guessed": true,
+     "guessed": false,
      "gameweek": 2
     }
    ],
@@ -4952,7 +4926,7 @@
        "in_team_id": 11,
        "in_pos": "FWD",
        "diff": -3,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 2
       },
       {
@@ -4968,55 +4942,13 @@
        "in_team_id": 7,
        "in_pos": "FWD",
        "diff": -2,
-       "guessed": true,
+       "guessed": false,
        "gameweek": 2
       }
      ]
     }
    ],
-   "ambiguous_pool": [
-    {
-     "manager": "Piers Rennie",
-     "pos": "FWD",
-     "outs": [
-      {
-       "element": 463,
-       "name": "Woltemade",
-       "pos": "FWD",
-       "club": "NEW",
-       "team_id": 17,
-       "points": 4
-      },
-      {
-       "element": 569,
-       "name": "Gonzalo",
-       "pos": "FWD",
-       "club": "FUL",
-       "team_id": 10,
-       "points": 2
-      }
-     ],
-     "ins": [
-      {
-       "element": 295,
-       "name": "McBurnie",
-       "pos": "FWD",
-       "club": "HUL",
-       "team_id": 11,
-       "points": 1
-      },
-      {
-       "element": 195,
-       "name": "Simms",
-       "pos": "FWD",
-       "club": "COV",
-       "team_id": 7,
-       "points": 0
-      }
-     ],
-     "gameweek": 2
-    }
-   ],
+   "ambiguous_pool": [],
    "motw_wins": 0,
    "worst_motw_wins": 0,
    "mom_wins": 0,
@@ -5033,7 +4965,7 @@
        "pos": "FWD",
        "points": 1,
        "team_id": 11,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Simms",
@@ -5042,7 +4974,7 @@
        "pos": "FWD",
        "points": 0,
        "team_id": 7,
-       "guessed": true
+       "guessed": false
       }
      ],
      "out": [
@@ -5053,7 +4985,7 @@
        "pos": "FWD",
        "points": 4,
        "team_id": 17,
-       "guessed": true
+       "guessed": false
       },
       {
        "name": "Gonzalo",
@@ -5062,7 +4994,7 @@
        "pos": "FWD",
        "points": 2,
        "team_id": 10,
-       "guessed": true
+       "guessed": false
       }
      ]
     }
@@ -10730,7 +10662,7 @@
     "in_team_id": 11,
     "in_pos": "FWD",
     "diff": -3,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 2
    },
    {
@@ -10762,7 +10694,7 @@
     "in_team_id": 7,
     "in_pos": "FWD",
     "diff": -2,
-    "guessed": true,
+    "guessed": false,
     "gameweek": 2
    },
    {
