@@ -416,6 +416,51 @@ def detect_breaches(prev_releases, squads):
     return out
 
 
+def build_fines_history(managers, players, load_fn, gw):
+    """Every Highest Scorer Rule fine actually collected this season,
+    week by week. detect_breaches only ever checks one gameweek's release
+    mandate (data/derived/gw{n}_releases.json, already the final computed
+    record regardless of whether it came from squad picks or a manual
+    fallback) against the following gameweek's squads -- this reruns that
+    same check for every gameweek transition on record and sums the
+    results, so the total is read off the same breach detection already
+    used for the Wall of Shame, not tracked separately by hand.
+    """
+    total = 0
+    by_manager = {}
+    for g in range(2, gw + 1):
+        prev_path = DERIVED / f"gw{g - 1}_releases.json"
+        if not prev_path.exists():
+            continue
+        g_squads_raw = load_fn(f"squads_gw{g}")
+        g_live = load_fn(f"live_gw{g}")
+        if not g_squads_raw or not g_live:
+            continue
+        prev_releases = json.loads(prev_path.read_text())
+        squads = build_squads(managers, g_squads_raw, g_live, players)
+        for b in detect_breaches(prev_releases, squads):
+            total += b["fine"]
+            by_manager[b["manager"]] = by_manager.get(b["manager"], 0) + b["fine"]
+    return {"total": total, "by_manager": by_manager}
+
+
+def build_fines_refund_forecast(standings, fines_collected):
+    """How the fines pot would refund entry fees if the season ended
+    today: starting at 4th place and working down the table, each manager
+    gets back up to config.FINE_REFUND_CAP from whatever's actually been
+    collected, until the pot runs out.
+    """
+    refunds = []
+    remaining = fines_collected
+    for row in standings[3:]:
+        if remaining <= 0:
+            break
+        amount = min(config.FINE_REFUND_CAP, remaining)
+        refunds.append({"pos": row["pos"], "manager": row["manager"], "amount": amount})
+        remaining -= amount
+    return refunds
+
+
 # --------------------------------------------------------------------------
 # Matches, entertainment, standings
 # --------------------------------------------------------------------------
@@ -1862,6 +1907,10 @@ def main():
         "manager_profiles": manager_profiles,
         "leaders": leaders,
         "prize_forecast": build_prize_forecast(standings, leaders, manager_of_month, manager_profiles),
+        "fines": {
+            **(fines_history := build_fines_history(managers, players, load, gw)),
+            "refund_forecast": build_fines_refund_forecast(standings, fines_history["total"]),
+        },
         "luck": luck,
         "pot": {
             "base": config.BASE_POT,

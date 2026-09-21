@@ -70,9 +70,33 @@
   {% endif %}
   {% endfor %}
 
-  <p class="mute" style="margin-top:1rem;">Fines collected during the season go towards returning entry
-  fees from 4th place down, capped at &pound;20 per position &mdash; not forecast here since it depends on
-  breaches still to come.</p>
+  <h3 class="eyebrow eyebrow--sm">Fines &amp; refunds</h3>
+  <p class="lede lede--tight">&pound;{{ d.fines.total }} collected so far from Highest Scorer Rule breaches
+  &mdash; goes towards returning entry fees from 4th place down, capped at &pound;20 per position. Only as
+  much as has actually been collected can be refunded, so this grows as more fines come in.</p>
+  {% if d.fines.refund_forecast %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <colgroup><col style="width:14%"><col style="width:58%"><col style="width:28%"></colgroup>
+        <thead><tr><th>Pos</th><th>Manager</th><th class="num">Refund</th></tr></thead>
+        <tbody>
+          {% for r in d.fines.refund_forecast %}
+          <tr>
+            <td class="mute">{{ r.pos }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(r.manager, avatars, manager_colors) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">&pound;{{ r.amount }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="pending">No fines collected yet &mdash; nothing to refund.</p>
+  {% endif %}
 </section>
 
 {% endblock %}

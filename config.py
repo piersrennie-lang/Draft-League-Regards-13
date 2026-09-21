@@ -28,6 +28,10 @@ FINE_FIELDED_ANYWAY = 5
 BASE_POT = 200
 PRIZE_SHARE = 0.40  # first prize as a share of the pot
 
+# Fines collected during the season refund entry fees starting at 4th place
+# and working down the table, capped at this much per position.
+FINE_REFUND_CAP = 20
+
 # Season prize pool structure, from the committee's Proposed Prize Pool
 # document -- amounts in pounds, one list per award, ordered 1st/2nd/3rd
 # place. Edit here if the prize pool changes; build_prize_forecast() in
