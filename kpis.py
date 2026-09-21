@@ -1597,6 +1597,118 @@ def build_leaders(manager_profiles, gw, gw_fully_over, limit=5):
     }
 
 
+def build_prize_forecast(standings, leaders, manager_of_month, manager_profiles):
+    """Forecasted winnings for every prize-pool award (see
+    config.PRIZE_POOL and the season's Proposed Prize Pool document), as
+    if the season ended today -- who's currently on track for each prize
+    and how much they'd take home at the current standings. Updates live
+    as the season progresses, same as everything else on the site.
+
+    Each award ranks managers by that award's own metric. Where the
+    underlying leaderboard pools several possible entries per manager (a
+    gameweek score, a transfer swing), only a manager's own single best
+    instance is used, so the same manager can't take two of an award's
+    three prize places just for having had two great weeks -- the prize
+    pool document means three different winners.
+
+    "Classic winner" has no separate FPL Classic league tracked by this
+    site, so it's read off the same total-points-scored ranking already
+    shown as "Classic standings" on the Standings page. "Manager of the
+    Season" is a different metric even though the name suggests
+    otherwise -- it's the season-long Manager-of-the-Week-style points
+    table (which also credits the transfer swing bonus), not this same
+    "for" total.
+    """
+    pool = config.PRIZE_POOL
+
+    def rank_managers(entries, amounts, value_key="value"):
+        """entries must already be one-per-manager, best first."""
+        return [
+            {"rank": i + 1, "manager": e["manager"], "value": e[value_key], "amount": amount}
+            for i, (e, amount) in enumerate(zip(entries, amounts))
+        ]
+
+    def best_per_manager(pool_entries, value_key):
+        """Collapse a multi-entry-per-manager pool (e.g. every gameweek
+        score) down to each manager's single best entry, ranked."""
+        best = {}
+        for e in pool_entries:
+            name = e["manager"]
+            if name not in best or e[value_key] > best[name][value_key]:
+                best[name] = e
+        return sorted(best.values(), key=lambda e: (-e[value_key], e["manager"]))
+
+    h2h = rank_managers(
+        [{"manager": r["manager"], "value": r["points"]} for r in standings],
+        pool["h2h"],
+    )
+
+    classic_ranked = sorted(standings, key=lambda r: (-r["for"], r["manager"]))
+    classic = rank_managers(
+        [{"manager": r["manager"], "value": r["for"]} for r in classic_ranked],
+        pool["classic"],
+    )
+
+    season_ranked = manager_of_month.get("season") or []
+    manager_of_season = rank_managers(
+        [{"manager": r["manager"], "value": r["points"]} for r in season_ranked],
+        pool["manager_of_season"],
+    )
+
+    highest_gw = rank_managers(
+        best_per_manager(leaders.get("highest_score", []), "points"),
+        pool["highest_gw_score"],
+        value_key="points",
+    )
+
+    win_streak = rank_managers(leaders.get("longest_win_streak", []), pool["longest_win_streak"])
+    motw = rank_managers(leaders.get("motw_wins", []), pool["manager_of_week"])
+    totw_apps = rank_managers(leaders.get("totw_appearances", []), pool["totw_appearances"])
+
+    best_transfer_entries = sorted(
+        (
+            {"manager": name, "value": p["best_transfer"]["diff"],
+             "out_name": p["best_transfer"]["out_name"], "in_name": p["best_transfer"]["in_name"],
+             "gameweek": p["best_transfer"]["gameweek"]}
+            for name, p in manager_profiles.items() if p.get("best_transfer")
+        ),
+        key=lambda e: (-e["value"], e["manager"]),
+    )
+    best_transfers = rank_managers(best_transfer_entries, pool["best_transfers"])
+    for row, entry in zip(best_transfers, best_transfer_entries):
+        row["detail"] = f"{entry['out_name']} → {entry['in_name']} · GW{entry['gameweek']}"
+
+    mom_ranked = sorted(manager_of_month.get("leaderboard", []), key=lambda r: (-r["wins"], r["manager"]))
+    mom = [
+        {"rank": i + 1, "manager": r["manager"], "value": r["wins"],
+         "amount": r["wins"] * pool["manager_of_month_per_win"]}
+        for i, r in enumerate(mom_ranked) if r["wins"] > 0
+    ]
+
+    categories = [
+        {"key": "h2h", "title": "Head to head", "rows": h2h},
+        {"key": "classic", "title": "Classic winner", "rows": classic},
+        {"key": "manager_of_season", "title": "Manager of the Season", "rows": manager_of_season},
+        {"key": "highest_gw_score", "title": "Highest Gameweek score", "rows": highest_gw},
+        {"key": "longest_win_streak", "title": "Longest winning streak", "rows": win_streak},
+        {"key": "manager_of_week", "title": "Manager of the Week awards", "rows": motw},
+        {"key": "totw_appearances", "title": "Team of the Week appearances", "rows": totw_apps},
+        {"key": "best_transfers", "title": "Best transfers", "rows": best_transfers},
+        {"key": "manager_of_month", "title": "Manager of the Month", "rows": mom},
+    ]
+
+    totals = {}
+    for cat in categories:
+        for row in cat["rows"]:
+            totals[row["manager"]] = totals.get(row["manager"], 0) + row["amount"]
+    totals_ranked = [
+        {"manager": name, "amount": amount}
+        for name, amount in sorted(totals.items(), key=lambda kv: (-kv[1], kv[0]))
+    ]
+
+    return {"categories": categories, "totals": totals_ranked}
+
+
 # --------------------------------------------------------------------------
 # Assemble
 # --------------------------------------------------------------------------
@@ -1749,6 +1861,7 @@ def main():
         "manager_of_month": manager_of_month,
         "manager_profiles": manager_profiles,
         "leaders": leaders,
+        "prize_forecast": build_prize_forecast(standings, leaders, manager_of_month, manager_profiles),
         "luck": luck,
         "pot": {
             "base": config.BASE_POT,

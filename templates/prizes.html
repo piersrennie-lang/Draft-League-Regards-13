@@ -1,0 +1,78 @@
+{% extends "_base.html" %}
+{% block title %}Prizes &middot; {{ d.league.name }}{% endblock %}
+{% import "_macros.html" as macros %}
+{% block content %}
+
+<section id="prizes" class="section--tight">
+  <p class="lede lede--tight">Who's forecast to win each prize-pool award if the season ended today, and
+  what they'd take home &mdash; from the committee's Proposed Prize Pool (&pound;200, 10 managers at
+  &pound;20 entry). Updates live as the season progresses.</p>
+
+  <h3 class="eyebrow eyebrow--sm">Forecasted total winnings</h3>
+  {% if d.prize_forecast.totals %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        <colgroup><col style="width:10%"><col style="width:60%"><col style="width:30%"></colgroup>
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Forecast</th></tr></thead>
+        <tbody>
+          {% for t in d.prize_forecast.totals %}
+          <tr>
+            <td class="mute">{{ loop.index }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(t.manager, avatars, manager_colors) }}</td>
+            <td class="num{% if loop.first %} gain{% endif %}">&pound;{{ t.amount }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="pending">Not enough data yet to forecast winnings.</p>
+  {% endif %}
+
+  {% for cat in d.prize_forecast.categories %}
+  <h3 class="eyebrow eyebrow--sm">{{ cat.title }}</h3>
+  {% if cat.rows %}
+  <div class="profile-grid">
+    <div class="profile-panel">
+      <div class="table-scroll">
+      <table class="grid grid--table">
+        {% if cat.rows[0].detail is defined %}
+        <colgroup><col style="width:8%"><col style="width:24%"><col style="width:40%"><col style="width:28%"></colgroup>
+        <thead><tr><th>#</th><th>Manager</th><th>Swap</th><th class="num">Forecast</th></tr></thead>
+        {% else %}
+        <colgroup><col style="width:8%"><col style="width:40%"><col style="width:24%"><col style="width:28%"></colgroup>
+        <thead><tr><th>#</th><th>Manager</th><th class="num">Value</th><th class="num">Forecast</th></tr></thead>
+        {% endif %}
+        <tbody>
+          {% for row in cat.rows %}
+          <tr>
+            <td class="mute">{{ row.rank }}</td>
+            <td{% if loop.first %} class="strong"{% endif %}>{{ macros.manager(row.manager, avatars, manager_colors) }}</td>
+            {% if row.detail is defined %}
+            <td class="wrap">{{ row.detail }}</td>
+            {% else %}
+            <td class="num">{{ row.value }}</td>
+            {% endif %}
+            <td class="num{% if loop.first %} gain{% endif %}">&pound;{{ row.amount }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p class="pending">Not enough data yet to forecast this award.</p>
+  {% endif %}
+  {% endfor %}
+
+  <p class="mute" style="margin-top:1rem;">Fines collected during the season go towards returning entry
+  fees from 4th place down, capped at &pound;20 per position &mdash; not forecast here since it depends on
+  breaches still to come.</p>
+</section>
+
+{% endblock %}

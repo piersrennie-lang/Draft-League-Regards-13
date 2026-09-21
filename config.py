@@ -28,6 +28,22 @@ FINE_FIELDED_ANYWAY = 5
 BASE_POT = 200
 PRIZE_SHARE = 0.40  # first prize as a share of the pot
 
+# Season prize pool structure, from the committee's Proposed Prize Pool
+# document -- amounts in pounds, one list per award, ordered 1st/2nd/3rd
+# place. Edit here if the prize pool changes; build_prize_forecast() in
+# kpis.py reads this to rank managers against each award's own metric.
+PRIZE_POOL = {
+    "h2h": [60, 40, 20],
+    "classic": [10],
+    "manager_of_season": [10],
+    "highest_gw_score": [5, 3, 2],
+    "longest_win_streak": [5, 3, 2],
+    "manager_of_week": [5, 3, 2],
+    "totw_appearances": [5, 3, 2],
+    "best_transfers": [5, 3, 2],
+    "manager_of_month_per_win": 1,
+}
+
 # Entertainment ratings are relative to the week, not absolute. A five-fixture
 # week is scored on this curve, best to worst, which is how the roundup reads.
 ENTERTAINMENT_CURVE = {5: [9, 8, 7, 5, 3]}

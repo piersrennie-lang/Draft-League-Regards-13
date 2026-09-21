@@ -163,6 +163,9 @@ def main():
     html = env.get_template("standings.html").render(active="standings", **render_kwargs)
     (DIST / "standings.html").write_text(html)
 
+    html = env.get_template("prizes.html").render(active="prizes", **render_kwargs)
+    (DIST / "prizes.html").write_text(html)
+
     available_gws = sorted(int(p.stem[2:]) for p in DERIVED.glob("gw*.json") if p.stem[2:].isdigit())
 
     # Manager Competitions, plus one page per gameweek for the Manager of
