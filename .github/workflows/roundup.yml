@@ -1,14 +1,16 @@
 name: Build roundup
 
-# Every 15 minutes, so transfers and standings stay current through the
-# week. GitHub Actions doesn't guarantee anything finer than 5-minute
-# granularity for scheduled workflows, and in practice deprioritises very
-# frequent schedules (this used to run every 2 minutes, but GitHub had
-# throttled that down to firing only once every 4-8 hours) -- a 15-minute
-# schedule is far more likely to run close to on time.
+# Hourly (offset from :00 to dodge top-of-hour congestion), as a reliable
+# baseline. GitHub's schedule trigger proved unreliable for this repo at
+# both */2 and */15 -- real run gaps stayed at several hours regardless of
+# the configured interval, so a tighter native cron doesn't help. A second,
+# independent mechanism fires workflow_dispatch roughly every 30 minutes
+# between these hourly runs (manual dispatches have run instantly and
+# reliably every time), so day-to-day freshness comes from that, with this
+# schedule as a fallback that doesn't depend on it.
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "7 * * * *"
   workflow_dispatch:
 
 permissions:
