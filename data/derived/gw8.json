@@ -6,7 +6,7 @@
   "gameweek": 8,
   "next_gameweek": 9,
   "gw_fully_over": true,
-  "fetched_at": "2026-10-25T21:39:19Z",
+  "fetched_at": "2026-10-25T22:39:25Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -112,7 +112,7 @@
    "away": 242301,
    "home_name": "Matthew Xenakis",
    "away_name": "Mattato Alcock",
-   "home_points": 36,
+   "home_points": 38,
    "away_points": 43,
    "home_remaining": 0,
    "away_remaining": 0,
@@ -1508,7 +1508,7 @@
      "club": "LIV",
      "team_id": 14,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
-     "points": 6
+     "points": 8
     },
     {
      "element": 330,
@@ -1592,7 +1592,7 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 36,
+   "effective_xi_points": 38,
    "autosubs": [
     {
      "player_out": 238,
@@ -1604,6 +1604,15 @@
    "is_final": true,
    "xi": [
     {
+     "element": 362,
+     "name": "Jacquet",
+     "pos": "DEF",
+     "club": "LIV",
+     "team_id": 14,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
+     "points": 8
+    },
+    {
      "element": 411,
      "name": "Haaland",
      "pos": "FWD",
@@ -1611,15 +1620,6 @@
      "team_id": 15,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
      "points": 8
-    },
-    {
-     "element": 362,
-     "name": "Jacquet",
-     "pos": "DEF",
-     "club": "LIV",
-     "team_id": 14,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
-     "points": 6
     },
     {
      "element": 45,
@@ -1741,7 +1741,7 @@
      "points": 0
     }
    ],
-   "xi_points": 35,
+   "xi_points": 37,
    "bench_points": 11,
    "best_bench": {
     "element": 496,
@@ -2774,7 +2774,7 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p470551.png",
-     "points": 9
+     "points": 8
     },
     {
      "element": 123,
@@ -2796,7 +2796,7 @@
     }
    ],
    "xi_points": 47,
-   "bench_points": 24,
+   "bench_points": 23,
    "best_bench": {
     "element": 166,
     "name": "N.Jackson",
@@ -2807,7 +2807,7 @@
     "points": 13
    },
    "blanks": 1,
-   "wasted": 21
+   "wasted": 20
   }
  },
  "releases": [
@@ -2909,19 +2909,27 @@
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
-   "release": "Haaland",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
-   "release_club": "MCI",
+   "release": "Jacquet",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
+   "release_club": "LIV",
    "release_points": 8,
-   "tie": [],
-   "next": "Jacquet",
-   "next_points": 6,
-   "next_tie": [
-    "Jacquet",
-    "McGinn"
+   "tie": [
+    {
+     "name": "Jacquet",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
+     "club": "LIV"
+    },
+    {
+     "name": "Haaland",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
+     "club": "MCI"
+    }
    ],
-   "score": 35,
-   "cost_pct": 22.9,
+   "next": "McGinn",
+   "next_points": 6,
+   "next_tie": [],
+   "score": 37,
+   "cost_pct": 21.6,
    "h2h": null
   },
   {
@@ -3152,19 +3160,27 @@
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
-   "release": "Haaland",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
-   "release_club": "MCI",
+   "release": "Jacquet",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
+   "release_club": "LIV",
    "release_points": 8,
-   "tie": [],
-   "next": "Jacquet",
-   "next_points": 6,
-   "next_tie": [
-    "Jacquet",
-    "McGinn"
+   "tie": [
+    {
+     "name": "Jacquet",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p606702.png",
+     "club": "LIV"
+    },
+    {
+     "name": "Haaland",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",
+     "club": "MCI"
+    }
    ],
-   "score": 35,
-   "cost_pct": 22.9,
+   "next": "McGinn",
+   "next_points": 6,
+   "next_tie": [],
+   "score": 37,
+   "cost_pct": 21.6,
    "h2h": null
   },
   {
@@ -3420,10 +3436,10 @@
    "d": 0,
    "l": 3,
    "for": 355,
-   "against": 306,
+   "against": 308,
    "played": 8,
    "points": 15,
-   "diff": 49,
+   "diff": 47,
    "history": [
     {
      "event": 1,
@@ -3477,7 +3493,7 @@
     {
      "event": 8,
      "pts": 43,
-     "against": 36,
+     "against": 38,
      "opp": 254700,
      "result": "W"
     }
@@ -3715,11 +3731,11 @@
    "w": 3,
    "d": 0,
    "l": 5,
-   "for": 334,
+   "for": 336,
    "against": 312,
    "played": 8,
    "points": 9,
-   "diff": 22,
+   "diff": 24,
    "history": [
     {
      "event": 1,
@@ -3772,7 +3788,7 @@
     },
     {
      "event": 8,
-     "pts": 36,
+     "pts": 38,
      "against": 43,
      "opp": 242301,
      "result": "L"
@@ -4969,9 +4985,9 @@
     "transfer_points": 0
    },
    {
-    "manager": "Brad Hill",
-    "points": 41,
-    "transfer_points": 7
+    "manager": "Matthew Xenakis",
+    "points": 43,
+    "transfer_points": 5
    }
   ],
   "worst": [
@@ -4996,9 +5012,9 @@
     "transfer_points": -3
    },
    {
-    "manager": "Matthew Xenakis",
+    "manager": "Brad Hill",
     "points": 41,
-    "transfer_points": 5
+    "transfer_points": 7
    }
   ]
  },
@@ -5017,7 +5033,7 @@
     },
     {
      "manager": "Matthew Xenakis",
-     "points": 188,
+     "points": 190,
      "transfer_points": 8
     },
     {
@@ -5090,7 +5106,7 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 335,
+    "points": 337,
     "transfer_points": 1
    },
    {
@@ -5128,7 +5144,7 @@
      },
      {
       "manager": "Matthew Xenakis",
-      "points": 188,
+      "points": 190,
       "transfer_points": 8
      },
      {
@@ -10721,8 +10737,8 @@
      "gameweek": 8,
      "opponent": "Matthew Xenakis",
      "points": 43,
-     "against": 36,
-     "margin": 7,
+     "against": 38,
+     "margin": 5,
      "result": "W"
     },
     {
@@ -10786,7 +10802,7 @@
     "gameweek": 8,
     "opponent": "Matthew Xenakis",
     "points": 43,
-    "against": 36,
+    "against": 38,
     "started": true,
     "live": false
    },
@@ -10965,8 +10981,8 @@
      "gameweek": 8,
      "opponent": "Matthew Xenakis",
      "points": 43,
-     "against": 36,
-     "margin": 7,
+     "against": 38,
+     "margin": 5,
      "result": "W"
     }
    ],
@@ -10999,8 +11015,8 @@
      "gameweek": 8,
      "opponent": "Matthew Xenakis",
      "points": 43,
-     "against": 36,
-     "margin": 7,
+     "against": 38,
+     "margin": 5,
      "result": "W"
     },
     {
@@ -14596,9 +14612,9 @@
     {
      "gameweek": 8,
      "opponent": "Mattato Alcock",
-     "points": 36,
+     "points": 38,
      "against": 43,
-     "margin": -7,
+     "margin": -5,
      "result": "L"
     },
     {
@@ -14661,7 +14677,7 @@
    "current_fixture": {
     "gameweek": 8,
     "opponent": "Mattato Alcock",
-    "points": 36,
+    "points": 38,
     "against": 43,
     "started": true,
     "live": false
@@ -14840,9 +14856,9 @@
     {
      "gameweek": 8,
      "opponent": "Mattato Alcock",
-     "points": 36,
+     "points": 38,
      "against": 43,
-     "margin": -7,
+     "margin": -5,
      "result": "L"
     }
    ],
@@ -14874,9 +14890,9 @@
     {
      "gameweek": 8,
      "opponent": "Mattato Alcock",
-     "points": 36,
+     "points": 38,
      "against": 43,
-     "margin": -7,
+     "margin": -5,
      "result": "L"
     },
     {
@@ -15369,7 +15385,7 @@
      "gameweek": 8,
      "name": "Jacquet",
      "club": "LIV",
-     "points": 6
+     "points": 8
     },
     {
      "gameweek": 8,
@@ -24616,7 +24632,7 @@
    },
    {
     "manager": "Mattato Alcock",
-    "avg_against": 38.2
+    "avg_against": 38.5
    },
    {
     "manager": "Matthew Xenakis",
