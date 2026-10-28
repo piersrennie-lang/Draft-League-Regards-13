@@ -993,21 +993,30 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
 
     Which real moves are candidates for pairing is about the player, not
     the fantasy squad slot the manager put them in -- started or benched
-    makes no difference, only whether they were genuinely dropped or
-    picked up. But once paired, a swap only counts once BOTH players'
-    own real-world club fixtures this gameweek have actually finished
-    (not just kicked off) AND both of them actually played minutes > 0
-    that gameweek -- a leg that never took the field has nothing real to
-    compare, whatever the scoreline says, so it's excluded rather than
-    reported with a hollow 0. A 0 minutes reading only means "didn't
-    feature" once the match is actually over -- earlier than that it
-    just means "hasn't played yet" -- so this check happens at the same
-    point as the finished-club check, never before it: checking minutes
-    too early would wrongly disqualify someone whose fixture simply
-    hasn't happened yet today. Bonus points aren't final either and a
-    match still in progress can still swing, until the final whistle, so
-    a swap assessed mid-match could read as a "best transfer" that later
-    isn't.
+    makes no difference for pairing, only whether they were genuinely
+    dropped or picked up. But once paired, a swap only counts once BOTH
+    players' own real-world club fixtures this gameweek have actually
+    finished (not just kicked off) AND both of them actually played
+    minutes > 0 that gameweek -- a leg that never took the field has
+    nothing real to compare, whatever the scoreline says, so it's
+    excluded rather than reported with a hollow 0. A 0 minutes reading
+    only means "didn't feature" once the match is actually over --
+    earlier than that it just means "hasn't played yet" -- so this check
+    happens at the same point as the finished-club check, never before
+    it: checking minutes too early would wrongly disqualify someone
+    whose fixture simply hasn't happened yet today. Bonus points aren't
+    final either and a match still in progress can still swing, until
+    the final whistle, so a swap assessed mid-match could read as a
+    "best transfer" that later isn't.
+
+    On top of that, the incoming player must actually have contributed to
+    the manager's live score that gameweek -- i.e. be in the squad's
+    effective (post-autosub) XI, not just on the roster. A swap into a
+    bench slot that never autosubbed on never moved the manager's score,
+    so crediting its raw points as a "gain" would be fictional; such a
+    swap is simply excluded rather than reported. The outgoing player's
+    own former slot isn't checked the same way -- only whether the real
+    move (drop/pickup) happened, which pairing already established.
 
     diff = in_points - out_points, using each player's real score that
     gameweek independent of who rostered them. Positive is a gain, a
@@ -1055,6 +1064,7 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
         prev_picks = payload.get("picks", [])
         prev_ids = {p["element"] for p in prev_picks}
         curr_ids = {row["element"] for row in squad["xi"] + squad["bench"]}
+        effective_ids = {row["element"] for row in squad.get("effective_xi", squad["xi"])}
 
         # Pairing uses every real out/in this manager made this week,
         # regardless of whether each side's club fixture has finished yet
@@ -1082,6 +1092,8 @@ def build_transfer_swaps(managers, players, totw_squads, prev_squads_raw, totw_l
                 continue  # not both sides final yet -- not ready to report
             if curr_minutes.get(o["element"], 0) == 0 or curr_minutes.get(i["element"], 0) == 0:
                 continue  # one side never actually took the field this gameweek -- nothing real to compare
+            if i["element"] not in effective_ids:
+                continue  # the incoming player was benched (and no autosub brought them on) -- the swap never actually moved the manager's live score, so it can't read as a best/worst transfer
             swaps.append({
                 "manager": manager_name,
                 "out_name": o["name"], "out_club": o["club"], "out_points": o["points"],
