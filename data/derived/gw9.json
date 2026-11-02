@@ -6,7 +6,7 @@
   "gameweek": 9,
   "next_gameweek": 10,
   "gw_fully_over": false,
-  "fetched_at": "2026-11-02T00:39:25Z",
+  "fetched_at": "2026-11-02T01:39:55Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -113,7 +113,7 @@
    "home_name": "Matthew Lees",
    "away_name": "Brad Hill",
    "home_points": 67,
-   "away_points": 39,
+   "away_points": 37,
    "home_remaining": 0,
    "away_remaining": 1,
    "started": true,
@@ -1246,7 +1246,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466075.png",
-     "points": 8
+     "points": 6
     },
     {
      "element": 114,
@@ -1321,7 +1321,7 @@
      "points": 3
     }
    ],
-   "effective_xi_points": 39,
+   "effective_xi_points": 37,
    "autosubs": [
     {
      "player_out": 388,
@@ -1333,15 +1333,6 @@
    "is_final": false,
    "xi": [
     {
-     "element": 8,
-     "name": "Calafiori",
-     "pos": "DEF",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466075.png",
-     "points": 8
-    },
-    {
      "element": 512,
      "name": "Kudus",
      "pos": "MID",
@@ -1349,6 +1340,15 @@
      "team_id": 19,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p460842.png",
      "points": 7
+    },
+    {
+     "element": 8,
+     "name": "Calafiori",
+     "pos": "DEF",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466075.png",
+     "points": 6
     },
     {
      "element": 114,
@@ -1470,7 +1470,7 @@
      "points": 0
     }
    ],
-   "xi_points": 36,
+   "xi_points": 34,
    "bench_points": 5,
    "best_bench": {
     "element": 127,
@@ -2922,22 +2922,6 @@
    "h2h": null
   },
   {
-   "league_entry": 254549,
-   "manager": "Brad Hill",
-   "team": "MAGA ERA",
-   "release": "Calafiori",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466075.png",
-   "release_club": "ARS",
-   "release_points": 8,
-   "tie": [],
-   "next": "Kudus",
-   "next_points": 7,
-   "next_tie": [],
-   "score": 36,
-   "cost_pct": 22.2,
-   "h2h": null
-  },
-  {
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
    "team": "Doos",
@@ -2951,6 +2935,25 @@
    "next_tie": [],
    "score": 30,
    "cost_pct": 26.7,
+   "h2h": null
+  },
+  {
+   "league_entry": 254549,
+   "manager": "Brad Hill",
+   "team": "MAGA ERA",
+   "release": "Kudus",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p460842.png",
+   "release_club": "TOT",
+   "release_points": 7,
+   "tie": [],
+   "next": "Calafiori",
+   "next_points": 6,
+   "next_tie": [
+    "Calafiori",
+    "Boscagli"
+   ],
+   "score": 34,
+   "cost_pct": 20.6,
    "h2h": null
   },
   {
@@ -3005,6 +3008,25 @@
    "h2h": null
   },
   {
+   "league_entry": 254549,
+   "manager": "Brad Hill",
+   "team": "MAGA ERA",
+   "release": "Kudus",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p460842.png",
+   "release_club": "TOT",
+   "release_points": 7,
+   "tie": [],
+   "next": "Calafiori",
+   "next_points": 6,
+   "next_tie": [
+    "Calafiori",
+    "Boscagli"
+   ],
+   "score": 34,
+   "cost_pct": 20.6,
+   "h2h": null
+  },
+  {
    "league_entry": 208632,
    "manager": "Stefano Babiolakis",
    "team": "Iraola Coaster",
@@ -3018,22 +3040,6 @@
    "next_tie": [],
    "score": 47,
    "cost_pct": 21.3,
-   "h2h": null
-  },
-  {
-   "league_entry": 254549,
-   "manager": "Brad Hill",
-   "team": "MAGA ERA",
-   "release": "Calafiori",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p466075.png",
-   "release_club": "ARS",
-   "release_points": 8,
-   "tie": [],
-   "next": "Kudus",
-   "next_points": 7,
-   "next_tie": [],
-   "score": 36,
-   "cost_pct": 22.2,
    "h2h": null
   },
   {
@@ -3271,10 +3277,10 @@
    "d": 0,
    "l": 3,
    "for": 411,
-   "against": 341,
+   "against": 339,
    "played": 9,
    "points": 18,
-   "diff": 70,
+   "diff": 72,
    "history": [
     {
      "event": 1,
@@ -3335,7 +3341,7 @@
     {
      "event": 9,
      "pts": 67,
-     "against": 39,
+     "against": 37,
      "opp": 254549,
      "result": "W"
     }
@@ -3513,11 +3519,11 @@
    "w": 4,
    "d": 0,
    "l": 5,
-   "for": 389,
+   "for": 387,
    "against": 426,
    "played": 9,
    "points": 12,
-   "diff": -37,
+   "diff": -39,
    "history": [
     {
      "event": 1,
@@ -3577,7 +3583,7 @@
     },
     {
      "event": 9,
-     "pts": 39,
+     "pts": 37,
      "against": 67,
      "opp": 255427,
      "result": "L"
@@ -4850,7 +4856,7 @@
    },
    {
     "manager": "Brad Hill",
-    "points": 44,
+    "points": 42,
     "transfer_points": 5
    }
   ],
@@ -4912,7 +4918,7 @@
     },
     {
      "manager": "Brad Hill",
-     "points": 44,
+     "points": 42,
      "transfer_points": 5
     },
     {
@@ -4955,7 +4961,7 @@
    },
    {
     "manager": "Brad Hill",
-    "points": 401,
+    "points": 399,
     "transfer_points": 12
    },
    {
@@ -13199,9 +13205,9 @@
     {
      "gameweek": 9,
      "opponent": "Matthew Lees",
-     "points": 39,
+     "points": 37,
      "against": 67,
-     "margin": -28,
+     "margin": -30,
      "result": "L"
     },
     {
@@ -13272,7 +13278,7 @@
    "current_fixture": {
     "gameweek": 9,
     "opponent": "Matthew Lees",
-    "points": 39,
+    "points": 37,
     "against": 67,
     "started": true,
     "live": true
@@ -13406,9 +13412,9 @@
    "biggest_loss": {
     "gameweek": 9,
     "opponent": "Matthew Lees",
-    "points": 39,
+    "points": 37,
     "against": 67,
-    "margin": -28,
+    "margin": -30,
     "result": "L"
    },
    "highest_scores": [
@@ -13481,9 +13487,9 @@
     {
      "gameweek": 9,
      "opponent": "Matthew Lees",
-     "points": 39,
+     "points": 37,
      "against": 67,
-     "margin": -28,
+     "margin": -30,
      "result": "L"
     },
     {
@@ -14048,7 +14054,7 @@
      "gameweek": 9,
      "name": "Calafiori",
      "club": "ARS",
-     "points": 8
+     "points": 6
     },
     {
      "gameweek": 9,
@@ -17542,8 +17548,8 @@
      "gameweek": 9,
      "opponent": "Brad Hill",
      "points": 67,
-     "against": 39,
-     "margin": 28,
+     "against": 37,
+     "margin": 30,
      "result": "W"
     },
     {
@@ -17615,7 +17621,7 @@
     "gameweek": 9,
     "opponent": "Brad Hill",
     "points": 67,
-    "against": 39,
+    "against": 37,
     "started": true,
     "live": true
    },
@@ -17741,8 +17747,8 @@
     "gameweek": 9,
     "opponent": "Brad Hill",
     "points": 67,
-    "against": 39,
-    "margin": 28,
+    "against": 37,
+    "margin": 30,
     "result": "W"
    },
    "biggest_loss": {
@@ -17758,8 +17764,8 @@
      "gameweek": 9,
      "opponent": "Brad Hill",
      "points": 67,
-     "against": 39,
-     "margin": 28,
+     "against": 37,
+     "margin": 30,
      "result": "W"
     },
     {
@@ -25433,20 +25439,20 @@
     "result": "W"
    },
    {
+    "manager": "Matthew Lees",
+    "gameweek": 9,
+    "opponent": "Brad Hill",
+    "points": 67,
+    "against": 37,
+    "margin": 30,
+    "result": "W"
+   },
+   {
     "manager": "Brad Hill",
     "gameweek": 6,
     "opponent": "Nic Rubin",
     "points": 60,
     "against": 32,
-    "margin": 28,
-    "result": "W"
-   },
-   {
-    "manager": "Matthew Lees",
-    "gameweek": 9,
-    "opponent": "Brad Hill",
-    "points": 67,
-    "against": 39,
     "margin": 28,
     "result": "W"
    },
@@ -25484,8 +25490,8 @@
     "gameweek": 9,
     "opponent": "Brad Hill",
     "points": 67,
-    "against": 39,
-    "margin": 28,
+    "against": 37,
+    "margin": 30,
     "result": "W"
    },
    {
@@ -26295,7 +26301,7 @@
    },
    {
     "manager": "Matthew Lees",
-    "avg_against": 37.9
+    "avg_against": 37.7
    },
    {
     "manager": "Matthew Xenakis",
