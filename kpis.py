@@ -426,23 +426,27 @@ def detect_breaches(prev_releases, squads):
             "tie": row.get("tie", []),
             "points": row["release_points"],
             "status": "Still in XI" if any_in_xi else "On bench",
-            "fine": config.FINE_NOT_RELEASED + (config.FINE_FIELDED_ANYWAY if any_in_xi else 0),
         })
     return out
 
 
-def build_fines_history(managers, players, load_fn, gw):
-    """Every Highest Scorer Rule fine actually collected this season,
-    week by week. detect_breaches only ever checks one gameweek's release
-    mandate (data/derived/gw{n}_releases.json, already the final computed
-    record regardless of whether it came from squad picks or a manual
-    fallback) against the following gameweek's squads -- this reruns that
-    same check for every gameweek transition on record and sums the
-    results, so the total is read off the same breach detection already
-    used for the Wall of Shame, not tracked separately by hand.
+def illegal_player_breaches(managers, players, load_fn, gw):
+    """Every gameweek, season to date, where a manager breached the
+    Highest Scorer Rule by actually fielding -- not just keeping -- their
+    mandated release (detect_breaches' "Still in XI" status). Keyed by
+    (event, league_entry) -> the release's name, so build_standings can
+    forfeit that manager's win for the week automatically: fielding the
+    player they were told to drop costs the match, not just a fine.
+
+    detect_breaches only ever checks one gameweek's release mandate
+    (data/derived/gw{n}_releases.json, already the final computed record
+    regardless of whether it came from squad picks or a manual fallback)
+    against the following gameweek's squads -- this reruns that same
+    check for every gameweek transition on record, same as the Wall of
+    Shame does one week at a time.
     """
-    total = 0
-    by_manager = {}
+    by_name = {v["manager"]: le for le, v in managers.items()}
+    out = {}
     for g in range(2, gw + 1):
         prev_path = DERIVED / f"gw{g - 1}_releases.json"
         if not prev_path.exists():
@@ -454,26 +458,11 @@ def build_fines_history(managers, players, load_fn, gw):
         prev_releases = json.loads(prev_path.read_text())
         squads = build_squads(managers, g_squads_raw, g_live, players)
         for b in detect_breaches(prev_releases, squads):
-            total += b["fine"]
-            by_manager[b["manager"]] = by_manager.get(b["manager"], 0) + b["fine"]
-    return {"total": total, "by_manager": by_manager}
-
-
-def build_fines_refund_forecast(standings, fines_collected):
-    """How the fines pot would refund entry fees if the season ended
-    today: starting at 4th place and working down the table, each manager
-    gets back up to config.FINE_REFUND_CAP from whatever's actually been
-    collected, until the pot runs out.
-    """
-    refunds = []
-    remaining = fines_collected
-    for row in standings[3:]:
-        if remaining <= 0:
-            break
-        amount = min(config.FINE_REFUND_CAP, remaining)
-        refunds.append({"pos": row["pos"], "manager": row["manager"], "amount": amount})
-        remaining -= amount
-    return refunds
+            if b["status"] == "Still in XI":
+                le = by_name.get(b["manager"])
+                if le is not None:
+                    out[(g, le)] = b["release"]
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -520,7 +509,7 @@ def gw_window(live):
     return kicked_off, fully_over
 
 
-def build_results(details, gw, managers, squads, live):
+def build_results(details, gw, managers, squads, live, illegal_breaches=None):
     """Every head-to-head fixture for the current gameweek, live or not --
     unlike build_matches() this doesn't filter down to finished ones, since
     the whole point is to show what's in progress right now.
@@ -537,14 +526,14 @@ def build_results(details, gw, managers, squads, live):
     disappears the moment the last real fixture ends, rather than staying
     on until bonus points are confirmed league-wide.
 
-    A league-ruled result override (load_result_overrides) only ever flips
-    which side is shown as the winner and attaches its note -- the scores
-    themselves stay exactly as played.
+    A league-ruled result override (load_result_overrides) or an automatic
+    illegal-player forfeiture (illegal_breaches, from
+    illegal_player_breaches()) only ever flips which side is shown as the
+    winner and attaches a note -- the scores themselves stay exactly as
+    played.
     """
     remaining = fixtures_remaining(squads, live)
     kicked_off, fully_over = gw_window(live)
-    overrides = load_result_overrides(gw)
-    by_name = {v["manager"]: le for le, v in managers.items()}
     rows = []
     for m in details["matches"]:
         if m["event"] != gw:
@@ -557,11 +546,10 @@ def build_results(details, gw, managers, squads, live):
             ap = squads.get(a, {}).get("effective_xi_points", m["league_entry_2_points"])
         winner = None if hp == ap else ("home" if hp > ap else "away")
         note = None
-        for o in overrides:
-            if {by_name.get(o["manager"]), by_name.get(o["opponent"])} == {h, a}:
-                winner = "home" if by_name.get(o["winner"]) == h else "away"
-                note = o.get("note")
-                break
+        forced_winner, forced_note = match_result_override(m, h, a, hp, ap, managers, illegal_breaches)
+        if forced_winner is not None:
+            winner = "home" if forced_winner == h else "away"
+            note = forced_note
         rows.append({
             "home": h, "away": a,
             "home_name": managers[h]["manager"], "away_name": managers[a]["manager"],
@@ -650,8 +638,29 @@ def rank_entertainment(matches):
     return order
 
 
+def match_result_override(m, h, a, hp, ap, managers, illegal_breaches):
+    """Resolve an explicit result override (load_result_overrides) or an
+    automatic illegal-player forfeiture (illegal_player_breaches) for one
+    match, if either applies -- an explicit override wins if both do, so
+    a hand-written ruling note always takes precedence over the generic
+    auto-generated one. Returns (forced_winner, note); forced_winner is
+    None if the raw score stands.
+    """
+    by_name = {v["manager"]: le for le, v in managers.items()}
+    for o in load_result_overrides(m["event"]):
+        if {by_name.get(o["manager"]), by_name.get(o["opponent"])} == {h, a}:
+            return by_name.get(o["winner"]), o.get("note")
+    natural_winner = h if hp > ap else a if ap > hp else None
+    if natural_winner is not None and (m["event"], natural_winner) in (illegal_breaches or {}):
+        loser = a if natural_winner == h else h
+        note = (f"Win forfeited — {managers[natural_winner]['manager']} fielded "
+                f"{illegal_breaches[(m['event'], natural_winner)]}, their mandated release")
+        return loser, note
+    return None, None
+
+
 def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
-                     live_kicked_off=False, live_fully_over=False):
+                     live_kicked_off=False, live_fully_over=False, illegal_breaches=None):
     """Recomputed from finished matches, plus the current gameweek's live
     projection once its real-world fixtures have kicked off (live_kicked_off,
     from gw_window() -- not the FPL Draft league's own match-level "started",
@@ -681,13 +690,15 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
     side a match's win/draw/loss -- and its 3 league points -- is credited
     to, without touching the "for"/"against" totals the raw score still
     feeds (so Classic standings, which ranks on those, is unaffected).
+    Fielding an illegal player (illegal_breaches, from
+    illegal_player_breaches()) forfeits a win the same way, automatically,
+    without needing a hand-written override -- an explicit override still
+    wins if one exists for the match, e.g. to carry a specific ruling note.
     """
     table = {le: {"w": 0, "d": 0, "l": 0, "for": 0, "against": 0, "played": 0}
              for le in managers}
     history = {le: [] for le in managers}
     live_entries = set()
-    by_name = {v["manager"]: le for le, v in managers.items()}
-    overrides_by_gw = {}
 
     for m in sorted(details["matches"], key=lambda x: x["event"]):
         if m["event"] > upto_gw:
@@ -702,12 +713,7 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
                 live_entries.update((h, a))
         else:
             continue
-        overrides = overrides_by_gw.setdefault(m["event"], load_result_overrides(m["event"]))
-        forced_winner, note = None, None
-        for o in overrides:
-            if {by_name.get(o["manager"]), by_name.get(o["opponent"])} == {h, a}:
-                forced_winner, note = by_name.get(o["winner"]), o.get("note")
-                break
+        forced_winner, note = match_result_override(m, h, a, hp, ap, managers, illegal_breaches)
         for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
             t = table[me]
             t["played"] += 1
@@ -743,7 +749,7 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
     rows.sort(key=lambda r: (-r["points"], -r["for"], -r["diff"]))
 
     # Shared ranks, then movement against the previous gameweek.
-    prev = previous_order(details, managers, upto_gw - 1)
+    prev = previous_order(details, managers, upto_gw - 1, illegal_breaches)
     last_pos, last_key = 0, None
     for i, r in enumerate(rows, start=1):
         key = (r["points"], r["for"])
@@ -754,25 +760,30 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
     return rows
 
 
-def previous_order(details, managers, upto_gw):
+def previous_order(details, managers, upto_gw, illegal_breaches=None):
     if upto_gw < 1:
         return {}
-    prior = build_standings_flat(details, managers, upto_gw)
+    prior = build_standings_flat(details, managers, upto_gw, illegal_breaches)
     return {r["league_entry"]: i for i, r in enumerate(prior, start=1)}
 
 
-def build_standings_flat(details, managers, upto_gw):
+def build_standings_flat(details, managers, upto_gw, illegal_breaches=None):
     table = {le: {"w": 0, "d": 0, "for": 0} for le in managers}
     for m in details["matches"]:
         if not m.get("finished") or m["event"] > upto_gw:
             continue
         h, a = m["league_entry_1"], m["league_entry_2"]
         hp, ap = m["league_entry_1_points"], m["league_entry_2_points"]
+        forced_winner, _ = match_result_override(m, h, a, hp, ap, managers, illegal_breaches)
         for me, mine, theirs in ((h, hp, ap), (a, ap, hp)):
             table[me]["for"] += mine
-            if mine > theirs:
+            if forced_winner is not None:
+                result = "W" if me == forced_winner else "L"
+            else:
+                result = "W" if mine > theirs else "D" if mine == theirs else "L"
+            if result == "W":
                 table[me]["w"] += 1
-            elif mine == theirs:
+            elif result == "D":
                 table[me]["d"] += 1
     rows = [{"league_entry": le, "points": t["w"] * 3 + t["d"], "for": t["for"]}
             for le, t in table.items()]
@@ -1871,7 +1882,8 @@ def main():
             }
 
     squads = build_squads(managers, squads_raw, live, players)
-    results = build_results(details, gw, managers, squads, live)
+    illegal_breaches = illegal_player_breaches(managers, players, load, gw)
+    results = build_results(details, gw, managers, squads, live, illegal_breaches)
     schedule = build_schedule(bootstrap, live, gw)
     releases = build_releases(managers, squads, results_by_entry)
     source = "computed"
@@ -1897,7 +1909,8 @@ def main():
         managers, players, gw, squads_raw, live, prev_squads_raw, prev_live)
     manager_of_month = build_manager_of_month(managers, players, gw, gw_fully_over, load)
     standings = build_standings(details, managers, gw, live_gw=gw, live_squads=squads,
-                                 live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over)
+                                 live_kicked_off=gw_kicked_off, live_fully_over=gw_fully_over,
+                                 illegal_breaches=illegal_breaches)
     luck = build_luckiest(standings)
     manager_profiles = build_manager_profiles(
         details, managers, players, gw, totw_gw, load, manager_of_month["history"], squads, standings)
@@ -1967,10 +1980,6 @@ def main():
         "manager_profiles": manager_profiles,
         "leaders": leaders,
         "prize_forecast": build_prize_forecast(standings, leaders, manager_of_month, manager_profiles),
-        "fines": {
-            **(fines_history := build_fines_history(managers, players, load, gw)),
-            "refund_forecast": build_fines_refund_forecast(standings, fines_history["total"]),
-        },
         "luck": luck,
         "pot": {
             "base": config.BASE_POT,
