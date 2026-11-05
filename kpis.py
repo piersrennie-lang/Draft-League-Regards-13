@@ -176,6 +176,21 @@ def load_transfer_confirmations(gw):
     return by_manager
 
 
+def load_result_overrides(gw):
+    """League-ruled corrections to a head-to-head result for one gameweek
+    -- e.g. a breach discovered after the fact, like an ineligible player.
+    The raw score is left exactly as played (so Classic standings, which
+    ranks on raw points, is untouched); only which side is credited the
+    win/draw/loss -- and the 3 league points that come with it -- changes.
+    Drop an entry into data/manual/gw{n}_result_overrides.json as
+    {"manager", "opponent", "winner", "note"}.
+    """
+    path = ROOT / "data" / "manual" / f"gw{gw}_result_overrides.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text())
+
+
 def live_points(live):
     if not live:
         return {}
@@ -521,9 +536,15 @@ def build_results(details, gw, managers, squads, live):
     (gw_window), not the FPL Draft match's own flags -- so the Live tag
     disappears the moment the last real fixture ends, rather than staying
     on until bonus points are confirmed league-wide.
+
+    A league-ruled result override (load_result_overrides) only ever flips
+    which side is shown as the winner and attaches its note -- the scores
+    themselves stay exactly as played.
     """
     remaining = fixtures_remaining(squads, live)
     kicked_off, fully_over = gw_window(live)
+    overrides = load_result_overrides(gw)
+    by_name = {v["manager"]: le for le, v in managers.items()}
     rows = []
     for m in details["matches"]:
         if m["event"] != gw:
@@ -534,6 +555,13 @@ def build_results(details, gw, managers, squads, live):
         else:
             hp = squads.get(h, {}).get("effective_xi_points", m["league_entry_1_points"])
             ap = squads.get(a, {}).get("effective_xi_points", m["league_entry_2_points"])
+        winner = None if hp == ap else ("home" if hp > ap else "away")
+        note = None
+        for o in overrides:
+            if {by_name.get(o["manager"]), by_name.get(o["opponent"])} == {h, a}:
+                winner = "home" if by_name.get(o["winner"]) == h else "away"
+                note = o.get("note")
+                break
         rows.append({
             "home": h, "away": a,
             "home_name": managers[h]["manager"], "away_name": managers[a]["manager"],
@@ -542,7 +570,8 @@ def build_results(details, gw, managers, squads, live):
             "away_remaining": remaining.get(a, 0),
             "started": kicked_off,
             "finished": fully_over,
-            "winner": None if hp == ap else ("home" if hp > ap else "away"),
+            "winner": winner,
+            "note": note,
         })
     return rows
 
@@ -647,11 +676,18 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
 
     The API's own standings block reports matches_played as 38 for every
     manager before a ball is kicked, so it is not trusted for that column.
+
+    A league-ruled result override (load_result_overrides) forces which
+    side a match's win/draw/loss -- and its 3 league points -- is credited
+    to, without touching the "for"/"against" totals the raw score still
+    feeds (so Classic standings, which ranks on those, is unaffected).
     """
     table = {le: {"w": 0, "d": 0, "l": 0, "for": 0, "against": 0, "played": 0}
              for le in managers}
     history = {le: [] for le in managers}
     live_entries = set()
+    by_name = {v["manager"]: le for le, v in managers.items()}
+    overrides_by_gw = {}
 
     for m in sorted(details["matches"], key=lambda x: x["event"]):
         if m["event"] > upto_gw:
@@ -666,19 +702,31 @@ def build_standings(details, managers, upto_gw, live_gw=None, live_squads=None,
                 live_entries.update((h, a))
         else:
             continue
+        overrides = overrides_by_gw.setdefault(m["event"], load_result_overrides(m["event"]))
+        forced_winner, note = None, None
+        for o in overrides:
+            if {by_name.get(o["manager"]), by_name.get(o["opponent"])} == {h, a}:
+                forced_winner, note = by_name.get(o["winner"]), o.get("note")
+                break
         for me, opp, mine, theirs in ((h, a, hp, ap), (a, h, ap, hp)):
             t = table[me]
             t["played"] += 1
             t["for"] += mine
             t["against"] += theirs
-            if mine > theirs:
+            if forced_winner is not None:
+                result = "W" if me == forced_winner else "L"
+            else:
+                result = "W" if mine > theirs else "D" if mine == theirs else "L"
+            if result == "W":
                 t["w"] += 1
-            elif mine == theirs:
+            elif result == "D":
                 t["d"] += 1
             else:
                 t["l"] += 1
-            history[me].append({"event": m["event"], "pts": mine, "against": theirs, "opp": opp,
-                                "result": "W" if mine > theirs else "D" if mine == theirs else "L"})
+            entry = {"event": m["event"], "pts": mine, "against": theirs, "opp": opp, "result": result}
+            if note is not None:
+                entry["note"] = note
+            history[me].append(entry)
 
     rows = []
     for le, t in table.items():

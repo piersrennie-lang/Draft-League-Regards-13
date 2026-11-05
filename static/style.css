@@ -277,6 +277,12 @@ code { font: 400 0.9em var(--sans); }
   color: var(--ink-muted);
   margin: 0;
 }
+.match__note {
+  margin: 0;
+  font: 400 var(--t-meta)/1.35 var(--sans);
+  font-style: italic;
+  color: var(--ink-muted);
+}
 
 .rating { display: flex; align-items: center; gap: 0.7rem; }
 .rating__label {
