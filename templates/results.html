@@ -39,6 +39,9 @@
             <p class="side__team">{% if gw == current_gw %}{{ r.away_remaining }} fixture{{ 's' if r.away_remaining != 1 }} remaining{% else %}&nbsp;{% endif %}</p>
           </div>
         </div>
+        {% if r.note %}
+        <p class="match__note">{{ r.note }}</p>
+        {% endif %}
       </div>
       {% endfor %}
       {% else %}

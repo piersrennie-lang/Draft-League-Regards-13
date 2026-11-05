@@ -39,8 +39,8 @@ so editorial can bump that rating and the page reorders itself.
 - Active XI and bench split, points per player, blanks, wasted bench points
 - Compulsory release under the Highest Scorer Rule, next in line, ties flagged
 - Release cost as a share of score, which drives the release ledger
-- Rule-breach detection: last week's mandated player still on the books, with
-  the fine and running pot
+- Rule-breach detection: last week's mandated player still on the books,
+  flagged on the Wall of Shame every week
 - Standings recomputed from finished matches, with shared ranks and movement
 - Waiver and free agent moves per manager
 - Next gameweek's fixtures
