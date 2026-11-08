@@ -6,7 +6,7 @@
   "gameweek": 10,
   "next_gameweek": 11,
   "gw_fully_over": true,
-  "fetched_at": "2026-11-08T18:39:39Z",
+  "fetched_at": "2026-11-08T19:39:23Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -114,7 +114,7 @@
    "home_name": "Michael Lavarack",
    "away_name": "Matthew Xenakis",
    "home_points": 53,
-   "away_points": 30,
+   "away_points": 32,
    "home_remaining": 0,
    "away_remaining": 0,
    "started": true,
@@ -1521,7 +1521,7 @@
      "club": "LIV",
      "team_id": 14,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445087.png",
-     "points": 5
+     "points": 7
     },
     {
      "element": 387,
@@ -1587,7 +1587,7 @@
      "points": 2
     }
    ],
-   "effective_xi_points": 30,
+   "effective_xi_points": 32,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": true,
@@ -1608,7 +1608,7 @@
      "club": "LIV",
      "team_id": 14,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445087.png",
-     "points": 5
+     "points": 7
     },
     {
      "element": 226,
@@ -1730,7 +1730,7 @@
      "points": 0
     }
    ],
-   "xi_points": 30,
+   "xi_points": 32,
    "bench_points": 5,
    "best_bench": {
     "element": 496,
@@ -2951,12 +2951,26 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226182.png",
    "release_club": "LEE",
    "release_points": 7,
-   "tie": [],
-   "next": "Araujo",
-   "next_points": 5,
-   "next_tie": [],
-   "score": 30,
-   "cost_pct": 23.3,
+   "tie": [
+    {
+     "name": "Bogle",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226182.png",
+     "club": "LEE"
+    },
+    {
+     "name": "Araujo",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445087.png",
+     "club": "LIV"
+    }
+   ],
+   "next": "Pickford",
+   "next_points": 3,
+   "next_tie": [
+    "Pickford",
+    "King"
+   ],
+   "score": 32,
+   "cost_pct": 21.9,
    "h2h": null
   },
   {
@@ -3033,12 +3047,26 @@
    "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226182.png",
    "release_club": "LEE",
    "release_points": 7,
-   "tie": [],
-   "next": "Araujo",
-   "next_points": 5,
-   "next_tie": [],
-   "score": 30,
-   "cost_pct": 23.3,
+   "tie": [
+    {
+     "name": "Bogle",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p226182.png",
+     "club": "LEE"
+    },
+    {
+     "name": "Araujo",
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445087.png",
+     "club": "LIV"
+    }
+   ],
+   "next": "Pickford",
+   "next_points": 3,
+   "next_tie": [
+    "Pickford",
+    "King"
+   ],
+   "score": 32,
+   "cost_pct": 21.9,
    "h2h": null
   },
   {
@@ -3780,11 +3808,11 @@
    "w": 3,
    "d": 0,
    "l": 7,
-   "for": 396,
+   "for": 398,
    "against": 398,
    "played": 10,
    "points": 9,
-   "diff": -2,
+   "diff": 0,
    "history": [
     {
      "event": 1,
@@ -3851,7 +3879,7 @@
     },
     {
      "event": 10,
-     "pts": 30,
+     "pts": 32,
      "against": 53,
      "opp": 259835,
      "result": "L"
@@ -3869,10 +3897,10 @@
    "d": 0,
    "l": 7,
    "for": 384,
-   "against": 452,
+   "against": 454,
    "played": 10,
    "points": 9,
-   "diff": -68,
+   "diff": -70,
    "history": [
     {
      "event": 1,
@@ -3940,7 +3968,7 @@
     {
      "event": 10,
      "pts": 53,
-     "against": 30,
+     "against": 32,
      "opp": 254700,
      "result": "W"
     }
@@ -4322,7 +4350,7 @@
      "club": "LIV",
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445087.png",
      "pos": "DEF",
-     "points": 5,
+     "points": 7,
      "team_id": 14,
      "guessed": false
     },
@@ -4730,12 +4758,12 @@
     "out_pos": "DEF",
     "in_name": "Araujo",
     "in_club": "LIV",
-    "in_points": 5,
+    "in_points": 7,
     "in_team_id": 14,
     "in_pos": "DEF",
-    "diff": 3,
+    "diff": 5,
     "guessed": false,
-    "gain": 3
+    "gain": 5
    },
    {
     "manager": "Michael Lavarack",
@@ -4889,14 +4917,14 @@
     "transfer_points": 2
    },
    {
-    "manager": "Matthew Xenakis",
-    "points": 24,
-    "transfer_points": -6
-   },
-   {
     "manager": "Roscoe Hill",
     "points": 26,
     "transfer_points": -13
+   },
+   {
+    "manager": "Matthew Xenakis",
+    "points": 28,
+    "transfer_points": -4
    },
    {
     "manager": "Piers Rennie",
@@ -4965,8 +4993,8 @@
     },
     {
      "manager": "Matthew Xenakis",
-     "points": 50,
-     "transfer_points": -10
+     "points": 54,
+     "transfer_points": -8
     }
    ]
   },
@@ -4998,8 +5026,8 @@
    },
    {
     "manager": "Matthew Xenakis",
-    "points": 385,
-    "transfer_points": -11
+    "points": 389,
+    "transfer_points": -9
    },
    {
     "manager": "Michael Lavarack",
@@ -16248,9 +16276,9 @@
     {
      "gameweek": 10,
      "opponent": "Michael Lavarack",
-     "points": 30,
+     "points": 32,
      "against": 53,
-     "margin": -23,
+     "margin": -21,
      "result": "L"
     },
     {
@@ -16329,7 +16357,7 @@
    "current_fixture": {
     "gameweek": 10,
     "opponent": "Michael Lavarack",
-    "points": 30,
+    "points": 32,
     "against": 53,
     "started": true,
     "live": false
@@ -16459,9 +16487,9 @@
    "biggest_loss": {
     "gameweek": 10,
     "opponent": "Michael Lavarack",
-    "points": 30,
+    "points": 32,
     "against": 53,
-    "margin": -23,
+    "margin": -21,
     "result": "L"
    },
    "highest_scores": [
@@ -16518,9 +16546,9 @@
     {
      "gameweek": 10,
      "opponent": "Michael Lavarack",
-     "points": 30,
+     "points": 32,
      "against": 53,
-     "margin": -23,
+     "margin": -21,
      "result": "L"
     },
     {
@@ -17173,7 +17201,7 @@
      "gameweek": 10,
      "name": "Araujo",
      "club": "LIV",
-     "points": 5
+     "points": 7
     },
     {
      "gameweek": 10,
@@ -17300,10 +17328,10 @@
      "out_pos": "DEF",
      "in_name": "Araujo",
      "in_club": "LIV",
-     "in_points": 5,
+     "in_points": 7,
      "in_team_id": 14,
      "in_pos": "DEF",
-     "diff": 3,
+     "diff": 5,
      "guessed": false,
      "gameweek": 10
     },
@@ -17576,10 +17604,10 @@
      "out_pos": "DEF",
      "in_name": "Araujo",
      "in_club": "LIV",
-     "in_points": 5,
+     "in_points": 7,
      "in_team_id": 14,
      "in_pos": "DEF",
-     "diff": 3,
+     "diff": 5,
      "guessed": false,
      "gameweek": 10
     },
@@ -17630,10 +17658,10 @@
        "out_pos": "DEF",
        "in_name": "Araujo",
        "in_club": "LIV",
-       "in_points": 5,
+       "in_points": 7,
        "in_team_id": 14,
        "in_pos": "DEF",
-       "diff": 3,
+       "diff": 5,
        "guessed": false,
        "gameweek": 10
       },
@@ -17859,7 +17887,7 @@
        "club": "LIV",
        "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p445087.png",
        "pos": "DEF",
-       "points": 5,
+       "points": 7,
        "team_id": 14,
        "guessed": false
       },
@@ -20205,8 +20233,8 @@
      "gameweek": 10,
      "opponent": "Matthew Xenakis",
      "points": 53,
-     "against": 30,
-     "margin": 23,
+     "against": 32,
+     "margin": 21,
      "result": "W"
     },
     {
@@ -20286,7 +20314,7 @@
     "gameweek": 10,
     "opponent": "Matthew Xenakis",
     "points": 53,
-    "against": 30,
+    "against": 32,
     "started": true,
     "live": false
    },
@@ -20408,8 +20436,8 @@
     "gameweek": 10,
     "opponent": "Matthew Xenakis",
     "points": 53,
-    "against": 30,
-    "margin": 23,
+    "against": 32,
+    "margin": 21,
     "result": "W"
    },
    "biggest_loss": {
@@ -20425,8 +20453,8 @@
      "gameweek": 10,
      "opponent": "Matthew Xenakis",
      "points": 53,
-     "against": 30,
-     "margin": 23,
+     "against": 32,
+     "margin": 21,
      "result": "W"
     },
     {
@@ -26820,12 +26848,12 @@
     "result": "W"
    },
    {
-    "manager": "Michael Lavarack",
-    "gameweek": 10,
-    "opponent": "Matthew Xenakis",
+    "manager": "Mattato Alcock",
+    "gameweek": 6,
+    "opponent": "Piers Rennie",
     "points": 53,
-    "against": 30,
-    "margin": 23,
+    "against": 32,
+    "margin": 21,
     "result": "W"
    }
   ],
@@ -27659,7 +27687,7 @@
    },
    {
     "manager": "Michael Lavarack",
-    "avg_against": 45.2
+    "avg_against": 45.4
    },
    {
     "manager": "Piers Rennie",
