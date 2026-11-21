@@ -6,7 +6,7 @@
   "gameweek": 11,
   "next_gameweek": 12,
   "gw_fully_over": false,
-  "fetched_at": "2026-11-21T17:39:35Z",
+  "fetched_at": "2026-11-21T18:39:52Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -99,8 +99,8 @@
    "away": 208632,
    "home_name": "Piers Rennie",
    "away_name": "Stefano Babiolakis",
-   "home_points": 16,
-   "away_points": 8,
+   "home_points": 24,
+   "away_points": 12,
    "home_remaining": 4,
    "away_remaining": 4,
    "started": true,
@@ -230,7 +230,7 @@
      "club": "FUL",
      "team_id": 10,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477555.png",
-     "points": 5
+     "points": 6
     },
     {
      "element": 453,
@@ -239,7 +239,7 @@
      "club": "NEW",
      "team_id": 17,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
-     "points": 1
+     "points": 8
     },
     {
      "element": 124,
@@ -278,11 +278,20 @@
      "points": 1
     }
    ],
-   "effective_xi_points": 16,
+   "effective_xi_points": 24,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
    "xi": [
+    {
+     "element": 453,
+     "name": "Barnes",
+     "pos": "MID",
+     "club": "NEW",
+     "team_id": 17,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+     "points": 8
+    },
     {
      "element": 597,
      "name": "Suzuki",
@@ -299,7 +308,7 @@
      "club": "FUL",
      "team_id": 10,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p477555.png",
-     "points": 5
+     "points": 6
     },
     {
      "element": 305,
@@ -308,15 +317,6 @@
      "club": "IPS",
      "team_id": 12,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p455084.png",
-     "points": 1
-    },
-    {
-     "element": 453,
-     "name": "Barnes",
-     "pos": "MID",
-     "club": "NEW",
-     "team_id": 17,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
      "points": 1
     },
     {
@@ -421,7 +421,7 @@
      "points": 0
     }
    ],
-   "xi_points": 16,
+   "xi_points": 24,
    "bench_points": 7,
    "best_bench": {
     "element": 40,
@@ -534,14 +534,23 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p219847.png",
-     "points": 1
+     "points": 5
     }
    ],
-   "effective_xi_points": 8,
+   "effective_xi_points": 12,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
    "xi": [
+    {
+     "element": 26,
+     "name": "Havertz",
+     "pos": "FWD",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p219847.png",
+     "points": 5
+    },
     {
      "element": 237,
      "name": "Ndiaye",
@@ -594,15 +603,6 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 1
-    },
-    {
-     "element": 26,
-     "name": "Havertz",
-     "pos": "FWD",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p219847.png",
      "points": 1
     },
     {
@@ -680,7 +680,7 @@
      "points": 0
     }
    ],
-   "xi_points": 8,
+   "xi_points": 12,
    "bench_points": 5,
    "best_bench": {
     "element": 173,
@@ -2855,6 +2855,25 @@
    "h2h": null
   },
   {
+   "league_entry": 207565,
+   "manager": "Piers Rennie",
+   "team": "Mendls Macaroons",
+   "release": "Barnes",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+   "release_club": "NEW",
+   "release_points": 8,
+   "tie": [],
+   "next": "Suzuki",
+   "next_points": 6,
+   "next_tie": [
+    "Suzuki",
+    "Bobb"
+   ],
+   "score": 24,
+   "cost_pct": 33.3,
+   "h2h": null
+  },
+  {
    "league_entry": 260926,
    "manager": "Mark Stone",
    "team": "CHANGE NAME",
@@ -2890,19 +2909,19 @@
    "h2h": null
   },
   {
-   "league_entry": 207565,
-   "manager": "Piers Rennie",
-   "team": "Mendls Macaroons",
-   "release": "Suzuki",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p433969.png",
-   "release_club": "AVL",
-   "release_points": 6,
+   "league_entry": 208632,
+   "manager": "Stefano Babiolakis",
+   "team": "Iraola Coaster",
+   "release": "Havertz",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p219847.png",
+   "release_club": "ARS",
+   "release_points": 5,
    "tie": [],
-   "next": "Bobb",
-   "next_points": 5,
+   "next": "Ndiaye",
+   "next_points": 2,
    "next_tie": [],
-   "score": 16,
-   "cost_pct": 37.5,
+   "score": 12,
+   "cost_pct": 41.7,
    "h2h": null
   },
   {
@@ -2919,29 +2938,6 @@
    "next_tie": [],
    "score": 8,
    "cost_pct": 37.5,
-   "h2h": null
-  },
-  {
-   "league_entry": 208632,
-   "manager": "Stefano Babiolakis",
-   "team": "Iraola Coaster",
-   "release": "Ndiaye",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png",
-   "release_club": "MCI",
-   "release_points": 2,
-   "tie": [],
-   "next": "Raya",
-   "next_points": 1,
-   "next_tie": [
-    "Raya",
-    "Bassey",
-    "Bruno G.",
-    "McGinn",
-    "Rice",
-    "Havertz"
-   ],
-   "score": 8,
-   "cost_pct": 25.0,
    "h2h": null
   },
   {
@@ -2965,29 +2961,6 @@
   }
  ],
  "release_efficiency": [
-  {
-   "league_entry": 208632,
-   "manager": "Stefano Babiolakis",
-   "team": "Iraola Coaster",
-   "release": "Ndiaye",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p440993.png",
-   "release_club": "MCI",
-   "release_points": 2,
-   "tie": [],
-   "next": "Raya",
-   "next_points": 1,
-   "next_tie": [
-    "Raya",
-    "Bassey",
-    "Bruno G.",
-    "McGinn",
-    "Rice",
-    "Havertz"
-   ],
-   "score": 8,
-   "cost_pct": 25.0,
-   "h2h": null
-  },
   {
    "league_entry": 254700,
    "manager": "Matthew Xenakis",
@@ -3056,16 +3029,19 @@
    "league_entry": 207565,
    "manager": "Piers Rennie",
    "team": "Mendls Macaroons",
-   "release": "Suzuki",
-   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p433969.png",
-   "release_club": "AVL",
-   "release_points": 6,
+   "release": "Barnes",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p201666.png",
+   "release_club": "NEW",
+   "release_points": 8,
    "tie": [],
-   "next": "Bobb",
-   "next_points": 5,
-   "next_tie": [],
-   "score": 16,
-   "cost_pct": 37.5,
+   "next": "Suzuki",
+   "next_points": 6,
+   "next_tie": [
+    "Suzuki",
+    "Bobb"
+   ],
+   "score": 24,
+   "cost_pct": 33.3,
    "h2h": null
   },
   {
@@ -3101,6 +3077,22 @@
    ],
    "score": 21,
    "cost_pct": 38.1,
+   "h2h": null
+  },
+  {
+   "league_entry": 208632,
+   "manager": "Stefano Babiolakis",
+   "team": "Iraola Coaster",
+   "release": "Havertz",
+   "release_photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p219847.png",
+   "release_club": "ARS",
+   "release_points": 5,
+   "tie": [],
+   "next": "Ndiaye",
+   "next_points": 2,
+   "next_tie": [],
+   "score": 12,
+   "cost_pct": 41.7,
    "h2h": null
   },
   {
@@ -3550,11 +3542,11 @@
    "w": 6,
    "d": 1,
    "l": 4,
-   "for": 409,
-   "against": 426,
+   "for": 417,
+   "against": 430,
    "played": 11,
    "points": 19,
-   "diff": -17,
+   "diff": -13,
    "history": [
     {
      "event": 1,
@@ -3628,8 +3620,8 @@
     },
     {
      "event": 11,
-     "pts": 16,
-     "against": 8,
+     "pts": 24,
+     "against": 12,
      "opp": 208632,
      "result": "W"
     }
@@ -3740,11 +3732,11 @@
    "w": 4,
    "d": 1,
    "l": 6,
-   "for": 361,
-   "against": 406,
+   "for": 365,
+   "against": 414,
    "played": 11,
    "points": 13,
-   "diff": -45,
+   "diff": -49,
    "history": [
     {
      "event": 1,
@@ -3818,8 +3810,8 @@
     },
     {
      "event": 11,
-     "pts": 8,
-     "against": 16,
+     "pts": 12,
+     "against": 24,
      "opp": 207565,
      "result": "L"
     }
@@ -5151,14 +5143,14 @@
   ],
   "worst": [
    {
-    "manager": "Stefano Babiolakis",
-    "points": 2,
-    "transfer_points": -6
-   },
-   {
     "manager": "Roscoe Hill",
     "points": 4,
     "transfer_points": 0
+   },
+   {
+    "manager": "Stefano Babiolakis",
+    "points": 6,
+    "transfer_points": -6
    },
    {
     "manager": "Michael Lavarack",
@@ -5166,14 +5158,14 @@
     "transfer_points": 1
    },
    {
-    "manager": "Piers Rennie",
-    "points": 16,
-    "transfer_points": 0
-   },
-   {
     "manager": "Mark Stone",
     "points": 22,
     "transfer_points": 1
+   },
+   {
+    "manager": "Piers Rennie",
+    "points": 24,
+    "transfer_points": 0
    }
   ]
  },
@@ -5207,7 +5199,7 @@
     },
     {
      "manager": "Stefano Babiolakis",
-     "points": 111,
+     "points": 115,
      "transfer_points": 5
     },
     {
@@ -5222,7 +5214,7 @@
     },
     {
      "manager": "Piers Rennie",
-     "points": 85,
+     "points": 93,
      "transfer_points": -3
     },
     {
@@ -5269,18 +5261,18 @@
     "transfer_points": -5
    },
    {
+    "manager": "Piers Rennie",
+    "points": 392,
+    "transfer_points": -25
+   },
+   {
     "manager": "Michael Lavarack",
     "points": 390,
     "transfer_points": -3
    },
    {
-    "manager": "Piers Rennie",
-    "points": 384,
-    "transfer_points": -25
-   },
-   {
     "manager": "Stefano Babiolakis",
-    "points": 348,
+    "points": 352,
     "transfer_points": -13
    },
    {
@@ -5430,9 +5422,9 @@
     {
      "gameweek": 11,
      "opponent": "Stefano Babiolakis",
-     "points": 16,
-     "against": 8,
-     "margin": 8,
+     "points": 24,
+     "against": 12,
+     "margin": 12,
      "result": "W"
     },
     {
@@ -5519,8 +5511,8 @@
    "current_fixture": {
     "gameweek": 11,
     "opponent": "Stefano Babiolakis",
-    "points": 16,
-    "against": 8,
+    "points": 24,
+    "against": 12,
     "started": true,
     "live": true
    },
@@ -5696,9 +5688,9 @@
     {
      "gameweek": 11,
      "opponent": "Stefano Babiolakis",
-     "points": 16,
-     "against": 8,
-     "margin": 8,
+     "points": 24,
+     "against": 12,
+     "margin": 12,
      "result": "W"
     },
     {
@@ -6419,7 +6411,7 @@
      "gameweek": 11,
      "name": "Bobb",
      "club": "FUL",
-     "points": 5
+     "points": 6
     },
     {
      "gameweek": 11,
@@ -7620,9 +7612,9 @@
     {
      "gameweek": 11,
      "opponent": "Piers Rennie",
-     "points": 8,
-     "against": 16,
-     "margin": -8,
+     "points": 12,
+     "against": 24,
+     "margin": -12,
      "result": "L"
     },
     {
@@ -7709,8 +7701,8 @@
    "current_fixture": {
     "gameweek": 11,
     "opponent": "Piers Rennie",
-    "points": 8,
-    "against": 16,
+    "points": 12,
+    "against": 24,
     "started": true,
     "live": true
    },
@@ -7886,9 +7878,9 @@
     {
      "gameweek": 11,
      "opponent": "Piers Rennie",
-     "points": 8,
-     "against": 16,
-     "margin": -8,
+     "points": 12,
+     "against": 24,
+     "margin": -12,
      "result": "L"
     },
     {
@@ -29483,10 +29475,6 @@
     "avg_against": 35.3
    },
    {
-    "manager": "Stefano Babiolakis",
-    "avg_against": 36.9
-   },
-   {
     "manager": "Matthew Lees",
     "avg_against": 37.0
    },
@@ -29495,8 +29483,12 @@
     "avg_against": 37.2
    },
    {
-    "manager": "Piers Rennie",
-    "avg_against": 38.7
+    "manager": "Stefano Babiolakis",
+    "avg_against": 37.6
+   },
+   {
+    "manager": "Roscoe Hill",
+    "avg_against": 38.9
    }
   ],
   "unluckiest": [
@@ -29517,11 +29509,11 @@
     "avg_against": 39.9
    },
    {
-    "manager": "Roscoe Hill",
-    "avg_against": 38.9
+    "manager": "Piers Rennie",
+    "avg_against": 39.1
    }
   ],
-  "average": 39.1
+  "average": 39.2
  },
  "pot": {
   "base": 200,
