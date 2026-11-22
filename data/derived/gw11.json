@@ -6,7 +6,7 @@
   "gameweek": 11,
   "next_gameweek": 12,
   "gw_fully_over": false,
-  "fetched_at": "2026-11-22T00:39:15Z",
+  "fetched_at": "2026-11-22T01:39:14Z",
   "transaction_mode": "waivers",
   "scoring": "h"
  },
@@ -100,7 +100,7 @@
    "home_name": "Piers Rennie",
    "away_name": "Stefano Babiolakis",
    "home_points": 23,
-   "away_points": 13,
+   "away_points": 15,
    "home_remaining": 4,
    "away_remaining": 4,
    "started": true,
@@ -516,7 +516,7 @@
      "club": "ARS",
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
-     "points": 1
+     "points": 3
     },
     {
      "element": 249,
@@ -537,7 +537,7 @@
      "points": 5
     }
    ],
-   "effective_xi_points": 13,
+   "effective_xi_points": 15,
    "autosubs": [],
    "unresolved_players": [],
    "is_final": false,
@@ -550,6 +550,15 @@
      "team_id": 1,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p219847.png",
      "points": 5
+    },
+    {
+     "element": 13,
+     "name": "Rice",
+     "pos": "MID",
+     "club": "ARS",
+     "team_id": 1,
+     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
+     "points": 3
     },
     {
      "element": 237,
@@ -594,15 +603,6 @@
      "club": "AVL",
      "team_id": 2,
      "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p122806.png",
-     "points": 1
-    },
-    {
-     "element": 13,
-     "name": "Rice",
-     "pos": "MID",
-     "club": "ARS",
-     "team_id": 1,
-     "photo": "https://resources.premierleague.com/premierleague/photos/players/110x140/p204480.png",
      "points": 1
     },
     {
@@ -680,7 +680,7 @@
      "points": 0
     }
    ],
-   "xi_points": 13,
+   "xi_points": 15,
    "bench_points": 5,
    "best_bench": {
     "element": 173,
@@ -2938,14 +2938,11 @@
    "release_club": "ARS",
    "release_points": 5,
    "tie": [],
-   "next": "Ndiaye",
-   "next_points": 2,
-   "next_tie": [
-    "Ndiaye",
-    "Bruno G."
-   ],
-   "score": 13,
-   "cost_pct": 38.5,
+   "next": "Rice",
+   "next_points": 3,
+   "next_tie": [],
+   "score": 15,
+   "cost_pct": 33.3,
    "h2h": null
   },
   {
@@ -3108,14 +3105,11 @@
    "release_club": "ARS",
    "release_points": 5,
    "tie": [],
-   "next": "Ndiaye",
-   "next_points": 2,
-   "next_tie": [
-    "Ndiaye",
-    "Bruno G."
-   ],
-   "score": 13,
-   "cost_pct": 38.5,
+   "next": "Rice",
+   "next_points": 3,
+   "next_tie": [],
+   "score": 15,
+   "cost_pct": 33.3,
    "h2h": null
   },
   {
@@ -3583,10 +3577,10 @@
    "d": 1,
    "l": 4,
    "for": 416,
-   "against": 431,
+   "against": 433,
    "played": 11,
    "points": 19,
-   "diff": -15,
+   "diff": -17,
    "history": [
     {
      "event": 1,
@@ -3661,7 +3655,7 @@
     {
      "event": 11,
      "pts": 23,
-     "against": 13,
+     "against": 15,
      "opp": 208632,
      "result": "W"
     }
@@ -3772,11 +3766,11 @@
    "w": 4,
    "d": 1,
    "l": 6,
-   "for": 366,
+   "for": 368,
    "against": 413,
    "played": 11,
    "points": 13,
-   "diff": -47,
+   "diff": -45,
    "history": [
     {
      "event": 1,
@@ -3850,7 +3844,7 @@
     },
     {
      "event": 11,
-     "pts": 13,
+     "pts": 15,
      "against": 23,
      "opp": 207565,
      "result": "L"
@@ -5189,7 +5183,7 @@
    },
    {
     "manager": "Stefano Babiolakis",
-    "points": 7,
+    "points": 9,
     "transfer_points": -6
    },
    {
@@ -5239,7 +5233,7 @@
     },
     {
      "manager": "Stefano Babiolakis",
-     "points": 116,
+     "points": 118,
      "transfer_points": 5
     },
     {
@@ -5312,7 +5306,7 @@
    },
    {
     "manager": "Stefano Babiolakis",
-    "points": 353,
+    "points": 355,
     "transfer_points": -13
    },
    {
@@ -5463,8 +5457,8 @@
      "gameweek": 11,
      "opponent": "Stefano Babiolakis",
      "points": 23,
-     "against": 13,
-     "margin": 10,
+     "against": 15,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -5552,7 +5546,7 @@
     "gameweek": 11,
     "opponent": "Stefano Babiolakis",
     "points": 23,
-    "against": 13,
+    "against": 15,
     "started": true,
     "live": true
    },
@@ -5729,8 +5723,8 @@
      "gameweek": 11,
      "opponent": "Stefano Babiolakis",
      "points": 23,
-     "against": 13,
-     "margin": 10,
+     "against": 15,
+     "margin": 8,
      "result": "W"
     },
     {
@@ -7658,9 +7652,9 @@
     {
      "gameweek": 11,
      "opponent": "Piers Rennie",
-     "points": 13,
+     "points": 15,
      "against": 23,
-     "margin": -10,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -7747,7 +7741,7 @@
    "current_fixture": {
     "gameweek": 11,
     "opponent": "Piers Rennie",
-    "points": 13,
+    "points": 15,
     "against": 23,
     "started": true,
     "live": true
@@ -7924,9 +7918,9 @@
     {
      "gameweek": 11,
      "opponent": "Piers Rennie",
-     "points": 13,
+     "points": 15,
      "against": 23,
-     "margin": -10,
+     "margin": -8,
      "result": "L"
     },
     {
@@ -8665,7 +8659,7 @@
      "gameweek": 11,
      "name": "Rice",
      "club": "ARS",
-     "points": 1
+     "points": 3
     },
     {
      "gameweek": 11,
@@ -29666,7 +29660,7 @@
    },
    {
     "manager": "Piers Rennie",
-    "avg_against": 39.2
+    "avg_against": 39.4
    }
   ],
   "average": 39.4
