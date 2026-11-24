@@ -217,15 +217,21 @@ def build_squads(managers, squads_raw, live, players):
     """Split each squad into XI and bench and attach points.
 
     Draft uses picks position 1-11 for the active eleven and 12-15 for the
-    bench, so the Highest Scorer Rule only ever looks at positions 1-11.
+    bench. "xi"/"xi_points" stay the manager's literal submitted
+    selection -- used for blanks/wasted-bench-points and breach detection
+    (which checks whether a mandated release is still sitting in the
+    literal squad, not whether it was subbed on).
 
     Also projects the *effective* (post-autosub) lineup via
     calculate_effective_lineup() -- FPL Draft itself doesn't apply
-    automatic substitutions until a gameweek is fully over, so "xi"/
-    "xi_points" here stay the manager's literal submitted selection
-    (what the Highest Scorer Rule and breach detection care about), while
+    automatic substitutions until a gameweek is fully over, so
     "effective_xi"/"effective_xi_points"/"autosubs" are the live-scoring
-    projection of what FPL will eventually settle on.
+    projection of what FPL will eventually settle on. The Highest Scorer
+    Rule (build_releases) is based on this effective lineup, not the
+    submitted one: a bench player who was never subbed on stays exempt
+    (their points never counted toward anything), but one who autosubbed
+    on for a blank is, by then, someone whose points the manager actually
+    banked, so they're fair game for the rule same as any starter.
     """
     pts = live_points(live)
     gw_stats = live_stats(live)
@@ -318,9 +324,16 @@ def wasted_bench_points(xi, bench):
 # --------------------------------------------------------------------------
 
 def build_releases(managers, squads, results_by_entry):
+    """Who each manager must release: the highest scorer in their
+    *effective* (post-autosub) lineup, not just their literal submitted
+    XI -- a bench player autosubbed on for a blank has, by then, had
+    their points actually banked toward the manager's score, so they're
+    judged the same as any starter. A bench player never subbed on stays
+    exempt, same as always, since their points were never actually
+    used."""
     rows = []
     for le, squad in squads.items():
-        xi = squad["xi"]
+        xi = sorted(squad.get("effective_xi", squad["xi"]), key=lambda r: -r["points"])
         if not xi:
             continue
         top = xi[0]
