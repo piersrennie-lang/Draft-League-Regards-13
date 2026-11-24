@@ -1173,7 +1173,7 @@ def best_and_worst_transfers(swaps, limit=3):
             [{**s, "loss": -s["diff"]} for s in worst])
 
 
-def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_raw, prev_live):
+def manager_week_scores(managers, players, gw, gw_squads_raw, gw_live, prev_squads_raw, prev_live):
     """Each manager's score for one gameweek: active-XI points scored,
     plus the full point swing (see build_transfer_swaps) from any
     qualifying transfer that week -- deliberately double-weighting the
@@ -1181,11 +1181,20 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
     once toward the raw score and the swing is added again on top as a
     bonus for the call itself. "transfer_points" is that swing on its
     own, so callers can show it as a column in its own right.
+
+    Passes gw's manual transfer confirmations (see
+    load_transfer_confirmations) into build_transfer_swaps, same as every
+    other caller of build_transfer_swaps -- without this, a manager who
+    made several same-position swaps in one week gets whatever pairing
+    the heuristic guesses, which can disagree with the confirmed pairing
+    used by transfer_log/the Transfers page, and this week's swing can
+    land on a different (wrong) subset of legs as "qualifying".
     """
     if not gw_squads_raw or not gw_live:
         return {}
     squads = build_squads(managers, gw_squads_raw, gw_live, players)
-    swaps = (build_transfer_swaps(managers, players, squads, prev_squads_raw, gw_live, prev_live)
+    swaps = (build_transfer_swaps(managers, players, squads, prev_squads_raw, gw_live, prev_live,
+                                   load_transfer_confirmations(gw))
              if prev_squads_raw else [])
     swing = {}
     for s in swaps:
@@ -1202,7 +1211,7 @@ def manager_week_scores(managers, players, gw_squads_raw, gw_live, prev_squads_r
 def build_manager_of_week(managers, players, gw, squads_raw, live, prev_squads_raw, prev_live):
     """Top 5 and worst 5 managers for gw -- live, updating as it plays out
     (unlike Team of the Week, which waits for gw to fully settle)."""
-    scores = manager_week_scores(managers, players, squads_raw, live, prev_squads_raw, prev_live)
+    scores = manager_week_scores(managers, players, gw, squads_raw, live, prev_squads_raw, prev_live)
     if not scores:
         return None
     ranked = sorted(scores.items(), key=lambda kv: -kv[1]["points"])
@@ -1230,7 +1239,7 @@ def _block_standings(managers, players, load_fn, block_start, block_end):
         g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
         g_prev_live = load_fn(f"live_gw{g - 1}") if g > 1 else None
         for manager_name, s in manager_week_scores(
-                managers, players, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live).items():
+                managers, players, g, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live).items():
             acc = totals.setdefault(manager_name, {"points": 0, "transfer_points": 0})
             acc["points"] += s["points"]
             acc["transfer_points"] += s["transfer_points"]
@@ -1450,7 +1459,7 @@ def build_manager_profiles(details, managers, players, gw, totw_gw, load_fn, man
 
         g_prev_squads_raw = load_fn(f"squads_gw{g - 1}") if g > 1 else None
         g_prev_live = load_fn(f"live_gw{g - 1}") if g > 1 else None
-        week_scores = manager_week_scores(managers, players, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live)
+        week_scores = manager_week_scores(managers, players, g, g_squads_raw, g_live, g_prev_squads_raw, g_prev_live)
         if week_scores:
             winner_name = max(week_scores.items(), key=lambda kv: kv[1]["points"])[0]
             le = by_manager.get(winner_name)
